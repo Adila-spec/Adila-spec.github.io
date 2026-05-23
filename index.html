@@ -238,6 +238,38 @@
     .nav-links{gap:.7rem;}
     section{padding-left:1.25rem;padding-right:1.25rem;}
   }
+
+  /* MULTIPLE CHOICE */
+  .mc-choices{display:flex;flex-direction:column;gap:.6rem;margin:1rem 0;}
+  .mc-choice{
+    display:flex;align-items:flex-start;gap:.85rem;
+    padding:.75rem 1rem;
+    background:white;border:1.5px solid var(--border);border-radius:12px;
+    cursor:pointer;transition:all .18s;font-size:.88rem;line-height:1.5;color:var(--text);
+    text-align:left;width:100%;font-family:'Nunito',sans-serif;
+  }
+  .mc-choice:hover{border-color:var(--lilac-mid);background:var(--lilac-light);}
+  .mc-choice.correct{border-color:#5aad8e;background:var(--mint-light);color:#2d7a5a;}
+  .mc-choice.wrong{border-color:#e08080;background:#fff0f0;color:#c05050;}
+  .mc-choice.disabled{cursor:default;pointer-events:none;}
+  .mc-letter{
+    min-width:26px;height:26px;border-radius:50%;
+    background:var(--lilac-light);color:var(--lilac-mid);
+    font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;
+    flex-shrink:0;margin-top:1px;
+  }
+  .mc-choice.correct .mc-letter{background:#5aad8e;color:white;}
+  .mc-choice.wrong .mc-letter{background:#e08080;color:white;}
+  .mc-explain{
+    margin-top:.8rem;padding:.8rem 1rem;
+    background:var(--bg2);border-radius:10px;border-left:3px solid var(--lilac-mid);
+    font-size:.84rem;color:var(--text2);line-height:1.7;display:none;
+  }
+  .mc-explain.show{display:block;}
+  .mc-result{font-size:.85rem;font-weight:700;margin-top:.5rem;}
+  .mc-result.correct{color:#5aad8e;}
+  .mc-result.wrong{color:#e08080;}
+  .mc-filter-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem;}
 </style>
 </head>
 <body>
@@ -368,6 +400,7 @@
     <div class="ltab active" onclick="switchTab('sql')">🗂 SQL Practice</div>
     <div class="ltab" onclick="switchTab('python')">🐍 Python Practice</div>
     <div class="ltab" onclick="switchTab('fitb')">✏️ Fill in the Blank</div>
+    <div class="ltab" onclick="switchTab('mc')">🧠 ML Quiz</div>
   </div>
 
   <!-- SQL PANEL -->
@@ -447,6 +480,30 @@
       <div style="display:flex;gap:.5rem;"><button class="nav-btn" id="fitb-prev" onclick="fitbNav(-1)" disabled>← Prev</button><button class="nav-btn" id="fitb-next" onclick="fitbNav(1)">Next →</button></div>
     </div>
     <div class="qa-card" id="fitb-qa"></div>
+  </div>
+
+  <!-- MC PANEL -->
+  <div class="ltab-panel" id="panel-mc">
+    <div class="mc-filter-bar" id="mc-filter-bar">
+      <button class="filter-btn active" onclick="filterMC('All')">All</button>
+      <button class="filter-btn" onclick="filterMC('Neural Networks')">Neural Networks</button>
+      <button class="filter-btn" onclick="filterMC('Decision Trees')">Decision Trees</button>
+      <button class="filter-btn" onclick="filterMC('Random Forest')">Random Forest</button>
+      <button class="filter-btn" onclick="filterMC('Support Vector Machines')">SVM</button>
+      <button class="filter-btn" onclick="filterMC('Ridge Regression')">Ridge Regression</button>
+      <button class="filter-btn" onclick="filterMC('K-Means Clustering')">K-Means</button>
+      <button class="filter-btn" onclick="filterMC('ARIMA')">ARIMA</button>
+      <button class="filter-btn" onclick="filterMC('Perceptrons')">Perceptrons</button>
+      <button class="filter-btn" onclick="filterMC('Feature Engineering')">Feature Engineering</button>
+    </div>
+    <div class="qa-nav">
+      <div class="qa-counter" id="mc-counter">Question 1 of 36</div>
+      <div style="display:flex;gap:.5rem;">
+        <button class="nav-btn" id="mc-prev" onclick="mcNav(-1)" disabled>← Prev</button>
+        <button class="nav-btn" id="mc-next" onclick="mcNav(1)">Next →</button>
+      </div>
+    </div>
+    <div class="qa-card" id="mc-qa"></div>
   </div>
 </section>
 
@@ -1117,11 +1174,112 @@ function switchPrepTab(tab){
   if(tab==='flashcard') renderFlashcard();
 }
 
+
+// ── MULTIPLE CHOICE ───────────────────────────────────────────────────────────
+const mcQuestions=[
+  {cat:"Neural Networks",q:"What is the main purpose of the activation function in a neural network?",choices:["To normalize the input data", "To introduce non-linearity so the network can learn complex patterns", "To reduce the number of layers", "To calculate the loss"],answer:1,explain:"Without activation functions, a neural network would just be a linear transformation no matter how many layers it has. Activation functions like ReLU and sigmoid allow it to learn non-linear relationships."},
+  {cat:"Neural Networks",q:"What does backpropagation do in a neural network?",choices:["It feeds data forward through the layers", "It normalizes the weights", "It calculates gradients and updates weights to minimize loss", "It drops random neurons during training"],answer:2,explain:"Backpropagation computes the gradient of the loss function with respect to each weight, then the optimizer (e.g. Adam) uses those gradients to adjust weights in the right direction."},
+  {cat:"Neural Networks",q:"What does Dropout do during neural network training?",choices:["It removes features with low importance", "It randomly deactivates neurons to prevent overfitting", "It reduces the learning rate over time", "It clips the gradient to prevent explosion"],answer:1,explain:"Dropout randomly sets a fraction of neurons to zero during each training step. This forces the network to not rely on any single neuron, improving generalization."},
+  {cat:"Neural Networks",q:"Which activation function is most commonly used in hidden layers of modern deep networks?",choices:["Sigmoid", "Tanh", "ReLU", "Softmax"],answer:2,explain:"ReLU (Rectified Linear Unit) is preferred because it doesn't suffer from the vanishing gradient problem like sigmoid and tanh, and it's computationally cheap."},
+  {cat:"Neural Networks",q:"What type of neural network is best suited for image classification tasks?",choices:["Recurrent Neural Network (RNN)", "Convolutional Neural Network (CNN)", "Multi-Layer Perceptron (MLP)", "Autoencoder"],answer:1,explain:"CNNs use convolutional layers to detect spatial patterns like edges, shapes, and textures \u2014 making them ideal for image data."},
+  {cat:"Decision Trees",q:"What metric does a Decision Tree use to decide the best split at each node?",choices:["Mean Squared Error only", "Gini Impurity or Information Gain", "R-squared", "AUC Score"],answer:1,explain:"Decision trees evaluate splits using Gini Impurity (CART) or Information Gain (ID3/C4.5). Both measure how well a split separates the classes."},
+  {cat:"Decision Trees",q:"What is the main risk of letting a Decision Tree grow without any depth limit?",choices:["Underfitting \u2014 the model is too simple", "Overfitting \u2014 the model memorizes training data", "The tree becomes a random forest", "The model cannot handle numerical features"],answer:1,explain:"An unconstrained tree will keep splitting until every leaf has one sample \u2014 perfectly fitting training data but failing on new data. max_depth, min_samples_leaf, and pruning control this."},
+  {cat:"Decision Trees",q:"Why are Decision Trees considered interpretable?",choices:["They use fewer parameters than linear models", "You can trace any prediction as a series of if/then rules", "They always produce the same result", "They only work with two classes"],answer:1,explain:"Every prediction in a decision tree follows a clear path from root to leaf \u2014 making it easy to explain to non-technical stakeholders and regulators."},
+  {cat:"Decision Trees",q:"What does min_samples_leaf=10 mean in sklearn's DecisionTreeClassifier?",choices:["The tree can have at most 10 leaves", "Each leaf node must have at least 10 training samples", "The tree splits at most 10 times", "Features must appear at least 10 times"],answer:1,explain:"min_samples_leaf prevents the tree from creating tiny leaf nodes with very few samples \u2014 a common regularization technique to reduce overfitting."},
+  {cat:"Random Forest",q:"What is 'bagging' in the context of Random Forest?",choices:["Removing weak features from the dataset", "Training each tree on a random bootstrap sample of the data", "Combining outputs by averaging probabilities", "Using a bag-of-words encoding for categorical features"],answer:1,explain:"Bagging (Bootstrap Aggregating) means each tree is trained on a different random sample drawn with replacement from the training data \u2014 introducing diversity among trees."},
+  {cat:"Random Forest",q:"How does Random Forest reduce overfitting compared to a single Decision Tree?",choices:["It uses shallower trees only", "It averages predictions across many trees trained on random data subsets", "It applies L2 regularization to each tree", "It removes all outliers before training"],answer:1,explain:"By averaging many trees (each trained on different data and features), Random Forest reduces the variance that causes overfitting in a single tree. The majority vote smooths out individual errors."},
+  {cat:"Random Forest",q:"What does feature importance tell you in a Random Forest model?",choices:["Which features were dropped due to multicollinearity", "How much each feature contributed to reducing impurity across all trees", "Which features have the highest correlation with the target", "The order in which features were added to the model"],answer:1,explain:"Feature importance in Random Forest measures the average decrease in Gini impurity (or MSE) attributed to each feature across all trees \u2014 helping identify which variables drive predictions."},
+  {cat:"Random Forest",q:"When should you use class_weight='balanced' in a Random Forest?",choices:["When all classes have equal representation", "When the dataset has imbalanced classes (e.g. 95% non-fraud, 5% fraud)", "When features are on different scales", "When you have more than 100 trees"],answer:1,explain:"class_weight='balanced' automatically adjusts weights inversely proportional to class frequency \u2014 preventing the model from ignoring the minority class (like fraud or rare diseases)."},
+  {cat:"Support Vector Machines",q:"What is the 'margin' in a Support Vector Machine?",choices:["The number of support vectors used", "The distance between the decision boundary and the nearest data points from each class", "The regularization penalty applied to weights", "The kernel function output"],answer:1,explain:"SVM finds the hyperplane that maximizes the margin \u2014 the gap between the boundary and the closest points (support vectors) from each class. A wider margin means better generalization."},
+  {cat:"Support Vector Machines",q:"What does the RBF kernel allow SVM to do?",choices:["Handle missing values automatically", "Find non-linear decision boundaries by mapping data to higher dimensions", "Speed up training on large datasets", "Reduce the number of support vectors"],answer:1,explain:"The Radial Basis Function (RBF) kernel implicitly maps data into infinite-dimensional space, allowing SVM to find non-linear boundaries without explicitly computing the transformation."},
+  {cat:"Support Vector Machines",q:"What does the parameter C control in an SVM?",choices:["The number of classes", "The kernel type", "The trade-off between maximizing margin and minimizing classification error", "The learning rate"],answer:2,explain:"A high C value = smaller margin but fewer misclassifications (may overfit). A low C value = wider margin but allows more errors (may underfit). It's the regularization parameter."},
+  {cat:"Support Vector Machines",q:"Why must you scale features before training an SVM?",choices:["SVM cannot handle categorical features without scaling", "SVM uses distance-based calculations, so features on larger scales would dominate", "Scaling converts features to probabilities", "SVM requires all features to be binary"],answer:1,explain:"SVM computes distances between data points. If one feature ranges 0-10,000 and another 0-1, the large-scale feature dominates. StandardScaler ensures all features contribute equally."},
+  {cat:"Ridge Regression",q:"What type of regularization does Ridge Regression apply?",choices:["L1 regularization (Lasso)", "L2 regularization (sum of squared coefficients)", "Elastic Net (L1 + L2)", "No regularization"],answer:1,explain:"Ridge adds a penalty equal to the sum of squared coefficients (L2 norm) to the loss function. This shrinks all coefficients toward zero but keeps all features in the model."},
+  {cat:"Ridge Regression",q:"What problem does Ridge Regression solve that ordinary linear regression cannot handle well?",choices:["Non-linear relationships between features and target", "Multicollinearity \u2014 when features are highly correlated with each other", "Too many output classes", "Imbalanced datasets"],answer:1,explain:"When features are highly correlated, OLS (ordinary least squares) produces unstable, high-variance coefficients. Ridge shrinks them, producing a more stable and generalizable model."},
+  {cat:"Ridge Regression",q:"What does the alpha parameter control in Ridge Regression?",choices:["The learning rate of gradient descent", "The strength of the regularization penalty", "The number of features to keep", "The train/test split ratio"],answer:1,explain:"Alpha (also called lambda) controls how much to penalize large coefficients. alpha=0 is ordinary linear regression; higher alpha = stronger shrinkage = simpler model."},
+  {cat:"Ridge Regression",q:"Unlike Lasso regression, what does Ridge regression do to feature coefficients?",choices:["Sets some coefficients exactly to zero (feature selection)", "Shrinks all coefficients toward zero but never sets them to exactly zero", "Doubles the coefficients of important features", "Removes correlated features automatically"],answer:1,explain:"Ridge shrinks all coefficients but keeps them all. Lasso can zero out coefficients entirely (performing feature selection). Ridge is preferred when you want all features to contribute."},
+  {cat:"K-Means Clustering",q:"K-Means is an example of which type of machine learning?",choices:["Supervised learning", "Reinforcement learning", "Unsupervised learning", "Semi-supervised learning"],answer:2,explain:"K-Means is unsupervised \u2014 it finds structure in data without using labeled examples. It discovers natural groupings by minimizing the distance between points and their assigned centroid."},
+  {cat:"K-Means Clustering",q:"What does the Elbow Method help you determine when using K-Means?",choices:["The best distance metric to use", "The optimal number of clusters (K)", "Whether the data is linearly separable", "The maximum number of iterations"],answer:1,explain:"The Elbow Method plots inertia (sum of squared distances to centroids) vs K. You look for the 'elbow' where adding more clusters stops significantly reducing inertia."},
+  {cat:"K-Means Clustering",q:"Why is feature scaling important before running K-Means?",choices:["K-Means requires all features to be categorical", "K-Means uses Euclidean distance \u2014 features on larger scales dominate cluster assignments", "K-Means cannot handle more than 10 features without scaling", "Scaling converts the data to probabilities"],answer:1,explain:"If one feature has a much larger range than others (e.g. income in dollars vs age in years), it will dominate the distance calculation. StandardScaler puts all features on equal footing."},
+  {cat:"K-Means Clustering",q:"What is inertia in the context of K-Means clustering?",choices:["The number of iterations until convergence", "The sum of squared distances from each point to its assigned centroid", "The Silhouette score of the clustering", "The total number of support vectors"],answer:1,explain:"Inertia measures how tight the clusters are \u2014 lower inertia means points are closer to their centroids. It's the objective K-Means minimizes, and it's used in the Elbow Method."},
+  {cat:"ARIMA",q:"What does the 'I' in ARIMA stand for, and what does it do?",choices:["Iteration \u2014 the number of training passes", "Integrated \u2014 differencing the series to make it stationary", "Input \u2014 the number of lag features used", "Intercept \u2014 the bias term in the model"],answer:1,explain:"The 'I' stands for Integrated. Differencing (subtracting each value from the previous one) removes trend and makes the time series stationary \u2014 a requirement for ARIMA."},
+  {cat:"ARIMA",q:"What does the Augmented Dickey-Fuller (ADF) test check for in time series analysis?",choices:["Whether the model is overfitting", "Whether the time series is stationary", "The optimal number of lag terms", "The correlation between two time series"],answer:1,explain:"The ADF test checks for a unit root. If p-value < 0.05, the series is stationary (no unit root). ARIMA requires stationarity, so you difference the series until it passes this test."},
+  {cat:"ARIMA",q:"What do the ACF and PACF plots help you determine?",choices:["Whether to use supervised or unsupervised learning", "The p (AR order) and q (MA order) parameters for ARIMA", "How many trees to use in a forest", "The train/test split boundary"],answer:1,explain:"PACF helps identify p (the AR lag order \u2014 where PACF cuts off). ACF helps identify q (the MA order \u2014 where ACF cuts off). Together they guide ARIMA(p,d,q) parameter selection."},
+  {cat:"ARIMA",q:"When would you choose ARIMA over a neural network for forecasting?",choices:["When you have millions of data points and complex patterns", "When you have a univariate time series with clear trend/seasonality and limited data", "When your data has images or text", "When you need to forecast multiple outputs simultaneously"],answer:1,explain:"ARIMA is interpretable, fast to train, and works well on smaller univariate time series with trend and seasonality. Neural networks (LSTM) shine on large, complex, or multivariate series."},
+  {cat:"Perceptrons",q:"What is the fundamental building block of a neural network?",choices:["A decision tree node", "A perceptron (single neuron)", "A support vector", "A convolutional filter"],answer:1,explain:"A perceptron is the basic unit: it takes weighted inputs, sums them, adds a bias, applies an activation function, and outputs a result. Stack many of them in layers and you get a deep neural network."},
+  {cat:"Perceptrons",q:"What is the key limitation of a single-layer perceptron?",choices:["It cannot handle more than two features", "It can only solve linearly separable problems", "It requires data to be normalized", "It cannot be trained with gradient descent"],answer:1,explain:"A single perceptron draws a straight line (hyperplane) between classes. The classic example is XOR \u2014 which is not linearly separable. Multi-layer perceptrons overcome this."},
+  {cat:"Perceptrons",q:"What does hidden_layer_sizes=(128, 64) mean in sklearn's MLPClassifier?",choices:["The model has 128 input features and 64 output classes", "There are 2 hidden layers with 128 and 64 neurons respectively", "The model runs for 128 epochs with batch size 64", "128 trees each with 64 leaves"],answer:1,explain:"Each value in the tuple defines one hidden layer and its neuron count. (128, 64) means: first hidden layer has 128 neurons, second hidden layer has 64 neurons."},
+  {cat:"Feature Engineering",q:"What is the 'dummy variable trap' and how do you avoid it?",choices:["Using too many features, fixed by PCA", "Perfect multicollinearity from one-hot encoding \u2014 fixed by dropping one dummy column (drop_first=True)", "Label encoding ordinal features incorrectly", "Using raw dates instead of extracted features"],answer:1,explain:"If you one-hot encode a feature with N categories into N columns, one column is perfectly predictable from the others. drop_first=True removes one column, eliminating this redundancy."},
+  {cat:"Feature Engineering",q:"When should you use Label Encoding vs One-Hot Encoding?",choices:["Label Encoding for all categories; One-Hot is never needed", "Label Encoding for ordinal features (Low/Med/High); One-Hot for nominal features (colors, cities)", "One-Hot for ordinal; Label Encoding for nominal", "Both always produce identical results"],answer:1,explain:"Label Encoding (0, 1, 2...) implies an order, which is appropriate for ordinal features. One-Hot creates binary columns for each category and is correct for nominal features with no natural order."},
+  {cat:"Feature Engineering",q:"What is a lag feature in time series feature engineering?",choices:["A feature that measures how slow the model trains", "A copy of a column shifted back by N time steps to use past values as predictors", "A feature with high missing value rate", "A feature created by clustering"],answer:1,explain:"Lag features capture historical values as inputs. For example, lag_1 of daily sales gives yesterday's sales as a feature for predicting today \u2014 letting the model learn temporal patterns."},
+  {cat:"Feature Engineering",q:"What does StandardScaler do to a feature, and when is it required?",choices:["It converts features to binary 0/1 values", "It transforms features to have mean=0 and std=1 \u2014 required for distance-based and gradient-based models", "It removes outliers beyond 3 standard deviations", "It converts continuous features to categorical bins"],answer:1,explain:"StandardScaler standardizes features. Models like SVM, KNN, and neural networks are sensitive to feature scale. Tree-based models (Random Forest, Decision Tree) do not require scaling."},
+];
+
+let mcIdx=0;
+let filteredMC=[...mcQuestions];
+let mcAnswered=false;
+
+function renderMC(){
+  const q=filteredMC[mcIdx];
+  mcAnswered=false;
+  document.getElementById('mc-counter').textContent=`Question ${mcIdx+1} of ${filteredMC.length}`;
+  document.getElementById('mc-prev').disabled=mcIdx===0;
+  document.getElementById('mc-next').disabled=mcIdx===filteredMC.length-1;
+  const letters=['A','B','C','D'];
+  const choicesHtml=q.choices.map((c,i)=>
+    `<button class="mc-choice" onclick="answerMC(${i})" id="mc-choice-${i}">
+       <span class="mc-letter">${letters[i]}</span>
+       <span>${c}</span>
+     </button>`
+  ).join('');
+  document.getElementById('mc-qa').innerHTML=`
+    <div class="qa-category">${q.cat}</div>
+    <div class="qa-question" style="margin-bottom:1rem;">${q.q}</div>
+    <div class="mc-choices">${choicesHtml}</div>
+    <div class="mc-result" id="mc-result"></div>
+    <div class="mc-explain" id="mc-explain">${q.explain}</div>`;
+}
+function answerMC(chosen){
+  if(mcAnswered) return;
+  mcAnswered=true;
+  const q=filteredMC[mcIdx];
+  const correct=q.answer;
+  const letters=['A','B','C','D'];
+  for(let i=0;i<q.choices.length;i++){
+    const btn=document.getElementById('mc-choice-'+i);
+    btn.classList.add('disabled');
+    if(i===correct){
+      btn.classList.add('correct');
+    } else if(i===chosen && chosen!==correct){
+      btn.classList.add('wrong');
+    }
+  }
+  const res=document.getElementById('mc-result');
+  if(chosen===correct){
+    res.className='mc-result correct';
+    res.textContent='🌸 Correct!';
+  } else {
+    res.className='mc-result wrong';
+    res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;
+  }
+  document.getElementById('mc-explain').classList.add('show');
+}
+function mcNav(dir){mcIdx+=dir;renderMC();}
+function filterMC(cat){
+  filteredMC=cat==='All'?[...mcQuestions]:mcQuestions.filter(q=>q.cat===cat);
+  mcIdx=0;
+  document.querySelectorAll('#mc-filter-bar .filter-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
+  });
+  renderMC();
+}
+
 // ── INIT ─────────────────────────────────────────────────────────────────────
 renderSQL();
 renderPY();
 renderFITB();
 buildML();
 renderBQ();
+renderMC();
 
 </script></body></html>
