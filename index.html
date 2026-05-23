@@ -477,9 +477,28 @@
 
 <script>
 
-  document.getElementById('hero-ph').style.display='none';
-  document.getElementById('about-ph').style.display='none';
-});
+// ── PDF MODAL ─────────────────────────────────────────────────────────────────
+function openPDF(file, title){
+  document.getElementById('pdf-modal-title').textContent=title;
+  document.getElementById('pdf-frame').src=file;
+  document.getElementById('pdf-download-link').href=file;
+  document.getElementById('pdf-download-link').download=file;
+  document.getElementById('pdf-overlay').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closePDFBtn(){
+  document.getElementById('pdf-overlay').classList.remove('open');
+  document.getElementById('pdf-frame').src='';
+  document.body.style.overflow='';
+}
+function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
+
+;
+
+
+}
+
+// ── SQL ───────────────────────────────────────────────────────────────────────
 
 // ── PDF MODAL ─────────────────────────────────────────────────────────────────
 function openPDF(file, title){
@@ -504,10 +523,6 @@ function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) close
 
 // ── SQL ───────────────────────────────────────────────────────────────────────
 
-  document.getElementById('hero-ph').style.display='none';
-  document.getElementById('about-ph').style.display='none';
-});
-
 // ── PDF MODAL ─────────────────────────────────────────────────────────────────
 function openPDF(file, title){
   document.getElementById('pdf-modal-title').textContent=title;
@@ -530,37 +545,6 @@ function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) close
 }
 
 // ── SQL ───────────────────────────────────────────────────────────────────────
-
-  document.getElementById('hero-ph').style.display='none';
-  document.getElementById('about-ph').style.display='none';
-});
-
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
-  document.getElementById('pdf-modal-title').textContent=title;
-  document.getElementById('pdf-frame').src=file;
-  document.getElementById('pdf-download-link').href=file;
-  document.getElementById('pdf-download-link').download=file;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePDFBtn(){
-  document.getElementById('pdf-overlay').classList.remove('open');
-  document.getElementById('pdf-frame').src='';
-  document.body.style.overflow='';
-}
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
-
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-
-  document.getElementById('hero-ph').style.display='none';
-  document.getElementById('about-ph').style.display='none';
-});
 
 // ── PDF MODAL ─────────────────────────────────────────────────────────────────
 function openPDF(file, title){
@@ -679,10 +663,6 @@ const sqlQuestions=const const sqlQuestions=[
 
 
 
-  document.getElementById('hero-ph').style.display='none';
-  document.getElementById('about-ph').style.display='none';
-});
-
 // ── PDF MODAL ─────────────────────────────────────────────────────────────────
 function openPDF(file, title){
   document.getElementById('pdf-modal-title').textContent=title;
@@ -1179,10 +1159,6 @@ GROUP BY e.name;'},
 
 
 
-  document.getElementById('hero-ph').style.display='none';
-  document.getElementById('about-ph').style.display='none';
-});
-
 // ── PDF MODAL ─────────────────────────────────────────────────────────────────
 function openPDF(file, title){
   document.getElementById('pdf-modal-title').textContent=title;
@@ -1205,10 +1181,6 @@ function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) close
 }
 
 // ── SQL ───────────────────────────────────────────────────────────────────────
-
-  document.getElementById('hero-ph').style.display='none';
-  document.getElementById('about-ph').style.display='none';
-});
 
 // ── PDF MODAL ─────────────────────────────────────────────────────────────────
 function openPDF(file, title){
@@ -1705,10 +1677,6 @@ GROUP BY e.name;'},
 ];
 
 
-
-  document.getElementById('hero-ph').style.display='none';
-  document.getElementById('about-ph').style.display='none';
-});
 
 // ── PDF MODAL ─────────────────────────────────────────────────────────────────
 function openPDF(file, title){
