@@ -346,6 +346,12 @@
       <div class="project-tags"><span class="project-tag gold">AWS</span><span class="project-tag gold">Airflow</span><span class="project-tag">Pipeline</span></div>
       <button class="btn btn-ghost btn-sm" style="margin-top:auto;" onclick="openPDF('airflow_migration.pdf','Airflow Cloud Migration')">View PDF 🌸</button>
     </div>
+    <div class="project-card">
+      <h4>✦ Washington Final Project</h4>
+      <p>Capstone data science project — full written report, analysis, and methodology. Click to read the complete paper.</p>
+      <div class="project-tags"><span class="project-tag gold">Capstone</span><span class="project-tag">Data Science</span><span class="project-tag mint">Research</span></div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:auto;" onclick="openPDF('Washington_Final_Project.1.pdf','Washington Final Project')">View PDF 🌸</button>
+    </div>
     </div>
   </div>
 
@@ -645,7 +651,7 @@ const sqlQuestions=[
 ];
 
 const pyQuestions=[
-  {cat:"Basics",q:"Show the first 5 rows and shape of df_transactions.",hint:"\ud83d\udca1 df.head() and df.shape",a:"print(df_transactions.head())\nprint('Shape:', df_transactions.shape)"},
+  {cat:"Basics",q:"Show the first 5 rows and shape of df_transactions.",hint:"\ud83d\udca1 df.head() and df.shape",a:"print(df_transactions.head())\nprint('Shape:', df_transactions.shape)",fitb:{template:"print(df_transactions.___())\nprint('Shape:', df_transactions.___)",blanks:["head","shape"]}},
   {cat:"Basics",q:"Get data types and check for missing values.",hint:"\ud83d\udca1 .dtypes and .isnull().sum()",a:"print(df_transactions.dtypes)\nprint(df_transactions.isnull().sum())"},
   {cat:"Basics",q:"Get summary statistics for all numeric columns.",hint:"\ud83d\udca1 .describe()",a:"df_transactions.describe()"},
   {cat:"Basics",q:"Filter df_transactions to only AAPL rows.",hint:"\ud83d\udca1 df[df['ticker'] == 'AAPL']",a:"aapl = df_transactions[df_transactions['ticker'] == 'AAPL']"},
@@ -877,12 +883,44 @@ function renderPY(){
   document.getElementById('py-counter').textContent=`Question ${pyIdx+1} of ${filteredPY.length}`;
   document.getElementById('py-prev').disabled=pyIdx===0;
   document.getElementById('py-next').disabled=pyIdx===filteredPY.length-1;
-  document.getElementById('py-qa').innerHTML=`
-    <div class="qa-category">${q.cat}</div>
-    <div class="qa-question">${q.q}</div>
-    <div class="qa-hint">${q.hint}</div>
-    <button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button>
-    <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
+  if(q.fitb){
+    let t=q.fitb.template, bi=0;
+    t=t.replace(/___/g,()=>`<input class="fitb-input" id="pyb${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(8,q.fitb.blanks[bi-1]?.length||8)}">`);
+    document.getElementById('py-qa').innerHTML=`
+      <div class="qa-category">${q.cat}</div>
+      <div class="qa-question">${q.q}</div>
+      <div class="qa-hint">${q.hint}</div>
+      <div class="fitb-wrap">${t}</div>
+      <button class="check-btn" onclick="checkPYFITB()">Check ✦</button>
+      <button class="reset-btn" onclick="renderPY()">Reset</button>
+      <div class="fitb-result" id="py-fitb-result"></div>
+      <button class="answer-toggle" style="margin-top:.8rem;" onclick="toggleAnswer('py-ans')">Show Full Answer</button>
+      <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
+  } else {
+    document.getElementById('py-qa').innerHTML=`
+      <div class="qa-category">${q.cat}</div>
+      <div class="qa-question">${q.q}</div>
+      <div class="qa-hint">${q.hint}</div>
+      <button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button>
+      <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
+  }
+}
+function checkPYFITB(){
+  const q=filteredPY[pyIdx];
+  if(!q.fitb) return;
+  let correct=0;
+  q.fitb.blanks.forEach((ans,i)=>{
+    const inp=document.getElementById('pyb'+i);
+    if(!inp) return;
+    const val=inp.value.trim().toLowerCase();
+    const ok=ans.toLowerCase().split('/').some(a=>val===a.trim());
+    inp.classList.toggle('correct',ok);
+    inp.classList.toggle('wrong',!ok);
+    if(ok) correct++;
+  });
+  const res=document.getElementById('py-fitb-result');
+  res.className='fitb-result '+(correct===q.fitb.blanks.length?'correct':'wrong');
+  res.textContent=correct===q.fitb.blanks.length?'🌸 Perfect!':correct+'/'+q.fitb.blanks.length+' correct — try again!';
 }
 function filterPY(cat){
   filteredPY=cat==='All'?[...pyQuestions]:pyQuestions.filter(q=>q.cat===cat);
