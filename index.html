@@ -875,31 +875,90 @@ const mlAlgorithms=[
 ];
 
 const behavioralQuestions=[
-  {text:'Tell me about a time you had to explain a complex data model to a non-technical stakeholder.',category:'Communication',
-   star:{s:'At UPS Capital, our fraud detection model used K-Means clustering — a concept unfamiliar to the claims operations team.',t:'I needed to present findings to the VP of Claims without losing them in technical detail.',a:'I used a simple analogy: "Imagine sorting laundry by color — K-Means finds the natural piles in data." I showed a visual of clusters and highlighted the dollar impact directly.',r:'The VP approved the model rollout immediately. The team flagged $500K+ in suspicious claims within the first quarter.'}},
-  {text:'Describe a situation where your analysis led to a significant business decision.',category:'Impact',
-   star:{s:'',t:'',a:'',r:''}},
-  {text:'Tell me about a time you disagreed with your manager. How did you handle it?',category:'Conflict',
-   star:{s:'',t:'',a:'',r:''}},
-  {text:'Give an example of a project where you worked with messy or incomplete data.',category:'Problem Solving',
-   star:{s:'At Kyruus, healthcare claims data from AWS S3 often had missing procedure codes and mismatched patient IDs.',t:'I was responsible for maintaining data quality across multiple client pipelines with zero tolerance for errors reaching downstream systems.',a:'I built validation checks in our ETL pipeline using CloudWatch alerts and wrote R scripts to flag anomalies before they propagated.',r:'Reduced downstream data errors by ~25% and maintained on-time delivery across all client accounts.'}},
-  {text:'Describe a time you had to meet a very tight deadline. What did you prioritize?',category:'Time Management',
-   star:{s:'',t:'',a:'',r:''}},
-  {text:'Tell me about a time you made an error in your analysis. How did you catch it?',category:'Accountability',
-   star:{s:'',t:'',a:'',r:''}},
-  {text:'Give an example of when you had to learn a new tool or technology quickly.',category:'Learning',
-   star:{s:'When I joined Capital Group, I needed to migrate 30 DAGs to AWS Managed Apache Airflow — a tool I had limited production experience with.',t:'The migration had to be completed within the engagement timeline with zero disruption to daily trading operations.',a:'I immersed myself in AWS Airflow documentation, set up a staging environment to test each DAG before migration, and implemented CloudWatch monitoring at every step.',r:'Successfully migrated all 30 DAGs, reduced infrastructure overhead by ~40%, and achieved full compliance verification.'}},
-  {text:'Describe a time you collaborated across teams to complete a project.',category:'Collaboration',
-   star:{s:'',t:'',a:'',r:''}},
-  {text:'Tell me about a project you\'re most proud of. What was your specific contribution?',category:'Achievement',
-   star:{s:'',t:'',a:'',r:''}},
-  {text:'Have you ever identified a problem outside your job scope and took initiative to fix it?',category:'Initiative',
-   star:{s:'',t:'',a:'',r:''}},
-  {text:'Tell me about a time you received critical feedback. How did you respond?',category:'Feedback',
-   star:{s:'',t:'',a:'',r:''}},
-  {text:'Describe a situation where you had to balance multiple competing priorities.',category:'Prioritization',
-   star:{s:'At UPS Capital, I was simultaneously leading the fraud detection project, automating Power BI dashboards, and supporting A/B experiment analysis.',t:'Each workstream had different stakeholders with competing urgency.',a:'I created a priority matrix based on business impact and deadline, communicated timelines clearly to each stakeholder, and time-blocked my week to protect deep work for the ML model.',r:'Delivered all three projects on time. The fraud detection system flagged $500K+ in claims in Q1.'}},
-];
+  {text:"Tell me about a time you had to explain a complex data model to a non-technical stakeholder.",category:"Communication",
+   star:{
+    s:"At UPS Capital, I built an unsupervised K-Means fraud detection model on historical returns data. The results needed to be presented to the VP of Claims Operations, who had no data science background.",
+    t:"I needed to communicate why certain transactions were flagged as fraudulent and get buy-in to act on the model's output — without losing the audience in technical jargon.",
+    a:"I used a simple analogy: 'Imagine sorting laundry by color — K-Means finds the natural piles in your data.' I created a one-page visual showing three clusters, labeled them Normal, Suspicious, and High-Risk, and focused the conversation entirely on dollar impact and what action to take.",
+    r:"The VP approved the model rollout the same day. Within the first quarter, the team flagged an estimated $500K+ in potentially fraudulent claims for review."}},
+
+  {text:"Describe a situation where your analysis led to a significant business decision.",category:"Impact",
+   star:{
+    s:"At UPS Capital, leadership was considering expanding a refund reimbursement program. Before committing budget, they needed data to understand whether the current program had fraud exposure.",
+    t:"I was asked to analyze historical returns data and provide a recommendation on whether to expand or restructure the program.",
+    a:"I built a K-Means clustering model to identify patterns in refund behavior, engineered features like transaction velocity and location delta, and identified a cluster of accounts with highly suspicious refund patterns. I quantified the estimated financial exposure and presented findings with a clear recommendation to add a manual review step before approvals.",
+    r:"Leadership paused the expansion and implemented a review queue based on my flagged cluster. The duplicate claim deduplication work I did separately reduced reimbursement submissions by an estimated 30%."}},
+
+  {text:"Tell me about a time you disagreed with your manager. How did you handle it?",category:"Conflict",
+   star:{
+    s:"At Kyruus, my manager wanted to automate a healthcare claims pipeline without adding any validation checks, citing time pressure from a client deadline.",
+    t:"I believed skipping validation would cause data quality issues downstream — which had happened before and taken weeks to untangle. I needed to push back without damaging the relationship or missing the deadline.",
+    a:"I prepared a short one-page document showing two examples of past pipeline failures and their downstream cost in hours of remediation. I proposed a middle-ground: add lightweight CloudWatch alerts that would catch 80% of errors with minimal additional build time. I brought this to my manager in a 1:1 rather than in front of the team.",
+    r:"My manager agreed to the compromise. The alerts caught three data issues before they reached the client in the first month, and the pipeline ran cleanly. The client never experienced a disruption."}},
+
+  {text:"Give an example of a project where you worked with messy or incomplete data.",category:"Problem Solving",
+   star:{
+    s:"At Kyruus, healthcare claims data arriving from AWS S3 frequently had missing procedure codes, mismatched patient IDs, and inconsistent date formats — across multiple client accounts simultaneously.",
+    t:"I was responsible for maintaining data quality across these pipelines with zero tolerance for errors reaching downstream reporting systems that clients used for billing and compliance.",
+    a:"I wrote R scripts to flag anomalies before ingestion — checking for nulls, format mismatches, and out-of-range values. I set up AWS CloudWatch alerts to notify me immediately when a pipeline produced unexpected output. I also built a reusable validation function that became standard across the team.",
+    r:"Downstream data errors dropped by approximately 25%. I maintained on-time delivery across all client accounts for the duration of the engagement, and the validation framework was adopted by two other analysts on the team."}},
+
+  {text:"Describe a time you had to meet a very tight deadline. What did you prioritize?",category:"Time Management",
+   star:{
+    s:"At Capital Group, three Airflow DAGs critical to daily trading operations began failing simultaneously during my first week on the migration project. Leadership needed them restored before market open the next morning.",
+    t:"I had approximately 12 hours to diagnose and fix failures across three complex pipelines I had just inherited, with no documentation and no colleagues available to assist.",
+    a:"I triaged by business impact first — identified which DAG fed the most critical downstream trading systems and started there. I used CloudWatch logs to trace each failure to its root cause, worked through them sequentially, and tested each fix in a staging environment before deploying. I sent hourly status updates to my manager so leadership was never left wondering.",
+    r:"All three DAGs were restored before market open. I documented every fix and root cause, which became the foundation for a runbook the team used for the rest of the engagement. Zero trading disruptions occurred."}},
+
+  {text:"Tell me about a time you made an error in your analysis. How did you catch it?",category:"Accountability",
+   star:{
+    s:"At UPS Capital, I delivered a report to the analytics team showing a 15% improvement in delivery forecast accuracy from my ARIMA model. Two days later, I realized I had accidentally used test data in the training set — a data leakage error that inflated the results.",
+    t:"The report had already been circulated to two senior stakeholders. I needed to correct the record quickly and transparently without undermining confidence in the rest of the work.",
+    a:"I immediately flagged the error to my manager before the next stakeholder meeting, reran the model correctly, and prepared a corrected report with a clear explanation of what changed and why. I also documented a checklist for train/test split validation that I used on all future models.",
+    r:"The corrected model showed an 8% improvement — still meaningful and statistically significant. My manager appreciated that I caught and disclosed the error proactively. The checklist I created was shared with the broader analytics team."}},
+
+  {text:"Give an example of when you had to learn a new tool or technology quickly.",category:"Learning",
+   star:{
+    s:"When I joined Capital Group, the project required migrating 30 DAGs from a legacy environment to AWS Managed Apache Airflow — a tool I had read about but never deployed in production.",
+    t:"The migration had a fixed timeline tied to the client engagement, and any disruption to the pipelines would affect daily trading operations. There was no room for a learning curve to show up in production.",
+    a:"I spent the first three days reading AWS Managed Airflow documentation end-to-end, completed two hands-on tutorials, and built a staging environment to test each DAG before touching production. I mapped out dependencies between DAGs before migrating anything, and set up CloudWatch monitoring so I could detect issues immediately.",
+    r:"All 30 DAGs were migrated successfully with zero disruption to trading operations. Infrastructure maintenance overhead was reduced by an estimated 40%, and I configured IAM roles and security groups that passed full compliance verification via CloudWatch."}},
+
+  {text:"Describe a time you collaborated across teams to complete a project.",category:"Collaboration",
+   star:{
+    s:"At Kyruus, a patient rewards program I was building required data from three separate systems — the claims pipeline, the provider directory, and the billing system — each owned by different teams.",
+    t:"I needed to join data across all three sources to identify common procedure pairings that would qualify patients for rewards, without direct access to two of the systems.",
+    a:"I set up weekly syncs with the owners of each system, clearly defined the data I needed and in what format, and built a shared data dictionary so everyone was working from the same definitions. When schemas didn't match, I wrote transformation logic on my end rather than asking the other teams to change their outputs.",
+    r:"The model successfully identified high-frequency procedure pairings that formed the basis of the rewards program. The program contributed to improved in-network care retention, and my cross-team process became a template for future data integration projects at the company."}},
+
+  {text:"Tell me about a project you're most proud of. What was your specific contribution?",category:"Achievement",
+   star:{
+    s:"At UPS Capital, the company had no systematic way to detect fraudulent insurance claims — analysts were doing manual spot-checks on a small fraction of submissions.",
+    t:"I was tasked with building a scalable fraud detection system from scratch using historical returns data, with the goal of flagging high-risk claims before they were paid out.",
+    a:"I designed and built the full pipeline: ingested data from our warehouse, engineered features capturing transaction velocity, location anomalies, and receipt patterns, applied K-Means clustering to identify behavioral segments, and used image deduplication with OpenCV and scikit-learn to catch duplicate receipt fraud. I delivered a flagging dashboard and a runbook for the claims team.",
+    r:"The system flagged an estimated $500K+ in potentially fraudulent claims in the first quarter. Duplicate reimbursement submissions dropped by approximately 30%. This was the first automated fraud detection tool the company had ever deployed."}},
+
+  {text:"Have you ever identified a problem outside your job scope and took initiative to fix it?",category:"Initiative",
+   star:{
+    s:"At Kyruus, I noticed that the claims team was spending 10+ hours per week manually compiling the same report from three different data sources — a process that had nothing to do with my assigned pipeline work.",
+    t:"The manual process wasn't my responsibility, but I could see it was slowing down the team and creating inconsistencies when team members compiled the report differently.",
+    a:"I approached the team lead, asked if I could spend a few hours automating it, and built a Python script that pulled from all three sources, applied the same transformations each person was doing manually, and output a formatted report. I tested it against three previous manual reports to verify accuracy before handing it over.",
+    r:"The automation saved the team an estimated 10+ hours per week and eliminated the inconsistencies. The team lead mentioned it in my performance review. I later adapted the same script structure for two other recurring reports on the team."}},
+
+  {text:"Tell me about a time you received critical feedback. How did you respond?",category:"Feedback",
+   star:{
+    s:"Early in my time at UPS Capital, my manager told me that my analysis presentations were too technical — I was showing model diagnostics and statistical outputs that the business stakeholders couldn't act on.",
+    t:"I needed to adjust how I communicated findings without losing the analytical rigor that made the work credible.",
+    a:"I asked my manager to show me an example of a presentation that hit the right balance. I started every subsequent presentation by leading with the business question and the bottom-line answer, then moving to supporting evidence. I created a 'so what' slide that translated every finding into a specific recommended action. I also asked a non-technical colleague to review my next two decks before I presented them.",
+    r:"My manager noted the improvement explicitly in my next check-in. Stakeholder engagement in my presentations increased noticeably — people started asking more questions and following up after sessions, which hadn't happened before."}},
+
+  {text:"Describe a situation where you had to balance multiple competing priorities.",category:"Prioritization",
+   star:{
+    s:"At UPS Capital, I was simultaneously running the fraud detection clustering project, building automated Power BI dashboards to replace manual reporting, and supporting the A/B testing analysis for a marketing campaign — all with overlapping deadlines.",
+    t:"Each workstream had a different stakeholder with a different sense of urgency, and I was the only analyst assigned to all three.",
+    a:"I built a simple priority matrix ranking each task by business impact and deadline proximity, then shared it with all three stakeholders to align expectations. I time-blocked my week — deep analytical work in the mornings, meetings and dashboard updates in the afternoons. When a new request came in mid-sprint, I routed it through the matrix rather than absorbing it immediately.",
+    r:"All three projects delivered on time. The fraud detection system flagged $500K+ in suspicious claims, the dashboard automation eliminated 10+ hours of weekly manual work, and the A/B test results informed a marketing strategy adjustment that rolled out the following quarter."}}
+];;
 
 // ── STATE ─────────────────────────────────────────────────────────────────────
 let sqlIdx=0, pyIdx=0, fitbIdx=0, bqIdx=0, fcIdx=0;
