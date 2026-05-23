@@ -1,10 +1,944 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Adila | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Adila Abdulwahid — Financial Data Scientist</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Nunito:wght@300;400;500;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #fdf8ff;
+    --bg2: #f8f2ff;
+    --bg3: #f2ecff;
+    --lilac: #c9b8f0;
+    --lilac-light: #e8e0ff;
+    --lilac-mid: #b39de8;
+    --mint: #b8eedd;
+    --mint-light: #e0fff5;
+    --mint-mid: #8dd8bc;
+    --rose-gold: #c9957a;
+    --rose-gold-light: #f0d9cf;
+    --rose-gold-mid: #b8816a;
+    --text: #3a3050;
+    --text2: #6b5f85;
+    --muted: #9d93b5;
+    --border: #e8e0ff;
+    --border2: #d4c9f5;
+    --white: #ffffff;
+    --grad1: linear-gradient(135deg, #f5efff 0%, #e8faf4 50%, #fff5f8 100%);
+    --grad2: linear-gradient(135deg, #e8e0ff 0%, #d4f5ea 100%);
+    --grad-gold: linear-gradient(135deg, #e8c9b8 0%, #c9957a 50%, #b8a090 100%);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Nunito', sans-serif;
+    font-size: 16px;
+    line-height: 1.75;
+    background-image:
+      radial-gradient(circle at 15% 20%, rgba(201,184,240,0.18) 0%, transparent 50%),
+      radial-gradient(circle at 85% 10%, rgba(184,238,221,0.18) 0%, transparent 45%),
+      radial-gradient(circle at 70% 80%, rgba(201,149,122,0.10) 0%, transparent 40%),
+      radial-gradient(circle at 10% 85%, rgba(201,184,240,0.12) 0%, transparent 35%);
+    background-attachment: fixed;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(253,248,255,0.88);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 2.5rem; height: 62px;
+  }
+  .nav-logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 1.15rem;
+    color: var(--text);
+    text-decoration: none;
+    letter-spacing: 0.01em;
+  }
+  .nav-links { display: flex; gap: 2rem; list-style: none; }
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--lilac-mid); }
+
+  /* ── LAYOUT ── */
+  section {
+    max-width: 880px; margin: 0 auto;
+    padding: 6rem 2.5rem 4rem;
+  }
+  section:first-of-type { padding-top: 9rem; }
+
+  /* ── TYPE ── */
+  h1 { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 7vw, 5rem); font-weight: 400; line-height: 1.1; }
+  h2 { font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 400; margin-bottom: 0.5rem; }
+  h3 { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+
+  /* ── PILL TAG ── */
+  .tag {
+    display: inline-block;
+    background: var(--grad-gold);
+    color: white;
+    border-radius: 99px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding: 4px 14px;
+    margin-bottom: 0.5rem;
+  }
+
+  .section-head { margin-bottom: 2.5rem; }
+  .section-head p { color: var(--text2); font-size: 0.95rem; margin-top: 0.4rem; }
+
+  /* ── DIVIDER ── */
+  .divider {
+    border: none;
+    height: 2px;
+    background: var(--grad2);
+    border-radius: 2px;
+    margin: 1rem 0 2.5rem;
+    opacity: 0.6;
+  }
+
+  /* ── BUTTONS ── */
+  .btn {
+    display: inline-block;
+    padding: 0.65rem 1.6rem;
+    border-radius: 99px;
+    font-size: 0.88rem;
+    font-weight: 700;
+    font-family: 'Nunito', sans-serif;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    transition: all 0.22s;
+    letter-spacing: 0.02em;
+  }
+  .btn-primary {
+    background: var(--grad-gold);
+    color: white;
+    box-shadow: 0 4px 18px rgba(201,149,122,0.3);
+  }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,149,122,0.4); }
+  .btn-ghost {
+    background: white;
+    color: var(--lilac-mid);
+    border: 2px solid var(--lilac-light);
+  }
+  .btn-ghost:hover { border-color: var(--lilac-mid); background: var(--lilac-light); }
+  .btn-sm {
+    padding: 0.4rem 1rem;
+    font-size: 0.78rem;
+  }
+
+  /* ── HERO ── */
+  .hero-intro {
+    font-size: 0.78rem; font-weight: 700; letter-spacing: 0.14em;
+    text-transform: uppercase; color: var(--rose-gold); margin-bottom: 1rem;
+  }
+  .hero-name em {
+    font-style: italic; color: var(--lilac-mid);
+    display: block;
+  }
+  .hero-sub {
+    font-size: 1.05rem; color: var(--text2); margin-top: 1.5rem;
+    max-width: 500px; line-height: 1.85;
+  }
+  .hero-links { display: flex; gap: 1rem; margin-top: 2.5rem; flex-wrap: wrap; }
+
+  .hero-blob {
+    width: 260px; height: 260px;
+    border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%;
+    background: var(--grad2);
+    position: absolute; right: 2.5rem; top: 8rem;
+    opacity: 0.55;
+    animation: blobmorph 8s ease-in-out infinite;
+    z-index: 0;
+  }
+  @keyframes blobmorph {
+    0%,100% { border-radius: 60% 40% 55% 45% / 50% 55% 45% 50%; }
+    33%      { border-radius: 45% 55% 40% 60% / 55% 45% 60% 40%; }
+    66%      { border-radius: 55% 45% 60% 40% / 40% 60% 45% 55%; }
+  }
+  #home { position: relative; overflow: visible; }
+
+  /* ── CARDS (general) ── */
+  .card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 1.5rem;
+    transition: box-shadow 0.22s, transform 0.22s;
+  }
+  .card:hover { box-shadow: 0 8px 32px rgba(180,160,220,0.18); transform: translateY(-2px); }
+
+  /* ── TIMELINE ── */
+  .timeline { display: flex; flex-direction: column; gap: 0; }
+  .tl-item {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    gap: 0 1.5rem;
+    padding: 1.4rem 0;
+    border-top: 1.5px solid var(--border);
+  }
+  .tl-item:last-child { border-bottom: 1.5px solid var(--border); }
+  .tl-date { font-family: 'Fira Code', monospace; font-size: 0.76rem; color: var(--muted); padding-top: 4px; }
+  .tl-title { font-weight: 700; font-size: 0.97rem; margin-bottom: 0.15rem; color: var(--text); }
+  .tl-company { color: var(--rose-gold); font-size: 0.88rem; font-weight: 600; margin-bottom: 0.4rem; }
+  .tl-desc { color: var(--text2); font-size: 0.88rem; line-height: 1.7; }
+
+  /* ── PROJECTS ── */
+  .projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.1rem; }
+  .project-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 20px;
+    padding: 1.4rem;
+    transition: all 0.22s;
+  }
+  .project-card:hover { box-shadow: 0 8px 28px rgba(180,160,220,0.18); transform: translateY(-2px); }
+  .project-card h4 { font-size: 0.97rem; font-weight: 700; margin-bottom: 0.4rem; color: var(--text); }
+  .project-card p { font-size: 0.86rem; color: var(--text2); line-height: 1.65; margin-bottom: 1rem; }
+  .project-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+  .project-tag {
+    font-size: 0.7rem; font-weight: 700; letter-spacing: 0.04em; text-transform: uppercase;
+    padding: 3px 10px; border-radius: 99px;
+    background: var(--lilac-light); color: var(--lilac-mid);
+  }
+  .project-tag.mint { background: var(--mint-light); color: #5aad8e; }
+  .project-tag.gold { background: var(--rose-gold-light); color: var(--rose-gold-mid); }
+
+  /* ── UPLOAD ── */
+  .upload-zone {
+    border: 2px dashed var(--border2);
+    border-radius: 20px;
+    padding: 2.5rem;
+    text-align: center;
+    cursor: pointer;
+    transition: all 0.22s;
+    margin-top: 1.5rem;
+    background: var(--bg2);
+  }
+  .upload-zone:hover, .upload-zone.dragover { border-color: var(--lilac-mid); background: var(--lilac-light); }
+  .upload-zone .icon { font-size: 2rem; margin-bottom: 0.5rem; }
+  .upload-zone strong { color: var(--text); font-size: 0.95rem; }
+  .upload-zone p { color: var(--muted); font-size: 0.85rem; margin-top: 0.3rem; }
+  #file-input { display: none; }
+  #uploaded-files { margin-top: 1rem; display: flex; flex-direction: column; gap: 0.5rem; }
+  .file-item {
+    display: flex; align-items: center; justify-content: space-between;
+    background: white; border: 1.5px solid var(--border); border-radius: 12px;
+    padding: 0.6rem 1.1rem; font-size: 0.87rem; color: var(--text);
+  }
+  .file-item span { color: var(--muted); font-size: 0.78rem; }
+
+  /* ── LEARNING TABS ── */
+  .learning-tabs {
+    display: flex; gap: 0.5rem; margin-bottom: 2rem;
+  }
+  .ltab {
+    padding: 0.6rem 1.4rem;
+    cursor: pointer;
+    font-size: 0.82rem;
+    font-weight: 700;
+    color: var(--muted);
+    border-radius: 99px;
+    border: 2px solid transparent;
+    transition: all 0.22s;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    background: white;
+    border-color: var(--border);
+  }
+  .ltab.active { background: var(--lilac-light); color: var(--lilac-mid); border-color: var(--lilac-mid); }
+  .ltab-panel { display: none; }
+  .ltab-panel.active { display: block; }
+
+  /* ── PRACTICE LAYOUT ── */
+  .practice-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; align-items: start; }
+  .practice-left { position: sticky; top: 80px; }
+
+  .table-box {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 16px;
+    overflow: hidden;
+    margin-bottom: 1rem;
+  }
+  .table-box-header {
+    padding: 0.55rem 1rem;
+    background: var(--lilac-light);
+    border-bottom: 1px solid var(--border);
+    font-family: 'Fira Code', monospace;
+    font-size: 0.76rem;
+    color: var(--lilac-mid);
+    font-weight: 500;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 0.8rem; font-family: 'Fira Code', monospace; }
+  th {
+    background: var(--bg2); color: var(--muted); font-weight: 600;
+    text-align: left; padding: 0.45rem 0.75rem;
+    border-bottom: 1px solid var(--border); font-size: 0.72rem;
+    text-transform: uppercase; letter-spacing: 0.04em;
+  }
+  td { padding: 0.42rem 0.75rem; border-bottom: 1px solid var(--border); color: var(--text); }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: var(--bg2); }
+
+  /* ── Q&A CARD ── */
+  .qa-nav { display: flex; align-items: center; justify-content: space-between; margin-bottom: 1rem; }
+  .qa-counter { font-family: 'Fira Code', monospace; font-size: 0.76rem; color: var(--muted); }
+  .qa-card { background: white; border: 1.5px solid var(--border); border-radius: 20px; padding: 1.5rem; }
+  .qa-question { font-size: 0.97rem; font-weight: 600; margin-bottom: 0.9rem; line-height: 1.65; color: var(--text); }
+  .qa-hint { font-size: 0.83rem; color: var(--rose-gold); margin-bottom: 1rem; font-weight: 500; }
+
+  .answer-toggle {
+    background: var(--mint-light); border: 2px solid var(--mint-mid);
+    color: #5aad8e; padding: 0.45rem 1.1rem; border-radius: 99px;
+    cursor: pointer; font-size: 0.8rem; font-family: 'Nunito', sans-serif;
+    font-weight: 700; transition: all 0.2s;
+  }
+  .answer-toggle:hover { background: var(--mint-mid); color: white; }
+  .answer-box {
+    margin-top: 1rem; background: var(--bg2); border-radius: 12px;
+    border: 1.5px solid var(--border); overflow: hidden; display: none;
+  }
+  .answer-box.show { display: block; }
+  .answer-box pre {
+    padding: 1rem; font-family: 'Fira Code', monospace;
+    font-size: 0.78rem; color: var(--lilac-mid); line-height: 1.75; white-space: pre-wrap;
+  }
+
+  .nav-btn {
+    background: white; border: 1.5px solid var(--border); color: var(--text2);
+    padding: 0.38rem 0.9rem; border-radius: 99px; cursor: pointer;
+    font-family: 'Nunito', sans-serif; font-size: 0.8rem; font-weight: 700;
+    transition: all 0.2s;
+  }
+  .nav-btn:hover { border-color: var(--lilac-mid); color: var(--lilac-mid); background: var(--lilac-light); }
+  .nav-btn:disabled { opacity: 0.35; cursor: default; }
+
+  /* ── BEHAVIORAL ── */
+  .bq-card {
+    background: white;
+    border: 1.5px solid var(--border);
+    border-radius: 24px;
+    padding: 3rem 2.5rem;
+    text-align: center;
+    min-height: 220px;
+    display: flex; flex-direction: column; align-items: center; justify-content: center;
+    background-image: radial-gradient(circle at 20% 80%, rgba(201,184,240,0.15) 0%, transparent 50%),
+                      radial-gradient(circle at 80% 20%, rgba(184,238,221,0.15) 0%, transparent 50%);
+  }
+  .bq-label { font-size: 0.7rem; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; color: var(--muted); margin-bottom: 1.2rem; }
+  .bq-text { font-family: 'Playfair Display', serif; font-size: 1.45rem; line-height: 1.5; max-width: 580px; color: var(--text); }
+  .bq-category { margin-top: 1.2rem; }
+  .bq-controls { display: flex; align-items: center; gap: 1rem; margin-top: 1.5rem; justify-content: center; flex-wrap: wrap; }
+  .bq-counter { font-family: 'Fira Code', monospace; font-size: 0.76rem; color: var(--muted); }
+
+  /* ── CONTACT ── */
+  .contact-links { display: flex; flex-direction: column; gap: 0.8rem; }
+  .contact-link {
+    display: flex; align-items: center; gap: 1.2rem;
+    padding: 1.1rem 1.4rem;
+    background: white; border: 1.5px solid var(--border); border-radius: 16px;
+    text-decoration: none; color: var(--text); font-size: 0.9rem;
+    transition: all 0.22s;
+  }
+  .contact-link:hover { border-color: var(--lilac-mid); box-shadow: 0 4px 18px rgba(180,160,220,0.18); transform: translateX(4px); }
+  .cl-label { color: var(--muted); font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; width: 80px; flex-shrink: 0; }
+  .cl-icon { font-size: 1.2rem; flex-shrink: 0; }
+
+  /* ── STAR DECO ── */
+  .star {
+    display: inline-block;
+    color: var(--rose-gold);
+    font-size: 0.85rem;
+    margin: 0 2px;
+    opacity: 0.7;
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    text-align: center;
+    padding: 2.5rem;
+    color: var(--muted);
+    font-size: 0.82rem;
+    border-top: 1.5px solid var(--border);
+    margin-top: 2rem;
+    background: white;
+  }
+
+  @media (max-width: 680px) {
+    .practice-layout, .projects-grid { grid-template-columns: 1fr; }
+    .practice-left { position: static; }
+    .tl-item { grid-template-columns: 1fr; gap: 0.2rem; }
+    nav { padding: 0 1.25rem; }
+    .nav-links { gap: 1rem; }
+    section { padding-left: 1.25rem; padding-right: 1.25rem; }
+    .bq-text { font-size: 1.15rem; }
+  }
+</style>
 </head>
 <body>
-  <h1>Adila</h1>
-  <p>My professional website</p>
+
+<!-- NAV -->
+<nav>
+  <a href="#home" class="nav-logo">Adila Abdulwahid ✦</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#learn">Learn</a></li>
+    <li><a href="#prep">Prep</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-blob"></div>
+  <p class="hero-intro">✦ Financial Data Scientist ✦</p>
+  <h1 class="hero-name">
+    Adila<br>
+    <em>Abdulwahid</em>
+  </h1>
+  <p class="hero-sub">
+    <!-- ✏️ EDIT: Update this bio to reflect your story -->
+    I work at the intersection of finance and machine learning — turning messy data into clear, beautiful, and powerful decisions.
+  </p>
+  <div class="hero-links">
+    <a href="#projects" class="btn btn-primary">View My Work ✦</a>
+    <a href="#learn" class="btn btn-ghost">Practice Zone</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-head">
+    <span class="tag">About Me</span>
+    <h2>My Story</h2>
+    <p>A little about who I am and what I do.</p>
+  </div>
+  <hr class="divider">
+  <p style="color: var(--text2); line-height: 1.9; margin-bottom: 2rem; font-size: 0.97rem;">
+    <!-- ✏️ EDIT: Replace with your real bio -->
+    I'm a financial data scientist passionate about using statistical modeling, machine learning, and data visualization to uncover insights in financial markets. My work spans risk modeling, predictive analytics, and building data pipelines that power real business decisions.
+  </p>
+
+  <!-- EXPERIENCE -->
+  <h3 style="margin-top: 2.5rem;">✦ Experience</h3>
+  <div class="timeline">
+    <!-- ✏️ EDIT: Add/edit your experience below -->
+    <div class="tl-item">
+      <div class="tl-date">2023 — Now</div>
+      <div>
+        <div class="tl-title">Senior Data Scientist</div>
+        <div class="tl-company">Company Name Here</div>
+        <div class="tl-desc">Built predictive models for credit risk and fraud detection. Led a team of 3 analysts to deliver quarterly reporting pipelines.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2021 — 2023</div>
+      <div>
+        <div class="tl-title">Data Analyst</div>
+        <div class="tl-company">Company Name Here</div>
+        <div class="tl-desc">Developed dashboards and automated reporting processes, reducing manual effort by 40%.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2019 — 2021</div>
+      <div>
+        <div class="tl-title">Junior Analyst</div>
+        <div class="tl-company">Company Name Here</div>
+        <div class="tl-desc">Supported financial modeling and data analysis projects across multiple business units.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- EDUCATION -->
+  <h3 style="margin-top: 2.5rem;">✦ Education</h3>
+  <div class="timeline">
+    <!-- ✏️ EDIT: Add/edit your education below -->
+    <div class="tl-item">
+      <div class="tl-date">2017 — 2019</div>
+      <div>
+        <div class="tl-title">M.S. in Data Science</div>
+        <div class="tl-company">University Name Here</div>
+        <div class="tl-desc">Focus on machine learning, financial econometrics, and applied statistics.</div>
+      </div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-date">2013 — 2017</div>
+      <div>
+        <div class="tl-title">B.S. in Mathematics & Computer Science</div>
+        <div class="tl-company">University Name Here</div>
+        <div class="tl-desc">Graduated with honors. Relevant coursework: linear algebra, probability, algorithms.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-head">
+    <span class="tag">Projects</span>
+    <h2>My Work</h2>
+    <p>Things I've built, researched, and explored.</p>
+  </div>
+  <hr class="divider">
+
+  <div class="projects-grid" id="projects-grid">
+    <!-- ✏️ EDIT: Update with your real projects -->
+    <div class="project-card">
+      <h4>✦ Credit Default Prediction</h4>
+      <p>Built an XGBoost model to predict loan defaults on historical lending data, achieving 92% AUC.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag">XGBoost</span>
+        <span class="project-tag gold">Finance</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <h4>✦ Market Regime Detection</h4>
+      <p>Used Hidden Markov Models to identify bull/bear regimes in equity markets for portfolio allocation.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag mint">HMM</span>
+        <span class="project-tag mint">Time Series</span>
+      </div>
+    </div>
+    <div class="project-card">
+      <h4>✦ SQL Revenue Dashboard</h4>
+      <p>Automated weekly revenue reporting pipeline with window functions and CTE logic in dbt + Tableau.</p>
+      <div class="project-tags">
+        <span class="project-tag">SQL</span>
+        <span class="project-tag gold">dbt</span>
+        <span class="project-tag">Tableau</span>
+      </div>
+    </div>
+    <div class="project-card" style="border-style: dashed; border-color: var(--border2); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 160px; cursor: pointer; background: var(--bg2);" onclick="document.getElementById('file-input').click()">
+      <div style="font-size: 1.8rem; margin-bottom: 0.5rem;">🌸</div>
+      <div style="font-weight: 700; font-size: 0.9rem; color: var(--text2);">Add a Project</div>
+      <div style="color: var(--muted); font-size: 0.82rem; margin-top: 0.25rem;">Upload a PDF or file</div>
+    </div>
+  </div>
+
+  <div class="upload-zone" id="upload-zone" onclick="document.getElementById('file-input').click()">
+    <div class="icon">🌷</div>
+    <strong>Upload Project Files</strong>
+    <p>Drag & drop PDFs, notebooks, or datasets — or click to browse</p>
+    <input type="file" id="file-input" multiple accept=".pdf,.ipynb,.csv,.xlsx,.py">
+  </div>
+  <div id="uploaded-files"></div>
+</section>
+
+<!-- LEARNING HUB -->
+<section id="learn">
+  <div class="section-head">
+    <span class="tag">Learning Hub</span>
+    <h2>Practice Zone</h2>
+    <p>SQL & Python questions with real datasets. Tables stay visible as you work through each question.</p>
+  </div>
+  <hr class="divider">
+
+  <div class="learning-tabs">
+    <div class="ltab active" onclick="switchTab('sql')">🗂 SQL Practice</div>
+    <div class="ltab" onclick="switchTab('python')">🐍 Python Practice</div>
+  </div>
+
+  <!-- SQL PANEL -->
+  <div class="ltab-panel active" id="panel-sql">
+    <div class="practice-layout">
+      <!-- LEFT: sticky tables -->
+      <div class="practice-left">
+        <div class="table-box">
+          <div class="table-box-header">✦ employees</div>
+          <table>
+            <thead><tr><th>emp_id</th><th>name</th><th>dept</th><th>salary</th><th>hire_date</th></tr></thead>
+            <tbody>
+              <tr><td>1</td><td>Adila</td><td>Finance</td><td>95000</td><td>2020-03-01</td></tr>
+              <tr><td>2</td><td>Rania</td><td>Finance</td><td>88000</td><td>2021-07-15</td></tr>
+              <tr><td>3</td><td>Marcus</td><td>Engineering</td><td>112000</td><td>2019-01-10</td></tr>
+              <tr><td>4</td><td>Lena</td><td>Engineering</td><td>105000</td><td>2020-11-01</td></tr>
+              <tr><td>5</td><td>James</td><td>Marketing</td><td>72000</td><td>2022-05-20</td></tr>
+              <tr><td>6</td><td>Priya</td><td>Finance</td><td>99000</td><td>2018-09-05</td></tr>
+              <tr><td>7</td><td>Sam</td><td>Marketing</td><td>68000</td><td>2023-01-30</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-box">
+          <div class="table-box-header">✦ sales</div>
+          <table>
+            <thead><tr><th>sale_id</th><th>emp_id</th><th>amount</th><th>sale_date</th><th>region</th></tr></thead>
+            <tbody>
+              <tr><td>101</td><td>1</td><td>4200</td><td>2024-01-05</td><td>East</td></tr>
+              <tr><td>102</td><td>1</td><td>3800</td><td>2024-01-18</td><td>East</td></tr>
+              <tr><td>103</td><td>2</td><td>5100</td><td>2024-01-07</td><td>West</td></tr>
+              <tr><td>104</td><td>3</td><td>6700</td><td>2024-02-01</td><td>East</td></tr>
+              <tr><td>105</td><td>5</td><td>2900</td><td>2024-02-14</td><td>South</td></tr>
+              <tr><td>106</td><td>6</td><td>7400</td><td>2024-03-03</td><td>West</td></tr>
+              <tr><td>107</td><td>2</td><td>3300</td><td>2024-03-15</td><td>East</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <!-- RIGHT: questions -->
+      <div>
+        <div class="qa-nav">
+          <div class="qa-counter" id="sql-counter">Question 1 of 8</div>
+          <div style="display:flex;gap:0.5rem;">
+            <button class="nav-btn" id="sql-prev" onclick="sqlNav(-1)" disabled>← Prev</button>
+            <button class="nav-btn" id="sql-next" onclick="sqlNav(1)">Next →</button>
+          </div>
+        </div>
+        <div class="qa-card" id="sql-qa"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- PYTHON PANEL -->
+  <div class="ltab-panel" id="panel-python">
+    <div class="practice-layout">
+      <div class="practice-left">
+        <div class="table-box">
+          <div class="table-box-header">✦ df_transactions (pandas)</div>
+          <table>
+            <thead><tr><th>date</th><th>ticker</th><th>price</th><th>volume</th><th>return_%</th></tr></thead>
+            <tbody>
+              <tr><td>2024-01-02</td><td>AAPL</td><td>182.50</td><td>52M</td><td>1.2</td></tr>
+              <tr><td>2024-01-03</td><td>AAPL</td><td>180.10</td><td>48M</td><td>-1.3</td></tr>
+              <tr><td>2024-01-02</td><td>MSFT</td><td>374.00</td><td>23M</td><td>0.8</td></tr>
+              <tr><td>2024-01-03</td><td>MSFT</td><td>376.50</td><td>21M</td><td>0.7</td></tr>
+              <tr><td>2024-01-04</td><td>AAPL</td><td>181.40</td><td>44M</td><td>0.7</td></tr>
+              <tr><td>2024-01-04</td><td>MSFT</td><td>375.00</td><td>19M</td><td>-0.4</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <div>
+        <div class="qa-nav">
+          <div class="qa-counter" id="py-counter">Question 1 of 5</div>
+          <div style="display:flex;gap:0.5rem;">
+            <button class="nav-btn" id="py-prev" onclick="pyNav(-1)" disabled>← Prev</button>
+            <button class="nav-btn" id="py-next" onclick="pyNav(1)">Next →</button>
+          </div>
+        </div>
+        <div class="qa-card" id="py-qa"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- INTERVIEW PREP -->
+<section id="prep">
+  <div class="section-head">
+    <span class="tag">Interview Prep</span>
+    <h2>Behavioral Questions</h2>
+    <p>Use the STAR method: <strong>Situation → Task → Action → Result.</strong> Practice out loud!</p>
+  </div>
+  <hr class="divider">
+
+  <div class="bq-card">
+    <div class="bq-label">✦ Behavioral Question ✦</div>
+    <div class="bq-text" id="bq-text">Loading question...</div>
+    <div class="bq-category" style="margin-top:1.2rem;"><span class="tag" id="bq-cat"></span></div>
+  </div>
+
+  <div class="bq-controls">
+    <button class="nav-btn" id="bq-prev" onclick="bqNav(-1)" disabled>← Prev</button>
+    <span class="bq-counter" id="bq-counter">1 / 12</span>
+    <button class="nav-btn" id="bq-next" onclick="bqNav(1)">Next →</button>
+    <button class="btn btn-ghost btn-sm" onclick="bqShuffle()">↺ Shuffle</button>
+  </div>
+
+  <div class="card" style="margin-top:2.5rem;">
+    <h3 style="margin-bottom:0.8rem;">✏️ Add Your Own Questions</h3>
+    <p style="color:var(--text2);font-size:0.87rem;margin-bottom:1rem;">Find the <code style="font-family:'Fira Code',monospace;color:var(--lilac-mid);background:var(--lilac-light);padding:2px 6px;border-radius:6px;">behavioralQuestions</code> array in the &lt;script&gt; tag and add your own entries like this:</p>
+    <div style="background:var(--bg2);border-radius:12px;border:1.5px solid var(--border);padding:1rem;">
+      <pre style="font-family:'Fira Code',monospace;font-size:0.76rem;color:var(--lilac-mid);line-height:1.8;">{ text: "Your question here?", category: "Leadership" },
+{ text: "Another question?",   category: "Conflict"   },</pre>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-head">
+    <span class="tag">Contact</span>
+    <h2>Say Hello 🌸</h2>
+    <p>I'd love to connect — reach me anywhere below.</p>
+  </div>
+  <hr class="divider">
+  <div class="contact-links">
+    <!-- ✏️ EDIT: Replace with your real details -->
+    <a href="mailto:your@email.com" class="contact-link">
+      <span class="cl-icon">✉️</span>
+      <span class="cl-label">Email</span>
+      <span>your@email.com</span>
+    </a>
+    <a href="https://linkedin.com/in/yourprofile" class="contact-link" target="_blank">
+      <span class="cl-icon">💼</span>
+      <span class="cl-label">LinkedIn</span>
+      <span>linkedin.com/in/yourprofile</span>
+    </a>
+    <a href="https://github.com/yourhandle" class="contact-link" target="_blank">
+      <span class="cl-icon">🐱</span>
+      <span class="cl-label">GitHub</span>
+      <span>github.com/yourhandle</span>
+    </a>
+  </div>
+</section>
+
+<footer>
+  <span class="star">✦</span>
+  Made with love · Adila Abdulwahid · 2025
+  <span class="star">✦</span>
+</footer>
+
+<script>
+// ── SQL QUESTIONS ────────────────────────────────────────────────────────────
+const sqlQuestions = [
+  {
+    q: "Rank employees within each department by salary (highest first). Show name, dept, salary, and their rank.",
+    hint: "💡 Use RANK() or DENSE_RANK() with PARTITION BY dept ORDER BY salary DESC",
+    a: `SELECT name, dept, salary,
+  RANK() OVER (
+    PARTITION BY dept
+    ORDER BY salary DESC
+  ) AS salary_rank
+FROM employees;`
+  },
+  {
+    q: "For each employee, show their salary AND the average salary of their department side by side.",
+    hint: "💡 Use AVG() as a window function with PARTITION BY dept — no GROUP BY needed!",
+    a: `SELECT name, dept, salary,
+  AVG(salary) OVER (
+    PARTITION BY dept
+  ) AS dept_avg_salary
+FROM employees;`
+  },
+  {
+    q: "Show each sale with a running total of amount per employee, ordered by sale_date.",
+    hint: "💡 Use SUM() OVER with PARTITION BY emp_id ORDER BY sale_date — this creates a cumulative sum.",
+    a: `SELECT s.sale_id, e.name, s.amount, s.sale_date,
+  SUM(s.amount) OVER (
+    PARTITION BY s.emp_id
+    ORDER BY s.sale_date
+  ) AS running_total
+FROM sales s
+JOIN employees e ON s.emp_id = e.emp_id;`
+  },
+  {
+    q: "Find the previous sale amount for each employee (their immediately prior sale by date).",
+    hint: "💡 Use LAG(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)",
+    a: `SELECT s.sale_id, e.name, s.amount, s.sale_date,
+  LAG(s.amount, 1) OVER (
+    PARTITION BY s.emp_id
+    ORDER BY s.sale_date
+  ) AS prev_sale_amount
+FROM sales s
+JOIN employees e ON s.emp_id = e.emp_id;`
+  },
+  {
+    q: "Assign a row number to each employee ordered by hire_date (earliest hire = 1).",
+    hint: "💡 ROW_NUMBER() OVER (ORDER BY hire_date ASC) — no partition needed here.",
+    a: `SELECT name, dept, hire_date,
+  ROW_NUMBER() OVER (
+    ORDER BY hire_date ASC
+  ) AS hire_order
+FROM employees;`
+  },
+  {
+    q: "For each sale, show the difference between that sale's amount and the employee's average sale amount.",
+    hint: "💡 Compute AVG(amount) as a window function partitioned by emp_id, then subtract it.",
+    a: `SELECT s.sale_id, e.name, s.amount,
+  s.amount - AVG(s.amount) OVER (
+    PARTITION BY s.emp_id
+  ) AS diff_from_avg
+FROM sales s
+JOIN employees e ON s.emp_id = e.emp_id;`
+  },
+  {
+    q: "Find the top-earning employee in each department using a window function (not a subquery).",
+    hint: "💡 Use RANK() OVER (PARTITION BY dept ORDER BY salary DESC) in a CTE, then filter where rank = 1.",
+    a: `WITH ranked AS (
+  SELECT name, dept, salary,
+    RANK() OVER (
+      PARTITION BY dept
+      ORDER BY salary DESC
+    ) AS rnk
+  FROM employees
+)
+SELECT name, dept, salary
+FROM ranked
+WHERE rnk = 1;`
+  },
+  {
+    q: "Calculate each employee's salary as a percentage of their department's total salary.",
+    hint: "💡 Use SUM(salary) OVER (PARTITION BY dept) as the denominator, then divide and multiply by 100.",
+    a: `SELECT name, dept, salary,
+  ROUND(
+    salary * 100.0 / SUM(salary) OVER (PARTITION BY dept),
+  2) AS pct_of_dept_total
+FROM employees;`
+  }
+];
+
+// ── PYTHON QUESTIONS ─────────────────────────────────────────────────────────
+const pyQuestions = [
+  {
+    q: "Compute the 2-day rolling average price per ticker using df_transactions.",
+    hint: "💡 Use .groupby('ticker')['price'].transform(lambda x: x.rolling(2).mean())",
+    a: `df_transactions['rolling_avg'] = (
+  df_transactions
+  .groupby('ticker')['price']
+  .transform(lambda x: x.rolling(2).mean())
+)`
+  },
+  {
+    q: "Find the ticker with the highest average return_pct across all dates.",
+    hint: "💡 groupby + mean + idxmax()",
+    a: `best = df_transactions.groupby('ticker')['return_pct'].mean().idxmax()
+print(best)`
+  },
+  {
+    q: "Add a 'cumulative_volume' column showing the running volume total per ticker ordered by date.",
+    hint: "💡 Sort first, then groupby + cumsum()",
+    a: `df_sorted = df_transactions.sort_values(['ticker', 'date'])
+df_sorted['cumulative_volume'] = (
+  df_sorted.groupby('ticker')['volume'].cumsum()
+)`
+  },
+  {
+    q: "Pivot df_transactions so rows are dates, columns are tickers, and values are closing price.",
+    hint: "💡 df.pivot(index='date', columns='ticker', values='price')",
+    a: `pivot = df_transactions.pivot(
+  index='date',
+  columns='ticker',
+  values='price'
+)
+print(pivot)`
+  },
+  {
+    q: "Flag rows where a ticker's return_pct is more than 1 standard deviation above its own mean.",
+    hint: "💡 Use groupby transform to compute mean and std per ticker, then compare.",
+    a: `grp = df_transactions.groupby('ticker')['return_pct']
+df_transactions['mean_ret'] = grp.transform('mean')
+df_transactions['std_ret']  = grp.transform('std')
+df_transactions['is_outlier'] = (
+  df_transactions['return_pct'] >
+  df_transactions['mean_ret'] + df_transactions['std_ret']
+)`
+  }
+];
+
+// ── BEHAVIORAL QUESTIONS ─────────────────────────────────────────────────────
+// ✏️ EDIT THIS ARRAY to add your own questions
+const behavioralQuestions = [
+  { text: "Tell me about a time you had to explain a complex data model to a non-technical stakeholder.", category: "Communication" },
+  { text: "Describe a situation where your analysis led to a significant business decision.", category: "Impact" },
+  { text: "Tell me about a time you disagreed with your manager or team lead. How did you handle it?", category: "Conflict" },
+  { text: "Give an example of a project where you had to work with messy or incomplete data.", category: "Problem Solving" },
+  { text: "Describe a time you had to meet a very tight deadline. What did you prioritize?", category: "Time Management" },
+  { text: "Tell me about a time you made an error in your analysis. How did you catch it?", category: "Accountability" },
+  { text: "Give an example of when you had to learn a new tool or technology quickly for a project.", category: "Learning" },
+  { text: "Describe a time you had to collaborate across teams or departments to complete a project.", category: "Collaboration" },
+  { text: "Tell me about a project you're most proud of. What was your specific contribution?", category: "Achievement" },
+  { text: "Have you ever identified a problem outside your job scope but took initiative to fix it?", category: "Initiative" },
+  { text: "Tell me about a time you received critical feedback. How did you respond?", category: "Feedback" },
+  { text: "Describe a situation where you had to balance multiple competing priorities at once.", category: "Prioritization" },
+];
+
+// ── STATE ────────────────────────────────────────────────────────────────────
+let sqlIdx = 0, pyIdx = 0, bqIdx = 0;
+let bqOrder = [...Array(behavioralQuestions.length).keys()];
+
+function renderSQL() {
+  const q = sqlQuestions[sqlIdx];
+  document.getElementById('sql-counter').textContent = `Question ${sqlIdx + 1} of ${sqlQuestions.length}`;
+  document.getElementById('sql-prev').disabled = sqlIdx === 0;
+  document.getElementById('sql-next').disabled = sqlIdx === sqlQuestions.length - 1;
+  document.getElementById('sql-qa').innerHTML = `
+    <div class="qa-question">${q.q}</div>
+    <div class="qa-hint">${q.hint}</div>
+    <button class="answer-toggle" onclick="toggleAnswer('sql-ans')">Show Answer</button>
+    <div class="answer-box" id="sql-ans"><pre>${q.a}</pre></div>
+  `;
+}
+
+function renderPY() {
+  const q = pyQuestions[pyIdx];
+  document.getElementById('py-counter').textContent = `Question ${pyIdx + 1} of ${pyQuestions.length}`;
+  document.getElementById('py-prev').disabled = pyIdx === 0;
+  document.getElementById('py-next').disabled = pyIdx === pyQuestions.length - 1;
+  document.getElementById('py-qa').innerHTML = `
+    <div class="qa-question">${q.q}</div>
+    <div class="qa-hint">${q.hint}</div>
+    <button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button>
+    <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>
+  `;
+}
+
+function renderBQ() {
+  const q = behavioralQuestions[bqOrder[bqIdx]];
+  document.getElementById('bq-text').textContent = q.text;
+  document.getElementById('bq-cat').textContent = q.category;
+  document.getElementById('bq-counter').textContent = `${bqIdx + 1} / ${behavioralQuestions.length}`;
+  document.getElementById('bq-prev').disabled = bqIdx === 0;
+  document.getElementById('bq-next').disabled = bqIdx === behavioralQuestions.length - 1;
+}
+
+function sqlNav(dir) { sqlIdx += dir; renderSQL(); }
+function pyNav(dir)  { pyIdx  += dir; renderPY();  }
+function bqNav(dir)  { bqIdx  += dir; renderBQ();  }
+function bqShuffle() { bqIdx = 0; bqOrder = bqOrder.sort(() => Math.random() - 0.5); renderBQ(); }
+
+function toggleAnswer(id) {
+  const box = document.getElementById(id);
+  const open = box.classList.toggle('show');
+  box.previousElementSibling.textContent = open ? 'Hide Answer' : 'Show Answer';
+}
+
+function switchTab(tab) {
+  document.querySelectorAll('.ltab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.ltab-panel').forEach(p => p.classList.remove('active'));
+  document.querySelector(`.ltab[onclick="switchTab('${tab}')"]`).classList.add('active');
+  document.getElementById(`panel-${tab}`).classList.add('active');
+}
+
+// FILE UPLOAD
+const zone = document.getElementById('upload-zone');
+const input = document.getElementById('file-input');
+const fileList = document.getElementById('uploaded-files');
+zone.addEventListener('dragover', e => { e.preventDefault(); zone.classList.add('dragover'); });
+zone.addEventListener('dragleave', () => zone.classList.remove('dragover'));
+zone.addEventListener('drop', e => { e.preventDefault(); zone.classList.remove('dragover'); handleFiles(e.dataTransfer.files); });
+input.addEventListener('change', () => handleFiles(input.files));
+function handleFiles(files) {
+  Array.from(files).forEach(f => {
+    const item = document.createElement('div');
+    item.className = 'file-item';
+    item.innerHTML = `<span>🌸 ${f.name}</span><span>${(f.size/1024).toFixed(1)} KB</span>`;
+    fileList.appendChild(item);
+  });
+}
+
+renderSQL(); renderPY(); renderBQ();
+</script>
 </body>
 </html>
