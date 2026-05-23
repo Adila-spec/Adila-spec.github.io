@@ -191,6 +191,27 @@
   .bq-controls{display:flex;align-items:center;gap:1rem;margin-top:1.3rem;justify-content:center;flex-wrap:wrap;}
   .bq-counter{font-family:'Fira Code',monospace;font-size:.74rem;color:var(--muted);}
 
+  /* PREP TABS */
+  .prep-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;}
+  .prep-tab{padding:.55rem 1.2rem;cursor:pointer;font-size:.78rem;font-weight:700;color:var(--muted);border-radius:99px;border:2px solid var(--border);transition:all .22s;text-transform:uppercase;letter-spacing:.05em;background:white;}
+  .prep-tab.active{background:var(--lilac-light);color:var(--lilac-mid);border-color:var(--lilac-mid);}
+  .prep-panel{display:none;}
+  .prep-panel.active{display:block;}
+
+  /* FLASHCARD */
+  .fc-scene{width:100%;height:260px;perspective:1000px;cursor:pointer;margin-bottom:1.5rem;}
+  .fc-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);}
+  .fc-card.flipped{transform:rotateY(180deg);}
+  .fc-face{position:absolute;inset:0;backface-visibility:hidden;border-radius:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;text-align:center;border:1.5px solid var(--border);}
+  .fc-front{background:white;background-image:radial-gradient(circle at 20% 80%,rgba(201,184,240,.15) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(184,238,221,.15) 0%,transparent 50%);}
+  .fc-back{background:var(--bg2);transform:rotateY(180deg);text-align:left;align-items:flex-start;overflow-y:auto;}
+  .fc-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.8rem;}
+  .fc-question{font-family:'Playfair Display',serif;font-size:1.3rem;line-height:1.5;color:var(--text);max-width:560px;}
+  .fc-flip-hint{font-size:.72rem;color:var(--muted);margin-top:1rem;}
+  .fc-star-row{display:flex;gap:.75rem;align-items:flex-start;margin-bottom:.7rem;font-size:.87rem;line-height:1.6;color:var(--text2);}
+  .fc-star-label{background:var(--grad-gold);color:white;border-radius:99px;font-size:.68rem;font-weight:700;padding:2px 10px;flex-shrink:0;margin-top:2px;}
+  .fc-controls{display:flex;align-items:center;gap:1rem;justify-content:center;flex-wrap:wrap;}
+
   /* STAR ANSWER */
   .star-box{background:white;border:1.5px solid var(--border);border-radius:20px;padding:1.5rem;margin-top:1.5rem;}
   .star-box-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rose-gold);margin-bottom:1rem;}
@@ -433,33 +454,70 @@
 <!-- INTERVIEW PREP -->
 <section id="prep">
   <div class="section-head"><span class="tag">Interview Prep</span><h2>Behavioral Questions</h2>
-    <p>Use STAR: <strong>Situation → Task → Action → Result.</strong> Your answers save while you're on the page.</p>
+    <p>Practice mode: write your STAR answers and flip the flashcard to check yourself.</p>
   </div>
   <hr class="divider">
 
-  <div class="bq-card">
-    <div class="bq-label">✦ Behavioral Question ✦</div>
-    <div class="bq-text" id="bq-text">Loading...</div>
-    <div style="margin-top:1rem;"><span class="tag" id="bq-cat"></span></div>
-  </div>
-  <div class="bq-controls">
-    <button class="nav-btn" id="bq-prev" onclick="bqNav(-1)" disabled>← Prev</button>
-    <span class="bq-counter" id="bq-counter">1 / 12</span>
-    <button class="nav-btn" id="bq-next" onclick="bqNav(1)">Next →</button>
-    <button class="btn btn-ghost btn-sm" onclick="bqShuffle()">↺ Shuffle</button>
+  <!-- PREP TABS -->
+  <div class="prep-tabs">
+    <div class="prep-tab active" onclick="switchPrepTab('practice')">📝 Practice Mode</div>
+    <div class="prep-tab" onclick="switchPrepTab('flashcard')">🃏 Flashcards</div>
   </div>
 
-  <!-- STAR ANSWER BOX -->
-  <div class="star-box">
-    <div class="star-box-title">✦ Your STAR Answer</div>
-    <div class="star-grid">
-      <div class="star-field"><label>S — Situation</label><textarea id="star-s" placeholder="Set the scene. Where were you, what was the context?"></textarea></div>
-      <div class="star-field"><label>T — Task</label><textarea id="star-t" placeholder="What was your specific responsibility or goal?"></textarea></div>
-      <div class="star-field"><label>A — Action</label><textarea id="star-a" placeholder="What did YOU specifically do? Be concrete."></textarea></div>
-      <div class="star-field"><label>R — Result</label><textarea id="star-r" placeholder="What was the measurable outcome? Numbers help!"></textarea></div>
+  <!-- PRACTICE PANEL -->
+  <div class="prep-panel active" id="prep-panel-practice">
+    <div class="bq-card">
+      <div class="bq-label">✦ Behavioral Question ✦</div>
+      <div class="bq-text" id="bq-text">Loading...</div>
+      <div style="margin-top:1rem;"><span class="tag" id="bq-cat"></span></div>
     </div>
-    <button class="star-save-btn" onclick="saveSTAR()">Save Answer ✦</button>
-    <span class="star-saved" id="star-saved">Saved! 🌸</span>
+    <div class="bq-controls">
+      <button class="nav-btn" id="bq-prev" onclick="bqNav(-1)" disabled>← Prev</button>
+      <span class="bq-counter" id="bq-counter">1 / 12</span>
+      <button class="nav-btn" id="bq-next" onclick="bqNav(1)">Next →</button>
+      <button class="btn btn-ghost btn-sm" onclick="bqShuffle()">↺ Shuffle</button>
+    </div>
+    <div class="star-box">
+      <div class="star-box-title">✦ Your STAR Answer — type it out, then check the flashcard!</div>
+      <div class="star-grid">
+        <div class="star-field"><label>S — Situation</label><textarea id="star-s" placeholder="Set the scene. Where were you, what was the context?"></textarea></div>
+        <div class="star-field"><label>T — Task</label><textarea id="star-t" placeholder="What was your specific responsibility or goal?"></textarea></div>
+        <div class="star-field"><label>A — Action</label><textarea id="star-a" placeholder="What did YOU do? Be specific and concrete."></textarea></div>
+        <div class="star-field"><label>R — Result</label><textarea id="star-r" placeholder="What was the measurable outcome? Numbers help!"></textarea></div>
+      </div>
+      <button class="star-save-btn" onclick="saveSTAR()">Save Answer ✦</button>
+      <span class="star-saved" id="star-saved">Saved! 🌸</span>
+    </div>
+  </div>
+
+  <!-- FLASHCARD PANEL -->
+  <div class="prep-panel" id="prep-panel-flashcard">
+    <p style="color:var(--text2);font-size:.88rem;margin-bottom:1.5rem;">
+      Click the card to flip it. The <strong>front</strong> shows the question — the <strong>back</strong> shows your saved STAR answer. Save answers in Practice Mode first!
+    </p>
+    <div class="fc-scene" onclick="flipCard()">
+      <div class="fc-card" id="fc-card">
+        <!-- FRONT -->
+        <div class="fc-face fc-front">
+          <div class="fc-label">✦ Behavioral Question ✦</div>
+          <div class="fc-question" id="fc-front-q">Loading...</div>
+          <div style="margin-top:.8rem;"><span class="tag" id="fc-front-cat"></span></div>
+          <div class="fc-flip-hint">👆 Click to reveal your STAR answer</div>
+        </div>
+        <!-- BACK -->
+        <div class="fc-face fc-back">
+          <div class="fc-label" style="margin-bottom:1rem;">✦ Your STAR Answer ✦</div>
+          <div id="fc-back-content" style="width:100%;"></div>
+        </div>
+      </div>
+    </div>
+    <div class="fc-controls">
+      <button class="nav-btn" id="fc-prev" onclick="fcNav(-1)" disabled>← Prev</button>
+      <span class="bq-counter" id="fc-counter">1 / 12</span>
+      <button class="nav-btn" id="fc-next" onclick="fcNav(1)">Next →</button>
+      <button class="btn btn-ghost btn-sm" onclick="fcShuffle()">↺ Shuffle</button>
+      <button class="btn btn-ghost btn-sm" onclick="flipCard()">↩ Flip</button>
+    </div>
   </div>
 </section>
 
@@ -477,8 +535,8 @@
 
 <script>
 
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
+// ── PDF MODAL ────────────────────────────────────────────────────────────────
+function openPDF(file,title){
   document.getElementById('pdf-modal-title').textContent=title;
   document.getElementById('pdf-frame').src=file;
   document.getElementById('pdf-download-link').href=file;
@@ -491,84 +549,10 @@ function closePDFBtn(){
   document.getElementById('pdf-frame').src='';
   document.body.style.overflow='';
 }
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
+function closePDF(e){if(e.target===document.getElementById('pdf-overlay'))closePDFBtn();}
 
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
-  document.getElementById('pdf-modal-title').textContent=title;
-  document.getElementById('pdf-frame').src=file;
-  document.getElementById('pdf-download-link').href=file;
-  document.getElementById('pdf-download-link').download=file;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePDFBtn(){
-  document.getElementById('pdf-overlay').classList.remove('open');
-  document.getElementById('pdf-frame').src='';
-  document.body.style.overflow='';
-}
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
-
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
-  document.getElementById('pdf-modal-title').textContent=title;
-  document.getElementById('pdf-frame').src=file;
-  document.getElementById('pdf-download-link').href=file;
-  document.getElementById('pdf-download-link').download=file;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePDFBtn(){
-  document.getElementById('pdf-overlay').classList.remove('open');
-  document.getElementById('pdf-frame').src='';
-  document.body.style.overflow='';
-}
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
-
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
-  document.getElementById('pdf-modal-title').textContent=title;
-  document.getElementById('pdf-frame').src=file;
-  document.getElementById('pdf-download-link').href=file;
-  document.getElementById('pdf-download-link').download=file;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePDFBtn(){
-  document.getElementById('pdf-overlay').classList.remove('open');
-  document.getElementById('pdf-frame').src='';
-  document.body.style.overflow='';
-}
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
-
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-const sqlQuestions=const const sqlQuestions=[
+// ── DATA ARRAYS ───────────────────────────────────────────────────────────────
+const sqlQuestions=[
   {cat:"SELECT & Filter",q:"Select all employees in the Finance department earning more than $90,000.",hint:"\ud83d\udca1 WHERE dept = 'Finance' AND salary > 90000",a:"SELECT * FROM employees\nWHERE dept = 'Finance' AND salary > 90000;"},
   {cat:"SELECT & Filter",q:"Find all employees hired between 2020 and 2022 (inclusive).",hint:"\ud83d\udca1 BETWEEN works on dates too",a:"SELECT * FROM employees\nWHERE hire_date BETWEEN '2020-01-01' AND '2022-12-31';"},
   {cat:"SELECT & Filter",q:"List employees whose name starts with the letter R.",hint:"\ud83d\udca1 LIKE 'R%'",a:"SELECT * FROM employees WHERE name LIKE 'R%';"},
@@ -660,1520 +644,7 @@ const sqlQuestions=const const sqlQuestions=[
   {cat:"Advanced",q:"For each employee, calculate the gap in days between their first and last sale.",hint:"\ud83d\udca1 MIN and MAX sale_date per emp via GROUP BY, then subtract",a:"SELECT e.name,\n  MIN(s.sale_date) AS first_sale,\n  MAX(s.sale_date) AS last_sale,\n  MAX(s.sale_date) - MIN(s.sale_date) AS day_span\nFROM employees e\nJOIN sales s ON e.emp_id = s.emp_id\nGROUP BY e.name;"},
 ];
 
-
-
-
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
-  document.getElementById('pdf-modal-title').textContent=title;
-  document.getElementById('pdf-frame').src=file;
-  document.getElementById('pdf-download-link').href=file;
-  document.getElementById('pdf-download-link').download=file;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePDFBtn(){
-  document.getElementById('pdf-overlay').classList.remove('open');
-  document.getElementById('pdf-frame').src='';
-  document.body.style.overflow='';
-}
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
-
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-const sqlQuestions=[
-  // ── BASIC SELECT & FILTERING ─────────────────────────────────────────────
-  {cat:'SELECT & Filter',q:'Select all employees in the Finance department earning more than $90,000.',hint:'💡 WHERE dept = 'Finance' AND salary > 90000',a:"SELECT * FROM employees
-WHERE dept = 'Finance' AND salary > 90000;"},
-  {cat:'SELECT & Filter',q:'Find all employees hired between 2020 and 2022 (inclusive).',hint:'💡 BETWEEN works on dates too',a:"SELECT * FROM employees
-WHERE hire_date BETWEEN '2020-01-01' AND '2022-12-31';"},
-  {cat:'SELECT & Filter',q:'List employees whose name starts with the letter R.',hint:'💡 LIKE 'R%'',a:"SELECT * FROM employees WHERE name LIKE 'R%';"},
-  {cat:'SELECT & Filter',q:'Find all sales where the amount is between $3,000 and $6,000.',hint:'💡 BETWEEN includes endpoints',a:'SELECT * FROM sales WHERE amount BETWEEN 3000 AND 6000;'},
-  {cat:'SELECT & Filter',q:'Select all employees NOT in Marketing.',hint:'💡 WHERE dept != 'Marketing' or use NOT IN',a:"SELECT * FROM employees WHERE dept != 'Marketing';"},
-  {cat:'SELECT & Filter',q:'Find all sales in the East or West region.',hint:'💡 Use IN ('East','West') or OR',a:"SELECT * FROM sales WHERE region IN ('East','West');"},
-  {cat:'SELECT & Filter',q:'Return the top 3 highest-paid employees.',hint:'💡 ORDER BY salary DESC LIMIT 3',a:'SELECT * FROM employees ORDER BY salary DESC LIMIT 3;'},
-  {cat:'SELECT & Filter',q:'Find all employees whose salary is NULL.',hint:'💡 IS NULL — never use = NULL',a:'SELECT * FROM employees WHERE salary IS NULL;'},
-  {cat:'SELECT & Filter',q:'List all distinct departments in the employees table.',hint:'💡 SELECT DISTINCT',a:'SELECT DISTINCT dept FROM employees;'},
-  {cat:'SELECT & Filter',q:'Select employee name and salary, aliased as "Employee" and "Annual Pay".',hint:'💡 column AS alias',a:'SELECT name AS "Employee", salary AS "Annual Pay" FROM employees;'},
-
-  // ── AGGREGATIONS ─────────────────────────────────────────────────────────
-  {cat:'Aggregations',q:'Find the total sales amount across all regions.',hint:'💡 SUM(amount)',a:'SELECT SUM(amount) AS total_sales FROM sales;'},
-  {cat:'Aggregations',q:'Find the average salary across all employees.',hint:'💡 AVG(salary)',a:'SELECT AVG(salary) AS avg_salary FROM employees;'},
-  {cat:'Aggregations',q:'Count how many sales happened in the East region.',hint:'💡 COUNT(*) with WHERE region = 'East'',a:"SELECT COUNT(*) AS east_sales FROM sales WHERE region = 'East';"},
-  {cat:'Aggregations',q:'Find the highest and lowest salary in the company.',hint:'💡 MAX() and MIN() in the same SELECT',a:'SELECT MAX(salary) AS highest, MIN(salary) AS lowest FROM employees;'},
-  {cat:'Aggregations',q:'Find the total sales amount per employee (show emp_id and total).',hint:'💡 SUM + GROUP BY emp_id',a:'SELECT emp_id, SUM(amount) AS total_sales FROM sales GROUP BY emp_id;'},
-  {cat:'Aggregations',q:'Find the average sale amount per region.',hint:'💡 AVG + GROUP BY region',a:'SELECT region, AVG(amount) AS avg_sale FROM sales GROUP BY region;'},
-  {cat:'Aggregations',q:'Count the number of employees in each department.',hint:'💡 COUNT(*) GROUP BY dept',a:'SELECT dept, COUNT(*) AS headcount FROM employees GROUP BY dept;'},
-  {cat:'Aggregations',q:'Find the total payroll cost per department.',hint:'💡 SUM(salary) GROUP BY dept',a:'SELECT dept, SUM(salary) AS total_payroll FROM employees GROUP BY dept;'},
-  {cat:'Aggregations',q:'Find departments where the average salary exceeds $90,000.',hint:'💡 GROUP BY dept HAVING AVG(salary) > 90000',a:'SELECT dept, AVG(salary) AS avg_sal
-FROM employees
-GROUP BY dept
-HAVING AVG(salary) > 90000;'},
-  {cat:'Aggregations',q:'Find employees who made more than 1 sale. Show emp_id and sale count.',hint:'💡 COUNT(*) GROUP BY emp_id HAVING COUNT(*) > 1',a:'SELECT emp_id, COUNT(*) AS sale_count
-FROM sales
-GROUP BY emp_id
-HAVING COUNT(*) > 1;'},
-  {cat:'Aggregations',q:'Find the total, average, min, and max sale amount in a single query.',hint:'💡 Four aggregate functions in one SELECT',a:'SELECT
-  SUM(amount)  AS total,
-  AVG(amount)  AS avg,
-  MIN(amount)  AS min_sale,
-  MAX(amount)  AS max_sale
-FROM sales;'},
-  {cat:'Aggregations',q:'How many sales occurred per month? (Use sale_date)',hint:'💡 EXTRACT(MONTH FROM sale_date) or DATE_TRUNC',a:"SELECT
-  DATE_TRUNC('month', sale_date) AS month,
-  COUNT(*) AS sale_count
-FROM sales
-GROUP BY DATE_TRUNC('month', sale_date)
-ORDER BY month;"},
-  {cat:'Aggregations',q:'Find the department with the single highest total payroll.',hint:'💡 SUM GROUP BY dept ORDER BY DESC LIMIT 1',a:'SELECT dept, SUM(salary) AS total_payroll
-FROM employees
-GROUP BY dept
-ORDER BY total_payroll DESC
-LIMIT 1;'},
-
-  // ── JOINS ─────────────────────────────────────────────────────────────────
-  {cat:'JOINs',q:'Show each sale with the employee name who made it.',hint:'💡 JOIN employees ON emp_id',a:'SELECT e.name, s.amount, s.sale_date, s.region
-FROM sales s
-JOIN employees e ON s.emp_id = e.emp_id;'},
-  {cat:'JOINs',q:'Show all employees and their sales — include employees with no sales.',hint:'💡 LEFT JOIN keeps all employees even if no matching sale',a:'SELECT e.name, s.amount, s.sale_date
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id;'},
-  {cat:'JOINs',q:'Find employees who have never made a sale.',hint:'💡 LEFT JOIN then WHERE s.emp_id IS NULL',a:'SELECT e.name
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id
-WHERE s.emp_id IS NULL;'},
-  {cat:'JOINs',q:'Show total sales per employee (include employees with $0 in sales).',hint:'💡 LEFT JOIN + COALESCE(SUM(amount), 0)',a:'SELECT e.name, COALESCE(SUM(s.amount), 0) AS total_sales
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id
-GROUP BY e.name;'},
-  {cat:'JOINs',q:'Find employees who made sales in both the East AND West region.',hint:'💡 Self-join or two subqueries with INTERSECT',a:"SELECT DISTINCT e.name
-FROM employees e
-JOIN sales s1 ON e.emp_id = s1.emp_id AND s1.region = 'East'
-JOIN sales s2 ON e.emp_id = s2.emp_id AND s2.region = 'West';"},
-  {cat:'JOINs',q:'Show each department and its highest-paid employee.',hint:'💡 Subquery to get max salary per dept, then JOIN back',a:'SELECT e.dept, e.name, e.salary
-FROM employees e
-JOIN (
-  SELECT dept, MAX(salary) AS max_sal
-  FROM employees
-  GROUP BY dept
-) m ON e.dept = m.dept AND e.salary = m.max_sal;'},
-  {cat:'JOINs',q:'Show employee name, their total sales, and their department's total sales side by side.',hint:'💡 JOIN individual sales to a dept-level aggregation',a:'SELECT e.name, e.dept,
-  SUM(s.amount) AS emp_total,
-  d.dept_total
-FROM employees e
-JOIN sales s ON e.emp_id = s.emp_id
-JOIN (
-  SELECT e2.dept, SUM(s2.amount) AS dept_total
-  FROM employees e2
-  JOIN sales s2 ON e2.emp_id = s2.emp_id
-  GROUP BY e2.dept
-) d ON e.dept = d.dept
-GROUP BY e.name, e.dept, d.dept_total;'},
-  {cat:'JOINs',q:'Find all pairs of employees in the same department (no self-pairs, no duplicates).',hint:'💡 Self-join WHERE e1.emp_id < e2.emp_id',a:'SELECT e1.name AS emp1, e2.name AS emp2, e1.dept
-FROM employees e1
-JOIN employees e2
-  ON e1.dept = e2.dept
-  AND e1.emp_id < e2.emp_id;'},
-
-  // ── SUBQUERIES ────────────────────────────────────────────────────────────
-  {cat:'Subqueries',q:'Find all employees earning above the company average salary.',hint:'💡 WHERE salary > (SELECT AVG(salary) FROM employees)',a:'SELECT name, salary
-FROM employees
-WHERE salary > (SELECT AVG(salary) FROM employees);'},
-  {cat:'Subqueries',q:'Find the employee(s) with the highest salary in each department using a subquery.',hint:'💡 Correlated subquery: WHERE salary = (SELECT MAX... WHERE dept = e.dept)',a:'SELECT name, dept, salary
-FROM employees e
-WHERE salary = (
-  SELECT MAX(salary)
-  FROM employees
-  WHERE dept = e.dept
-);'},
-  {cat:'Subqueries',q:'Find employees whose salary is above the average salary of their own department.',hint:'💡 Correlated subquery with AVG per dept',a:'SELECT name, dept, salary
-FROM employees e
-WHERE salary > (
-  SELECT AVG(salary)
-  FROM employees
-  WHERE dept = e.dept
-);'},
-  {cat:'Subqueries',q:'Find employees who made a sale greater than the average sale amount.',hint:'💡 WHERE emp_id IN (SELECT emp_id FROM sales WHERE amount > (SELECT AVG...))',a:'SELECT DISTINCT e.name
-FROM employees e
-WHERE e.emp_id IN (
-  SELECT emp_id FROM sales
-  WHERE amount > (SELECT AVG(amount) FROM sales)
-);'},
-  {cat:'Subqueries',q:'Find the second-highest salary in the employees table.',hint:'💡 Use a subquery to exclude the max, then find the new max',a:'SELECT MAX(salary) AS second_highest
-FROM employees
-WHERE salary < (SELECT MAX(salary) FROM employees);'},
-  {cat:'Subqueries',q:'Find departments where every employee earns more than $70,000.',hint:'💡 NOT IN with a subquery finding depts that have someone under 70k',a:'SELECT DISTINCT dept
-FROM employees
-WHERE dept NOT IN (
-  SELECT dept FROM employees WHERE salary <= 70000
-);'},
-  {cat:'Subqueries',q:'Find the top 2 earners in each department using a subquery.',hint:'💡 Correlated subquery counting how many earn more — keep where count < 2',a:'SELECT name, dept, salary
-FROM employees e
-WHERE (
-  SELECT COUNT(*)
-  FROM employees
-  WHERE dept = e.dept AND salary > e.salary
-) < 2
-ORDER BY dept, salary DESC;'},
-
-  // ── CTEs ──────────────────────────────────────────────────────────────────
-  {cat:'CTEs',q:'Using a CTE, find all employees who earn above the company average salary.',hint:'💡 WITH avg_cte AS (SELECT AVG...) SELECT... WHERE salary > avg_cte.avg',a:'WITH avg_sal AS (
-  SELECT AVG(salary) AS company_avg FROM employees
-)
-SELECT e.name, e.salary
-FROM employees e, avg_sal
-WHERE e.salary > avg_sal.company_avg;'},
-  {cat:'CTEs',q:'Use a CTE to rank employees by salary within each department, then return only rank 1.',hint:'💡 CTE with RANK() OVER, then WHERE rnk = 1 in outer query',a:'WITH ranked AS (
-  SELECT name, dept, salary,
-    RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk
-  FROM employees
-)
-SELECT name, dept, salary
-FROM ranked
-WHERE rnk = 1;'},
-  {cat:'CTEs',q:'Write a CTE that calculates total sales per employee, then find employees above the average total.',hint:'💡 Two CTEs chained: first total per emp, then avg of totals',a:'WITH emp_totals AS (
-  SELECT emp_id, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY emp_id
-),
-avg_total AS (
-  SELECT AVG(total_sales) AS avg_sales FROM emp_totals
-)
-SELECT e.name, et.total_sales
-FROM employees e
-JOIN emp_totals et ON e.emp_id = et.emp_id
-CROSS JOIN avg_total
-WHERE et.total_sales > avg_total.avg_sales;'},
-  {cat:'CTEs',q:'Use a CTE to label each sale as "High" (>$5000), "Mid" ($3000-$5000), or "Low" (<$3000), then count each label.',hint:'💡 CTE with CASE WHEN, outer query groups by label',a:'WITH labeled AS (
-  SELECT *,
-    CASE
-      WHEN amount > 5000 THEN 'High'
-      WHEN amount >= 3000 THEN 'Mid'
-      ELSE 'Low'
-    END AS sale_tier
-  FROM sales
-)
-SELECT sale_tier, COUNT(*) AS cnt, SUM(amount) AS total
-FROM labeled
-GROUP BY sale_tier
-ORDER BY total DESC;'},
-  {cat:'CTEs',q:'Use a recursive CTE to generate a sequence of numbers from 1 to 10.',hint:'💡 WITH RECURSIVE cte AS (SELECT 1 UNION ALL SELECT n+1 FROM cte WHERE n < 10)',a:'WITH RECURSIVE nums AS (
-  SELECT 1 AS n
-  UNION ALL
-  SELECT n + 1 FROM nums WHERE n < 10
-)
-SELECT n FROM nums;'},
-  {cat:'CTEs',q:'Build a CTE that shows each department's headcount and average salary, then filter to depts with 2+ employees and avg salary > $85k.',hint:'💡 CTE aggregates, outer query filters with WHERE',a:'WITH dept_stats AS (
-  SELECT dept,
-    COUNT(*) AS headcount,
-    AVG(salary) AS avg_salary
-  FROM employees
-  GROUP BY dept
-)
-SELECT dept, headcount, ROUND(avg_salary, 0) AS avg_sal
-FROM dept_stats
-WHERE headcount >= 2 AND avg_salary > 85000;'},
-
-  // ── WINDOW FUNCTIONS ──────────────────────────────────────────────────────
-  {cat:'Window Functions',q:'Rank employees within each department by salary (highest = 1). Use RANK().',hint:'💡 RANK() OVER (PARTITION BY dept ORDER BY salary DESC)',a:'SELECT name, dept, salary,
-  RANK() OVER (
-    PARTITION BY dept
-    ORDER BY salary DESC
-  ) AS salary_rank
-FROM employees;'},
-  {cat:'Window Functions',q:'What is the difference between RANK() and DENSE_RANK()? Show both for the employees table.',hint:'💡 RANK skips numbers after ties; DENSE_RANK does not',a:'SELECT name, dept, salary,
-  RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk,
-  DENSE_RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS dense_rnk
-FROM employees;'},
-  {cat:'Window Functions',q:'Show each employee's salary alongside their department's average and median salary.',hint:'💡 AVG() OVER (PARTITION BY dept) — PERCENTILE_CONT for median',a:'SELECT name, dept, salary,
-  ROUND(AVG(salary) OVER (PARTITION BY dept), 0) AS dept_avg,
-  PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary)
-    OVER (PARTITION BY dept) AS dept_median
-FROM employees;'},
-  {cat:'Window Functions',q:'For each sale, show the running total of sales amount per employee ordered by date.',hint:'💡 SUM() OVER (PARTITION BY emp_id ORDER BY sale_date ROWS UNBOUNDED PRECEDING)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  SUM(amount) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  ) AS running_total
-FROM sales;'},
-  {cat:'Window Functions',q:'Show each sale and the previous sale's amount for that employee using LAG.',hint:'💡 LAG(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  LAG(amount, 1) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-  ) AS prev_sale,
-  amount - LAG(amount, 1) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-  ) AS change_from_prev
-FROM sales;'},
-  {cat:'Window Functions',q:'Show each sale and the next sale's amount for that employee using LEAD.',hint:'💡 LEAD(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  LEAD(amount, 1) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-  ) AS next_sale
-FROM sales;'},
-  {cat:'Window Functions',q:'Calculate a 3-sale moving average of sale amounts per employee.',hint:'💡 AVG() OVER with ROWS BETWEEN 2 PRECEDING AND CURRENT ROW',a:'SELECT sale_id, emp_id, amount, sale_date,
-  ROUND(AVG(amount) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-    ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
-  ), 2) AS moving_avg_3
-FROM sales;'},
-  {cat:'Window Functions',q:'Find the first and last sale date for each employee using window functions.',hint:'💡 FIRST_VALUE and LAST_VALUE with ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING',a:'SELECT DISTINCT emp_id,
-  FIRST_VALUE(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  ) AS first_sale,
-  LAST_VALUE(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  ) AS last_sale
-FROM sales;'},
-  {cat:'Window Functions',q:'Assign a percentile bucket (1–4) to each employee based on salary using NTILE.',hint:'💡 NTILE(4) OVER (ORDER BY salary) splits into quartiles',a:'SELECT name, salary,
-  NTILE(4) OVER (ORDER BY salary) AS salary_quartile
-FROM employees;'},
-  {cat:'Window Functions',q:'Show each employee's salary as a % of the company total AND as a % of their department total.',hint:'💡 Two SUM() OVER window specs — one global, one partitioned',a:'SELECT name, dept, salary,
-  ROUND(salary * 100.0 / SUM(salary) OVER (), 2) AS pct_of_company,
-  ROUND(salary * 100.0 / SUM(salary) OVER (PARTITION BY dept), 2) AS pct_of_dept
-FROM employees;'},
-  {cat:'Window Functions',q:'Find employees whose salary is more than 20% above their department average.',hint:'💡 Use AVG() OVER in a CTE, then filter where salary > avg * 1.2',a:'WITH dept_avgs AS (
-  SELECT name, dept, salary,
-    AVG(salary) OVER (PARTITION BY dept) AS dept_avg
-  FROM employees
-)
-SELECT name, dept, salary, ROUND(dept_avg,0) AS dept_avg
-FROM dept_avgs
-WHERE salary > dept_avg * 1.2;'},
-  {cat:'Window Functions',q:'Identify sales where the amount dropped more than 20% compared to the previous sale by the same employee.',hint:'💡 LAG() to get previous amount, then calculate % change',a:'WITH lag_sales AS (
-  SELECT sale_id, emp_id, amount, sale_date,
-    LAG(amount) OVER (PARTITION BY emp_id ORDER BY sale_date) AS prev_amount
-  FROM sales
-)
-SELECT *,
-  ROUND((amount - prev_amount) * 100.0 / prev_amount, 2) AS pct_change
-FROM lag_sales
-WHERE (amount - prev_amount) * 1.0 / prev_amount < -0.20;'},
-
-  // ── CASE STATEMENTS ───────────────────────────────────────────────────────
-  {cat:'CASE WHEN',q:'Label each employee as "Senior" (salary > $95k), "Mid" ($75k–$95k), or "Junior" (<$75k).',hint:'💡 CASE WHEN salary > 95000 THEN ... WHEN salary >= 75000 THEN ... ELSE ...',a:"SELECT name, salary,
-  CASE
-    WHEN salary > 95000 THEN 'Senior'
-    WHEN salary >= 75000 THEN 'Mid'
-    ELSE 'Junior'
-  END AS level
-FROM employees;"},
-  {cat:'CASE WHEN',q:'Count Active and Cancelled sales in one query using CASE.',hint:'💡 COUNT(CASE WHEN status='Active' THEN 1 END)',a:"SELECT
-  COUNT(CASE WHEN region = 'East' THEN 1 END) AS east_sales,
-  COUNT(CASE WHEN region = 'West' THEN 1 END) AS west_sales,
-  COUNT(CASE WHEN region = 'South' THEN 1 END) AS south_sales
-FROM sales;"},
-  {cat:'CASE WHEN',q:'Show the total sales amount split into Q1 (Jan–Mar) and Q2 (Apr–Jun) in one row.',hint:'💡 SUM(CASE WHEN MONTH(sale_date) BETWEEN 1 AND 3 THEN amount END)',a:"SELECT
-  SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 1 AND 3
-       THEN amount ELSE 0 END) AS Q1_sales,
-  SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 4 AND 6
-       THEN amount ELSE 0 END) AS Q2_sales
-FROM sales;"},
-  {cat:'CASE WHEN',q:'Flag each sale as "Above Target" if amount > $5000, otherwise "Below Target". Show a count of each.',hint:'💡 CASE inside a GROUP BY or wrap in a subquery',a:"SELECT
-  CASE WHEN amount > 5000 THEN 'Above Target' ELSE 'Below Target' END AS status,
-  COUNT(*) AS cnt,
-  SUM(amount) AS total
-FROM sales
-GROUP BY CASE WHEN amount > 5000 THEN 'Above Target' ELSE 'Below Target' END;"},
-  {cat:'CASE WHEN',q:'Pivot the sales table to show total amount per region as separate columns (East, West, South).',hint:'💡 SUM(CASE WHEN region = 'East' THEN amount END) for each region',a:"SELECT
-  SUM(CASE WHEN region='East'  THEN amount ELSE 0 END) AS East,
-  SUM(CASE WHEN region='West'  THEN amount ELSE 0 END) AS West,
-  SUM(CASE WHEN region='South' THEN amount ELSE 0 END) AS South
-FROM sales;"},
-
-  // ── DATE & TIME ───────────────────────────────────────────────────────────
-  {cat:'Date & Time',q:'Find all employees hired in 2020.',hint:'💡 EXTRACT(YEAR FROM hire_date) = 2020 or YEAR(hire_date)',a:'SELECT * FROM employees
-WHERE EXTRACT(YEAR FROM hire_date) = 2020;'},
-  {cat:'Date & Time',q:'Calculate how many years each employee has been with the company.',hint:'💡 DATE_PART or DATEDIFF between hire_date and CURRENT_DATE',a:"SELECT name, hire_date,
-  DATE_PART('year', AGE(CURRENT_DATE, hire_date)) AS years_at_company
-FROM employees;"},
-  {cat:'Date & Time',q:'Find sales that occurred on a weekend (Saturday or Sunday).',hint:'💡 EXTRACT(DOW FROM sale_date) IN (0, 6) — 0=Sunday, 6=Saturday in PostgreSQL',a:'SELECT * FROM sales
-WHERE EXTRACT(DOW FROM sale_date) IN (0, 6);'},
-  {cat:'Date & Time',q:'Show total sales by month and year, ordered chronologically.',hint:'💡 DATE_TRUNC('month', sale_date) then GROUP BY and ORDER BY',a:"SELECT
-  DATE_TRUNC('month', sale_date) AS month,
-  COUNT(*) AS num_sales,
-  SUM(amount) AS total
-FROM sales
-GROUP BY DATE_TRUNC('month', sale_date)
-ORDER BY month;"},
-  {cat:'Date & Time',q:'Find employees who have been with the company for more than 4 years.',hint:'💡 AGE(CURRENT_DATE, hire_date) > INTERVAL '4 years'',a:"SELECT name, hire_date
-FROM employees
-WHERE hire_date < CURRENT_DATE - INTERVAL '4 years';"},
-  {cat:'Date & Time',q:'Find the number of days between each sale and the previous sale by the same employee.',hint:'💡 LAG(sale_date) OVER (PARTITION BY emp_id ORDER BY sale_date), then date difference',a:'SELECT sale_id, emp_id, sale_date,
-  LAG(sale_date) OVER (PARTITION BY emp_id ORDER BY sale_date) AS prev_date,
-  sale_date - LAG(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-  ) AS days_since_prev
-FROM sales;'},
-
-  // ── STRING FUNCTIONS ──────────────────────────────────────────────────────
-  {cat:'String Functions',q:'Convert all employee names to uppercase.',hint:'💡 UPPER(name)',a:'SELECT UPPER(name) AS name_upper FROM employees;'},
-  {cat:'String Functions',q:'Extract the first 3 characters of each employee's name.',hint:'💡 LEFT(name, 3) or SUBSTRING(name, 1, 3)',a:'SELECT name, LEFT(name, 3) AS name_prefix FROM employees;'},
-  {cat:'String Functions',q:'Concatenate employee name and department into one column like "Adila — Finance".',hint:'💡 CONCAT(name, ' — ', dept) or name || ' — ' || dept',a:"SELECT CONCAT(name, ' — ', dept) AS name_dept FROM employees;"},
-  {cat:'String Functions',q:'Find the length of each employee's name.',hint:'💡 LENGTH(name)',a:'SELECT name, LENGTH(name) AS name_length FROM employees;'},
-  {cat:'String Functions',q:'Replace "Engineering" with "Eng" in the dept column.',hint:'💡 REPLACE(dept, 'Engineering', 'Eng')',a:"SELECT name, REPLACE(dept, 'Engineering', 'Eng') AS dept_short FROM employees;"},
-
-  // ── NULL HANDLING ─────────────────────────────────────────────────────────
-  {cat:'NULL Handling',q:'Replace NULL salaries with 0 using COALESCE.',hint:'💡 COALESCE(salary, 0)',a:'SELECT name, COALESCE(salary, 0) AS salary FROM employees;'},
-  {cat:'NULL Handling',q:'Show employees with a salary, replacing NULLs with the text "Not Set" using COALESCE.',hint:'💡 COALESCE(CAST(salary AS VARCHAR), 'Not Set')',a:"SELECT name, COALESCE(CAST(salary AS VARCHAR), 'Not Set') AS salary FROM employees;"},
-  {cat:'NULL Handling',q:'Return NULL if an employee's salary equals their department average (using NULLIF).',hint:'💡 NULLIF(salary, dept_avg) returns NULL when they are equal',a:'SELECT name, salary,
-  NULLIF(salary, AVG(salary) OVER (PARTITION BY dept)) AS diff_flag
-FROM employees;'},
-  {cat:'NULL Handling',q:'Count how many employees have a NULL salary vs a recorded salary.',hint:'💡 COUNT(salary) counts non-NULLs; COUNT(*) - COUNT(salary) gives NULLs',a:'SELECT
-  COUNT(salary) AS has_salary,
-  COUNT(*) - COUNT(salary) AS missing_salary
-FROM employees;'},
-
-  // ── ADVANCED / INTERVIEW ──────────────────────────────────────────────────
-  {cat:'Advanced',q:'Find employees who have made more sales than the average number of sales per employee.',hint:'💡 CTE: count sales per emp, compute avg of those counts, filter',a:'WITH sales_per_emp AS (
-  SELECT emp_id, COUNT(*) AS num_sales
-  FROM sales
-  GROUP BY emp_id
-),
-avg_sales AS (
-  SELECT AVG(num_sales) AS avg_count FROM sales_per_emp
-)
-SELECT e.name, sp.num_sales
-FROM employees e
-JOIN sales_per_emp sp ON e.emp_id = sp.emp_id
-CROSS JOIN avg_sales
-WHERE sp.num_sales > avg_sales.avg_count;'},
-  {cat:'Advanced',q:'For each month, show the month-over-month % change in total sales.',hint:'💡 CTE with monthly totals + LAG to get previous month, then calculate % change',a:"WITH monthly AS (
-  SELECT
-    DATE_TRUNC('month', sale_date) AS month,
-    SUM(amount) AS total
-  FROM sales
-  GROUP BY DATE_TRUNC('month', sale_date)
-)
-SELECT month, total,
-  LAG(total) OVER (ORDER BY month) AS prev_month,
-  ROUND((total - LAG(total) OVER (ORDER BY month)) * 100.0
-    / LAG(total) OVER (ORDER BY month), 2) AS pct_change
-FROM monthly
-ORDER BY month;"},
-  {cat:'Advanced',q:'Find the employee who generated the highest single sale in each region.',hint:'💡 RANK() OVER (PARTITION BY region ORDER BY amount DESC) in CTE, filter rnk=1',a:'WITH ranked AS (
-  SELECT s.region, e.name, s.amount,
-    RANK() OVER (PARTITION BY s.region ORDER BY s.amount DESC) AS rnk
-  FROM sales s
-  JOIN employees e ON s.emp_id = e.emp_id
-)
-SELECT region, name, amount
-FROM ranked
-WHERE rnk = 1;'},
-  {cat:'Advanced',q:'Detect duplicate sales: find any rows in the sales table with the same emp_id, amount, and sale_date.',hint:'💡 GROUP BY those columns HAVING COUNT(*) > 1',a:'SELECT emp_id, amount, sale_date, COUNT(*) AS duplicates
-FROM sales
-GROUP BY emp_id, amount, sale_date
-HAVING COUNT(*) > 1;'},
-  {cat:'Advanced',q:'Write a query to delete duplicate sales, keeping only the one with the lowest sale_id.',hint:'💡 CTE with ROW_NUMBER(), DELETE WHERE rn > 1',a:'WITH dupes AS (
-  SELECT sale_id,
-    ROW_NUMBER() OVER (
-      PARTITION BY emp_id, amount, sale_date
-      ORDER BY sale_id
-    ) AS rn
-  FROM sales
-)
-DELETE FROM sales
-WHERE sale_id IN (SELECT sale_id FROM dupes WHERE rn > 1);'},
-  {cat:'Advanced',q:'Show a running count of how many employees had been hired up to each hire date.',hint:'💡 COUNT(*) OVER (ORDER BY hire_date ROWS UNBOUNDED PRECEDING)',a:'SELECT name, hire_date,
-  COUNT(*) OVER (
-    ORDER BY hire_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  ) AS cumulative_hires
-FROM employees
-ORDER BY hire_date;'},
-  {cat:'Advanced',q:'Find the top 3 sales per region (ties included) using DENSE_RANK.',hint:'💡 DENSE_RANK() OVER (PARTITION BY region ORDER BY amount DESC), filter <= 3',a:'WITH ranked AS (
-  SELECT region, emp_id, amount, sale_date,
-    DENSE_RANK() OVER (
-      PARTITION BY region
-      ORDER BY amount DESC
-    ) AS rnk
-  FROM sales
-)
-SELECT region, emp_id, amount, sale_date
-FROM ranked
-WHERE rnk <= 3
-ORDER BY region, rnk;'},
-  {cat:'Advanced',q:'Calculate a 30-day rolling sum of sales (by date, not by row count).',hint:'💡 SUM() OVER (ORDER BY sale_date RANGE BETWEEN INTERVAL 29 DAYS PRECEDING AND CURRENT ROW)',a:"SELECT sale_date, amount,
-  SUM(amount) OVER (
-    ORDER BY sale_date
-    RANGE BETWEEN INTERVAL '29 days' PRECEDING AND CURRENT ROW
-  ) AS rolling_30d_sum
-FROM sales
-ORDER BY sale_date;"},
-  {cat:'Advanced',q:'Using a CTE, find employees whose salary is in the top 25% (top quartile) of the company.',hint:'💡 NTILE(4) OVER (ORDER BY salary) — filter where quartile = 4',a:'WITH quartiles AS (
-  SELECT name, salary,
-    NTILE(4) OVER (ORDER BY salary) AS quartile
-  FROM employees
-)
-SELECT name, salary
-FROM quartiles
-WHERE quartile = 4
-ORDER BY salary DESC;'},
-  {cat:'Advanced',q:'Find employees who were hired in the same month as another employee (any year).',hint:'💡 Self-join matching EXTRACT(MONTH) and EXTRACT(DAY) but different emp_id',a:'SELECT e1.name AS emp1, e2.name AS emp2,
-  EXTRACT(MONTH FROM e1.hire_date) AS birth_month
-FROM employees e1
-JOIN employees e2
-  ON EXTRACT(MONTH FROM e1.hire_date) = EXTRACT(MONTH FROM e2.hire_date)
-  AND e1.emp_id < e2.emp_id;'},
-  {cat:'Advanced',q:'Build a query that shows each employee's sales rank, their department's rank by total payroll, and the company-wide headcount — all in one SELECT.',hint:'💡 Multiple window functions with different PARTITION BY specs in one query',a:'SELECT
-  e.name,
-  e.dept,
-  e.salary,
-  RANK() OVER (ORDER BY e.salary DESC) AS company_salary_rank,
-  RANK() OVER (PARTITION BY e.dept ORDER BY e.salary DESC) AS dept_salary_rank,
-  COUNT(*) OVER () AS total_headcount,
-  COUNT(*) OVER (PARTITION BY e.dept) AS dept_headcount
-FROM employees e;'},
-  {cat:'Advanced',q:'Find months where total sales declined compared to the previous month.',hint:'💡 Monthly CTE + LAG to get prev total, filter where total < prev_total',a:"WITH monthly AS (
-  SELECT
-    DATE_TRUNC('month', sale_date) AS month,
-    SUM(amount) AS total
-  FROM sales
-  GROUP BY DATE_TRUNC('month', sale_date)
-),
-with_prev AS (
-  SELECT month, total,
-    LAG(total) OVER (ORDER BY month) AS prev_total
-  FROM monthly
-)
-SELECT month, total, prev_total,
-  total - prev_total AS change
-FROM with_prev
-WHERE total < prev_total;"},
-  {cat:'Advanced',q:'For each employee, calculate the gap in days between their first and last sale.',hint:'💡 MIN and MAX sale_date per emp, then DATE subtraction',a:'SELECT e.name,
-  MIN(s.sale_date) AS first_sale,
-  MAX(s.sale_date) AS last_sale,
-  MAX(s.sale_date) - MIN(s.sale_date) AS day_span
-FROM employees e
-JOIN sales s ON e.emp_id = s.emp_id
-GROUP BY e.name;'},
-];
-
-
-
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
-  document.getElementById('pdf-modal-title').textContent=title;
-  document.getElementById('pdf-frame').src=file;
-  document.getElementById('pdf-download-link').href=file;
-  document.getElementById('pdf-download-link').download=file;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePDFBtn(){
-  document.getElementById('pdf-overlay').classList.remove('open');
-  document.getElementById('pdf-frame').src='';
-  document.body.style.overflow='';
-}
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
-
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
-  document.getElementById('pdf-modal-title').textContent=title;
-  document.getElementById('pdf-frame').src=file;
-  document.getElementById('pdf-download-link').href=file;
-  document.getElementById('pdf-download-link').download=file;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePDFBtn(){
-  document.getElementById('pdf-overlay').classList.remove('open');
-  document.getElementById('pdf-frame').src='';
-  document.body.style.overflow='';
-}
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
-
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-const sqlQuestions=[
-  // ── BASIC SELECT & FILTERING ─────────────────────────────────────────────
-  {cat:'SELECT & Filter',q:'Select all employees in the Finance department earning more than $90,000.',hint:'💡 WHERE dept = 'Finance' AND salary > 90000',a:"SELECT * FROM employees
-WHERE dept = 'Finance' AND salary > 90000;"},
-  {cat:'SELECT & Filter',q:'Find all employees hired between 2020 and 2022 (inclusive).',hint:'💡 BETWEEN works on dates too',a:"SELECT * FROM employees
-WHERE hire_date BETWEEN '2020-01-01' AND '2022-12-31';"},
-  {cat:'SELECT & Filter',q:'List employees whose name starts with the letter R.',hint:'💡 LIKE 'R%'',a:"SELECT * FROM employees WHERE name LIKE 'R%';"},
-  {cat:'SELECT & Filter',q:'Find all sales where the amount is between $3,000 and $6,000.',hint:'💡 BETWEEN includes endpoints',a:'SELECT * FROM sales WHERE amount BETWEEN 3000 AND 6000;'},
-  {cat:'SELECT & Filter',q:'Select all employees NOT in Marketing.',hint:'💡 WHERE dept != 'Marketing' or use NOT IN',a:"SELECT * FROM employees WHERE dept != 'Marketing';"},
-  {cat:'SELECT & Filter',q:'Find all sales in the East or West region.',hint:'💡 Use IN ('East','West') or OR',a:"SELECT * FROM sales WHERE region IN ('East','West');"},
-  {cat:'SELECT & Filter',q:'Return the top 3 highest-paid employees.',hint:'💡 ORDER BY salary DESC LIMIT 3',a:'SELECT * FROM employees ORDER BY salary DESC LIMIT 3;'},
-  {cat:'SELECT & Filter',q:'Find all employees whose salary is NULL.',hint:'💡 IS NULL — never use = NULL',a:'SELECT * FROM employees WHERE salary IS NULL;'},
-  {cat:'SELECT & Filter',q:'List all distinct departments in the employees table.',hint:'💡 SELECT DISTINCT',a:'SELECT DISTINCT dept FROM employees;'},
-  {cat:'SELECT & Filter',q:'Select employee name and salary, aliased as "Employee" and "Annual Pay".',hint:'💡 column AS alias',a:'SELECT name AS "Employee", salary AS "Annual Pay" FROM employees;'},
-
-  // ── AGGREGATIONS ─────────────────────────────────────────────────────────
-  {cat:'Aggregations',q:'Find the total sales amount across all regions.',hint:'💡 SUM(amount)',a:'SELECT SUM(amount) AS total_sales FROM sales;'},
-  {cat:'Aggregations',q:'Find the average salary across all employees.',hint:'💡 AVG(salary)',a:'SELECT AVG(salary) AS avg_salary FROM employees;'},
-  {cat:'Aggregations',q:'Count how many sales happened in the East region.',hint:'💡 COUNT(*) with WHERE region = 'East'',a:"SELECT COUNT(*) AS east_sales FROM sales WHERE region = 'East';"},
-  {cat:'Aggregations',q:'Find the highest and lowest salary in the company.',hint:'💡 MAX() and MIN() in the same SELECT',a:'SELECT MAX(salary) AS highest, MIN(salary) AS lowest FROM employees;'},
-  {cat:'Aggregations',q:'Find the total sales amount per employee (show emp_id and total).',hint:'💡 SUM + GROUP BY emp_id',a:'SELECT emp_id, SUM(amount) AS total_sales FROM sales GROUP BY emp_id;'},
-  {cat:'Aggregations',q:'Find the average sale amount per region.',hint:'💡 AVG + GROUP BY region',a:'SELECT region, AVG(amount) AS avg_sale FROM sales GROUP BY region;'},
-  {cat:'Aggregations',q:'Count the number of employees in each department.',hint:'💡 COUNT(*) GROUP BY dept',a:'SELECT dept, COUNT(*) AS headcount FROM employees GROUP BY dept;'},
-  {cat:'Aggregations',q:'Find the total payroll cost per department.',hint:'💡 SUM(salary) GROUP BY dept',a:'SELECT dept, SUM(salary) AS total_payroll FROM employees GROUP BY dept;'},
-  {cat:'Aggregations',q:'Find departments where the average salary exceeds $90,000.',hint:'💡 GROUP BY dept HAVING AVG(salary) > 90000',a:'SELECT dept, AVG(salary) AS avg_sal
-FROM employees
-GROUP BY dept
-HAVING AVG(salary) > 90000;'},
-  {cat:'Aggregations',q:'Find employees who made more than 1 sale. Show emp_id and sale count.',hint:'💡 COUNT(*) GROUP BY emp_id HAVING COUNT(*) > 1',a:'SELECT emp_id, COUNT(*) AS sale_count
-FROM sales
-GROUP BY emp_id
-HAVING COUNT(*) > 1;'},
-  {cat:'Aggregations',q:'Find the total, average, min, and max sale amount in a single query.',hint:'💡 Four aggregate functions in one SELECT',a:'SELECT
-  SUM(amount)  AS total,
-  AVG(amount)  AS avg,
-  MIN(amount)  AS min_sale,
-  MAX(amount)  AS max_sale
-FROM sales;'},
-  {cat:'Aggregations',q:'How many sales occurred per month? (Use sale_date)',hint:'💡 EXTRACT(MONTH FROM sale_date) or DATE_TRUNC',a:"SELECT
-  DATE_TRUNC('month', sale_date) AS month,
-  COUNT(*) AS sale_count
-FROM sales
-GROUP BY DATE_TRUNC('month', sale_date)
-ORDER BY month;"},
-  {cat:'Aggregations',q:'Find the department with the single highest total payroll.',hint:'💡 SUM GROUP BY dept ORDER BY DESC LIMIT 1',a:'SELECT dept, SUM(salary) AS total_payroll
-FROM employees
-GROUP BY dept
-ORDER BY total_payroll DESC
-LIMIT 1;'},
-
-  // ── JOINS ─────────────────────────────────────────────────────────────────
-  {cat:'JOINs',q:'Show each sale with the employee name who made it.',hint:'💡 JOIN employees ON emp_id',a:'SELECT e.name, s.amount, s.sale_date, s.region
-FROM sales s
-JOIN employees e ON s.emp_id = e.emp_id;'},
-  {cat:'JOINs',q:'Show all employees and their sales — include employees with no sales.',hint:'💡 LEFT JOIN keeps all employees even if no matching sale',a:'SELECT e.name, s.amount, s.sale_date
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id;'},
-  {cat:'JOINs',q:'Find employees who have never made a sale.',hint:'💡 LEFT JOIN then WHERE s.emp_id IS NULL',a:'SELECT e.name
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id
-WHERE s.emp_id IS NULL;'},
-  {cat:'JOINs',q:'Show total sales per employee (include employees with $0 in sales).',hint:'💡 LEFT JOIN + COALESCE(SUM(amount), 0)',a:'SELECT e.name, COALESCE(SUM(s.amount), 0) AS total_sales
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id
-GROUP BY e.name;'},
-  {cat:'JOINs',q:'Find employees who made sales in both the East AND West region.',hint:'💡 Self-join or two subqueries with INTERSECT',a:"SELECT DISTINCT e.name
-FROM employees e
-JOIN sales s1 ON e.emp_id = s1.emp_id AND s1.region = 'East'
-JOIN sales s2 ON e.emp_id = s2.emp_id AND s2.region = 'West';"},
-  {cat:'JOINs',q:'Show each department and its highest-paid employee.',hint:'💡 Subquery to get max salary per dept, then JOIN back',a:'SELECT e.dept, e.name, e.salary
-FROM employees e
-JOIN (
-  SELECT dept, MAX(salary) AS max_sal
-  FROM employees
-  GROUP BY dept
-) m ON e.dept = m.dept AND e.salary = m.max_sal;'},
-  {cat:'JOINs',q:'Show employee name, their total sales, and their department's total sales side by side.',hint:'💡 JOIN individual sales to a dept-level aggregation',a:'SELECT e.name, e.dept,
-  SUM(s.amount) AS emp_total,
-  d.dept_total
-FROM employees e
-JOIN sales s ON e.emp_id = s.emp_id
-JOIN (
-  SELECT e2.dept, SUM(s2.amount) AS dept_total
-  FROM employees e2
-  JOIN sales s2 ON e2.emp_id = s2.emp_id
-  GROUP BY e2.dept
-) d ON e.dept = d.dept
-GROUP BY e.name, e.dept, d.dept_total;'},
-  {cat:'JOINs',q:'Find all pairs of employees in the same department (no self-pairs, no duplicates).',hint:'💡 Self-join WHERE e1.emp_id < e2.emp_id',a:'SELECT e1.name AS emp1, e2.name AS emp2, e1.dept
-FROM employees e1
-JOIN employees e2
-  ON e1.dept = e2.dept
-  AND e1.emp_id < e2.emp_id;'},
-
-  // ── SUBQUERIES ────────────────────────────────────────────────────────────
-  {cat:'Subqueries',q:'Find all employees earning above the company average salary.',hint:'💡 WHERE salary > (SELECT AVG(salary) FROM employees)',a:'SELECT name, salary
-FROM employees
-WHERE salary > (SELECT AVG(salary) FROM employees);'},
-  {cat:'Subqueries',q:'Find the employee(s) with the highest salary in each department using a subquery.',hint:'💡 Correlated subquery: WHERE salary = (SELECT MAX... WHERE dept = e.dept)',a:'SELECT name, dept, salary
-FROM employees e
-WHERE salary = (
-  SELECT MAX(salary)
-  FROM employees
-  WHERE dept = e.dept
-);'},
-  {cat:'Subqueries',q:'Find employees whose salary is above the average salary of their own department.',hint:'💡 Correlated subquery with AVG per dept',a:'SELECT name, dept, salary
-FROM employees e
-WHERE salary > (
-  SELECT AVG(salary)
-  FROM employees
-  WHERE dept = e.dept
-);'},
-  {cat:'Subqueries',q:'Find employees who made a sale greater than the average sale amount.',hint:'💡 WHERE emp_id IN (SELECT emp_id FROM sales WHERE amount > (SELECT AVG...))',a:'SELECT DISTINCT e.name
-FROM employees e
-WHERE e.emp_id IN (
-  SELECT emp_id FROM sales
-  WHERE amount > (SELECT AVG(amount) FROM sales)
-);'},
-  {cat:'Subqueries',q:'Find the second-highest salary in the employees table.',hint:'💡 Use a subquery to exclude the max, then find the new max',a:'SELECT MAX(salary) AS second_highest
-FROM employees
-WHERE salary < (SELECT MAX(salary) FROM employees);'},
-  {cat:'Subqueries',q:'Find departments where every employee earns more than $70,000.',hint:'💡 NOT IN with a subquery finding depts that have someone under 70k',a:'SELECT DISTINCT dept
-FROM employees
-WHERE dept NOT IN (
-  SELECT dept FROM employees WHERE salary <= 70000
-);'},
-  {cat:'Subqueries',q:'Find the top 2 earners in each department using a subquery.',hint:'💡 Correlated subquery counting how many earn more — keep where count < 2',a:'SELECT name, dept, salary
-FROM employees e
-WHERE (
-  SELECT COUNT(*)
-  FROM employees
-  WHERE dept = e.dept AND salary > e.salary
-) < 2
-ORDER BY dept, salary DESC;'},
-
-  // ── CTEs ──────────────────────────────────────────────────────────────────
-  {cat:'CTEs',q:'Using a CTE, find all employees who earn above the company average salary.',hint:'💡 WITH avg_cte AS (SELECT AVG...) SELECT... WHERE salary > avg_cte.avg',a:'WITH avg_sal AS (
-  SELECT AVG(salary) AS company_avg FROM employees
-)
-SELECT e.name, e.salary
-FROM employees e, avg_sal
-WHERE e.salary > avg_sal.company_avg;'},
-  {cat:'CTEs',q:'Use a CTE to rank employees by salary within each department, then return only rank 1.',hint:'💡 CTE with RANK() OVER, then WHERE rnk = 1 in outer query',a:'WITH ranked AS (
-  SELECT name, dept, salary,
-    RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk
-  FROM employees
-)
-SELECT name, dept, salary
-FROM ranked
-WHERE rnk = 1;'},
-  {cat:'CTEs',q:'Write a CTE that calculates total sales per employee, then find employees above the average total.',hint:'💡 Two CTEs chained: first total per emp, then avg of totals',a:'WITH emp_totals AS (
-  SELECT emp_id, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY emp_id
-),
-avg_total AS (
-  SELECT AVG(total_sales) AS avg_sales FROM emp_totals
-)
-SELECT e.name, et.total_sales
-FROM employees e
-JOIN emp_totals et ON e.emp_id = et.emp_id
-CROSS JOIN avg_total
-WHERE et.total_sales > avg_total.avg_sales;'},
-  {cat:'CTEs',q:'Use a CTE to label each sale as "High" (>$5000), "Mid" ($3000-$5000), or "Low" (<$3000), then count each label.',hint:'💡 CTE with CASE WHEN, outer query groups by label',a:'WITH labeled AS (
-  SELECT *,
-    CASE
-      WHEN amount > 5000 THEN 'High'
-      WHEN amount >= 3000 THEN 'Mid'
-      ELSE 'Low'
-    END AS sale_tier
-  FROM sales
-)
-SELECT sale_tier, COUNT(*) AS cnt, SUM(amount) AS total
-FROM labeled
-GROUP BY sale_tier
-ORDER BY total DESC;'},
-  {cat:'CTEs',q:'Use a recursive CTE to generate a sequence of numbers from 1 to 10.',hint:'💡 WITH RECURSIVE cte AS (SELECT 1 UNION ALL SELECT n+1 FROM cte WHERE n < 10)',a:'WITH RECURSIVE nums AS (
-  SELECT 1 AS n
-  UNION ALL
-  SELECT n + 1 FROM nums WHERE n < 10
-)
-SELECT n FROM nums;'},
-  {cat:'CTEs',q:'Build a CTE that shows each department's headcount and average salary, then filter to depts with 2+ employees and avg salary > $85k.',hint:'💡 CTE aggregates, outer query filters with WHERE',a:'WITH dept_stats AS (
-  SELECT dept,
-    COUNT(*) AS headcount,
-    AVG(salary) AS avg_salary
-  FROM employees
-  GROUP BY dept
-)
-SELECT dept, headcount, ROUND(avg_salary, 0) AS avg_sal
-FROM dept_stats
-WHERE headcount >= 2 AND avg_salary > 85000;'},
-
-  // ── WINDOW FUNCTIONS ──────────────────────────────────────────────────────
-  {cat:'Window Functions',q:'Rank employees within each department by salary (highest = 1). Use RANK().',hint:'💡 RANK() OVER (PARTITION BY dept ORDER BY salary DESC)',a:'SELECT name, dept, salary,
-  RANK() OVER (
-    PARTITION BY dept
-    ORDER BY salary DESC
-  ) AS salary_rank
-FROM employees;'},
-  {cat:'Window Functions',q:'What is the difference between RANK() and DENSE_RANK()? Show both for the employees table.',hint:'💡 RANK skips numbers after ties; DENSE_RANK does not',a:'SELECT name, dept, salary,
-  RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk,
-  DENSE_RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS dense_rnk
-FROM employees;'},
-  {cat:'Window Functions',q:'Show each employee's salary alongside their department's average and median salary.',hint:'💡 AVG() OVER (PARTITION BY dept) — PERCENTILE_CONT for median',a:'SELECT name, dept, salary,
-  ROUND(AVG(salary) OVER (PARTITION BY dept), 0) AS dept_avg,
-  PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary)
-    OVER (PARTITION BY dept) AS dept_median
-FROM employees;'},
-  {cat:'Window Functions',q:'For each sale, show the running total of sales amount per employee ordered by date.',hint:'💡 SUM() OVER (PARTITION BY emp_id ORDER BY sale_date ROWS UNBOUNDED PRECEDING)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  SUM(amount) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  ) AS running_total
-FROM sales;'},
-  {cat:'Window Functions',q:'Show each sale and the previous sale's amount for that employee using LAG.',hint:'💡 LAG(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  LAG(amount, 1) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-  ) AS prev_sale,
-  amount - LAG(amount, 1) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-  ) AS change_from_prev
-FROM sales;'},
-  {cat:'Window Functions',q:'Show each sale and the next sale's amount for that employee using LEAD.',hint:'💡 LEAD(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  LEAD(amount, 1) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-  ) AS next_sale
-FROM sales;'},
-  {cat:'Window Functions',q:'Calculate a 3-sale moving average of sale amounts per employee.',hint:'💡 AVG() OVER with ROWS BETWEEN 2 PRECEDING AND CURRENT ROW',a:'SELECT sale_id, emp_id, amount, sale_date,
-  ROUND(AVG(amount) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-    ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
-  ), 2) AS moving_avg_3
-FROM sales;'},
-  {cat:'Window Functions',q:'Find the first and last sale date for each employee using window functions.',hint:'💡 FIRST_VALUE and LAST_VALUE with ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING',a:'SELECT DISTINCT emp_id,
-  FIRST_VALUE(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  ) AS first_sale,
-  LAST_VALUE(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  ) AS last_sale
-FROM sales;'},
-  {cat:'Window Functions',q:'Assign a percentile bucket (1–4) to each employee based on salary using NTILE.',hint:'💡 NTILE(4) OVER (ORDER BY salary) splits into quartiles',a:'SELECT name, salary,
-  NTILE(4) OVER (ORDER BY salary) AS salary_quartile
-FROM employees;'},
-  {cat:'Window Functions',q:'Show each employee's salary as a % of the company total AND as a % of their department total.',hint:'💡 Two SUM() OVER window specs — one global, one partitioned',a:'SELECT name, dept, salary,
-  ROUND(salary * 100.0 / SUM(salary) OVER (), 2) AS pct_of_company,
-  ROUND(salary * 100.0 / SUM(salary) OVER (PARTITION BY dept), 2) AS pct_of_dept
-FROM employees;'},
-  {cat:'Window Functions',q:'Find employees whose salary is more than 20% above their department average.',hint:'💡 Use AVG() OVER in a CTE, then filter where salary > avg * 1.2',a:'WITH dept_avgs AS (
-  SELECT name, dept, salary,
-    AVG(salary) OVER (PARTITION BY dept) AS dept_avg
-  FROM employees
-)
-SELECT name, dept, salary, ROUND(dept_avg,0) AS dept_avg
-FROM dept_avgs
-WHERE salary > dept_avg * 1.2;'},
-  {cat:'Window Functions',q:'Identify sales where the amount dropped more than 20% compared to the previous sale by the same employee.',hint:'💡 LAG() to get previous amount, then calculate % change',a:'WITH lag_sales AS (
-  SELECT sale_id, emp_id, amount, sale_date,
-    LAG(amount) OVER (PARTITION BY emp_id ORDER BY sale_date) AS prev_amount
-  FROM sales
-)
-SELECT *,
-  ROUND((amount - prev_amount) * 100.0 / prev_amount, 2) AS pct_change
-FROM lag_sales
-WHERE (amount - prev_amount) * 1.0 / prev_amount < -0.20;'},
-
-  // ── CASE STATEMENTS ───────────────────────────────────────────────────────
-  {cat:'CASE WHEN',q:'Label each employee as "Senior" (salary > $95k), "Mid" ($75k–$95k), or "Junior" (<$75k).',hint:'💡 CASE WHEN salary > 95000 THEN ... WHEN salary >= 75000 THEN ... ELSE ...',a:"SELECT name, salary,
-  CASE
-    WHEN salary > 95000 THEN 'Senior'
-    WHEN salary >= 75000 THEN 'Mid'
-    ELSE 'Junior'
-  END AS level
-FROM employees;"},
-  {cat:'CASE WHEN',q:'Count Active and Cancelled sales in one query using CASE.',hint:'💡 COUNT(CASE WHEN status='Active' THEN 1 END)',a:"SELECT
-  COUNT(CASE WHEN region = 'East' THEN 1 END) AS east_sales,
-  COUNT(CASE WHEN region = 'West' THEN 1 END) AS west_sales,
-  COUNT(CASE WHEN region = 'South' THEN 1 END) AS south_sales
-FROM sales;"},
-  {cat:'CASE WHEN',q:'Show the total sales amount split into Q1 (Jan–Mar) and Q2 (Apr–Jun) in one row.',hint:'💡 SUM(CASE WHEN MONTH(sale_date) BETWEEN 1 AND 3 THEN amount END)',a:"SELECT
-  SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 1 AND 3
-       THEN amount ELSE 0 END) AS Q1_sales,
-  SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 4 AND 6
-       THEN amount ELSE 0 END) AS Q2_sales
-FROM sales;"},
-  {cat:'CASE WHEN',q:'Flag each sale as "Above Target" if amount > $5000, otherwise "Below Target". Show a count of each.',hint:'💡 CASE inside a GROUP BY or wrap in a subquery',a:"SELECT
-  CASE WHEN amount > 5000 THEN 'Above Target' ELSE 'Below Target' END AS status,
-  COUNT(*) AS cnt,
-  SUM(amount) AS total
-FROM sales
-GROUP BY CASE WHEN amount > 5000 THEN 'Above Target' ELSE 'Below Target' END;"},
-  {cat:'CASE WHEN',q:'Pivot the sales table to show total amount per region as separate columns (East, West, South).',hint:'💡 SUM(CASE WHEN region = 'East' THEN amount END) for each region',a:"SELECT
-  SUM(CASE WHEN region='East'  THEN amount ELSE 0 END) AS East,
-  SUM(CASE WHEN region='West'  THEN amount ELSE 0 END) AS West,
-  SUM(CASE WHEN region='South' THEN amount ELSE 0 END) AS South
-FROM sales;"},
-
-  // ── DATE & TIME ───────────────────────────────────────────────────────────
-  {cat:'Date & Time',q:'Find all employees hired in 2020.',hint:'💡 EXTRACT(YEAR FROM hire_date) = 2020 or YEAR(hire_date)',a:'SELECT * FROM employees
-WHERE EXTRACT(YEAR FROM hire_date) = 2020;'},
-  {cat:'Date & Time',q:'Calculate how many years each employee has been with the company.',hint:'💡 DATE_PART or DATEDIFF between hire_date and CURRENT_DATE',a:"SELECT name, hire_date,
-  DATE_PART('year', AGE(CURRENT_DATE, hire_date)) AS years_at_company
-FROM employees;"},
-  {cat:'Date & Time',q:'Find sales that occurred on a weekend (Saturday or Sunday).',hint:'💡 EXTRACT(DOW FROM sale_date) IN (0, 6) — 0=Sunday, 6=Saturday in PostgreSQL',a:'SELECT * FROM sales
-WHERE EXTRACT(DOW FROM sale_date) IN (0, 6);'},
-  {cat:'Date & Time',q:'Show total sales by month and year, ordered chronologically.',hint:'💡 DATE_TRUNC('month', sale_date) then GROUP BY and ORDER BY',a:"SELECT
-  DATE_TRUNC('month', sale_date) AS month,
-  COUNT(*) AS num_sales,
-  SUM(amount) AS total
-FROM sales
-GROUP BY DATE_TRUNC('month', sale_date)
-ORDER BY month;"},
-  {cat:'Date & Time',q:'Find employees who have been with the company for more than 4 years.',hint:'💡 AGE(CURRENT_DATE, hire_date) > INTERVAL '4 years'',a:"SELECT name, hire_date
-FROM employees
-WHERE hire_date < CURRENT_DATE - INTERVAL '4 years';"},
-  {cat:'Date & Time',q:'Find the number of days between each sale and the previous sale by the same employee.',hint:'💡 LAG(sale_date) OVER (PARTITION BY emp_id ORDER BY sale_date), then date difference',a:'SELECT sale_id, emp_id, sale_date,
-  LAG(sale_date) OVER (PARTITION BY emp_id ORDER BY sale_date) AS prev_date,
-  sale_date - LAG(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-  ) AS days_since_prev
-FROM sales;'},
-
-  // ── STRING FUNCTIONS ──────────────────────────────────────────────────────
-  {cat:'String Functions',q:'Convert all employee names to uppercase.',hint:'💡 UPPER(name)',a:'SELECT UPPER(name) AS name_upper FROM employees;'},
-  {cat:'String Functions',q:'Extract the first 3 characters of each employee's name.',hint:'💡 LEFT(name, 3) or SUBSTRING(name, 1, 3)',a:'SELECT name, LEFT(name, 3) AS name_prefix FROM employees;'},
-  {cat:'String Functions',q:'Concatenate employee name and department into one column like "Adila — Finance".',hint:'💡 CONCAT(name, ' — ', dept) or name || ' — ' || dept',a:"SELECT CONCAT(name, ' — ', dept) AS name_dept FROM employees;"},
-  {cat:'String Functions',q:'Find the length of each employee's name.',hint:'💡 LENGTH(name)',a:'SELECT name, LENGTH(name) AS name_length FROM employees;'},
-  {cat:'String Functions',q:'Replace "Engineering" with "Eng" in the dept column.',hint:'💡 REPLACE(dept, 'Engineering', 'Eng')',a:"SELECT name, REPLACE(dept, 'Engineering', 'Eng') AS dept_short FROM employees;"},
-
-  // ── NULL HANDLING ─────────────────────────────────────────────────────────
-  {cat:'NULL Handling',q:'Replace NULL salaries with 0 using COALESCE.',hint:'💡 COALESCE(salary, 0)',a:'SELECT name, COALESCE(salary, 0) AS salary FROM employees;'},
-  {cat:'NULL Handling',q:'Show employees with a salary, replacing NULLs with the text "Not Set" using COALESCE.',hint:'💡 COALESCE(CAST(salary AS VARCHAR), 'Not Set')',a:"SELECT name, COALESCE(CAST(salary AS VARCHAR), 'Not Set') AS salary FROM employees;"},
-  {cat:'NULL Handling',q:'Return NULL if an employee's salary equals their department average (using NULLIF).',hint:'💡 NULLIF(salary, dept_avg) returns NULL when they are equal',a:'SELECT name, salary,
-  NULLIF(salary, AVG(salary) OVER (PARTITION BY dept)) AS diff_flag
-FROM employees;'},
-  {cat:'NULL Handling',q:'Count how many employees have a NULL salary vs a recorded salary.',hint:'💡 COUNT(salary) counts non-NULLs; COUNT(*) - COUNT(salary) gives NULLs',a:'SELECT
-  COUNT(salary) AS has_salary,
-  COUNT(*) - COUNT(salary) AS missing_salary
-FROM employees;'},
-
-  // ── ADVANCED / INTERVIEW ──────────────────────────────────────────────────
-  {cat:'Advanced',q:'Find employees who have made more sales than the average number of sales per employee.',hint:'💡 CTE: count sales per emp, compute avg of those counts, filter',a:'WITH sales_per_emp AS (
-  SELECT emp_id, COUNT(*) AS num_sales
-  FROM sales
-  GROUP BY emp_id
-),
-avg_sales AS (
-  SELECT AVG(num_sales) AS avg_count FROM sales_per_emp
-)
-SELECT e.name, sp.num_sales
-FROM employees e
-JOIN sales_per_emp sp ON e.emp_id = sp.emp_id
-CROSS JOIN avg_sales
-WHERE sp.num_sales > avg_sales.avg_count;'},
-  {cat:'Advanced',q:'For each month, show the month-over-month % change in total sales.',hint:'💡 CTE with monthly totals + LAG to get previous month, then calculate % change',a:"WITH monthly AS (
-  SELECT
-    DATE_TRUNC('month', sale_date) AS month,
-    SUM(amount) AS total
-  FROM sales
-  GROUP BY DATE_TRUNC('month', sale_date)
-)
-SELECT month, total,
-  LAG(total) OVER (ORDER BY month) AS prev_month,
-  ROUND((total - LAG(total) OVER (ORDER BY month)) * 100.0
-    / LAG(total) OVER (ORDER BY month), 2) AS pct_change
-FROM monthly
-ORDER BY month;"},
-  {cat:'Advanced',q:'Find the employee who generated the highest single sale in each region.',hint:'💡 RANK() OVER (PARTITION BY region ORDER BY amount DESC) in CTE, filter rnk=1',a:'WITH ranked AS (
-  SELECT s.region, e.name, s.amount,
-    RANK() OVER (PARTITION BY s.region ORDER BY s.amount DESC) AS rnk
-  FROM sales s
-  JOIN employees e ON s.emp_id = e.emp_id
-)
-SELECT region, name, amount
-FROM ranked
-WHERE rnk = 1;'},
-  {cat:'Advanced',q:'Detect duplicate sales: find any rows in the sales table with the same emp_id, amount, and sale_date.',hint:'💡 GROUP BY those columns HAVING COUNT(*) > 1',a:'SELECT emp_id, amount, sale_date, COUNT(*) AS duplicates
-FROM sales
-GROUP BY emp_id, amount, sale_date
-HAVING COUNT(*) > 1;'},
-  {cat:'Advanced',q:'Write a query to delete duplicate sales, keeping only the one with the lowest sale_id.',hint:'💡 CTE with ROW_NUMBER(), DELETE WHERE rn > 1',a:'WITH dupes AS (
-  SELECT sale_id,
-    ROW_NUMBER() OVER (
-      PARTITION BY emp_id, amount, sale_date
-      ORDER BY sale_id
-    ) AS rn
-  FROM sales
-)
-DELETE FROM sales
-WHERE sale_id IN (SELECT sale_id FROM dupes WHERE rn > 1);'},
-  {cat:'Advanced',q:'Show a running count of how many employees had been hired up to each hire date.',hint:'💡 COUNT(*) OVER (ORDER BY hire_date ROWS UNBOUNDED PRECEDING)',a:'SELECT name, hire_date,
-  COUNT(*) OVER (
-    ORDER BY hire_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  ) AS cumulative_hires
-FROM employees
-ORDER BY hire_date;'},
-  {cat:'Advanced',q:'Find the top 3 sales per region (ties included) using DENSE_RANK.',hint:'💡 DENSE_RANK() OVER (PARTITION BY region ORDER BY amount DESC), filter <= 3',a:'WITH ranked AS (
-  SELECT region, emp_id, amount, sale_date,
-    DENSE_RANK() OVER (
-      PARTITION BY region
-      ORDER BY amount DESC
-    ) AS rnk
-  FROM sales
-)
-SELECT region, emp_id, amount, sale_date
-FROM ranked
-WHERE rnk <= 3
-ORDER BY region, rnk;'},
-  {cat:'Advanced',q:'Calculate a 30-day rolling sum of sales (by date, not by row count).',hint:'💡 SUM() OVER (ORDER BY sale_date RANGE BETWEEN INTERVAL 29 DAYS PRECEDING AND CURRENT ROW)',a:"SELECT sale_date, amount,
-  SUM(amount) OVER (
-    ORDER BY sale_date
-    RANGE BETWEEN INTERVAL '29 days' PRECEDING AND CURRENT ROW
-  ) AS rolling_30d_sum
-FROM sales
-ORDER BY sale_date;"},
-  {cat:'Advanced',q:'Using a CTE, find employees whose salary is in the top 25% (top quartile) of the company.',hint:'💡 NTILE(4) OVER (ORDER BY salary) — filter where quartile = 4',a:'WITH quartiles AS (
-  SELECT name, salary,
-    NTILE(4) OVER (ORDER BY salary) AS quartile
-  FROM employees
-)
-SELECT name, salary
-FROM quartiles
-WHERE quartile = 4
-ORDER BY salary DESC;'},
-  {cat:'Advanced',q:'Find employees who were hired in the same month as another employee (any year).',hint:'💡 Self-join matching EXTRACT(MONTH) and EXTRACT(DAY) but different emp_id',a:'SELECT e1.name AS emp1, e2.name AS emp2,
-  EXTRACT(MONTH FROM e1.hire_date) AS birth_month
-FROM employees e1
-JOIN employees e2
-  ON EXTRACT(MONTH FROM e1.hire_date) = EXTRACT(MONTH FROM e2.hire_date)
-  AND e1.emp_id < e2.emp_id;'},
-  {cat:'Advanced',q:'Build a query that shows each employee's sales rank, their department's rank by total payroll, and the company-wide headcount — all in one SELECT.',hint:'💡 Multiple window functions with different PARTITION BY specs in one query',a:'SELECT
-  e.name,
-  e.dept,
-  e.salary,
-  RANK() OVER (ORDER BY e.salary DESC) AS company_salary_rank,
-  RANK() OVER (PARTITION BY e.dept ORDER BY e.salary DESC) AS dept_salary_rank,
-  COUNT(*) OVER () AS total_headcount,
-  COUNT(*) OVER (PARTITION BY e.dept) AS dept_headcount
-FROM employees e;'},
-  {cat:'Advanced',q:'Find months where total sales declined compared to the previous month.',hint:'💡 Monthly CTE + LAG to get prev total, filter where total < prev_total',a:"WITH monthly AS (
-  SELECT
-    DATE_TRUNC('month', sale_date) AS month,
-    SUM(amount) AS total
-  FROM sales
-  GROUP BY DATE_TRUNC('month', sale_date)
-),
-with_prev AS (
-  SELECT month, total,
-    LAG(total) OVER (ORDER BY month) AS prev_total
-  FROM monthly
-)
-SELECT month, total, prev_total,
-  total - prev_total AS change
-FROM with_prev
-WHERE total < prev_total;"},
-  {cat:'Advanced',q:'For each employee, calculate the gap in days between their first and last sale.',hint:'💡 MIN and MAX sale_date per emp, then DATE subtraction',a:'SELECT e.name,
-  MIN(s.sale_date) AS first_sale,
-  MAX(s.sale_date) AS last_sale,
-  MAX(s.sale_date) - MIN(s.sale_date) AS day_span
-FROM employees e
-JOIN sales s ON e.emp_id = s.emp_id
-GROUP BY e.name;'},
-];
-
-
-
-// ── PDF MODAL ─────────────────────────────────────────────────────────────────
-function openPDF(file, title){
-  document.getElementById('pdf-modal-title').textContent=title;
-  document.getElementById('pdf-frame').src=file;
-  document.getElementById('pdf-download-link').href=file;
-  document.getElementById('pdf-download-link').download=file;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow='hidden';
-}
-function closePDFBtn(){
-  document.getElementById('pdf-overlay').classList.remove('open');
-  document.getElementById('pdf-frame').src='';
-  document.body.style.overflow='';
-}
-function closePDF(e){if(e.target===document.getElementById('pdf-overlay')) closePDFBtn();}
-
-;
-
-
-}
-
-// ── SQL ───────────────────────────────────────────────────────────────────────
-const sqlQuestions=[
-  // ── BASIC SELECT & FILTERING ─────────────────────────────────────────────
-  {cat:'SELECT & Filter',q:'Select all employees in the Finance department earning more than $90,000.',hint:'💡 WHERE dept = 'Finance' AND salary > 90000',a:"SELECT * FROM employees
-WHERE dept = 'Finance' AND salary > 90000;"},
-  {cat:'SELECT & Filter',q:'Find all employees hired between 2020 and 2022 (inclusive).',hint:'💡 BETWEEN works on dates too',a:"SELECT * FROM employees
-WHERE hire_date BETWEEN '2020-01-01' AND '2022-12-31';"},
-  {cat:'SELECT & Filter',q:'List employees whose name starts with the letter R.',hint:'💡 LIKE 'R%'',a:"SELECT * FROM employees WHERE name LIKE 'R%';"},
-  {cat:'SELECT & Filter',q:'Find all sales where the amount is between $3,000 and $6,000.',hint:'💡 BETWEEN includes endpoints',a:'SELECT * FROM sales WHERE amount BETWEEN 3000 AND 6000;'},
-  {cat:'SELECT & Filter',q:'Select all employees NOT in Marketing.',hint:'💡 WHERE dept != 'Marketing' or use NOT IN',a:"SELECT * FROM employees WHERE dept != 'Marketing';"},
-  {cat:'SELECT & Filter',q:'Find all sales in the East or West region.',hint:'💡 Use IN ('East','West') or OR',a:"SELECT * FROM sales WHERE region IN ('East','West');"},
-  {cat:'SELECT & Filter',q:'Return the top 3 highest-paid employees.',hint:'💡 ORDER BY salary DESC LIMIT 3',a:'SELECT * FROM employees ORDER BY salary DESC LIMIT 3;'},
-  {cat:'SELECT & Filter',q:'Find all employees whose salary is NULL.',hint:'💡 IS NULL — never use = NULL',a:'SELECT * FROM employees WHERE salary IS NULL;'},
-  {cat:'SELECT & Filter',q:'List all distinct departments in the employees table.',hint:'💡 SELECT DISTINCT',a:'SELECT DISTINCT dept FROM employees;'},
-  {cat:'SELECT & Filter',q:'Select employee name and salary, aliased as "Employee" and "Annual Pay".',hint:'💡 column AS alias',a:'SELECT name AS "Employee", salary AS "Annual Pay" FROM employees;'},
-
-  // ── AGGREGATIONS ─────────────────────────────────────────────────────────
-  {cat:'Aggregations',q:'Find the total sales amount across all regions.',hint:'💡 SUM(amount)',a:'SELECT SUM(amount) AS total_sales FROM sales;'},
-  {cat:'Aggregations',q:'Find the average salary across all employees.',hint:'💡 AVG(salary)',a:'SELECT AVG(salary) AS avg_salary FROM employees;'},
-  {cat:'Aggregations',q:'Count how many sales happened in the East region.',hint:'💡 COUNT(*) with WHERE region = 'East'',a:"SELECT COUNT(*) AS east_sales FROM sales WHERE region = 'East';"},
-  {cat:'Aggregations',q:'Find the highest and lowest salary in the company.',hint:'💡 MAX() and MIN() in the same SELECT',a:'SELECT MAX(salary) AS highest, MIN(salary) AS lowest FROM employees;'},
-  {cat:'Aggregations',q:'Find the total sales amount per employee (show emp_id and total).',hint:'💡 SUM + GROUP BY emp_id',a:'SELECT emp_id, SUM(amount) AS total_sales FROM sales GROUP BY emp_id;'},
-  {cat:'Aggregations',q:'Find the average sale amount per region.',hint:'💡 AVG + GROUP BY region',a:'SELECT region, AVG(amount) AS avg_sale FROM sales GROUP BY region;'},
-  {cat:'Aggregations',q:'Count the number of employees in each department.',hint:'💡 COUNT(*) GROUP BY dept',a:'SELECT dept, COUNT(*) AS headcount FROM employees GROUP BY dept;'},
-  {cat:'Aggregations',q:'Find the total payroll cost per department.',hint:'💡 SUM(salary) GROUP BY dept',a:'SELECT dept, SUM(salary) AS total_payroll FROM employees GROUP BY dept;'},
-  {cat:'Aggregations',q:'Find departments where the average salary exceeds $90,000.',hint:'💡 GROUP BY dept HAVING AVG(salary) > 90000',a:'SELECT dept, AVG(salary) AS avg_sal
-FROM employees
-GROUP BY dept
-HAVING AVG(salary) > 90000;'},
-  {cat:'Aggregations',q:'Find employees who made more than 1 sale. Show emp_id and sale count.',hint:'💡 COUNT(*) GROUP BY emp_id HAVING COUNT(*) > 1',a:'SELECT emp_id, COUNT(*) AS sale_count
-FROM sales
-GROUP BY emp_id
-HAVING COUNT(*) > 1;'},
-  {cat:'Aggregations',q:'Find the total, average, min, and max sale amount in a single query.',hint:'💡 Four aggregate functions in one SELECT',a:'SELECT
-  SUM(amount)  AS total,
-  AVG(amount)  AS avg,
-  MIN(amount)  AS min_sale,
-  MAX(amount)  AS max_sale
-FROM sales;'},
-  {cat:'Aggregations',q:'How many sales occurred per month? (Use sale_date)',hint:'💡 EXTRACT(MONTH FROM sale_date) or DATE_TRUNC',a:"SELECT
-  DATE_TRUNC('month', sale_date) AS month,
-  COUNT(*) AS sale_count
-FROM sales
-GROUP BY DATE_TRUNC('month', sale_date)
-ORDER BY month;"},
-  {cat:'Aggregations',q:'Find the department with the single highest total payroll.',hint:'💡 SUM GROUP BY dept ORDER BY DESC LIMIT 1',a:'SELECT dept, SUM(salary) AS total_payroll
-FROM employees
-GROUP BY dept
-ORDER BY total_payroll DESC
-LIMIT 1;'},
-
-  // ── JOINS ─────────────────────────────────────────────────────────────────
-  {cat:'JOINs',q:'Show each sale with the employee name who made it.',hint:'💡 JOIN employees ON emp_id',a:'SELECT e.name, s.amount, s.sale_date, s.region
-FROM sales s
-JOIN employees e ON s.emp_id = e.emp_id;'},
-  {cat:'JOINs',q:'Show all employees and their sales — include employees with no sales.',hint:'💡 LEFT JOIN keeps all employees even if no matching sale',a:'SELECT e.name, s.amount, s.sale_date
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id;'},
-  {cat:'JOINs',q:'Find employees who have never made a sale.',hint:'💡 LEFT JOIN then WHERE s.emp_id IS NULL',a:'SELECT e.name
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id
-WHERE s.emp_id IS NULL;'},
-  {cat:'JOINs',q:'Show total sales per employee (include employees with $0 in sales).',hint:'💡 LEFT JOIN + COALESCE(SUM(amount), 0)',a:'SELECT e.name, COALESCE(SUM(s.amount), 0) AS total_sales
-FROM employees e
-LEFT JOIN sales s ON e.emp_id = s.emp_id
-GROUP BY e.name;'},
-  {cat:'JOINs',q:'Find employees who made sales in both the East AND West region.',hint:'💡 Self-join or two subqueries with INTERSECT',a:"SELECT DISTINCT e.name
-FROM employees e
-JOIN sales s1 ON e.emp_id = s1.emp_id AND s1.region = 'East'
-JOIN sales s2 ON e.emp_id = s2.emp_id AND s2.region = 'West';"},
-  {cat:'JOINs',q:'Show each department and its highest-paid employee.',hint:'💡 Subquery to get max salary per dept, then JOIN back',a:'SELECT e.dept, e.name, e.salary
-FROM employees e
-JOIN (
-  SELECT dept, MAX(salary) AS max_sal
-  FROM employees
-  GROUP BY dept
-) m ON e.dept = m.dept AND e.salary = m.max_sal;'},
-  {cat:'JOINs',q:'Show employee name, their total sales, and their department's total sales side by side.',hint:'💡 JOIN individual sales to a dept-level aggregation',a:'SELECT e.name, e.dept,
-  SUM(s.amount) AS emp_total,
-  d.dept_total
-FROM employees e
-JOIN sales s ON e.emp_id = s.emp_id
-JOIN (
-  SELECT e2.dept, SUM(s2.amount) AS dept_total
-  FROM employees e2
-  JOIN sales s2 ON e2.emp_id = s2.emp_id
-  GROUP BY e2.dept
-) d ON e.dept = d.dept
-GROUP BY e.name, e.dept, d.dept_total;'},
-  {cat:'JOINs',q:'Find all pairs of employees in the same department (no self-pairs, no duplicates).',hint:'💡 Self-join WHERE e1.emp_id < e2.emp_id',a:'SELECT e1.name AS emp1, e2.name AS emp2, e1.dept
-FROM employees e1
-JOIN employees e2
-  ON e1.dept = e2.dept
-  AND e1.emp_id < e2.emp_id;'},
-
-  // ── SUBQUERIES ────────────────────────────────────────────────────────────
-  {cat:'Subqueries',q:'Find all employees earning above the company average salary.',hint:'💡 WHERE salary > (SELECT AVG(salary) FROM employees)',a:'SELECT name, salary
-FROM employees
-WHERE salary > (SELECT AVG(salary) FROM employees);'},
-  {cat:'Subqueries',q:'Find the employee(s) with the highest salary in each department using a subquery.',hint:'💡 Correlated subquery: WHERE salary = (SELECT MAX... WHERE dept = e.dept)',a:'SELECT name, dept, salary
-FROM employees e
-WHERE salary = (
-  SELECT MAX(salary)
-  FROM employees
-  WHERE dept = e.dept
-);'},
-  {cat:'Subqueries',q:'Find employees whose salary is above the average salary of their own department.',hint:'💡 Correlated subquery with AVG per dept',a:'SELECT name, dept, salary
-FROM employees e
-WHERE salary > (
-  SELECT AVG(salary)
-  FROM employees
-  WHERE dept = e.dept
-);'},
-  {cat:'Subqueries',q:'Find employees who made a sale greater than the average sale amount.',hint:'💡 WHERE emp_id IN (SELECT emp_id FROM sales WHERE amount > (SELECT AVG...))',a:'SELECT DISTINCT e.name
-FROM employees e
-WHERE e.emp_id IN (
-  SELECT emp_id FROM sales
-  WHERE amount > (SELECT AVG(amount) FROM sales)
-);'},
-  {cat:'Subqueries',q:'Find the second-highest salary in the employees table.',hint:'💡 Use a subquery to exclude the max, then find the new max',a:'SELECT MAX(salary) AS second_highest
-FROM employees
-WHERE salary < (SELECT MAX(salary) FROM employees);'},
-  {cat:'Subqueries',q:'Find departments where every employee earns more than $70,000.',hint:'💡 NOT IN with a subquery finding depts that have someone under 70k',a:'SELECT DISTINCT dept
-FROM employees
-WHERE dept NOT IN (
-  SELECT dept FROM employees WHERE salary <= 70000
-);'},
-  {cat:'Subqueries',q:'Find the top 2 earners in each department using a subquery.',hint:'💡 Correlated subquery counting how many earn more — keep where count < 2',a:'SELECT name, dept, salary
-FROM employees e
-WHERE (
-  SELECT COUNT(*)
-  FROM employees
-  WHERE dept = e.dept AND salary > e.salary
-) < 2
-ORDER BY dept, salary DESC;'},
-
-  // ── CTEs ──────────────────────────────────────────────────────────────────
-  {cat:'CTEs',q:'Using a CTE, find all employees who earn above the company average salary.',hint:'💡 WITH avg_cte AS (SELECT AVG...) SELECT... WHERE salary > avg_cte.avg',a:'WITH avg_sal AS (
-  SELECT AVG(salary) AS company_avg FROM employees
-)
-SELECT e.name, e.salary
-FROM employees e, avg_sal
-WHERE e.salary > avg_sal.company_avg;'},
-  {cat:'CTEs',q:'Use a CTE to rank employees by salary within each department, then return only rank 1.',hint:'💡 CTE with RANK() OVER, then WHERE rnk = 1 in outer query',a:'WITH ranked AS (
-  SELECT name, dept, salary,
-    RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk
-  FROM employees
-)
-SELECT name, dept, salary
-FROM ranked
-WHERE rnk = 1;'},
-  {cat:'CTEs',q:'Write a CTE that calculates total sales per employee, then find employees above the average total.',hint:'💡 Two CTEs chained: first total per emp, then avg of totals',a:'WITH emp_totals AS (
-  SELECT emp_id, SUM(amount) AS total_sales
-  FROM sales
-  GROUP BY emp_id
-),
-avg_total AS (
-  SELECT AVG(total_sales) AS avg_sales FROM emp_totals
-)
-SELECT e.name, et.total_sales
-FROM employees e
-JOIN emp_totals et ON e.emp_id = et.emp_id
-CROSS JOIN avg_total
-WHERE et.total_sales > avg_total.avg_sales;'},
-  {cat:'CTEs',q:'Use a CTE to label each sale as "High" (>$5000), "Mid" ($3000-$5000), or "Low" (<$3000), then count each label.',hint:'💡 CTE with CASE WHEN, outer query groups by label',a:'WITH labeled AS (
-  SELECT *,
-    CASE
-      WHEN amount > 5000 THEN 'High'
-      WHEN amount >= 3000 THEN 'Mid'
-      ELSE 'Low'
-    END AS sale_tier
-  FROM sales
-)
-SELECT sale_tier, COUNT(*) AS cnt, SUM(amount) AS total
-FROM labeled
-GROUP BY sale_tier
-ORDER BY total DESC;'},
-  {cat:'CTEs',q:'Use a recursive CTE to generate a sequence of numbers from 1 to 10.',hint:'💡 WITH RECURSIVE cte AS (SELECT 1 UNION ALL SELECT n+1 FROM cte WHERE n < 10)',a:'WITH RECURSIVE nums AS (
-  SELECT 1 AS n
-  UNION ALL
-  SELECT n + 1 FROM nums WHERE n < 10
-)
-SELECT n FROM nums;'},
-  {cat:'CTEs',q:'Build a CTE that shows each department's headcount and average salary, then filter to depts with 2+ employees and avg salary > $85k.',hint:'💡 CTE aggregates, outer query filters with WHERE',a:'WITH dept_stats AS (
-  SELECT dept,
-    COUNT(*) AS headcount,
-    AVG(salary) AS avg_salary
-  FROM employees
-  GROUP BY dept
-)
-SELECT dept, headcount, ROUND(avg_salary, 0) AS avg_sal
-FROM dept_stats
-WHERE headcount >= 2 AND avg_salary > 85000;'},
-
-  // ── WINDOW FUNCTIONS ──────────────────────────────────────────────────────
-  {cat:'Window Functions',q:'Rank employees within each department by salary (highest = 1). Use RANK().',hint:'💡 RANK() OVER (PARTITION BY dept ORDER BY salary DESC)',a:'SELECT name, dept, salary,
-  RANK() OVER (
-    PARTITION BY dept
-    ORDER BY salary DESC
-  ) AS salary_rank
-FROM employees;'},
-  {cat:'Window Functions',q:'What is the difference between RANK() and DENSE_RANK()? Show both for the employees table.',hint:'💡 RANK skips numbers after ties; DENSE_RANK does not',a:'SELECT name, dept, salary,
-  RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk,
-  DENSE_RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS dense_rnk
-FROM employees;'},
-  {cat:'Window Functions',q:'Show each employee's salary alongside their department's average and median salary.',hint:'💡 AVG() OVER (PARTITION BY dept) — PERCENTILE_CONT for median',a:'SELECT name, dept, salary,
-  ROUND(AVG(salary) OVER (PARTITION BY dept), 0) AS dept_avg,
-  PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary)
-    OVER (PARTITION BY dept) AS dept_median
-FROM employees;'},
-  {cat:'Window Functions',q:'For each sale, show the running total of sales amount per employee ordered by date.',hint:'💡 SUM() OVER (PARTITION BY emp_id ORDER BY sale_date ROWS UNBOUNDED PRECEDING)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  SUM(amount) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  ) AS running_total
-FROM sales;'},
-  {cat:'Window Functions',q:'Show each sale and the previous sale's amount for that employee using LAG.',hint:'💡 LAG(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  LAG(amount, 1) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-  ) AS prev_sale,
-  amount - LAG(amount, 1) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-  ) AS change_from_prev
-FROM sales;'},
-  {cat:'Window Functions',q:'Show each sale and the next sale's amount for that employee using LEAD.',hint:'💡 LEAD(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)',a:'SELECT sale_id, emp_id, amount, sale_date,
-  LEAD(amount, 1) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-  ) AS next_sale
-FROM sales;'},
-  {cat:'Window Functions',q:'Calculate a 3-sale moving average of sale amounts per employee.',hint:'💡 AVG() OVER with ROWS BETWEEN 2 PRECEDING AND CURRENT ROW',a:'SELECT sale_id, emp_id, amount, sale_date,
-  ROUND(AVG(amount) OVER (
-    PARTITION BY emp_id
-    ORDER BY sale_date
-    ROWS BETWEEN 2 PRECEDING AND CURRENT ROW
-  ), 2) AS moving_avg_3
-FROM sales;'},
-  {cat:'Window Functions',q:'Find the first and last sale date for each employee using window functions.',hint:'💡 FIRST_VALUE and LAST_VALUE with ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING',a:'SELECT DISTINCT emp_id,
-  FIRST_VALUE(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  ) AS first_sale,
-  LAST_VALUE(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING
-  ) AS last_sale
-FROM sales;'},
-  {cat:'Window Functions',q:'Assign a percentile bucket (1–4) to each employee based on salary using NTILE.',hint:'💡 NTILE(4) OVER (ORDER BY salary) splits into quartiles',a:'SELECT name, salary,
-  NTILE(4) OVER (ORDER BY salary) AS salary_quartile
-FROM employees;'},
-  {cat:'Window Functions',q:'Show each employee's salary as a % of the company total AND as a % of their department total.',hint:'💡 Two SUM() OVER window specs — one global, one partitioned',a:'SELECT name, dept, salary,
-  ROUND(salary * 100.0 / SUM(salary) OVER (), 2) AS pct_of_company,
-  ROUND(salary * 100.0 / SUM(salary) OVER (PARTITION BY dept), 2) AS pct_of_dept
-FROM employees;'},
-  {cat:'Window Functions',q:'Find employees whose salary is more than 20% above their department average.',hint:'💡 Use AVG() OVER in a CTE, then filter where salary > avg * 1.2',a:'WITH dept_avgs AS (
-  SELECT name, dept, salary,
-    AVG(salary) OVER (PARTITION BY dept) AS dept_avg
-  FROM employees
-)
-SELECT name, dept, salary, ROUND(dept_avg,0) AS dept_avg
-FROM dept_avgs
-WHERE salary > dept_avg * 1.2;'},
-  {cat:'Window Functions',q:'Identify sales where the amount dropped more than 20% compared to the previous sale by the same employee.',hint:'💡 LAG() to get previous amount, then calculate % change',a:'WITH lag_sales AS (
-  SELECT sale_id, emp_id, amount, sale_date,
-    LAG(amount) OVER (PARTITION BY emp_id ORDER BY sale_date) AS prev_amount
-  FROM sales
-)
-SELECT *,
-  ROUND((amount - prev_amount) * 100.0 / prev_amount, 2) AS pct_change
-FROM lag_sales
-WHERE (amount - prev_amount) * 1.0 / prev_amount < -0.20;'},
-
-  // ── CASE STATEMENTS ───────────────────────────────────────────────────────
-  {cat:'CASE WHEN',q:'Label each employee as "Senior" (salary > $95k), "Mid" ($75k–$95k), or "Junior" (<$75k).',hint:'💡 CASE WHEN salary > 95000 THEN ... WHEN salary >= 75000 THEN ... ELSE ...',a:"SELECT name, salary,
-  CASE
-    WHEN salary > 95000 THEN 'Senior'
-    WHEN salary >= 75000 THEN 'Mid'
-    ELSE 'Junior'
-  END AS level
-FROM employees;"},
-  {cat:'CASE WHEN',q:'Count Active and Cancelled sales in one query using CASE.',hint:'💡 COUNT(CASE WHEN status='Active' THEN 1 END)',a:"SELECT
-  COUNT(CASE WHEN region = 'East' THEN 1 END) AS east_sales,
-  COUNT(CASE WHEN region = 'West' THEN 1 END) AS west_sales,
-  COUNT(CASE WHEN region = 'South' THEN 1 END) AS south_sales
-FROM sales;"},
-  {cat:'CASE WHEN',q:'Show the total sales amount split into Q1 (Jan–Mar) and Q2 (Apr–Jun) in one row.',hint:'💡 SUM(CASE WHEN MONTH(sale_date) BETWEEN 1 AND 3 THEN amount END)',a:"SELECT
-  SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 1 AND 3
-       THEN amount ELSE 0 END) AS Q1_sales,
-  SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 4 AND 6
-       THEN amount ELSE 0 END) AS Q2_sales
-FROM sales;"},
-  {cat:'CASE WHEN',q:'Flag each sale as "Above Target" if amount > $5000, otherwise "Below Target". Show a count of each.',hint:'💡 CASE inside a GROUP BY or wrap in a subquery',a:"SELECT
-  CASE WHEN amount > 5000 THEN 'Above Target' ELSE 'Below Target' END AS status,
-  COUNT(*) AS cnt,
-  SUM(amount) AS total
-FROM sales
-GROUP BY CASE WHEN amount > 5000 THEN 'Above Target' ELSE 'Below Target' END;"},
-  {cat:'CASE WHEN',q:'Pivot the sales table to show total amount per region as separate columns (East, West, South).',hint:'💡 SUM(CASE WHEN region = 'East' THEN amount END) for each region',a:"SELECT
-  SUM(CASE WHEN region='East'  THEN amount ELSE 0 END) AS East,
-  SUM(CASE WHEN region='West'  THEN amount ELSE 0 END) AS West,
-  SUM(CASE WHEN region='South' THEN amount ELSE 0 END) AS South
-FROM sales;"},
-
-  // ── DATE & TIME ───────────────────────────────────────────────────────────
-  {cat:'Date & Time',q:'Find all employees hired in 2020.',hint:'💡 EXTRACT(YEAR FROM hire_date) = 2020 or YEAR(hire_date)',a:'SELECT * FROM employees
-WHERE EXTRACT(YEAR FROM hire_date) = 2020;'},
-  {cat:'Date & Time',q:'Calculate how many years each employee has been with the company.',hint:'💡 DATE_PART or DATEDIFF between hire_date and CURRENT_DATE',a:"SELECT name, hire_date,
-  DATE_PART('year', AGE(CURRENT_DATE, hire_date)) AS years_at_company
-FROM employees;"},
-  {cat:'Date & Time',q:'Find sales that occurred on a weekend (Saturday or Sunday).',hint:'💡 EXTRACT(DOW FROM sale_date) IN (0, 6) — 0=Sunday, 6=Saturday in PostgreSQL',a:'SELECT * FROM sales
-WHERE EXTRACT(DOW FROM sale_date) IN (0, 6);'},
-  {cat:'Date & Time',q:'Show total sales by month and year, ordered chronologically.',hint:'💡 DATE_TRUNC('month', sale_date) then GROUP BY and ORDER BY',a:"SELECT
-  DATE_TRUNC('month', sale_date) AS month,
-  COUNT(*) AS num_sales,
-  SUM(amount) AS total
-FROM sales
-GROUP BY DATE_TRUNC('month', sale_date)
-ORDER BY month;"},
-  {cat:'Date & Time',q:'Find employees who have been with the company for more than 4 years.',hint:'💡 AGE(CURRENT_DATE, hire_date) > INTERVAL '4 years'',a:"SELECT name, hire_date
-FROM employees
-WHERE hire_date < CURRENT_DATE - INTERVAL '4 years';"},
-  {cat:'Date & Time',q:'Find the number of days between each sale and the previous sale by the same employee.',hint:'💡 LAG(sale_date) OVER (PARTITION BY emp_id ORDER BY sale_date), then date difference',a:'SELECT sale_id, emp_id, sale_date,
-  LAG(sale_date) OVER (PARTITION BY emp_id ORDER BY sale_date) AS prev_date,
-  sale_date - LAG(sale_date) OVER (
-    PARTITION BY emp_id ORDER BY sale_date
-  ) AS days_since_prev
-FROM sales;'},
-
-  // ── STRING FUNCTIONS ──────────────────────────────────────────────────────
-  {cat:'String Functions',q:'Convert all employee names to uppercase.',hint:'💡 UPPER(name)',a:'SELECT UPPER(name) AS name_upper FROM employees;'},
-  {cat:'String Functions',q:'Extract the first 3 characters of each employee's name.',hint:'💡 LEFT(name, 3) or SUBSTRING(name, 1, 3)',a:'SELECT name, LEFT(name, 3) AS name_prefix FROM employees;'},
-  {cat:'String Functions',q:'Concatenate employee name and department into one column like "Adila — Finance".',hint:'💡 CONCAT(name, ' — ', dept) or name || ' — ' || dept',a:"SELECT CONCAT(name, ' — ', dept) AS name_dept FROM employees;"},
-  {cat:'String Functions',q:'Find the length of each employee's name.',hint:'💡 LENGTH(name)',a:'SELECT name, LENGTH(name) AS name_length FROM employees;'},
-  {cat:'String Functions',q:'Replace "Engineering" with "Eng" in the dept column.',hint:'💡 REPLACE(dept, 'Engineering', 'Eng')',a:"SELECT name, REPLACE(dept, 'Engineering', 'Eng') AS dept_short FROM employees;"},
-
-  // ── NULL HANDLING ─────────────────────────────────────────────────────────
-  {cat:'NULL Handling',q:'Replace NULL salaries with 0 using COALESCE.',hint:'💡 COALESCE(salary, 0)',a:'SELECT name, COALESCE(salary, 0) AS salary FROM employees;'},
-  {cat:'NULL Handling',q:'Show employees with a salary, replacing NULLs with the text "Not Set" using COALESCE.',hint:'💡 COALESCE(CAST(salary AS VARCHAR), 'Not Set')',a:"SELECT name, COALESCE(CAST(salary AS VARCHAR), 'Not Set') AS salary FROM employees;"},
-  {cat:'NULL Handling',q:'Return NULL if an employee's salary equals their department average (using NULLIF).',hint:'💡 NULLIF(salary, dept_avg) returns NULL when they are equal',a:'SELECT name, salary,
-  NULLIF(salary, AVG(salary) OVER (PARTITION BY dept)) AS diff_flag
-FROM employees;'},
-  {cat:'NULL Handling',q:'Count how many employees have a NULL salary vs a recorded salary.',hint:'💡 COUNT(salary) counts non-NULLs; COUNT(*) - COUNT(salary) gives NULLs',a:'SELECT
-  COUNT(salary) AS has_salary,
-  COUNT(*) - COUNT(salary) AS missing_salary
-FROM employees;'},
-
-  // ── ADVANCED / INTERVIEW ──────────────────────────────────────────────────
-  {cat:'Advanced',q:'Find employees who have made more sales than the average number of sales per employee.',hint:'💡 CTE: count sales per emp, compute avg of those counts, filter',a:'WITH sales_per_emp AS (
-  SELECT emp_id, COUNT(*) AS num_sales
-  FROM sales
-  GROUP BY emp_id
-),
-avg_sales AS (
-  SELECT AVG(num_sales) AS avg_count FROM sales_per_emp
-)
-SELECT e.name, sp.num_sales
-FROM employees e
-JOIN sales_per_emp sp ON e.emp_id = sp.emp_id
-CROSS JOIN avg_sales
-WHERE sp.num_sales > avg_sales.avg_count;'},
-  {cat:'Advanced',q:'For each month, show the month-over-month % change in total sales.',hint:'💡 CTE with monthly totals + LAG to get previous month, then calculate % change',a:"WITH monthly AS (
-  SELECT
-    DATE_TRUNC('month', sale_date) AS month,
-    SUM(amount) AS total
-  FROM sales
-  GROUP BY DATE_TRUNC('month', sale_date)
-)
-SELECT month, total,
-  LAG(total) OVER (ORDER BY month) AS prev_month,
-  ROUND((total - LAG(total) OVER (ORDER BY month)) * 100.0
-    / LAG(total) OVER (ORDER BY month), 2) AS pct_change
-FROM monthly
-ORDER BY month;"},
-  {cat:'Advanced',q:'Find the employee who generated the highest single sale in each region.',hint:'💡 RANK() OVER (PARTITION BY region ORDER BY amount DESC) in CTE, filter rnk=1',a:'WITH ranked AS (
-  SELECT s.region, e.name, s.amount,
-    RANK() OVER (PARTITION BY s.region ORDER BY s.amount DESC) AS rnk
-  FROM sales s
-  JOIN employees e ON s.emp_id = e.emp_id
-)
-SELECT region, name, amount
-FROM ranked
-WHERE rnk = 1;'},
-  {cat:'Advanced',q:'Detect duplicate sales: find any rows in the sales table with the same emp_id, amount, and sale_date.',hint:'💡 GROUP BY those columns HAVING COUNT(*) > 1',a:'SELECT emp_id, amount, sale_date, COUNT(*) AS duplicates
-FROM sales
-GROUP BY emp_id, amount, sale_date
-HAVING COUNT(*) > 1;'},
-  {cat:'Advanced',q:'Write a query to delete duplicate sales, keeping only the one with the lowest sale_id.',hint:'💡 CTE with ROW_NUMBER(), DELETE WHERE rn > 1',a:'WITH dupes AS (
-  SELECT sale_id,
-    ROW_NUMBER() OVER (
-      PARTITION BY emp_id, amount, sale_date
-      ORDER BY sale_id
-    ) AS rn
-  FROM sales
-)
-DELETE FROM sales
-WHERE sale_id IN (SELECT sale_id FROM dupes WHERE rn > 1);'},
-  {cat:'Advanced',q:'Show a running count of how many employees had been hired up to each hire date.',hint:'💡 COUNT(*) OVER (ORDER BY hire_date ROWS UNBOUNDED PRECEDING)',a:'SELECT name, hire_date,
-  COUNT(*) OVER (
-    ORDER BY hire_date
-    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW
-  ) AS cumulative_hires
-FROM employees
-ORDER BY hire_date;'},
-  {cat:'Advanced',q:'Find the top 3 sales per region (ties included) using DENSE_RANK.',hint:'💡 DENSE_RANK() OVER (PARTITION BY region ORDER BY amount DESC), filter <= 3',a:'WITH ranked AS (
-  SELECT region, emp_id, amount, sale_date,
-    DENSE_RANK() OVER (
-      PARTITION BY region
-      ORDER BY amount DESC
-    ) AS rnk
-  FROM sales
-)
-SELECT region, emp_id, amount, sale_date
-FROM ranked
-WHERE rnk <= 3
-ORDER BY region, rnk;'},
-  {cat:'Advanced',q:'Calculate a 30-day rolling sum of sales (by date, not by row count).',hint:'💡 SUM() OVER (ORDER BY sale_date RANGE BETWEEN INTERVAL 29 DAYS PRECEDING AND CURRENT ROW)',a:"SELECT sale_date, amount,
-  SUM(amount) OVER (
-    ORDER BY sale_date
-    RANGE BETWEEN INTERVAL '29 days' PRECEDING AND CURRENT ROW
-  ) AS rolling_30d_sum
-FROM sales
-ORDER BY sale_date;"},
-  {cat:'Advanced',q:'Using a CTE, find employees whose salary is in the top 25% (top quartile) of the company.',hint:'💡 NTILE(4) OVER (ORDER BY salary) — filter where quartile = 4',a:'WITH quartiles AS (
-  SELECT name, salary,
-    NTILE(4) OVER (ORDER BY salary) AS quartile
-  FROM employees
-)
-SELECT name, salary
-FROM quartiles
-WHERE quartile = 4
-ORDER BY salary DESC;'},
-  {cat:'Advanced',q:'Find employees who were hired in the same month as another employee (any year).',hint:'💡 Self-join matching EXTRACT(MONTH) and EXTRACT(DAY) but different emp_id',a:'SELECT e1.name AS emp1, e2.name AS emp2,
-  EXTRACT(MONTH FROM e1.hire_date) AS birth_month
-FROM employees e1
-JOIN employees e2
-  ON EXTRACT(MONTH FROM e1.hire_date) = EXTRACT(MONTH FROM e2.hire_date)
-  AND e1.emp_id < e2.emp_id;'},
-  {cat:'Advanced',q:'Build a query that shows each employee's sales rank, their department's rank by total payroll, and the company-wide headcount — all in one SELECT.',hint:'💡 Multiple window functions with different PARTITION BY specs in one query',a:'SELECT
-  e.name,
-  e.dept,
-  e.salary,
-  RANK() OVER (ORDER BY e.salary DESC) AS company_salary_rank,
-  RANK() OVER (PARTITION BY e.dept ORDER BY e.salary DESC) AS dept_salary_rank,
-  COUNT(*) OVER () AS total_headcount,
-  COUNT(*) OVER (PARTITION BY e.dept) AS dept_headcount
-FROM employees e;'},
-  {cat:'Advanced',q:'Find months where total sales declined compared to the previous month.',hint:'💡 Monthly CTE + LAG to get prev total, filter where total < prev_total',a:"WITH monthly AS (
-  SELECT
-    DATE_TRUNC('month', sale_date) AS month,
-    SUM(amount) AS total
-  FROM sales
-  GROUP BY DATE_TRUNC('month', sale_date)
-),
-with_prev AS (
-  SELECT month, total,
-    LAG(total) OVER (ORDER BY month) AS prev_total
-  FROM monthly
-)
-SELECT month, total, prev_total,
-  total - prev_total AS change
-FROM with_prev
-WHERE total < prev_total;"},
-  {cat:'Advanced',q:'For each employee, calculate the gap in days between their first and last sale.',hint:'💡 MIN and MAX sale_date per emp, then DATE subtraction',a:'SELECT e.name,
-  MIN(s.sale_date) AS first_sale,
-  MAX(s.sale_date) AS last_sale,
-  MAX(s.sale_date) - MIN(s.sale_date) AS day_span
-FROM employees e
-JOIN sales s ON e.emp_id = s.emp_id
-GROUP BY e.name;'},
-];
-
-
-const pyQuestions=const const pyQuestions=[
+const pyQuestions=[
   {cat:"Basics",q:"Show the first 5 rows and shape of df_transactions.",hint:"\ud83d\udca1 df.head() and df.shape",a:"print(df_transactions.head())\nprint('Shape:', df_transactions.shape)"},
   {cat:"Basics",q:"Get data types and check for missing values.",hint:"\ud83d\udca1 .dtypes and .isnull().sum()",a:"print(df_transactions.dtypes)\nprint(df_transactions.isnull().sum())"},
   {cat:"Basics",q:"Get summary statistics for all numeric columns.",hint:"\ud83d\udca1 .describe()",a:"df_transactions.describe()"},
@@ -2223,8 +694,6 @@ const pyQuestions=const const pyQuestions=[
   {cat:"Advanced",q:"Build a full sklearn preprocessing pipeline: impute, scale numerics, one-hot encode categoricals.",hint:"\ud83d\udca1 ColumnTransformer + Pipeline with SimpleImputer, StandardScaler, OneHotEncoder(drop='first')",a:"from sklearn.pipeline import Pipeline\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.preprocessing import StandardScaler, OneHotEncoder\nfrom sklearn.impute import SimpleImputer\n\nnum_cols = ['price','return_pct']\ncat_cols = ['ticker']\n\npreprocessor = ColumnTransformer([\n  ('num', Pipeline([\n    ('impute', SimpleImputer(strategy='mean')),\n    ('scale', StandardScaler())\n  ]), num_cols),\n  ('cat', OneHotEncoder(drop='first', sparse_output=False), cat_cols)\n])\n\nX = df_transactions[num_cols + cat_cols]\nX_transformed = preprocessor.fit_transform(X)\nprint('Transformed shape:', X_transformed.shape)"},
   {cat:"Advanced",q:"Calculate the beta of AAPL relative to MSFT (how much AAPL moves per 1% MSFT move).",hint:"\ud83d\udca1 Beta = Cov(AAPL returns, MSFT returns) / Var(MSFT returns)",a:"wide = df_transactions.pivot(index='date', columns='ticker', values='return_pct').dropna()\ncov  = wide['AAPL'].cov(wide['MSFT'])\nvar  = wide['MSFT'].var()\nbeta = cov / var\nprint(f'AAPL beta vs MSFT: {beta:.4f}')"},
 ];
-
-
 
 const fitbQuestions=[
   {cat:'SQL',title:'Count all rows',template:'SELECT ___(*) FROM employees;',blanks:['COUNT'],hint:'Which function counts all rows?'},
@@ -2313,7 +782,7 @@ const mlAlgorithms=[
     explain:'ARIMA = AutoRegressive Integrated Moving Average. AR: uses past values to predict future ones. I: differencing to make the series stationary (remove trend). MA: uses past forecast errors to improve predictions. Best for univariate time series with trend and seasonality.',
     when:'<strong>Use when:</strong> forecasting time-ordered data: sales, deliveries, stock prices, patient volumes.',
     projects:[
-      {industry:'Finance',emoji:'💰',title:'Revenue Forecasting',desc:'Forecast next quarter's revenue using historical quarterly earnings, accounting for seasonality and trend. Used by FP&A teams to set budgets and targets.'},
+      {industry:'Finance',emoji:'💰',title:'Revenue Forecasting',desc:'Forecast next quarter’s revenue using historical quarterly earnings, accounting for seasonality and trend. Used by FP&A teams to set budgets and targets.'},
       {industry:'Healthcare',emoji:'🏥',title:'ER Volume Forecasting',desc:'Predict daily emergency room visit volume to optimize nurse and physician staffing. Accounts for day-of-week, seasonality, and flu season spikes.'},
       {industry:'Logistics',emoji:'📦',title:'Package Volume Prediction',desc:'Forecast daily inbound package volume per fulfillment center to pre-position staff and dock assignments. Used at UPS Capital in BigQuery ML.'},
     ],
@@ -2343,7 +812,6 @@ const mlAlgorithms=[
   },
 ];
 
-// ── BEHAVIORAL ─────────────────────────────────────────────────────────────────
 const behavioralQuestions=[
   {text:'Tell me about a time you had to explain a complex data model to a non-technical stakeholder.',category:'Communication',
    star:{s:'At UPS Capital, our fraud detection model used K-Means clustering — a concept unfamiliar to the claims operations team.',t:'I needed to present findings to the VP of Claims without losing them in technical detail.',a:'I used a simple analogy: "Imagine sorting laundry by color — K-Means finds the natural piles in data." I showed a visual of clusters and highlighted the dollar impact directly.',r:'The VP approved the model rollout immediately. The team flagged $500K+ in suspicious claims within the first quarter.'}},
@@ -2371,43 +839,62 @@ const behavioralQuestions=[
    star:{s:'At UPS Capital, I was simultaneously leading the fraud detection project, automating Power BI dashboards, and supporting A/B experiment analysis.',t:'Each workstream had different stakeholders with competing urgency.',a:'I created a priority matrix based on business impact and deadline, communicated timelines clearly to each stakeholder, and time-blocked my week to protect deep work for the ML model.',r:'Delivered all three projects on time. The fraud detection system flagged $500K+ in claims in Q1.'}},
 ];
 
-let sqlIdx=0,pyIdx=0,fitbIdx=0,bqIdx=0;
+// ── STATE ─────────────────────────────────────────────────────────────────────
+let sqlIdx=0, pyIdx=0, fitbIdx=0, bqIdx=0, fcIdx=0;
 let filteredSQL=[...sqlQuestions];
+let filteredPY=[...pyQuestions];
 let filteredFITB=[...fitbQuestions];
 let bqOrder=[...Array(behavioralQuestions.length).keys()];
-const starAnswers={};
+let starAnswers={};
+let fcFlipped=false;
 
+// ── SQL ───────────────────────────────────────────────────────────────────────
 function renderSQL(){
   const q=filteredSQL[sqlIdx];
   document.getElementById('sql-counter').textContent=`Question ${sqlIdx+1} of ${filteredSQL.length}`;
   document.getElementById('sql-prev').disabled=sqlIdx===0;
   document.getElementById('sql-next').disabled=sqlIdx===filteredSQL.length-1;
-  document.getElementById('sql-qa').innerHTML=`<div class="qa-category">${q.cat}</div><div class="qa-question">${q.q}</div><div class="qa-hint">${q.hint}</div><button class="answer-toggle" onclick="toggleAnswer('sql-ans')">Show Answer</button><div class="answer-box" id="sql-ans"><pre>${q.a}</pre></div>`;
+  document.getElementById('sql-qa').innerHTML=`
+    <div class="qa-category">${q.cat}</div>
+    <div class="qa-question">${q.q}</div>
+    <div class="qa-hint">${q.hint}</div>
+    <button class="answer-toggle" onclick="toggleAnswer('sql-ans')">Show Answer</button>
+    <div class="answer-box" id="sql-ans"><pre>${q.a}</pre></div>`;
 }
 function filterSQL(cat){
   filteredSQL=cat==='All'?[...sqlQuestions]:sqlQuestions.filter(q=>q.cat===cat);
   sqlIdx=0;
-  document.querySelectorAll('#sql-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
+  document.querySelectorAll('#sql-filter-bar .filter-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
+  });
   renderSQL();
 }
 function sqlNav(dir){sqlIdx+=dir;renderSQL();}
 
-let filteredPY=[...pyQuestions];
+// ── PYTHON ────────────────────────────────────────────────────────────────────
 function renderPY(){
   const q=filteredPY[pyIdx];
   document.getElementById('py-counter').textContent=`Question ${pyIdx+1} of ${filteredPY.length}`;
   document.getElementById('py-prev').disabled=pyIdx===0;
   document.getElementById('py-next').disabled=pyIdx===filteredPY.length-1;
-  document.getElementById('py-qa').innerHTML=`<div class="qa-category">${q.cat}</div><div class="qa-question">${q.q}</div><div class="qa-hint">${q.hint}</div><button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button><div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
+  document.getElementById('py-qa').innerHTML=`
+    <div class="qa-category">${q.cat}</div>
+    <div class="qa-question">${q.q}</div>
+    <div class="qa-hint">${q.hint}</div>
+    <button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button>
+    <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
 }
-function pyNav(dir){pyIdx+=dir;renderPY();}
 function filterPY(cat){
   filteredPY=cat==='All'?[...pyQuestions]:pyQuestions.filter(q=>q.cat===cat);
   pyIdx=0;
-  document.querySelectorAll('#py-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
+  document.querySelectorAll('#py-filter-bar .filter-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
+  });
   renderPY();
 }
+function pyNav(dir){pyIdx+=dir;renderPY();}
 
+// ── FILL IN THE BLANK ─────────────────────────────────────────────────────────
 function renderFITB(){
   const q=filteredFITB[fitbIdx];
   document.getElementById('fitb-counter').textContent=`Question ${fitbIdx+1} of ${filteredFITB.length}`;
@@ -2415,14 +902,21 @@ function renderFITB(){
   document.getElementById('fitb-next').disabled=fitbIdx===filteredFITB.length-1;
   let t=q.template,i=0;
   t=t.replace(/___/g,()=>`<input class="fitb-input" id="b${i++}" autocomplete="off" spellcheck="false" size="${Math.max(9,q.blanks[i-1]?.length||9)}">`);
-  document.getElementById('fitb-qa').innerHTML=`<div class="qa-category">${q.cat}</div><div class="qa-question">${q.title}</div><div class="qa-hint">💡 ${q.hint}</div><div class="fitb-wrap">${t}</div><button class="check-btn" onclick="checkFITB()">Check ✦</button><button class="reset-btn" onclick="renderFITB()">Reset</button><div class="fitb-result" id="fitb-result"></div>`;
+  document.getElementById('fitb-qa').innerHTML=`
+    <div class="qa-category">${q.cat}</div>
+    <div class="qa-question">${q.title}</div>
+    <div class="qa-hint">💡 ${q.hint}</div>
+    <div class="fitb-wrap">${t}</div>
+    <button class="check-btn" onclick="checkFITB()">Check ✦</button>
+    <button class="reset-btn" onclick="renderFITB()">Reset</button>
+    <div class="fitb-result" id="fitb-result"></div>`;
 }
 function checkFITB(){
   const q=filteredFITB[fitbIdx];let correct=0;
   q.blanks.forEach((ans,i)=>{
     const inp=document.getElementById('b'+i);if(!inp)return;
     const val=inp.value.trim().toLowerCase();
-    const ok=ans.toLowerCase().split('/').some(a=>val===a.trim()));
+    const ok=ans.toLowerCase().split('/').some(a=>val===a.trim());
     inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);
     if(ok)correct++;
   });
@@ -2433,28 +927,31 @@ function checkFITB(){
 function filterFITB(cat){
   filteredFITB=cat==='All'?[...fitbQuestions]:fitbQuestions.filter(q=>q.cat===cat);
   fitbIdx=0;
-  document.querySelectorAll('#panel-fitb .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
+  document.querySelectorAll('#panel-fitb .filter-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
+  });
   renderFITB();
 }
 function fitbNav(dir){fitbIdx+=dir;renderFITB();}
 
+// ── ML GUIDE ──────────────────────────────────────────────────────────────────
 function buildML(){
-  const industryColors = {
-    'Finance': {bg:'var(--rose-gold-light)', color:'var(--rose-gold-mid)', border:'var(--rose-gold-light)'},
-    'Healthcare': {bg:'var(--mint-light)', color:'#5aad8e', border:'var(--mint-light)'},
-    'Logistics': {bg:'var(--lilac-light)', color:'var(--lilac-mid)', border:'var(--lilac-light)'},
+  const industryColors={
+    'Finance':   {bg:'var(--rose-gold-light)',color:'var(--rose-gold-mid)'},
+    'Healthcare':{bg:'var(--mint-light)',     color:'#5aad8e'},
+    'Logistics': {bg:'var(--lilac-light)',    color:'var(--lilac-mid)'},
   };
-  document.getElementById('ml-grid').innerHTML = mlAlgorithms.map((a,i) => {
-    let t = a.fitb.template, bi = 0;
-    t = t.replace(/___/g, () => `<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10, a.fitb.blanks[bi-1]?.length||10)}">`);
-    const projectCards = a.projects.map(p => {
-      const c = industryColors[p.industry] || industryColors['Finance'];
+  document.getElementById('ml-grid').innerHTML=mlAlgorithms.map((a,i)=>{
+    let t=a.fitb.template,bi=0;
+    t=t.replace(/___/g,()=>`<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10,a.fitb.blanks[bi-1]?.length||10)}">`);
+    const projectCards=a.projects.map(p=>{
+      const c=industryColors[p.industry]||industryColors['Finance'];
       return `<div style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-          <span style="font-size:1rem;">${p.emoji}</span>
+          <span>${p.emoji}</span>
           <span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 10px;border-radius:99px;background:${c.bg};color:${c.color};">${p.industry}</span>
         </div>
-        <div style="font-weight:700;font-size:.88rem;margin-bottom:.3rem;color:var(--text);">${p.title}</div>
+        <div style="font-weight:700;font-size:.88rem;margin-bottom:.3rem;">${p.title}</div>
         <div style="font-size:.82rem;color:var(--text2);line-height:1.65;">${p.desc}</div>
       </div>`;
     }).join('');
@@ -2492,38 +989,101 @@ function checkMLFITB(idx){
   res.textContent=correct===a.fitb.blanks.length?'🌸 Perfect!':`${correct}/${a.fitb.blanks.length} correct — try again!`;
 }
 function resetMLFITB(idx){
-  mlAlgorithms[idx].fitb.blanks.forEach((_,i)=>{const inp=document.getElementById(`ml${idx}b${i}`);if(inp){inp.value='';inp.className='fitb-input';}});
+  mlAlgorithms[idx].fitb.blanks.forEach((_,i)=>{
+    const inp=document.getElementById(`ml${idx}b${i}`);
+    if(inp){inp.value='';inp.className='fitb-input';}
+  });
   document.getElementById(`ml-result-${idx}`).textContent='';
 }
+
+// ── BEHAVIORAL + FLASHCARDS ────────────────────────────────────────────────────
 function renderBQ(){
-  const qi=bqOrder[bqIdx];const q=behavioralQuestions[qi];
+  const qi=bqOrder[bqIdx];
+  const q=behavioralQuestions[qi];
   document.getElementById('bq-text').textContent=q.text;
   document.getElementById('bq-cat').textContent=q.category;
   document.getElementById('bq-counter').textContent=`${bqIdx+1} / ${behavioralQuestions.length}`;
   document.getElementById('bq-prev').disabled=bqIdx===0;
   document.getElementById('bq-next').disabled=bqIdx===behavioralQuestions.length-1;
   const saved=starAnswers[qi]||q.star;
-  document.getElementById('star-s').value=saved.s||'';
-  document.getElementById('star-t').value=saved.t||'';
-  document.getElementById('star-a').value=saved.a||'';
-  document.getElementById('star-r').value=saved.r||'';
+  document.getElementById('star-s').value=saved&&saved.s||'';
+  document.getElementById('star-t').value=saved&&saved.t||'';
+  document.getElementById('star-a').value=saved&&saved.a||'';
+  document.getElementById('star-r').value=saved&&saved.r||'';
   document.getElementById('star-saved').classList.remove('show');
 }
 function bqNav(dir){bqIdx+=dir;renderBQ();}
 function bqShuffle(){bqIdx=0;bqOrder=bqOrder.sort(()=>Math.random()-.5);renderBQ();}
 function saveSTAR(){
   const qi=bqOrder[bqIdx];
-  starAnswers[qi]={s:document.getElementById('star-s').value,t:document.getElementById('star-t').value,a:document.getElementById('star-a').value,r:document.getElementById('star-r').value};
-  const saved=document.getElementById('star-saved');
-  saved.classList.add('show');setTimeout(()=>saved.classList.remove('show'),2000);
+  starAnswers[qi]={
+    s:document.getElementById('star-s').value,
+    t:document.getElementById('star-t').value,
+    a:document.getElementById('star-a').value,
+    r:document.getElementById('star-r').value
+  };
+  const el=document.getElementById('star-saved');
+  el.classList.add('show');
+  setTimeout(()=>el.classList.remove('show'),2000);
 }
-function toggleAnswer(id){const box=document.getElementById(id);const open=box.classList.toggle('show');box.previousElementSibling.textContent=open?'Hide Answer':'Show Answer';}
+
+// ── FLASHCARDS ─────────────────────────────────────────────────────────────────
+function renderFlashcard(){
+  const qi=bqOrder[fcIdx];
+  const q=behavioralQuestions[qi];
+  fcFlipped=false;
+  const card=document.getElementById('fc-card');
+  card.classList.remove('flipped');
+  document.getElementById('fc-counter').textContent=`${fcIdx+1} / ${behavioralQuestions.length}`;
+  document.getElementById('fc-prev').disabled=fcIdx===0;
+  document.getElementById('fc-next').disabled=fcIdx===behavioralQuestions.length-1;
+  document.getElementById('fc-front-cat').textContent=q.category;
+  document.getElementById('fc-front-q').textContent=q.text;
+  // Build back from saved or pre-filled STAR answer
+  const saved=starAnswers[qi]||q.star;
+  const s=saved&&saved.s||'';
+  const t=saved&&saved.t||'';
+  const a=saved&&saved.a||'';
+  const r=saved&&saved.r||'';
+  document.getElementById('fc-back-content').innerHTML=`
+    ${s?`<div class="fc-star-row"><span class="fc-star-label">S</span><span>${s}</span></div>`:''}
+    ${t?`<div class="fc-star-row"><span class="fc-star-label">T</span><span>${t}</span></div>`:''}
+    ${a?`<div class="fc-star-row"><span class="fc-star-label">A</span><span>${a}</span></div>`:''}
+    ${r?`<div class="fc-star-row"><span class="fc-star-label">R</span><span>${r}</span></div>`:''}
+    ${!s&&!t&&!a&&!r?'<div style="color:var(--muted);font-size:.9rem;">No answer saved yet — fill in your STAR answer above and save it!</div>':''}`;
+}
+function flipCard(){
+  fcFlipped=!fcFlipped;
+  document.getElementById('fc-card').classList.toggle('flipped',fcFlipped);
+}
+function fcNav(dir){fcIdx+=dir;renderFlashcard();}
+function fcShuffle(){fcIdx=0;bqOrder=bqOrder.sort(()=>Math.random()-.5);renderFlashcard();}
+
+// ── SHARED HELPERS ────────────────────────────────────────────────────────────
+function toggleAnswer(id){
+  const box=document.getElementById(id);
+  const open=box.classList.toggle('show');
+  box.previousElementSibling.textContent=open?'Hide Answer':'Show Answer';
+}
 function switchTab(tab){
   document.querySelectorAll('.ltab').forEach(t=>t.classList.remove('active'));
   document.querySelectorAll('.ltab-panel').forEach(p=>p.classList.remove('active'));
   document.querySelector(`.ltab[onclick="switchTab('${tab}')"]`).classList.add('active');
   document.getElementById(`panel-${tab}`).classList.add('active');
 }
+function switchPrepTab(tab){
+  document.querySelectorAll('.prep-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.prep-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`.prep-tab[onclick="switchPrepTab('${tab}')"]`).classList.add('active');
+  document.getElementById(`prep-panel-${tab}`).classList.add('active');
+  if(tab==='flashcard') renderFlashcard();
+}
 
-renderSQL();renderPY();renderFITB();buildML();renderBQ();
+// ── INIT ─────────────────────────────────────────────────────────────────────
+renderSQL();
+renderPY();
+renderFITB();
+buildML();
+renderBQ();
+
 </script></body></html>
