@@ -888,7 +888,7 @@ const mlAlgorithms=[
     fitb:{template:'Ridge regression adds an ___ penalty to shrink coefficients and reduce ___.',blanks:['L2','overfitting']}
   },
   {
-    name:'K-Means Clustering', type:'other',emoji:'🔵',tagline:'Group unlabeled data automatically',
+    name:'K-Means Clustering', type:'other',emoji:'🔵',tagline:'Group unlabeled data automatically',pdf:'KMeans_Presentation.pdf',
     explain:'K-Means is unsupervised — no labels needed. You choose K clusters. It randomly places K centroids, assigns each point to the nearest centroid, then moves centroids to the mean of their cluster. Repeats until stable. Used at UPS Capital to flag $500K+ in suspicious claims.',
     when:'<strong>Use when:</strong> unlabeled data with natural groupings — segmentation, anomaly detection, fraud.',
     projects:[
@@ -899,7 +899,7 @@ const mlAlgorithms=[
     fitb:{template:'K-Means is ___ because it uses no labeled data. It groups points around ___ centroids.',blanks:['unsupervised','K']}
   },
   {
-    name:'ARIMA', type:'regression', emoji:'📈',tagline:'Forecasting time series data',
+    name:'ARIMA', type:'regression', emoji:'📈',tagline:'Forecasting time series data', pdf:'ARIMA_Presentation.pdf',
     explain:'ARIMA = AutoRegressive Integrated Moving Average. AR: uses past values to predict future ones. I: differencing to make the series stationary (remove trend). MA: uses past forecast errors to improve predictions. Best for univariate time series with trend and seasonality.',
     when:'<strong>Use when:</strong> forecasting time-ordered data: sales, deliveries, stock prices, patient volumes.',
     projects:[
@@ -910,7 +910,7 @@ const mlAlgorithms=[
     fitb:{template:'ARIMA stands for AutoRegressive ___ Moving Average. The "I" refers to ___ the series.',blanks:['Integrated','differencing']}
   },
   {
-    name:'Perceptrons', type:'classification', emoji:'⚡',tagline:'The simplest neural unit',
+    name:'Perceptrons', type:'classification', emoji:'⚡',tagline:'The simplest neural unit', pdf:'Perceptrons_Presentation.pdf',
     explain:'A perceptron takes inputs, multiplies each by a weight, sums them up, applies an activation function, and outputs a binary result. A single perceptron can only solve linearly separable problems. Stack them in layers and you get a multi-layer perceptron (MLP) — the foundation of all neural networks.',
     when:'<strong>Use when:</strong> learning neural network fundamentals, or simple binary classification.',
     projects:[
