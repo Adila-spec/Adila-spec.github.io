@@ -1262,21 +1262,7 @@ function buildML() {
         <button class="check-btn" onclick="checkMLFITB(${i})">Check ✦</button>
         <button class="reset-btn" onclick="resetMLFITB(${i})">Reset</button>
         <div class="fitb-result" id="ml-result-${i}"></div>
-        <div class="ml-pdf-section">
-          <h3 style="margin-bottom:.7rem;">📎 Reference PDF</h3>
-          <div class="ml-pdf-row">
-            <label for="ml-pdf-input-${i}">
-              <span class="ml-pdf-attach-btn">📁 Attach PDF</span>
-            </label>
-            <input type="file" accept="application/pdf" id="ml-pdf-input-${i}"
-              style="display:none;" onchange="handleMLPdfUpload(${i}, this)">
-            <span class="ml-pdf-status" id="ml-pdf-status-${i}">No PDF attached</span>
-            <button class="ml-pdf-view-btn" id="ml-pdf-view-${i}"
-              style="display:none;" onclick="viewMLPdf(${i})">View PDF 🌸</button>
-            <button class="ml-pdf-remove-btn" id="ml-pdf-remove-${i}"
-              style="display:none;" onclick="removeMLPdf(${i})">✕ Remove</button>
-          </div>
-        </div>
+       ${a.pdf ? `<button class="btn btn-ghost btn-sm" style="margin-top:1rem;" onclick="openPDF('${a.pdf}','${a.name}')">View PDF 🌸</button>` : ''}
       </div>
     </div>`;
   }).join('');
