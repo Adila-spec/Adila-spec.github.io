@@ -563,8 +563,14 @@ Today I bring together a background in communication, consulting, and data scien
 <section id="ml">
   <div class="section-head"><span class="tag">ML Guide</span><h2>Algorithm Explainer</h2><p>Every algorithm from your resume — explained clearly with fill-in-the-blank practice.</p></div>
   <hr class="divider">
-  <div class="ml-grid" id="ml-grid"></div>
-</section>
+<h3 style="margin-bottom:.8rem;">🎯 Classification</h3>
+<div class="ml-grid" id="ml-grid-classification"></div>
+
+<h3 style="margin-top:2rem;margin-bottom:.8rem;">📉 Regression & Forecasting</h3>
+<div class="ml-grid" id="ml-grid-regression"></div>
+
+<h3 style="margin-top:2rem;margin-bottom:.8rem;">🔵 Unsupervised & Other</h3>
+<div class="ml-grid" id="ml-grid-other"></div></section>
 
 <!-- INTERVIEW PREP -->
 <section id="prep">
@@ -827,7 +833,7 @@ const fitbQuestions=[
 
 const mlAlgorithms=[
   {
-    name:'Neural Networks',emoji:'🧠',tagline:'Inspired by the human brain',
+    name:'Neural Networks', type:'classification', emoji:'🧠',tagline:'Inspired by the human brain',
     explain:'A neural network is a series of layers of nodes. Data flows through an input layer, hidden layers (where patterns are learned via weights and activation functions), and an output layer. Training adjusts weights using backpropagation to minimize error. The more hidden layers, the "deeper" the network — hence deep learning.',
     when:'<strong>Use when:</strong> large datasets, image recognition, NLP, complex non-linear patterns.',
     projects:[
@@ -838,7 +844,7 @@ const mlAlgorithms=[
     fitb:{template:'A neural network learns by adjusting ___ during backpropagation to minimize ___.',blanks:['weights','loss']}
   },
   {
-    name:'Decision Trees',emoji:'🌳',tagline:'If/then logic in tree form',
+    name:'Decision Trees', type:'classification', emoji:'🌳',tagline:'If/then logic in tree form',
     explain:'A decision tree splits data into branches based on feature values. At each node, it picks the split that best separates classes using Gini impurity or information gain. Easy to explain to stakeholders — you can literally print the tree.',
     when:'<strong>Use when:</strong> you need interpretable results or your data has clear categorical splits.',
     projects:[
@@ -849,7 +855,7 @@ const mlAlgorithms=[
     fitb:{template:'Decision trees split data at each node to minimize ___, a measure of impurity.',blanks:['Gini impurity']}
   },
   {
-    name:'Random Forest',emoji:'🌲',tagline:'Many trees, one smart answer',
+    name:'Random Forest', type:'classification', emoji:'🌲',tagline:'Many trees, one smart answer',
     explain:'Random Forest builds hundreds of decision trees on random subsets of data (bagging) and random subsets of features. Each tree votes and the majority wins. This reduces overfitting that a single tree suffers from. Also gives feature importance scores.',
     when:'<strong>Use when:</strong> high accuracy with less overfitting. Great for tabular data and fraud detection.',
     projects:[
@@ -860,7 +866,7 @@ const mlAlgorithms=[
     fitb:{template:'Random Forest reduces ___ by combining many trees trained on random ___ of data.',blanks:['overfitting','subsets']}
   },
   {
-    name:'Support Vector Machines',emoji:'📐',tagline:'Find the best boundary between classes',
+    name:'Support Vector Machines', type:'classification', emoji:'📐',tagline:'Find the best boundary between classes',
     explain:'SVM finds the hyperplane that best separates two classes with the maximum margin. Points closest to the boundary are called support vectors. The kernel trick (RBF, polynomial) allows SVM to handle non-linear boundaries by mapping data to higher dimensions.',
     when:'<strong>Use when:</strong> binary classification, small-to-medium datasets, high-dimensional data like text.',
     projects:[
@@ -871,7 +877,7 @@ const mlAlgorithms=[
     fitb:{template:'SVM maximizes the ___ between classes, using ___ vectors to define the boundary.',blanks:['margin','support']}
   },
   {
-    name:'Ridge Regression',emoji:'📉',tagline:'Linear regression with a penalty',
+    name:'Ridge Regression', type:'regression', emoji:'📉',tagline:'Linear regression with a penalty',
     explain:'Ridge regression is linear regression with an L2 regularization term added to the loss. This shrinks coefficients toward zero, preventing any one feature from dominating. Unlike Lasso, Ridge keeps all features but makes their coefficients smaller. Great when features are correlated.',
     when:'<strong>Use when:</strong> predicting a continuous value with many correlated features (multicollinearity).',
     projects:[
@@ -882,7 +888,7 @@ const mlAlgorithms=[
     fitb:{template:'Ridge regression adds an ___ penalty to shrink coefficients and reduce ___.',blanks:['L2','overfitting']}
   },
   {
-    name:'K-Means Clustering',emoji:'🔵',tagline:'Group unlabeled data automatically',
+    name:'K-Means Clustering', type:'other',emoji:'🔵',tagline:'Group unlabeled data automatically',
     explain:'K-Means is unsupervised — no labels needed. You choose K clusters. It randomly places K centroids, assigns each point to the nearest centroid, then moves centroids to the mean of their cluster. Repeats until stable. Used at UPS Capital to flag $500K+ in suspicious claims.',
     when:'<strong>Use when:</strong> unlabeled data with natural groupings — segmentation, anomaly detection, fraud.',
     projects:[
@@ -893,7 +899,7 @@ const mlAlgorithms=[
     fitb:{template:'K-Means is ___ because it uses no labeled data. It groups points around ___ centroids.',blanks:['unsupervised','K']}
   },
   {
-    name:'ARIMA',emoji:'📈',tagline:'Forecasting time series data',
+    name:'ARIMA', type:'regression', emoji:'📈',tagline:'Forecasting time series data',
     explain:'ARIMA = AutoRegressive Integrated Moving Average. AR: uses past values to predict future ones. I: differencing to make the series stationary (remove trend). MA: uses past forecast errors to improve predictions. Best for univariate time series with trend and seasonality.',
     when:'<strong>Use when:</strong> forecasting time-ordered data: sales, deliveries, stock prices, patient volumes.',
     projects:[
@@ -904,7 +910,7 @@ const mlAlgorithms=[
     fitb:{template:'ARIMA stands for AutoRegressive ___ Moving Average. The "I" refers to ___ the series.',blanks:['Integrated','differencing']}
   },
   {
-    name:'Perceptrons',emoji:'⚡',tagline:'The simplest neural unit',
+    name:'Perceptrons', type:'classification', emoji:'⚡',tagline:'The simplest neural unit',
     explain:'A perceptron takes inputs, multiplies each by a weight, sums them up, applies an activation function, and outputs a binary result. A single perceptron can only solve linearly separable problems. Stack them in layers and you get a multi-layer perceptron (MLP) — the foundation of all neural networks.',
     when:'<strong>Use when:</strong> learning neural network fundamentals, or simple binary classification.',
     projects:[
@@ -915,7 +921,7 @@ const mlAlgorithms=[
     fitb:{template:'A perceptron multiplies inputs by ___, sums them, and applies an ___ function.',blanks:['weights','activation']}
   },
   {
-    name:'Feature Engineering',emoji:'🔧',tagline:'Making your data smarter',
+    name:'Feature Engineering', type:'other', emoji:'🔧',tagline:'Making your data smarter',
     explain:'Feature engineering uses domain knowledge to create, transform, or select input variables that help models learn better. Techniques: creating ratio features, binning continuous variables, encoding categoricals, lag features for time series, interaction terms, and normalization. Good features often matter more than algorithm choice.',
     when:'<strong>Use when:</strong> always — especially critical in finance and healthcare where domain knowledge is rich.',
     projects:[
@@ -1231,8 +1237,12 @@ function buildML() {
     'Logistics': { bg: 'var(--lilac-light)',     color: 'var(--lilac-mid)' },
   };
 
-  document.getElementById('ml-grid').innerHTML = mlAlgorithms.map((a, i) => {
-    let t = a.fitb.template, bi = 0;
+const classification = mlAlgorithms.filter(a => a.type === 'classification');
+const regression     = mlAlgorithms.filter(a => a.type === 'regression');
+const other          = mlAlgorithms.filter(a => a.type === 'other');
+
+const renderGroup = (group) => group.map((a) => {
+  const i = mlAlgorithms.indexOf(a);    let t = a.fitb.template, bi = 0;
     t = t.replace(/___/g, () => `<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10, a.fitb.blanks[bi-1]?.length || 10)}">`);
 
     const projectCards = a.projects.map(p => {
@@ -1246,6 +1256,9 @@ function buildML() {
         <div style="font-size:.82rem;color:var(--text2);line-height:1.65;">${p.desc}</div>
       </div>`;
     }).join('');
+document.getElementById('ml-grid-classification').innerHTML = renderGroup(classification);
+document.getElementById('ml-grid-regression').innerHTML     = renderGroup(regression);
+document.getElementById('ml-grid-other').innerHTML          = renderGroup(other);
 
     return `<div class="ml-card" id="ml${i}">
       <div class="ml-card-header" onclick="toggleML(${i})">
