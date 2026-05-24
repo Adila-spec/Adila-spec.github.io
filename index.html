@@ -979,8 +979,9 @@ function renderSQL(){
     <div class="qa-category">${q.cat}</div>
     <div class="qa-question">${q.q}</div>
     <div class="qa-hint">${q.hint}</div>
-    <button class="answer-toggle" onclick="toggleAnswer('sql-ans')">Show Answer</button>
-    <div class="answer-box" id="sql-ans"><pre>${q.a}</pre></div>`;
+    <textarea id="sql-response" class="sql-input" placeholder="Type your SQL query here..."></textarea>
+    <button class="answer-toggle" onclick="checkSQL()">Check Answer</button>
+    <div class="answer-box" id="sql-ans"></div>`;
 }
 function filterSQL(cat){
   filteredSQL=cat==='All'?[...sqlQuestions]:sqlQuestions.filter(q=>q.cat===cat);
@@ -989,6 +990,19 @@ function filterSQL(cat){
     b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
   });
   renderSQL();
+}
+  function checkSQL(){
+  const user = document.getElementById('sql-response').value.trim();
+  const correct = filteredSQL[sqlIdx].a.trim();
+  const box = document.getElementById('sql-ans');
+
+  if(user === correct){
+    box.innerHTML = "<pre>✅ Correct!</pre>";
+  } else {
+    box.innerHTML = `<pre>❌ Try again.\n\nCorrect answer:\n${correct}</pre>`;
+  }
+
+  box.classList.add('show');
 }
 function sqlNav(dir){sqlIdx+=dir;renderSQL();}
 
