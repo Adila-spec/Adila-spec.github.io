@@ -1236,49 +1236,50 @@ function buildML() {
     'Healthcare':{ bg: 'var(--mint-light)',      color: '#5aad8e' },
     'Logistics': { bg: 'var(--lilac-light)',     color: 'var(--lilac-mid)' },
   };
-
 const classification = mlAlgorithms.filter(a => a.type === 'classification');
 const regression     = mlAlgorithms.filter(a => a.type === 'regression');
 const other          = mlAlgorithms.filter(a => a.type === 'other');
 
 const renderGroup = (group) => group.map((a) => {
-  const i = mlAlgorithms.indexOf(a);    let t = a.fitb.template, bi = 0;
-    t = t.replace(/___/g, () => `<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10, a.fitb.blanks[bi-1]?.length || 10)}">`);
+  const i = mlAlgorithms.indexOf(a);
+  let t = a.fitb.template, bi = 0;
+  t = t.replace(/___/g, () => `<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10, a.fitb.blanks[bi-1]?.length || 10)}">`);
 
-    const projectCards = a.projects.map(p => {
-      const c = industryColors[p.industry] || industryColors['Finance'];
-      return `<div style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;">
-        <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-          <span>${p.emoji}</span>
-          <span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 10px;border-radius:99px;background:${c.bg};color:${c.color};">${p.industry}</span>
-        </div>
-        <div style="font-weight:700;font-size:.88rem;margin-bottom:.3rem;">${p.title}</div>
-        <div style="font-size:.82rem;color:var(--text2);line-height:1.65;">${p.desc}</div>
-      </div>`;
-    }).join('');
+  const projectCards = a.projects.map(p => {
+    const c = industryColors[p.industry] || industryColors['Finance'];
+    return `<div style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;">
+      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
+        <span>${p.emoji}</span>
+        <span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 10px;border-radius:99px;background:${c.bg};color:${c.color};">${p.industry}</span>
+      </div>
+      <div style="font-weight:700;font-size:.88rem;margin-bottom:.3rem;">${p.title}</div>
+      <div style="font-size:.82rem;color:var(--text2);line-height:1.65;">${p.desc}</div>
+    </div>`;
+  }).join('');
+
+  return `<div class="ml-card" id="ml${i}">
+    <div class="ml-card-header" onclick="toggleML(${i})">
+      <div><div class="ml-card-title">${a.emoji} ${a.name}</div><div class="ml-card-sub">${a.tagline}</div></div>
+      <span class="ml-chevron">▼</span>
+    </div>
+    <div class="ml-card-body">
+      <p class="ml-explain">${a.explain}</p>
+      <div class="ml-when">${a.when}</div>
+      <h3 style="margin-bottom:.9rem;">🌸 Example Projects</h3>
+      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-bottom:1.4rem;">${projectCards}</div>
+      <h3 style="margin-bottom:.8rem;">✏️ Fill in the Blank</h3>
+      <div class="fitb-wrap">${t}</div>
+      <button class="check-btn" onclick="checkMLFITB(${i})">Check ✦</button>
+      <button class="reset-btn" onclick="resetMLFITB(${i})">Reset</button>
+      <div class="fitb-result" id="ml-result-${i}"></div>
+      ${a.pdf ? `<button class="btn btn-ghost btn-sm" style="margin-top:1rem;" onclick="openPDF('${a.pdf}','${a.name}')">View PDF 🌸</button>` : ''}
+    </div>
+  </div>`;
+}).join('');
+
 document.getElementById('ml-grid-classification').innerHTML = renderGroup(classification);
 document.getElementById('ml-grid-regression').innerHTML     = renderGroup(regression);
 document.getElementById('ml-grid-other').innerHTML          = renderGroup(other);
-
-    return `<div class="ml-card" id="ml${i}">
-      <div class="ml-card-header" onclick="toggleML(${i})">
-        <div><div class="ml-card-title">${a.emoji} ${a.name}</div><div class="ml-card-sub">${a.tagline}</div></div>
-        <span class="ml-chevron">▼</span>
-      </div>
-      <div class="ml-card-body">
-        <p class="ml-explain">${a.explain}</p>
-        <div class="ml-when">${a.when}</div>
-        <h3 style="margin-bottom:.9rem;">🌸 Example Projects</h3>
-        <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-bottom:1.4rem;">${projectCards}</div>
-        <h3 style="margin-bottom:.8rem;">✏️ Fill in the Blank</h3>
-        <div class="fitb-wrap">${t}</div>
-        <button class="check-btn" onclick="checkMLFITB(${i})">Check ✦</button>
-        <button class="reset-btn" onclick="resetMLFITB(${i})">Reset</button>
-        <div class="fitb-result" id="ml-result-${i}"></div>
-       ${a.pdf ? `<button class="btn btn-ghost btn-sm" style="margin-top:1rem;" onclick="openPDF('${a.pdf}','${a.name}')">View PDF 🌸</button>` : ''}
-      </div>
-    </div>`;
-  }).join('');
 }
 // ── BEHAVIORAL + FLASHCARDS ────────────────────────────────────────────────────
 function renderBQ(){
