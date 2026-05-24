@@ -1203,7 +1203,27 @@ function removeMLPdf(idx) {
   document.getElementById(`ml-pdf-input-${idx}`).value = '';
   updateMLPdfUI(idx);
 }
-
+function toggleML(i){document.getElementById('ml'+i).classList.toggle('open');}
+function checkMLFITB(idx){
+  const a=mlAlgorithms[idx];let correct=0;
+  a.fitb.blanks.forEach((ans,i)=>{
+    const inp=document.getElementById(`ml${idx}b${i}`);if(!inp)return;
+    const val=inp.value.trim().toLowerCase();
+    const ok=ans.toLowerCase().split('/').some(e=>val===e.trim());
+    inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);
+    if(ok)correct++;
+  });
+  const res=document.getElementById(`ml-result-${idx}`);
+  res.className='fitb-result '+(correct===a.fitb.blanks.length?'correct':'wrong');
+  res.textContent=correct===a.fitb.blanks.length?'🌸 Perfect!':`${correct}/${a.fitb.blanks.length} correct — try again!`;
+}
+function resetMLFITB(idx){
+  mlAlgorithms[idx].fitb.blanks.forEach((_,i)=>{
+    const inp=document.getElementById(`ml${idx}b${i}`);
+    if(inp){inp.value='';inp.className='fitb-input';}
+  });
+  document.getElementById(`ml-result-${idx}`).textContent='';
+}
 function buildML() {
   const industryColors = {
     'Finance':   { bg: 'var(--rose-gold-light)', color: 'var(--rose-gold-mid)' },
