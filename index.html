@@ -238,7 +238,43 @@
     .nav-links{gap:.7rem;}
     section{padding-left:1.25rem;padding-right:1.25rem;}
   }
-
+.ml-pdf-section {
+  margin-top: 1.4rem;
+  padding-top: 1.2rem;
+  border-top: 1.5px solid var(--border);
+}
+.ml-pdf-row {
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+  flex-wrap: wrap;
+}
+.ml-pdf-attach-btn {
+  display: inline-block;
+  padding: .38rem .95rem;
+  border-radius: 99px;
+  font-size: .76rem;
+  font-weight: 700;
+  background: white;
+  color: var(--lilac-mid);
+  border: 2px solid var(--lilac-light);
+  cursor: pointer;
+  transition: all .2s;
+}
+.ml-pdf-attach-btn:hover { border-color: var(--lilac-mid); background: var(--lilac-light); }
+.ml-pdf-status { font-size: .78rem; color: var(--muted); }
+.ml-pdf-view-btn {
+  padding: .38rem .95rem; border-radius: 99px; font-size: .76rem; font-weight: 700;
+  background: white; color: var(--rose-gold-mid); border: 2px solid var(--rose-gold-light);
+  cursor: pointer; transition: all .2s; font-family: 'Nunito', sans-serif;
+}
+.ml-pdf-view-btn:hover { background: var(--rose-gold-light); }
+.ml-pdf-remove-btn {
+  padding: .38rem .8rem; border-radius: 99px; font-size: .72rem; font-weight: 700;
+  background: white; color: var(--muted); border: 1.5px solid var(--border);
+  cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .2s;
+}
+.ml-pdf-remove-btn:hover { color: #e08080; border-color: #e08080; }
   /* MULTIPLE CHOICE */
   .mc-choices{display:flex;flex-direction:column;gap:.6rem;margin:1rem 0;}
   .mc-choice{
@@ -1119,17 +1155,68 @@ function filterFITB(cat){
 function fitbNav(dir){fitbIdx+=dir;renderFITB();}
 
 // ── ML GUIDE ──────────────────────────────────────────────────────────────────
-function buildML(){
-  const industryColors={
-    'Finance':   {bg:'var(--rose-gold-light)',color:'var(--rose-gold-mid)'},
-    'Healthcare':{bg:'var(--mint-light)',     color:'#5aad8e'},
-    'Logistics': {bg:'var(--lilac-light)',    color:'var(--lilac-mid)'},
+let mlPDFs = {};
+
+function handleMLPdfUpload(idx, input) {
+  const file = input.files[0];
+  if (!file) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    mlPDFs[idx] = { name: file.name, data: reader.result };
+    updateMLPdfUI(idx);
   };
-  document.getElementById('ml-grid').innerHTML=mlAlgorithms.map((a,i)=>{
-    let t=a.fitb.template,bi=0;
-    t=t.replace(/___/g,()=>`<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10,a.fitb.blanks[bi-1]?.length||10)}">`);
-    const projectCards=a.projects.map(p=>{
-      const c=industryColors[p.industry]||industryColors['Finance'];
+  reader.readAsDataURL(file);
+}
+
+function updateMLPdfUI(idx) {
+  const pdf = mlPDFs[idx];
+  const statusEl  = document.getElementById(`ml-pdf-status-${idx}`);
+  const viewBtn   = document.getElementById(`ml-pdf-view-${idx}`);
+  const removeBtn = document.getElementById(`ml-pdf-remove-${idx}`);
+  if (!statusEl) return;
+  if (pdf) {
+    statusEl.textContent    = `📎 ${pdf.name}`;
+    statusEl.style.color    = 'var(--rose-gold)';
+    viewBtn.style.display   = 'inline-block';
+    removeBtn.style.display = 'inline-block';
+  } else {
+    statusEl.textContent    = 'No PDF attached';
+    statusEl.style.color    = 'var(--muted)';
+    viewBtn.style.display   = 'none';
+    removeBtn.style.display = 'none';
+  }
+}
+
+function viewMLPdf(idx) {
+  const pdf = mlPDFs[idx];
+  if (!pdf) return;
+  document.getElementById('pdf-modal-title').textContent = `${mlAlgorithms[idx].name} — ${pdf.name}`;
+  document.getElementById('pdf-frame').src = pdf.data;
+  document.getElementById('pdf-download-link').href = pdf.data;
+  document.getElementById('pdf-download-link').download = pdf.name;
+  document.getElementById('pdf-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function removeMLPdf(idx) {
+  delete mlPDFs[idx];
+  document.getElementById(`ml-pdf-input-${idx}`).value = '';
+  updateMLPdfUI(idx);
+}
+
+function buildML() {
+  const industryColors = {
+    'Finance':   { bg: 'var(--rose-gold-light)', color: 'var(--rose-gold-mid)' },
+    'Healthcare':{ bg: 'var(--mint-light)',      color: '#5aad8e' },
+    'Logistics': { bg: 'var(--lilac-light)',     color: 'var(--lilac-mid)' },
+  };
+
+  document.getElementById('ml-grid').innerHTML = mlAlgorithms.map((a, i) => {
+    let t = a.fitb.template, bi = 0;
+    t = t.replace(/___/g, () => `<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10, a.fitb.blanks[bi-1]?.length || 10)}">`);
+
+    const projectCards = a.projects.map(p => {
+      const c = industryColors[p.industry] || industryColors['Finance'];
       return `<div style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;">
         <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
           <span>${p.emoji}</span>
@@ -1139,6 +1226,7 @@ function buildML(){
         <div style="font-size:.82rem;color:var(--text2);line-height:1.65;">${p.desc}</div>
       </div>`;
     }).join('');
+
     return `<div class="ml-card" id="ml${i}">
       <div class="ml-card-header" onclick="toggleML(${i})">
         <div><div class="ml-card-title">${a.emoji} ${a.name}</div><div class="ml-card-sub">${a.tagline}</div></div>
@@ -1154,32 +1242,25 @@ function buildML(){
         <button class="check-btn" onclick="checkMLFITB(${i})">Check ✦</button>
         <button class="reset-btn" onclick="resetMLFITB(${i})">Reset</button>
         <div class="fitb-result" id="ml-result-${i}"></div>
+        <div class="ml-pdf-section">
+          <h3 style="margin-bottom:.7rem;">📎 Reference PDF</h3>
+          <div class="ml-pdf-row">
+            <label for="ml-pdf-input-${i}">
+              <span class="ml-pdf-attach-btn">📁 Attach PDF</span>
+            </label>
+            <input type="file" accept="application/pdf" id="ml-pdf-input-${i}"
+              style="display:none;" onchange="handleMLPdfUpload(${i}, this)">
+            <span class="ml-pdf-status" id="ml-pdf-status-${i}">No PDF attached</span>
+            <button class="ml-pdf-view-btn" id="ml-pdf-view-${i}"
+              style="display:none;" onclick="viewMLPdf(${i})">View PDF 🌸</button>
+            <button class="ml-pdf-remove-btn" id="ml-pdf-remove-${i}"
+              style="display:none;" onclick="removeMLPdf(${i})">✕ Remove</button>
+          </div>
+        </div>
       </div>
     </div>`;
   }).join('');
 }
-function toggleML(i){document.getElementById('ml'+i).classList.toggle('open');}
-function checkMLFITB(idx){
-  const a=mlAlgorithms[idx];let correct=0;
-  a.fitb.blanks.forEach((ans,i)=>{
-    const inp=document.getElementById(`ml${idx}b${i}`);if(!inp)return;
-    const val=inp.value.trim().toLowerCase();
-    const ok=ans.toLowerCase().split('/').some(e=>val===e.trim());
-    inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);
-    if(ok)correct++;
-  });
-  const res=document.getElementById(`ml-result-${idx}`);
-  res.className='fitb-result '+(correct===a.fitb.blanks.length?'correct':'wrong');
-  res.textContent=correct===a.fitb.blanks.length?'🌸 Perfect!':`${correct}/${a.fitb.blanks.length} correct — try again!`;
-}
-function resetMLFITB(idx){
-  mlAlgorithms[idx].fitb.blanks.forEach((_,i)=>{
-    const inp=document.getElementById(`ml${idx}b${i}`);
-    if(inp){inp.value='';inp.className='fitb-input';}
-  });
-  document.getElementById(`ml-result-${idx}`).textContent='';
-}
-
 // ── BEHAVIORAL + FLASHCARDS ────────────────────────────────────────────────────
 function renderBQ(){
   const qi=bqOrder[bqIdx];
