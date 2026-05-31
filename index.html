@@ -306,6 +306,19 @@
   .mc-result.correct{color:#5aad8e;}
   .mc-result.wrong{color:#e08080;}
   .mc-filter-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+  .fl-layout{display:grid;grid-template-columns:270px 1fr;gap:1.5rem;align-items:start;}
+  .fl-left-col{position:sticky;top:80px;}
+  .fl-ref-box{background:white;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:.8rem;}
+  .fl-ref-header{padding:.45rem 1rem;background:var(--mint-light);border-bottom:1px solid var(--border);font-family:'Fira Code',monospace;font-size:.72rem;color:#5aad8e;font-weight:600;}
+  .fl-ref-body{padding:.75rem 1rem;font-family:'Fira Code',monospace;font-size:.74rem;color:var(--text2);line-height:2.1;}
+  .fl-ref-body .kw{color:var(--lilac-mid);font-weight:700;}
+  .fl-ref-body .cm{color:var(--muted);}
+  .fl-ref-body .st{color:var(--rose-gold);}
+  .fl-score-bar{display:flex;align-items:center;gap:.8rem;background:white;border:1.5px solid var(--border);border-radius:12px;padding:.6rem 1rem;margin-bottom:.8rem;}
+  .fl-score-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
+  .fl-score-val{font-family:'Fira Code',monospace;font-size:1.05rem;color:var(--lilac-mid);font-weight:700;}
+  .fl-score-streak{font-size:.73rem;color:var(--rose-gold);font-weight:700;margin-left:auto;}
+  @media(max-width:700px){.fl-layout{grid-template-columns:1fr;}.fl-left-col{position:static;}}
 </style>
 </head>
 <body>
@@ -453,6 +466,7 @@ Today I bring together a background in communication, consulting, and data scien
     <div class="ltab" onclick="switchTab('python')">🐍 Python Practice</div>
     <div class="ltab" onclick="switchTab('fitb')">✏️ Fill in the Blank</div>
     <div class="ltab" onclick="switchTab('mc')">🧠 ML Quiz</div>
+    <div class="ltab" onclick="switchTab('fl')">🔁 Functions &amp; Loops</div>
   </div>
 
   <!-- SQL PANEL -->
@@ -558,7 +572,52 @@ Today I bring together a background in communication, consulting, and data scien
     <div class="qa-card" id="mc-qa"></div>
   </div>
 </section>
-
+<div class="ltab-panel" id="panel-fl">
+    <div class="fl-layout">
+      <div class="fl-left-col">
+        <div class="fl-score-bar">
+          <span class="fl-score-label">Score</span>
+          <span class="fl-score-val" id="fl-score">0 / 0</span>
+          <span class="fl-score-streak" id="fl-streak"></span>
+        </div>
+        <div class="fl-ref-box">
+          <div class="fl-ref-header">📖 def &amp; return</div>
+          <div class="fl-ref-body"><span class="kw">def</span> greet(name):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="st">f"Hi, {name}"</span><br><br><span class="cm"># default param</span><br><span class="kw">def</span> add(a, b=<span class="st">0</span>):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> a + b</div>
+        </div>
+        <div class="fl-ref-box">
+          <div class="fl-ref-header">📖 *args / **kwargs</div>
+          <div class="fl-ref-body"><span class="kw">def</span> total(*nums):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> sum(nums)<br><br><span class="kw">def</span> info(**kw):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(kw)</div>
+        </div>
+        <div class="fl-ref-box">
+          <div class="fl-ref-header">📖 for / while</div>
+          <div class="fl-ref-body"><span class="kw">for</span> i <span class="kw">in</span> range(<span class="st">5</span>):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i)<br><br><span class="kw">while</span> x &lt; <span class="st">10</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;x += <span class="st">1</span></div>
+        </div>
+        <div class="fl-ref-box">
+          <div class="fl-ref-header">📖 Comprehensions</div>
+          <div class="fl-ref-body">squares = [x**<span class="st">2</span> <span class="kw">for</span> x <span class="kw">in</span> range(<span class="st">5</span>)]<br><br>evens = [x <span class="kw">for</span> x <span class="kw">in</span> nums<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> x%<span class="st">2</span>==<span class="st">0</span>]</div>
+        </div>
+        <div class="fl-ref-box">
+          <div class="fl-ref-header">📖 Lambda / map / filter</div>
+          <div class="fl-ref-body">double = <span class="kw">lambda</span> x: x*<span class="st">2</span><br><br>list(<span class="kw">map</span>(<span class="kw">lambda</span> x: x**<span class="st">2</span>, nums))<br>list(<span class="kw">filter</span>(<span class="kw">lambda</span> x: x&gt;<span class="st">0</span>, nums))</div>
+        </div>
+      </div>
+      <div>
+        <div class="mc-filter-bar" id="fl-filter-bar">
+          <button class="filter-btn active" onclick="filterFL('All')">All</button>
+          <button class="filter-btn" onclick="filterFL('Functions')">🔧 Functions</button>
+          <button class="filter-btn" onclick="filterFL('Loops')">🔁 Loops</button>
+          <button class="filter-btn" onclick="filterFL('Comprehensions')">⚡ Comprehensions</button>
+          <button class="filter-btn" onclick="filterFL('Lambda')">λ Lambda</button>
+          <button class="filter-btn" onclick="filterFL('Scope &amp; Args')">🎯 Scope &amp; Args</button>
+        </div>
+        <div class="qa-nav">
+          <div class="qa-counter" id="fl-counter">Question 1 of 40</div>
+          <div style="display:flex;gap:.5rem;"><button class="nav-btn" id="fl-prev" onclick="flNav(-1)" disabled>← Prev</button><button class="nav-btn" id="fl-next" onclick="flNav(1)">Next →</button></div>
+        </div>
+        <div class="qa-card" id="fl-qa"></div>
+      </div>
+    </div>
+  </div>
 <!-- ML GUIDE -->
 <section id="ml">
   <div class="section-head"><span class="tag">ML Guide</span><h2>Algorithm Explainer</h2><p>Every algorithm from your resume — explained clearly with fill-in-the-blank practice.</p></div>
@@ -1463,7 +1522,56 @@ function filterMC(cat){
   });
   renderMC();
 }
-
+const flQuestions=[
+  {cat:'Functions',type:'mc',q:'What keyword is used to define a function in Python?',choices:['func','define','def','fun'],answer:2,explain:'In Python, <code>def</code> introduces every function definition. Example: <code>def greet(): ...</code>'},
+  {cat:'Functions',type:'mc',q:'What does the <code>return</code> statement do?',choices:['Prints a value to the console','Exits the function and sends a value back to the caller','Starts a loop','Declares a variable'],answer:1,explain:'<code>return</code> ends the function and passes the result back. Without it, the function returns <code>None</code>.'},
+  {cat:'Functions',type:'mc',q:'What is the output?\n\ndef double(n):\n    return n * 2\n\nprint(double(5))',choices:['5','25','10','None'],answer:2,explain:'<code>double(5)</code> returns 5 × 2 = 10, which is then printed.'},
+  {cat:'Functions',type:'fitb',q:'Complete the function that returns the square of a number.',template:'def square(n):\n    ___ n ** ___',blanks:['return','2'],hint:'Use return and the ** exponent operator'},
+  {cat:'Functions',type:'mc',q:'What is a default parameter?',choices:['A parameter with no name','A parameter that is always required','A parameter with a preset value used when none is provided','A parameter that only accepts strings'],answer:2,explain:'Default parameters let callers skip an argument. Example: <code>def greet(name="World")</code>.'},
+  {cat:'Functions',type:'mc',q:'What will this return?\n\ndef add(a, b=10):\n    return a + b\n\nadd(5)',choices:['5','10','15','Error'],answer:2,explain:'<code>b</code> defaults to 10, so <code>add(5)</code> computes 5 + 10 = 15.'},
+  {cat:'Functions',type:'fitb',q:'Define a function called multiply with default y=2 that returns x * y.',template:'___ multiply(x, y=___):\n    return x * y',blanks:['def','2'],hint:'def keyword then set a default for y'},
+  {cat:'Functions',type:'mc',q:'What does *args allow a function to do?',choices:['Accept keyword arguments only','Accept any number of positional arguments','Multiply arguments together','Require all arguments to be integers'],answer:1,explain:'<code>*args</code> collects extra positional arguments into a tuple. Example: <code>def total(*nums): return sum(nums)</code>'},
+  {cat:'Functions',type:'mc',q:'What is the output?\n\ndef show(*items):\n    for i in items:\n        print(i)\n\nshow("a","b","c")',choices:['a b c on one line','a, b, c each on a new line','Error','None'],answer:1,explain:'<code>*items</code> captures all arguments. The loop prints each on its own line.'},
+  {cat:'Functions',type:'fitb',q:'Complete this function that returns "even" or "odd".',template:'def check_parity(n):\n    if n % ___ == 0:\n        return "even"\n    ___ "odd"',blanks:['2','return'],hint:'Modulo 2 for even check, then return the other string'},
+  {cat:'Functions',type:'mc',q:'What is a recursive function?',choices:['A function that runs in parallel','A function that calls itself','A function with no return value','A function that only takes one argument'],answer:1,explain:'Recursion is when a function calls itself with a smaller problem. It must have a base case to stop.'},
+  {cat:'Functions',type:'mc',q:'What does a docstring do?',choices:['A comment that runs as code','A string literal placed after def that documents what the function does','A required parameter name','The return type declaration'],answer:1,explain:'Docstrings use triple quotes right after <code>def</code>. Accessible via <code>help()</code>.'},
+  {cat:'Loops',type:'mc',q:'What does <code>range(3)</code> produce?',choices:['[1, 2, 3]','[0, 1, 2]','[0, 1, 2, 3]','(0, 3)'],answer:1,explain:'<code>range(3)</code> generates 0, 1, 2 — starts at 0 and stops before 3.'},
+  {cat:'Loops',type:'mc',q:'What is the output of:\n\nfor i in range(1, 5, 2):\n    print(i)',choices:['1 2 3 4','1 then 3','2 then 4','1 2'],answer:1,explain:'<code>range(1, 5, 2)</code> → start=1, stop=5, step=2 → gives 1, 3.'},
+  {cat:'Loops',type:'fitb',q:'Write a for loop that prints numbers 0 through 4.',template:'___ i in ___(___):\n    print(i)',blanks:['for','range','5'],hint:'for, range, and the stop value'},
+  {cat:'Loops',type:'mc',q:'What does <code>break</code> do inside a loop?',choices:['Skips the current iteration','Exits the loop immediately','Restarts the loop','Raises an error'],answer:1,explain:'<code>break</code> terminates the loop entirely. <code>continue</code> skips just the current iteration.'},
+  {cat:'Loops',type:'mc',q:'What does <code>continue</code> do inside a loop?',choices:['Stops the loop','Skips the rest of the current iteration and moves to the next one','Starts a nested loop','Returns a value'],answer:1,explain:'<code>continue</code> jumps back to the top of the loop for the next iteration.'},
+  {cat:'Loops',type:'mc',q:'What is the output?\n\ncount = 0\nwhile count < 3:\n    print(count)\n    count += 1',choices:['0 1 2 3','0 1 2','1 2 3','Infinite loop'],answer:1,explain:'Prints 0, 1, 2 then count becomes 3, which fails the condition and stops.'},
+  {cat:'Loops',type:'fitb',q:'Complete this while loop that sums numbers 1 to 5.',template:'total = 0\ni = ___\nwhile i <= 5:\n    total += i\n    i += ___',blanks:['1','1'],hint:'Start i at 1 and increment by 1 each time'},
+  {cat:'Loops',type:'mc',q:'What does <code>enumerate()</code> do in a for loop?',choices:['Creates a range automatically','Gives both the index and value of each item','Sorts the list before looping','Filters out None values'],answer:1,explain:'<code>enumerate(items)</code> yields (index, value) pairs. Example: <code>for i, v in enumerate(["a","b"])</code>.'},
+  {cat:'Loops',type:'mc',q:'What is the output?\n\nfor i in range(5):\n    if i == 3:\n        break\n    print(i)',choices:['0 1 2 3 4','0 1 2','0 1 2 3','3 4'],answer:1,explain:'Prints 0, 1, 2. When i == 3, break exits before printing 3.'},
+  {cat:'Loops',type:'mc',q:'How do you loop over both keys and values in a dictionary?',choices:['for k in dict:','for k, v in dict.keys():','for k, v in dict.items():','for k, v in dict.values():'],answer:2,explain:'<code>dict.items()</code> returns key-value pairs. <code>keys()</code> gives only keys, <code>values()</code> only values.'},
+  {cat:'Loops',type:'fitb',q:'Complete the loop that prints each list value doubled.',template:'nums = [1, 2, 3, 4]\nfor n ___ nums:\n    print(n ___ 2)',blanks:['in','*'],hint:'Use in to iterate and * to multiply'},
+  {cat:'Comprehensions',type:'mc',q:'What does this produce?\n\n[x * 2 for x in range(4)]',choices:['[1, 2, 3, 4]','[0, 2, 4, 6]','[2, 4, 6, 8]','[0, 1, 2, 3]'],answer:1,explain:'range(4) gives 0,1,2,3. Multiplying each by 2 gives [0, 2, 4, 6].'},
+  {cat:'Comprehensions',type:'fitb',q:'Write a list comprehension that squares numbers 1 to 5.',template:'squares = [___ ** 2 ___ x in range(1, ___)]',blanks:['x','for','6'],hint:'range(1,6) gives 1 through 5'},
+  {cat:'Comprehensions',type:'mc',q:'What does the if clause do in a list comprehension?',choices:['Raises an error if True','Filters — only keeps items where the condition is True','Replaces failures with None','Creates two lists'],answer:1,explain:'The optional <code>if condition</code> acts as a filter. Example: <code>[x for x in nums if x > 0]</code>.'},
+  {cat:'Comprehensions',type:'mc',q:'What is the result?\n\nwords = ["hi","hello","hey"]\n[w for w in words if len(w) > 2]',choices:["[\'hi\']","[\'hello\', \'hey\']","[\'hi\', \'hello\', \'hey\']","[\'hello\']"],answer:1,explain:'"hi" has length 2, filtered out. "hello" (5) and "hey" (3) both pass.'},
+  {cat:'Comprehensions',type:'fitb',q:'Complete the comprehension that keeps only even numbers.',template:'evens = [x ___ nums if x % ___ == 0]',blanks:['for x in','2'],hint:'for x in before the iterable, modulo 2 for even check'},
+  {cat:'Comprehensions',type:'mc',q:'What is a dictionary comprehension?',choices:['A loop that builds a list','A one-line expression that builds a dict from an iterable','A function that returns a dict','A way to merge two dicts'],answer:1,explain:'Example: <code>{x: x**2 for x in range(5)}</code>. Same concept as list comprehensions but produces a dict.'},
+  {cat:'Lambda',type:'mc',q:'What is a lambda function?',choices:['A function that always returns None','A named function stored in a variable','A small anonymous function defined in a single expression','A built-in Python function'],answer:2,explain:'Lambda creates a small anonymous function inline. Syntax: <code>lambda args: expression</code>.'},
+  {cat:'Lambda',type:'mc',q:'What does this output?\n\nsquare = lambda x: x ** 2\nprint(square(4))',choices:['2','8','16','Error'],answer:2,explain:'<code>lambda x: x ** 2</code> squares x. Calling it with 4 gives 4² = 16.'},
+  {cat:'Lambda',type:'fitb',q:'Write a lambda that returns the cube (x³) of a number.',template:'cube = ___ x: x ___ 3',blanks:['lambda','**'],hint:'lambda keyword then x ** 3'},
+  {cat:'Lambda',type:'mc',q:'What does map(lambda x: x+1, [1,2,3]) return?',choices:['[1,2,3]','[2,3,4]','A map object — wrap with list()','Error'],answer:2,explain:'<code>map()</code> applies the function to each element. Wrap with <code>list()</code> to get [2, 3, 4].'},
+  {cat:'Lambda',type:'mc',q:'What does filter(lambda x: x > 0, [-1, 2, -3, 4]) produce?',choices:['[-1, -3]','[2, 4]','[True, False, True, False]','[-1, 2, -3, 4]'],answer:1,explain:'<code>filter()</code> keeps items where the lambda is True. 2 and 4 are > 0.'},
+  {cat:'Lambda',type:'mc',q:'What is the most common use of lambda in data science?',choices:['Replacing all functions','Inline use with map, filter, sorted, or df.apply()','Defining class methods','Importing libraries'],answer:1,explain:'Lambda shines in one-liners like <code>df["col"].apply(lambda x: x*2)</code>.'},
+  {cat:'Scope & Args',type:'mc',q:'What is a local variable?',choices:['A variable defined at the top of the file','A variable defined inside a function, accessible only within it','A variable shared across all functions','A constant that never changes'],answer:1,explain:'Local variables only exist during the function call and are destroyed when it returns.'},
+  {cat:'Scope & Args',type:'mc',q:'What is the output?\n\nx = 10\ndef change():\n    x = 99\nchange()\nprint(x)',choices:['99','10','Error','None'],answer:1,explain:'<code>x = 99</code> creates a new local variable. The global x = 10 is unchanged. Use <code>global x</code> to modify it.'},
+  {cat:'Scope & Args',type:'mc',q:'What does **kwargs allow in a function?',choices:['Accept any number of positional arguments','Accept any number of keyword arguments as a dictionary','Multiply two arguments','Require all arguments to be named'],answer:1,explain:'<code>**kwargs</code> collects extra keyword arguments into a dict. Example: <code>show(name="Adila")</code>.'},
+  {cat:'Scope & Args',type:'fitb',q:'Complete this function that accepts any keyword arguments and prints them.',template:'def show_info(**___):\n    for key, val in ___.items():\n        print(f"{key}: {val}")',blanks:['kwargs','kwargs'],hint:'kwargs is the conventional name for keyword argument dictionaries'},
+  {cat:'Scope & Args',type:'mc',q:'What is the correct order of parameters in a function signature?',choices:['*args, regular, **kwargs','regular, **kwargs, *args','regular, *args, **kwargs','**kwargs, *args, regular'],answer:2,explain:'Python requires: regular params first, then *args, then **kwargs. Example: <code>def f(a, b, *args, **kwargs)</code>.'},
+  {cat:'Scope & Args',type:'mc',q:'What is the output?\n\ndef outer():\n    msg = "hello"\n    def inner():\n        print(msg)\n    inner()\n\nouter()',choices:['Error — msg not in scope','hello','None','hello hello'],answer:1,explain:'Inner functions can read variables from their enclosing scope (closure).'},
+];
+let flIdx=0,filteredFL=[...flQuestions],flScore=0,flTotal=0,flStreak=0,flAnswered=false;
+function renderFL(){const q=filteredFL[flIdx];flAnswered=false;document.getElementById('fl-counter').textContent=`Question ${flIdx+1} of ${filteredFL.length}`;document.getElementById('fl-prev').disabled=flIdx===0;document.getElementById('fl-next').disabled=flIdx===filteredFL.length-1;if(q.type==='mc'){const letters=['A','B','C','D'];const ch=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerFL(${i})" id="fl-choice-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');document.getElementById('fl-qa').innerHTML=`<div class="qa-category">🔁 ${q.cat}</div><div class="qa-question" style="white-space:pre-line;margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${ch}</div><div class="mc-result" id="fl-result"></div><div class="mc-explain" id="fl-explain">${q.explain}</div>`;}else{let t=q.template,bi=0;t=t.replace(/___/g,()=>`<input class="fitb-input" id="flb${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10,(q.blanks[bi-1]||'').length+4)}">`);document.getElementById('fl-qa').innerHTML=`<div class="qa-category">🔁 ${q.cat}</div><div class="qa-question" style="margin-bottom:.7rem;">${q.q}</div><div class="qa-hint">💡 ${q.hint}</div><div class="fitb-wrap" style="white-space:pre;">${t}</div><button class="check-btn" onclick="checkFLfitb()">Check ✦</button><button class="reset-btn" onclick="renderFL()">Reset</button><div class="fitb-result" id="fl-fitb-result"></div>`;}}
+function answerFL(chosen){if(flAnswered)return;flAnswered=true;flTotal++;const q=filteredFL[flIdx];const correct=q.answer;const letters=['A','B','C','D'];for(let i=0;i<q.choices.length;i++){const b=document.getElementById('fl-choice-'+i);b.classList.add('disabled');if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong');}const res=document.getElementById('fl-result');if(chosen===correct){flScore++;flStreak++;res.className='mc-result correct';res.textContent='🌸 Correct!';}else{flStreak=0;res.className='mc-result wrong';res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;}document.getElementById('fl-explain').classList.add('show');updateFLScore();}
+function checkFLfitb(){const q=filteredFL[flIdx];let correct=0;q.blanks.forEach((ans,i)=>{const inp=document.getElementById('flb'+i);if(!inp)return;const val=inp.value.trim().toLowerCase();const ok=ans.toLowerCase().split('/').some(a=>val===a.trim());inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);if(ok)correct++;});if(!flAnswered){flAnswered=true;flTotal++;if(correct===q.blanks.length){flScore++;flStreak++;}else flStreak=0;updateFLScore();}const res=document.getElementById('fl-fitb-result');res.className='fitb-result '+(correct===q.blanks.length?'correct':'wrong');res.textContent=correct===q.blanks.length?'🌸 Perfect!':`${correct}/${q.blanks.length} correct — try again!`;}
+function updateFLScore(){document.getElementById('fl-score').textContent=`${flScore} / ${flTotal}`;const s=document.getElementById('fl-streak');if(flStreak>=3)s.textContent=`🔥 ${flStreak} in a row!`;else if(flStreak>0)s.textContent=`✦ Streak: ${flStreak}`;else s.textContent='';}
+function flNav(dir){flIdx+=dir;renderFL();}
+function filterFL(cat){filteredFL=cat==='All'?[...flQuestions]:flQuestions.filter(q=>q.cat===cat);flIdx=0;document.querySelectorAll('#fl-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));renderFL();}
 // ── INIT ─────────────────────────────────────────────────────────────────────
 renderSQL();
 renderPY();
@@ -1471,5 +1579,5 @@ renderFITB();
 buildML();
 renderBQ();
 renderMC();
-
+renderFL();
 </script></body></html>
