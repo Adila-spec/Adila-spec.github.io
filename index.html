@@ -24,14 +24,12 @@
     radial-gradient(circle at 70% 80%,rgba(201,149,122,.10) 0%,transparent 40%);
     background-attachment:fixed;}
 
-  /* NAV */
   nav{position:fixed;top:0;left:0;right:0;z-index:200;background:rgba(253,248,255,.92);backdrop-filter:blur(16px);border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;padding:0 2.5rem;height:62px;}
   .nav-logo{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--text);text-decoration:none;}
   .nav-links{display:flex;gap:1.4rem;list-style:none;}
   .nav-links a{color:var(--muted);text-decoration:none;font-size:.75rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;transition:color .2s;}
   .nav-links a:hover{color:var(--lilac-mid);}
 
-  /* LAYOUT */
   section{max-width:900px;margin:0 auto;padding:6rem 2.5rem 4rem;}
   section:first-of-type{padding-top:9rem;}
   h1{font-family:'Playfair Display',serif;font-size:clamp(2.8rem,7vw,5rem);font-weight:400;line-height:1.1;}
@@ -42,7 +40,6 @@
   .section-head p{color:var(--text2);font-size:.93rem;margin-top:.4rem;}
   .divider{border:none;height:2px;background:var(--grad2);border-radius:2px;margin:1rem 0 2.5rem;opacity:.6;}
 
-  /* BUTTONS */
   .btn{display:inline-block;padding:.65rem 1.6rem;border-radius:99px;font-size:.88rem;font-weight:700;font-family:'Nunito',sans-serif;text-decoration:none;cursor:pointer;border:none;transition:all .22s;}
   .btn-primary{background:var(--grad-gold);color:white;box-shadow:0 4px 18px rgba(201,149,122,.3);}
   .btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 24px rgba(201,149,122,.4);}
@@ -50,7 +47,6 @@
   .btn-ghost:hover{border-color:var(--lilac-mid);background:var(--lilac-light);}
   .btn-sm{padding:.38rem .95rem;font-size:.76rem;}
 
-  /* HERO */
   #home{position:relative;overflow:visible;}
   .hero-blob{width:240px;height:240px;border-radius:60% 40% 55% 45%/50% 55% 45% 50%;background:var(--grad2);position:absolute;right:2.5rem;top:1rem;opacity:.5;animation:blobmorph 8s ease-in-out infinite;z-index:0;}
   @keyframes blobmorph{0%,100%{border-radius:60% 40% 55% 45%/50% 55% 45% 50%;}33%{border-radius:45% 55% 40% 60%/55% 45% 60% 40%;}66%{border-radius:55% 45% 60% 40%/40% 60% 45% 55%;}}
@@ -59,9 +55,7 @@
   .hero-name em{font-style:italic;color:var(--lilac-mid);display:block;}
   .hero-sub{font-size:1rem;color:var(--text2);margin-top:1.2rem;max-width:480px;line-height:1.85;}
   .hero-links{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;}
-  .photo-circle{width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid white;box-shadow:0 8px 32px rgba(180,160,220,.25);display:block;cursor:pointer;}
 
-  /* ABOUT */
   .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
   .skill-card{background:white;border:1.5px solid var(--border);border-radius:16px;padding:1.2rem 1.4rem;}
   .skill-card h4{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--rose-gold);margin-bottom:.6rem;}
@@ -70,7 +64,6 @@
   .skill-tag.mint{background:var(--mint-light);color:#5aad8e;}
   .skill-tag.gold{background:var(--rose-gold-light);color:var(--rose-gold-mid);}
 
-  /* PROJECTS */
   .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
   .project-card{background:white;border:1.5px solid var(--border);border-radius:20px;padding:1.4rem;transition:all .22s;display:flex;flex-direction:column;}
   .project-card:hover{box-shadow:0 8px 28px rgba(180,160,220,.18);transform:translateY(-2px);}
@@ -81,7 +74,6 @@
   .project-tag.mint{background:var(--mint-light);color:#5aad8e;}
   .project-tag.gold{background:var(--rose-gold-light);color:var(--rose-gold-mid);}
 
-  /* PDF MODAL */
   .pdf-modal-overlay{display:none;position:fixed;inset:0;background:rgba(30,20,50,.65);z-index:999;align-items:center;justify-content:center;backdrop-filter:blur(4px);}
   .pdf-modal-overlay.open{display:flex;}
   .pdf-modal{background:white;border-radius:20px;width:90vw;max-width:820px;height:85vh;display:flex;flex-direction:column;overflow:hidden;box-shadow:0 24px 80px rgba(100,80,160,.25);}
@@ -92,14 +84,12 @@
   .pdf-frame{flex:1;border:none;width:100%;}
   .pdf-modal-footer{padding:.8rem 1.4rem;border-top:1.5px solid var(--border);display:flex;justify-content:flex-end;}
 
-  /* LEARNING TABS */
   .learning-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;}
   .ltab{padding:.55rem 1.1rem;cursor:pointer;font-size:.75rem;font-weight:700;color:var(--muted);border-radius:99px;border:2px solid var(--border);transition:all .22s;text-transform:uppercase;letter-spacing:.05em;background:white;}
   .ltab.active{background:var(--lilac-light);color:var(--lilac-mid);border-color:var(--lilac-mid);}
   .ltab-panel{display:none;}
   .ltab-panel.active{display:block;}
 
-  /* PRACTICE */
   .practice-layout{display:grid;grid-template-columns:1fr 1fr;gap:1.5rem;align-items:start;}
   .practice-left{position:sticky;top:80px;}
   .table-box{background:white;border:1.5px solid var(--border);border-radius:16px;overflow:hidden;margin-bottom:1rem;}
@@ -128,7 +118,6 @@
   .filter-btn{padding:.28rem .85rem;border-radius:99px;border:1.5px solid var(--border);background:white;color:var(--muted);font-size:.7rem;font-weight:700;cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;text-transform:uppercase;letter-spacing:.04em;}
   .filter-btn.active{background:var(--lilac-light);color:var(--lilac-mid);border-color:var(--lilac-mid);}
 
-  /* FILL IN THE BLANK */
   .fitb-input{border:none;border-bottom:2px solid var(--lilac-mid);background:transparent;font-family:'Fira Code',monospace;font-size:.82rem;color:var(--text);padding:2px 6px;min-width:80px;outline:none;text-align:center;}
   .fitb-input:focus{border-bottom-color:var(--rose-gold);}
   .fitb-input.correct{border-bottom-color:#5aad8e;color:#5aad8e;}
@@ -141,7 +130,6 @@
   .fitb-result.correct{color:#5aad8e;}
   .fitb-result.wrong{color:#e08080;}
 
-  /* CONCEPT BOX */
   .concept-box{background:var(--bg2);border:1.5px solid var(--border);border-radius:14px;padding:1.1rem 1.3rem;margin-bottom:1.2rem;}
   .concept-box h4{font-size:.76rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--rose-gold);margin-bottom:.6rem;}
   .concept-table{width:100%;border-collapse:collapse;font-size:.8rem;}
@@ -149,7 +137,6 @@
   .concept-table td{padding:.42rem .75rem;border-bottom:1px solid var(--border);color:var(--text2);}
   .concept-table tr:last-child td{border-bottom:none;}
 
-  /* ML */
   .ml-grid{display:flex;flex-direction:column;gap:1.2rem;}
   .ml-card{background:white;border:1.5px solid var(--border);border-radius:20px;overflow:hidden;}
   .ml-card-header{padding:1.1rem 1.4rem;cursor:pointer;display:flex;align-items:center;justify-content:space-between;transition:background .2s;}
@@ -164,21 +151,18 @@
   .ml-when{background:var(--lilac-light);border-radius:10px;padding:.75rem 1rem;font-size:.83rem;color:var(--text2);margin-bottom:1.2rem;}
   .ml-when strong{color:var(--lilac-mid);}
 
-  /* BEHAVIORAL */
   .bq-card{background:white;border:1.5px solid var(--border);border-radius:24px;padding:2.5rem;text-align:center;display:flex;flex-direction:column;align-items:center;background-image:radial-gradient(circle at 20% 80%,rgba(201,184,240,.15) 0%,transparent 50%),radial-gradient(circle at 80% 20%,rgba(184,238,221,.15) 0%,transparent 50%);}
   .bq-label{font-size:.68rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:1rem;}
   .bq-text{font-family:'Playfair Display',serif;font-size:1.35rem;line-height:1.5;max-width:580px;}
   .bq-controls{display:flex;align-items:center;gap:1rem;margin-top:1.3rem;justify-content:center;flex-wrap:wrap;}
   .bq-counter{font-family:'Fira Code',monospace;font-size:.74rem;color:var(--muted);}
 
-  /* PREP TABS */
   .prep-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;}
   .prep-tab{padding:.55rem 1.2rem;cursor:pointer;font-size:.78rem;font-weight:700;color:var(--muted);border-radius:99px;border:2px solid var(--border);transition:all .22s;text-transform:uppercase;letter-spacing:.05em;background:white;}
   .prep-tab.active{background:var(--lilac-light);color:var(--lilac-mid);border-color:var(--lilac-mid);}
   .prep-panel{display:none;}
   .prep-panel.active{display:block;}
 
-  /* FLASHCARD */
   .fc-scene{width:100%;height:260px;perspective:1000px;cursor:pointer;margin-bottom:1.5rem;}
   .fc-card{width:100%;height:100%;position:relative;transform-style:preserve-3d;transition:transform .55s cubic-bezier(.4,0,.2,1);}
   .fc-card.flipped{transform:rotateY(180deg);}
@@ -192,7 +176,6 @@
   .fc-star-label{background:var(--grad-gold);color:white;border-radius:99px;font-size:.68rem;font-weight:700;padding:2px 10px;flex-shrink:0;margin-top:2px;}
   .fc-controls{display:flex;align-items:center;gap:1rem;justify-content:center;flex-wrap:wrap;}
 
-  /* STAR ANSWER */
   .star-box{background:white;border:1.5px solid var(--border);border-radius:20px;padding:1.5rem;margin-top:1.5rem;}
   .star-box-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rose-gold);margin-bottom:1rem;}
   .star-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
@@ -204,30 +187,12 @@
   .star-saved{font-size:.76rem;color:#5aad8e;font-weight:700;margin-left:.8rem;opacity:0;transition:opacity .3s;}
   .star-saved.show{opacity:1;}
 
-  /* CONTACT */
   .contact-link{display:flex;align-items:center;gap:1.2rem;padding:1rem 1.3rem;background:white;border:1.5px solid var(--border);border-radius:16px;text-decoration:none;color:var(--text);font-size:.88rem;transition:all .22s;margin-bottom:.75rem;}
   .contact-link:hover{border-color:var(--lilac-mid);box-shadow:0 4px 18px rgba(180,160,220,.18);transform:translateX(4px);}
   .cl-label{color:var(--muted);font-size:.73rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;width:80px;flex-shrink:0;}
   footer{text-align:center;padding:2.5rem;color:var(--muted);font-size:.82rem;border-top:1.5px solid var(--border);background:white;}
 
-  @media(max-width:700px){
-    .projects-grid,.skills-grid,.hero-layout,.star-grid{grid-template-columns:1fr;}
-    .practice-layout{grid-template-columns:1fr;}
-    .practice-left{position:static;}
-    nav{padding:0 1rem;}
-    .nav-links{gap:.7rem;}
-    section{padding-left:1.25rem;padding-right:1.25rem;}
-  }
-  .ml-pdf-section{margin-top:1.4rem;padding-top:1.2rem;border-top:1.5px solid var(--border);}
-  .ml-pdf-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;}
-  .ml-pdf-attach-btn{display:inline-block;padding:.38rem .95rem;border-radius:99px;font-size:.76rem;font-weight:700;background:white;color:var(--lilac-mid);border:2px solid var(--lilac-light);cursor:pointer;transition:all .2s;}
-  .ml-pdf-attach-btn:hover{border-color:var(--lilac-mid);background:var(--lilac-light);}
-  .ml-pdf-status{font-size:.78rem;color:var(--muted);}
-  .ml-pdf-view-btn{padding:.38rem .95rem;border-radius:99px;font-size:.76rem;font-weight:700;background:white;color:var(--rose-gold-mid);border:2px solid var(--rose-gold-light);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;}
-  .ml-pdf-view-btn:hover{background:var(--rose-gold-light);}
-  .ml-pdf-remove-btn{padding:.38rem .8rem;border-radius:99px;font-size:.72rem;font-weight:700;background:white;color:var(--muted);border:1.5px solid var(--border);cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s;}
-  .ml-pdf-remove-btn:hover{color:#e08080;border-color:#e08080;}
-  /* MULTIPLE CHOICE */
+  /* MC */
   .mc-choices{display:flex;flex-direction:column;gap:.6rem;margin:1rem 0;}
   .mc-choice{display:flex;align-items:flex-start;gap:.85rem;padding:.75rem 1rem;background:white;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;transition:all .18s;font-size:.88rem;line-height:1.5;color:var(--text);text-align:left;width:100%;font-family:'Nunito',sans-serif;}
   .mc-choice:hover{border-color:var(--lilac-mid);background:var(--lilac-light);}
@@ -243,6 +208,12 @@
   .mc-result.correct{color:#5aad8e;}
   .mc-result.wrong{color:#e08080;}
   .mc-filter-bar{display:flex;gap:.4rem;flex-wrap:wrap;margin-bottom:1.2rem;}
+
+  /* Formula highlight box */
+  .formula-box{background:var(--lilac-light);border:1.5px solid var(--lilac-mid);border-radius:12px;padding:.9rem 1.2rem;margin:1rem 0;font-family:'Fira Code',monospace;font-size:.88rem;color:var(--text);line-height:2;}
+  .formula-label{font-size:.65rem;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--lilac-mid);margin-bottom:.3rem;}
+
+  /* FL */
   .fl-layout{display:grid;grid-template-columns:270px 1fr;gap:1.5rem;align-items:start;}
   .fl-left-col{position:sticky;top:80px;}
   .fl-ref-box{background:white;border:1.5px solid var(--border);border-radius:14px;overflow:hidden;margin-bottom:.8rem;}
@@ -255,7 +226,24 @@
   .fl-score-label{font-size:.7rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--muted);}
   .fl-score-val{font-family:'Fira Code',monospace;font-size:1.05rem;color:var(--lilac-mid);font-weight:700;}
   .fl-score-streak{font-size:.73rem;color:var(--rose-gold);font-weight:700;margin-left:auto;}
-  @media(max-width:700px){.fl-layout{grid-template-columns:1fr;}.fl-left-col{position:static;}}
+
+  /* SQL type badge */
+  .sql-result-msg{font-size:.82rem;font-weight:700;margin-top:.6rem;min-height:1.4rem;}
+  .sql-result-msg.correct{color:#5aad8e;}
+  .sql-result-msg.wrong{color:#e08080;}
+  .sql-textarea{width:100%;min-height:90px;border:1.5px solid var(--border);border-radius:12px;padding:.7rem;font-family:'Fira Code',monospace;font-size:.8rem;background:var(--bg2);outline:none;resize:vertical;color:var(--text);transition:border-color .2s;}
+  .sql-textarea:focus{border-color:var(--lilac-mid);}
+
+  @media(max-width:700px){
+    .projects-grid,.skills-grid,.hero-layout,.star-grid{grid-template-columns:1fr;}
+    .practice-layout{grid-template-columns:1fr;}
+    .practice-left{position:static;}
+    .fl-layout{grid-template-columns:1fr;}
+    .fl-left-col{position:static;}
+    nav{padding:0 1rem;}
+    .nav-links{gap:.7rem;}
+    section{padding-left:1.25rem;padding-right:1.25rem;}
+  }
 </style>
 </head>
 <body>
@@ -322,7 +310,7 @@
     <p>Click "View PDF" to open any project file in a pop-up viewer.</p>
   </div>
   <hr class="divider">
-  <div class="projects-grid" id="projects-grid">
+  <div class="projects-grid">
     <div class="project-card">
       <h4>✦ Bank Fraud Detection — K-Means</h4>
       <p>Unsupervised K-Means clustering on bank transactions to detect fraud. Includes full EDA, anomaly scoring for new transactions, and a plain-English manager explainer.</p>
@@ -331,13 +319,8 @@
     </div>
     <div class="project-card">
       <h4>✦ Bank Fraud Detection — K-Means Clustering</h4>
-      <p>Unsupervised machine learning project using K-Means clustering on bank transaction data to detect potential fraud patterns. Includes exploratory data analysis (EDA), anomaly scoring for new transactions, and a clear, non-technical summary for stakeholders.</p>
-      <div class="project-tags">
-        <span class="project-tag">Python</span>
-        <span class="project-tag mint">K-Means</span>
-        <span class="project-tag gold">Fraud Detection</span>
-        <span class="project-tag">Banking</span>
-      </div>
+      <p>Unsupervised machine learning project using K-Means clustering on bank transaction data to detect potential fraud patterns. Includes EDA, anomaly scoring, and a clear non-technical stakeholder summary.</p>
+      <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag mint">K-Means</span><span class="project-tag gold">Fraud Detection</span><span class="project-tag">Banking</span></div>
       <button class="btn btn-ghost btn-sm" style="margin-top:auto;" onclick="openPDF('KMeans_Presentation.pdf','K-Means Presentation')">View Slides 🌸</button>
     </div>
     <div class="project-card">
@@ -357,13 +340,15 @@
 
 <!-- LEARNING HUB -->
 <section id="learn">
-  <div class="section-head"><span class="tag">Learning Hub</span><h2>Practice Zone</h2><p>SQL & Python with real datasets. Tables stay visible as questions change.</p></div>
+  <div class="section-head"><span class="tag">Learning Hub</span><h2>Practice Zone</h2><p>SQL, Python, Statistics, and RAG/LLMs. Tables stay visible as questions change.</p></div>
   <hr class="divider">
   <div class="learning-tabs">
     <div class="ltab active" onclick="switchTab('sql')">🗂 SQL Practice</div>
     <div class="ltab" onclick="switchTab('python')">🐍 Python Practice</div>
     <div class="ltab" onclick="switchTab('fitb')">✏️ Fill in the Blank</div>
     <div class="ltab" onclick="switchTab('mc')">🧠 ML Quiz</div>
+    <div class="ltab" onclick="switchTab('stats')">📊 Statistics</div>
+    <div class="ltab" onclick="switchTab('rag')">🤖 RAG &amp; LLMs</div>
     <div class="ltab" onclick="switchTab('fl')">🔁 Functions &amp; Loops</div>
   </div>
 
@@ -373,9 +358,15 @@
       <table class="concept-table"><thead><tr><th>Function</th><th>Counts</th><th>Includes NULLs?</th><th>Use Case</th></tr></thead>
       <tbody><tr><td>COUNT(*)</td><td>All rows</td><td>Yes</td><td>Total rows in a table</td></tr><tr><td>COUNT(column)</td><td>Non-NULL rows</td><td>No</td><td>How many employees have salary recorded</td></tr><tr><td>COUNT(DISTINCT col)</td><td>Unique non-NULL values</td><td>No</td><td>How many unique departments exist</td></tr></tbody></table>
     </div>
-    <div class="concept-box" style="margin-bottom:1.4rem;"><h4>COUNT vs SUM vs AVG — Trigger Words</h4>
-      <table class="concept-table"><thead><tr><th>Word in question</th><th>Function</th></tr></thead>
-      <tbody><tr><td>total amount, how much</td><td>SUM</td></tr><tr><td>how many, number of</td><td>COUNT</td></tr><tr><td>average, typical, mean</td><td>AVG</td></tr><tr><td>only show groups where…</td><td>HAVING</td></tr></tbody></table>
+    <div class="concept-box" style="margin-bottom:1.4rem;"><h4>Subquery Cheat Sheet — When to Use What</h4>
+      <table class="concept-table"><thead><tr><th>Type</th><th>Where it goes</th><th>Example</th></tr></thead>
+      <tbody>
+        <tr><td>Scalar subquery</td><td>SELECT or WHERE</td><td>WHERE salary > (SELECT AVG(salary) FROM employees)</td></tr>
+        <tr><td>Inline view</td><td>FROM clause</td><td>FROM (SELECT dept, AVG(salary) avg_s FROM employees GROUP BY dept) t</td></tr>
+        <tr><td>EXISTS / NOT EXISTS</td><td>WHERE clause</td><td>WHERE EXISTS (SELECT 1 FROM sales WHERE emp_id = e.emp_id)</td></tr>
+        <tr><td>Correlated subquery</td><td>WHERE / SELECT</td><td>References outer query column; runs once per outer row</td></tr>
+        <tr><td>CTE (WITH)</td><td>Before main query</td><td>WITH top AS (...) SELECT * FROM top</td></tr>
+      </tbody></table>
     </div>
     <div class="filter-bar" id="sql-filter-bar">
       <button class="filter-btn active" onclick="filterSQL('All')">All</button>
@@ -387,7 +378,6 @@
       <button class="filter-btn" onclick="filterSQL('Window Functions')">Window Functions</button>
       <button class="filter-btn" onclick="filterSQL('CASE WHEN')">CASE WHEN</button>
       <button class="filter-btn" onclick="filterSQL('Date & Time')">Date & Time</button>
-      <button class="filter-btn" onclick="filterSQL('String Functions')">String Functions</button>
       <button class="filter-btn" onclick="filterSQL('NULL Handling')">NULL Handling</button>
       <button class="filter-btn" onclick="filterSQL('Advanced')">Advanced</button>
     </div>
@@ -399,7 +389,7 @@
       </div>
       <div>
         <div class="qa-nav">
-          <div class="qa-counter" id="sql-counter">Question 1 of 30</div>
+          <div class="qa-counter" id="sql-counter">Question 1 of 44</div>
           <div style="display:flex;gap:.5rem;"><button class="nav-btn" id="sql-prev" onclick="sqlNav(-1)" disabled>← Prev</button><button class="nav-btn" id="sql-next" onclick="sqlNav(1)">Next →</button></div>
         </div>
         <div class="qa-card" id="sql-qa"></div>
@@ -424,7 +414,7 @@
           <button class="filter-btn" onclick="filterPY('Advanced')">Advanced</button>
         </div>
         <div class="qa-nav">
-          <div class="qa-counter" id="py-counter">Question 1 of 48</div>
+          <div class="qa-counter" id="py-counter">Question 1 of 9</div>
           <div style="display:flex;gap:.5rem;"><button class="nav-btn" id="py-prev" onclick="pyNav(-1)" disabled>← Prev</button><button class="nav-btn" id="py-next" onclick="pyNav(1)">Next →</button></div>
         </div>
         <div class="qa-card" id="py-qa"></div>
@@ -461,7 +451,7 @@
       <button class="filter-btn" onclick="filterMC('Feature Engineering')">Feature Engineering</button>
     </div>
     <div class="qa-nav">
-      <div class="qa-counter" id="mc-counter">Question 1 of 36</div>
+      <div class="qa-counter" id="mc-counter">Question 1 of 17</div>
       <div style="display:flex;gap:.5rem;">
         <button class="nav-btn" id="mc-prev" onclick="mcNav(-1)" disabled>← Prev</button>
         <button class="nav-btn" id="mc-next" onclick="mcNav(1)">Next →</button>
@@ -469,9 +459,92 @@
     </div>
     <div class="qa-card" id="mc-qa"></div>
   </div>
-</section>
 
-<div class="ltab-panel" id="panel-fl">
+  <!-- STATISTICS PANEL -->
+  <div class="ltab-panel" id="panel-stats">
+    <div class="concept-box">
+      <h4>📐 Key Formulas at a Glance</h4>
+      <table class="concept-table">
+        <thead><tr><th>Metric</th><th>Formula</th><th>Plain English</th></tr></thead>
+        <tbody>
+          <tr><td>Precision</td><td>TP / (TP + FP)</td><td>Of all predicted positives, how many were actually positive?</td></tr>
+          <tr><td>Recall (Sensitivity)</td><td>TP / (TP + FN)</td><td>Of all actual positives, how many did we catch?</td></tr>
+          <tr><td>F1 Score</td><td>2 × (P × R) / (P + R)</td><td>Harmonic mean of precision and recall</td></tr>
+          <tr><td>Accuracy</td><td>(TP + TN) / Total</td><td>Overall correct predictions</td></tr>
+          <tr><td>AUC-ROC</td><td>Area under ROC curve</td><td>Probability model ranks a positive above a negative; 0.5 = random, 1.0 = perfect</td></tr>
+          <tr><td>Variance</td><td>E[(X − μ)²]</td><td>Average squared deviation from the mean</td></tr>
+          <tr><td>Bias</td><td>E[ŷ] − y</td><td>Systematic error — how far off your average prediction is from truth</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mc-filter-bar" id="stats-filter-bar">
+      <button class="filter-btn active" onclick="filterStats('All')">All</button>
+      <button class="filter-btn" onclick="filterStats('p-value')">p-value</button>
+      <button class="filter-btn" onclick="filterStats('Bias-Variance')">Bias-Variance</button>
+      <button class="filter-btn" onclick="filterStats('Precision & Recall')">Precision & Recall</button>
+      <button class="filter-btn" onclick="filterStats('AUC & ROC')">AUC & ROC</button>
+      <button class="filter-btn" onclick="filterStats('Distributions')">Distributions</button>
+      <button class="filter-btn" onclick="filterStats('Hypothesis Testing')">Hypothesis Testing</button>
+    </div>
+    <div class="qa-nav">
+      <div class="qa-counter" id="stats-counter">Question 1 of 20</div>
+      <div style="display:flex;gap:.5rem;">
+        <button class="nav-btn" id="stats-prev" onclick="statsNav(-1)" disabled>← Prev</button>
+        <button class="nav-btn" id="stats-next" onclick="statsNav(1)">Next →</button>
+      </div>
+    </div>
+    <div class="qa-card" id="stats-qa"></div>
+  </div>
+
+  <!-- RAG & LLMs PANEL -->
+  <div class="ltab-panel" id="panel-rag">
+    <div class="concept-box">
+      <h4>🔁 Basic RAG Pipeline (LangChain)</h4>
+      <table class="concept-table">
+        <thead><tr><th>Step</th><th>What happens</th><th>LangChain tool</th></tr></thead>
+        <tbody>
+          <tr><td>1. Load</td><td>Ingest documents (PDF, web, CSV)</td><td>DocumentLoaders</td></tr>
+          <tr><td>2. Split</td><td>Chunk text into manageable pieces</td><td>RecursiveCharacterTextSplitter</td></tr>
+          <tr><td>3. Embed</td><td>Convert chunks to dense vectors</td><td>OpenAIEmbeddings / HuggingFaceEmbeddings</td></tr>
+          <tr><td>4. Store</td><td>Save vectors to a vector DB</td><td>FAISS / Chroma / Pinecone</td></tr>
+          <tr><td>5. Retrieve</td><td>Similarity search for top-k chunks</td><td>vectorstore.as_retriever()</td></tr>
+          <tr><td>6. Generate</td><td>LLM answers using retrieved context</td><td>RetrievalQA / LCEL chain</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="concept-box">
+      <h4>⚡ Encoder vs Decoder Models — When to Use Which</h4>
+      <table class="concept-table">
+        <thead><tr><th>Property</th><th>Encoder (e.g. BERT)</th><th>Decoder (e.g. GPT)</th><th>Encoder-Decoder (e.g. T5)</th></tr></thead>
+        <tbody>
+          <tr><td>Architecture</td><td>Bidirectional — sees full context</td><td>Causal / left-to-right only</td><td>Encoder reads input, decoder generates output</td></tr>
+          <tr><td>Pretraining task</td><td>Masked Language Modeling (MLM)</td><td>Next-token prediction (CLM)</td><td>Text-to-Text (seq2seq)</td></tr>
+          <tr><td>Best for</td><td>Embeddings, classification, NER, retrieval</td><td>Text generation, chat, completion</td><td>Translation, summarization, Q&amp;A</td></tr>
+          <tr><td>RAG role</td><td>✅ Retrieval (embedding the documents)</td><td>✅ Generation (answering the question)</td><td>Either, depending on task</td></tr>
+          <tr><td>Examples</td><td>BERT, RoBERTa, sentence-transformers</td><td>GPT-4, Llama, Mistral, Claude</td><td>T5, BART, Flan-T5</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="mc-filter-bar" id="rag-filter-bar">
+      <button class="filter-btn active" onclick="filterRAG('All')">All</button>
+      <button class="filter-btn" onclick="filterRAG('RAG Pipeline')">RAG Pipeline</button>
+      <button class="filter-btn" onclick="filterRAG('Encoder vs Decoder')">Encoder vs Decoder</button>
+      <button class="filter-btn" onclick="filterRAG('Embeddings')">Embeddings</button>
+      <button class="filter-btn" onclick="filterRAG('LangChain')">LangChain</button>
+      <button class="filter-btn" onclick="filterRAG('Prompting')">Prompting</button>
+    </div>
+    <div class="qa-nav">
+      <div class="qa-counter" id="rag-counter">Question 1 of 20</div>
+      <div style="display:flex;gap:.5rem;">
+        <button class="nav-btn" id="rag-prev" onclick="ragNav(-1)" disabled>← Prev</button>
+        <button class="nav-btn" id="rag-next" onclick="ragNav(1)">Next →</button>
+      </div>
+    </div>
+    <div class="qa-card" id="rag-qa"></div>
+  </div>
+
+  <!-- FUNCTIONS & LOOPS PANEL -->
+  <div class="ltab-panel" id="panel-fl">
     <div class="fl-layout">
       <div class="fl-left-col">
         <div class="fl-score-bar">
@@ -492,16 +565,17 @@
           <button class="filter-btn" onclick="filterFL('Loops')">🔁 Loops</button>
           <button class="filter-btn" onclick="filterFL('Comprehensions')">⚡ Comprehensions</button>
           <button class="filter-btn" onclick="filterFL('Lambda')">λ Lambda</button>
-          <button class="filter-btn" onclick="filterFL('Scope &amp; Args')">🎯 Scope &amp; Args</button>
+          <button class="filter-btn" onclick="filterFL('Scope & Args')">🎯 Scope &amp; Args</button>
         </div>
         <div class="qa-nav">
-          <div class="qa-counter" id="fl-counter">Question 1 of 40</div>
+          <div class="qa-counter" id="fl-counter">Question 1 of 14</div>
           <div style="display:flex;gap:.5rem;"><button class="nav-btn" id="fl-prev" onclick="flNav(-1)" disabled>← Prev</button><button class="nav-btn" id="fl-next" onclick="flNav(1)">Next →</button></div>
         </div>
         <div class="qa-card" id="fl-qa"></div>
       </div>
     </div>
   </div>
+</section>
 
 <!-- ML GUIDE -->
 <section id="ml">
@@ -604,75 +678,153 @@ function closePDFBtn(){
 }
 function closePDF(e){if(e.target===document.getElementById('pdf-overlay'))closePDFBtn();}
 
+// ── NORMALIZE SQL (case-insensitive, whitespace-normalized) ──────────────────
+function normSQL(s){
+  return s.trim().toLowerCase().replace(/\s+/g,' ').replace(/;$/, '');
+}
+
+// ── SQL QUESTIONS (44 total, expanded subqueries) ────────────────────────────
 const sqlQuestions=[
-  {cat:"SELECT & Filter",q:"Select all employees in the Finance department earning more than $90,000.",hint:"\ud83d\udca1 WHERE dept = 'Finance' AND salary > 90000",a:"SELECT * FROM employees\nWHERE dept = 'Finance' AND salary > 90000;"},
-  {cat:"SELECT & Filter",q:"Find all employees hired between 2020 and 2022 (inclusive).",hint:"\ud83d\udca1 BETWEEN works on dates too",a:"SELECT * FROM employees\nWHERE hire_date BETWEEN '2020-01-01' AND '2022-12-31';"},
-  {cat:"SELECT & Filter",q:"List employees whose name starts with the letter R.",hint:"\ud83d\udca1 LIKE 'R%'",a:"SELECT * FROM employees WHERE name LIKE 'R%';"},
-  {cat:"SELECT & Filter",q:"Find all sales where the amount is between $3,000 and $6,000.",hint:"\ud83d\udca1 BETWEEN includes both endpoints",a:"SELECT * FROM sales WHERE amount BETWEEN 3000 AND 6000;"},
-  {cat:"SELECT & Filter",q:"Select all employees NOT in Marketing.",hint:"\ud83d\udca1 WHERE dept != 'Marketing' or use NOT IN",a:"SELECT * FROM employees WHERE dept != 'Marketing';"},
-  {cat:"SELECT & Filter",q:"Find all sales in the East or West region.",hint:"\ud83d\udca1 Use IN ('East','West') or OR",a:"SELECT * FROM sales WHERE region IN ('East','West');"},
-  {cat:"SELECT & Filter",q:"Return the top 3 highest-paid employees.",hint:"\ud83d\udca1 ORDER BY salary DESC LIMIT 3",a:"SELECT * FROM employees ORDER BY salary DESC LIMIT 3;"},
-  {cat:"SELECT & Filter",q:"Find all employees whose salary is NULL.",hint:"\ud83d\udca1 IS NULL \u2014 never use = NULL",a:"SELECT * FROM employees WHERE salary IS NULL;"},
-  {cat:"SELECT & Filter",q:"List all distinct departments in the employees table.",hint:"\ud83d\udca1 SELECT DISTINCT",a:"SELECT DISTINCT dept FROM employees;"},
-  {cat:"SELECT & Filter",q:"Select employee name and salary, aliased as Employee and Annual Pay.",hint:"\ud83d\udca1 column AS alias \u2014 use double quotes for multi-word aliases",a:"SELECT name AS \"Employee\", salary AS \"Annual Pay\" FROM employees;"},
-  {cat:"Aggregations",q:"Find the total sales amount across all regions.",hint:"\ud83d\udca1 SUM(amount)",a:"SELECT SUM(amount) AS total_sales FROM sales;"},
-  {cat:"Aggregations",q:"Find the average salary across all employees.",hint:"\ud83d\udca1 AVG(salary)",a:"SELECT AVG(salary) AS avg_salary FROM employees;"},
-  {cat:"Aggregations",q:"Count how many sales happened in the East region.",hint:"\ud83d\udca1 COUNT(*) with WHERE region = 'East'",a:"SELECT COUNT(*) AS east_sales FROM sales WHERE region = 'East';"},
-  {cat:"Aggregations",q:"Find the highest and lowest salary in the company in one query.",hint:"\ud83d\udca1 MAX() and MIN() in the same SELECT",a:"SELECT MAX(salary) AS highest, MIN(salary) AS lowest FROM employees;"},
-  {cat:"Aggregations",q:"Find the total sales amount per employee (show emp_id and total).",hint:"\ud83d\udca1 SUM + GROUP BY emp_id",a:"SELECT emp_id, SUM(amount) AS total_sales FROM sales GROUP BY emp_id;"},
-  {cat:"Aggregations",q:"Find the average sale amount per region.",hint:"\ud83d\udca1 AVG + GROUP BY region",a:"SELECT region, AVG(amount) AS avg_sale FROM sales GROUP BY region;"},
-  {cat:"Aggregations",q:"Count the number of employees in each department.",hint:"\ud83d\udca1 COUNT(*) GROUP BY dept",a:"SELECT dept, COUNT(*) AS headcount FROM employees GROUP BY dept;"},
-  {cat:"Aggregations",q:"Find the total payroll cost per department.",hint:"\ud83d\udca1 SUM(salary) GROUP BY dept",a:"SELECT dept, SUM(salary) AS total_payroll FROM employees GROUP BY dept;"},
-  {cat:"Aggregations",q:"Find departments where the average salary exceeds $90,000.",hint:"\ud83d\udca1 GROUP BY dept HAVING AVG(salary) > 90000",a:"SELECT dept, AVG(salary) AS avg_sal\nFROM employees\nGROUP BY dept\nHAVING AVG(salary) > 90000;"},
-  {cat:"Aggregations",q:"Find employees who made more than 1 sale. Show emp_id and sale count.",hint:"\ud83d\udca1 COUNT(*) GROUP BY emp_id HAVING COUNT(*) > 1",a:"SELECT emp_id, COUNT(*) AS sale_count\nFROM sales\nGROUP BY emp_id\nHAVING COUNT(*) > 1;"},
-  {cat:"JOINs",q:"Show each sale with the employee name who made it.",hint:"\ud83d\udca1 JOIN employees ON emp_id",a:"SELECT e.name, s.amount, s.sale_date, s.region\nFROM sales s\nJOIN employees e ON s.emp_id = e.emp_id;"},
-  {cat:"JOINs",q:"Show all employees and their sales \u2014 include employees with no sales.",hint:"\ud83d\udca1 LEFT JOIN keeps all employees even if no matching sale",a:"SELECT e.name, s.amount, s.sale_date\nFROM employees e\nLEFT JOIN sales s ON e.emp_id = s.emp_id;"},
-  {cat:"JOINs",q:"Find employees who have never made a sale.",hint:"\ud83d\udca1 LEFT JOIN then WHERE s.emp_id IS NULL",a:"SELECT e.name\nFROM employees e\nLEFT JOIN sales s ON e.emp_id = s.emp_id\nWHERE s.emp_id IS NULL;"},
-  {cat:"JOINs",q:"Show total sales per employee including employees with $0 in sales.",hint:"\ud83d\udca1 LEFT JOIN + COALESCE(SUM(amount), 0)",a:"SELECT e.name, COALESCE(SUM(s.amount), 0) AS total_sales\nFROM employees e\nLEFT JOIN sales s ON e.emp_id = s.emp_id\nGROUP BY e.name;"},
-  {cat:"Subqueries",q:"Find all employees earning above the company average salary.",hint:"\ud83d\udca1 WHERE salary > (SELECT AVG(salary) FROM employees)",a:"SELECT name, salary\nFROM employees\nWHERE salary > (SELECT AVG(salary) FROM employees);"},
-  {cat:"Subqueries",q:"Find the second-highest salary in the employees table.",hint:"\ud83d\udca1 Exclude the max, then find the new max",a:"SELECT MAX(salary) AS second_highest\nFROM employees\nWHERE salary < (SELECT MAX(salary) FROM employees);"},
-  {cat:"CTEs",q:"Using a CTE, find all employees who earn above the company average salary.",hint:"\ud83d\udca1 WITH avg_cte AS (SELECT AVG...) SELECT... WHERE salary > cte value",a:"WITH avg_sal AS (\n  SELECT AVG(salary) AS company_avg FROM employees\n)\nSELECT e.name, e.salary\nFROM employees e, avg_sal\nWHERE e.salary > avg_sal.company_avg;"},
-  {cat:"CTEs",q:"Use a CTE to rank employees by salary within each department, then return only rank 1.",hint:"\ud83d\udca1 CTE with RANK() OVER, then WHERE rnk = 1 in outer query",a:"WITH ranked AS (\n  SELECT name, dept, salary,\n    RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk\n  FROM employees\n)\nSELECT name, dept, salary\nFROM ranked\nWHERE rnk = 1;"},
-  {cat:"Window Functions",q:"Rank employees within each department by salary, highest first. Use RANK().",hint:"\ud83d\udca1 RANK() OVER (PARTITION BY dept ORDER BY salary DESC)",a:"SELECT name, dept, salary,\n  RANK() OVER (\n    PARTITION BY dept\n    ORDER BY salary DESC\n  ) AS salary_rank\nFROM employees;"},
-  {cat:"Window Functions",q:"Show each sale with a running total per employee ordered by date.",hint:"\ud83d\udca1 SUM() OVER (PARTITION BY emp_id ORDER BY sale_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)",a:"SELECT sale_id, emp_id, amount, sale_date,\n  SUM(amount) OVER (\n    PARTITION BY emp_id\n    ORDER BY sale_date\n    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n  ) AS running_total\nFROM sales;"},
-  {cat:"CASE WHEN",q:"Label each employee as Senior (salary > $95k), Mid ($75k-$95k), or Junior (<$75k).",hint:"\ud83d\udca1 CASE WHEN salary > 95000 THEN ... WHEN salary >= 75000 THEN ... ELSE ...",a:"SELECT name, salary,\n  CASE\n    WHEN salary > 95000 THEN 'Senior'\n    WHEN salary >= 75000 THEN 'Mid'\n    ELSE 'Junior'\n  END AS level\nFROM employees;"},
+  // SELECT & Filter
+  {cat:"SELECT & Filter",q:"Select all employees in the Finance department earning more than $90,000.",hint:"💡 WHERE dept = 'Finance' AND salary > 90000",a:"select * from employees\nwhere dept = 'finance' and salary > 90000"},
+  {cat:"SELECT & Filter",q:"Find all employees hired between 2020 and 2022 (inclusive).",hint:"💡 BETWEEN works on dates too",a:"select * from employees\nwhere hire_date between '2020-01-01' and '2022-12-31'"},
+  {cat:"SELECT & Filter",q:"List employees whose name starts with the letter R.",hint:"💡 LIKE 'R%'",a:"select * from employees where name like 'r%'"},
+  {cat:"SELECT & Filter",q:"Find all sales where the amount is between $3,000 and $6,000.",hint:"💡 BETWEEN includes both endpoints",a:"select * from sales where amount between 3000 and 6000"},
+  {cat:"SELECT & Filter",q:"Select all employees NOT in Marketing.",hint:"💡 WHERE dept != 'Marketing' or use NOT IN",a:"select * from employees where dept != 'marketing'"},
+  {cat:"SELECT & Filter",q:"Find all sales in the East or West region.",hint:"💡 Use IN ('East','West') or OR",a:"select * from sales where region in ('east','west')"},
+  {cat:"SELECT & Filter",q:"Return the top 3 highest-paid employees.",hint:"💡 ORDER BY salary DESC LIMIT 3",a:"select * from employees order by salary desc limit 3"},
+  {cat:"SELECT & Filter",q:"Find all employees whose salary is NULL.",hint:"💡 IS NULL — never use = NULL",a:"select * from employees where salary is null"},
+  {cat:"SELECT & Filter",q:"List all distinct departments in the employees table.",hint:"💡 SELECT DISTINCT",a:"select distinct dept from employees"},
+  // Aggregations
+  {cat:"Aggregations",q:"Find the total sales amount across all regions.",hint:"💡 SUM(amount)",a:"select sum(amount) as total_sales from sales"},
+  {cat:"Aggregations",q:"Find the average salary across all employees.",hint:"💡 AVG(salary)",a:"select avg(salary) as avg_salary from employees"},
+  {cat:"Aggregations",q:"Count how many sales happened in the East region.",hint:"💡 COUNT(*) with WHERE region = 'East'",a:"select count(*) as east_sales from sales where region = 'east'"},
+  {cat:"Aggregations",q:"Find the highest and lowest salary in the company in one query.",hint:"💡 MAX() and MIN() in the same SELECT",a:"select max(salary) as highest, min(salary) as lowest from employees"},
+  {cat:"Aggregations",q:"Find the total sales amount per employee (show emp_id and total).",hint:"💡 SUM + GROUP BY emp_id",a:"select emp_id, sum(amount) as total_sales from sales group by emp_id"},
+  {cat:"Aggregations",q:"Find departments where the average salary exceeds $90,000.",hint:"💡 GROUP BY dept HAVING AVG(salary) > 90000",a:"select dept, avg(salary) as avg_sal\nfrom employees\ngroup by dept\nhaving avg(salary) > 90000"},
+  {cat:"Aggregations",q:"Find employees who made more than 1 sale. Show emp_id and sale count.",hint:"💡 COUNT(*) GROUP BY emp_id HAVING COUNT(*) > 1",a:"select emp_id, count(*) as sale_count\nfrom sales\ngroup by emp_id\nhaving count(*) > 1"},
+  // JOINs
+  {cat:"JOINs",q:"Show each sale with the employee name who made it.",hint:"💡 JOIN employees ON emp_id",a:"select e.name, s.amount, s.sale_date, s.region\nfrom sales s\njoin employees e on s.emp_id = e.emp_id"},
+  {cat:"JOINs",q:"Show all employees and their sales — include employees with no sales.",hint:"💡 LEFT JOIN keeps all employees even if no matching sale",a:"select e.name, s.amount, s.sale_date\nfrom employees e\nleft join sales s on e.emp_id = s.emp_id"},
+  {cat:"JOINs",q:"Find employees who have never made a sale.",hint:"💡 LEFT JOIN then WHERE s.emp_id IS NULL",a:"select e.name\nfrom employees e\nleft join sales s on e.emp_id = s.emp_id\nwhere s.emp_id is null"},
+  // Subqueries (greatly expanded)
+  {cat:"Subqueries",q:"Find all employees earning above the company average salary.",hint:"💡 WHERE salary > (SELECT AVG(salary) FROM employees)",a:"select name, salary\nfrom employees\nwhere salary > (select avg(salary) from employees)"},
+  {cat:"Subqueries",q:"Find the second-highest salary in the employees table.",hint:"💡 Exclude the max, then find the new max with a nested SELECT",a:"select max(salary) as second_highest\nfrom employees\nwhere salary < (select max(salary) from employees)"},
+  {cat:"Subqueries",q:"Find all employees whose salary is above the average salary of their own department. (Correlated subquery)",hint:"💡 The inner SELECT references e.dept from the outer query — this is a correlated subquery",a:"select e.name, e.dept, e.salary\nfrom employees e\nwhere e.salary > (\n  select avg(salary) from employees\n  where dept = e.dept\n)"},
+  {cat:"Subqueries",q:"List all employees who have made at least one sale. Use EXISTS.",hint:"💡 WHERE EXISTS (SELECT 1 FROM sales WHERE emp_id = e.emp_id)",a:"select e.name\nfrom employees e\nwhere exists (\n  select 1 from sales s\n  where s.emp_id = e.emp_id\n)"},
+  {cat:"Subqueries",q:"List employees who have NEVER made a sale. Use NOT EXISTS.",hint:"💡 WHERE NOT EXISTS (SELECT 1 FROM sales WHERE emp_id = e.emp_id)",a:"select e.name\nfrom employees e\nwhere not exists (\n  select 1 from sales s\n  where s.emp_id = e.emp_id\n)"},
+  {cat:"Subqueries",q:"Find the department(s) with the highest total payroll. Use a subquery in WHERE.",hint:"💡 Compare each dept's SUM(salary) to MAX of all dept sums using a subquery",a:"select dept, sum(salary) as total_payroll\nfrom employees\ngroup by dept\nhaving sum(salary) = (\n  select max(dept_total)\n  from (\n    select sum(salary) as dept_total\n    from employees\n    group by dept\n  ) t\n)"},
+  {cat:"Subqueries",q:"Use a subquery in the FROM clause (inline view) to find departments where average salary > 90000.",hint:"💡 Wrap the aggregation in a subquery and filter it in the outer WHERE",a:"select dept, avg_salary\nfrom (\n  select dept, avg(salary) as avg_salary\n  from employees\n  group by dept\n) dept_avgs\nwhere avg_salary > 90000"},
+  {cat:"Subqueries",q:"Find all sales made by Finance department employees. Use a subquery with IN.",hint:"💡 WHERE emp_id IN (SELECT emp_id FROM employees WHERE dept = 'Finance')",a:"select *\nfrom sales\nwhere emp_id in (\n  select emp_id from employees\n  where dept = 'finance'\n)"},
+  {cat:"Subqueries",q:"Return each employee's name and their rank within the company by salary, using a subquery to count how many employees earn more.",hint:"💡 Correlated subquery: COUNT(*) of employees with salary > current row's salary",a:"select name, salary,\n  (select count(*) from employees e2 where e2.salary > e.salary) + 1 as salary_rank\nfrom employees e\norder by salary_rank"},
+  {cat:"Subqueries",q:"Find all employees who earn more than every Marketing department employee. (Use ALL)",hint:"💡 WHERE salary > ALL (SELECT salary FROM employees WHERE dept = 'Marketing')",a:"select name, salary\nfrom employees\nwhere salary > all (\n  select salary from employees\n  where dept = 'marketing'\n)"},
+  {cat:"Subqueries",q:"Find all employees whose salary is equal to the maximum salary in their department. (Correlated subquery)",hint:"💡 WHERE salary = (SELECT MAX(salary) FROM employees WHERE dept = outer.dept)",a:"select name, dept, salary\nfrom employees e\nwhere salary = (\n  select max(salary) from employees\n  where dept = e.dept\n)"},
+  // CTEs
+  {cat:"CTEs",q:"Using a CTE, find all employees who earn above the company average salary.",hint:"💡 WITH avg_cte AS (SELECT AVG...) SELECT... WHERE salary > cte value",a:"with avg_sal as (\n  select avg(salary) as company_avg from employees\n)\nselect e.name, e.salary\nfrom employees e, avg_sal\nwhere e.salary > avg_sal.company_avg"},
+  {cat:"CTEs",q:"Use a CTE to rank employees by salary within each department, then return only rank 1.",hint:"💡 CTE with RANK() OVER, then WHERE rnk = 1 in outer query",a:"with ranked as (\n  select name, dept, salary,\n    rank() over (partition by dept order by salary desc) as rnk\n  from employees\n)\nselect name, dept, salary\nfrom ranked\nwhere rnk = 1"},
+  // Window Functions
+  {cat:"Window Functions",q:"Rank employees within each department by salary, highest first. Use RANK().",hint:"💡 RANK() OVER (PARTITION BY dept ORDER BY salary DESC)",a:"select name, dept, salary,\n  rank() over (\n    partition by dept\n    order by salary desc\n  ) as salary_rank\nfrom employees"},
+  {cat:"Window Functions",q:"Show each sale with a running total per employee ordered by date.",hint:"💡 SUM() OVER (PARTITION BY emp_id ORDER BY sale_date)",a:"select sale_id, emp_id, amount, sale_date,\n  sum(amount) over (\n    partition by emp_id\n    order by sale_date\n  ) as running_total\nfrom sales"},
+  {cat:"Window Functions",q:"Show the previous sale amount for each employee (per emp_id, ordered by date). Use LAG().",hint:"💡 LAG(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)",a:"select sale_id, emp_id, amount, sale_date,\n  lag(amount, 1) over (\n    partition by emp_id order by sale_date\n  ) as prev_amount\nfrom sales"},
+  // CASE WHEN
+  {cat:"CASE WHEN",q:"Label each employee as Senior (salary > $95k), Mid ($75k-$95k), or Junior (<$75k).",hint:"💡 CASE WHEN salary > 95000 THEN ... WHEN salary >= 75000 THEN ... ELSE ...",a:"select name, salary,\n  case\n    when salary > 95000 then 'senior'\n    when salary >= 75000 then 'mid'\n    else 'junior'\n  end as level\nfrom employees"},
+  // NULL Handling
+  {cat:"NULL Handling",q:"Show each employee's name and salary. If salary is NULL, display 0 instead.",hint:"💡 COALESCE(salary, 0)",a:"select name, coalesce(salary, 0) as salary\nfrom employees"},
+  {cat:"NULL Handling",q:"Count how many employees do NOT have a recorded salary (salary is NULL).",hint:"💡 WHERE salary IS NULL then COUNT(*)",a:"select count(*) as no_salary_count\nfrom employees\nwhere salary is null"},
+  // Date & Time
+  {cat:"Date & Time",q:"Find all employees hired in the year 2020.",hint:"💡 EXTRACT(YEAR FROM hire_date) = 2020 or hire_date BETWEEN",a:"select * from employees\nwhere extract(year from hire_date) = 2020"},
+  {cat:"Date & Time",q:"Find all sales from January 2024.",hint:"💡 WHERE sale_date >= '2024-01-01' AND sale_date < '2024-02-01'",a:"select * from sales\nwhere sale_date >= '2024-01-01' and sale_date < '2024-02-01'"},
+  // Advanced
+  {cat:"Advanced",q:"Find the employee in each department with the highest total sales amount. Use a CTE with RANK().",hint:"💡 JOIN sales, SUM per employee, RANK() OVER PARTITION BY dept, filter WHERE rnk=1",a:"with emp_sales as (\n  select e.name, e.dept, sum(s.amount) as total\n  from employees e\n  join sales s on e.emp_id = s.emp_id\n  group by e.name, e.dept\n),\nranked as (\n  select *, rank() over (partition by dept order by total desc) as rnk\n  from emp_sales\n)\nselect name, dept, total\nfrom ranked where rnk = 1"},
+  {cat:"Advanced",q:"Write a query to find all pairs of employees in the same department. Show each pair once.",hint:"💡 Self-join: FROM employees a JOIN employees b ON a.dept = b.dept WHERE a.emp_id < b.emp_id",a:"select a.name as emp1, b.name as emp2, a.dept\nfrom employees a\njoin employees b on a.dept = b.dept\nwhere a.emp_id < b.emp_id"},
+  {cat:"Advanced",q:"Show the month-over-month change in total sales amount.",hint:"💡 Use DATE_TRUNC or EXTRACT(MONTH), GROUP BY month, then LAG() to subtract previous month",a:"with monthly as (\n  select extract(month from sale_date) as month,\n    sum(amount) as total\n  from sales\n  group by month\n)\nselect month, total,\n  total - lag(total) over (order by month) as mom_change\nfrom monthly"},
+  {cat:"Advanced",q:"Pivot the sales table to show total sales per employee per region (East, West, South) as separate columns. Use CASE WHEN.",hint:"💡 SUM(CASE WHEN region = 'East' THEN amount ELSE 0 END) AS east_total",a:"select emp_id,\n  sum(case when region='east' then amount else 0 end) as east_total,\n  sum(case when region='west' then amount else 0 end) as west_total,\n  sum(case when region='south' then amount else 0 end) as south_total\nfrom sales\ngroup by emp_id"},
 ];
 
 const pyQuestions=[
-  {cat:"Basics",q:"Show the first 5 rows and shape of df_transactions.",hint:"\ud83d\udca1 df.head() and df.shape",a:"print(df_transactions.head())\nprint('Shape:', df_transactions.shape)"},
-  {cat:"Basics",q:"Get data types and check for missing values.",hint:"\ud83d\udca1 .dtypes and .isnull().sum()",a:"print(df_transactions.dtypes)\nprint(df_transactions.isnull().sum())"},
-  {cat:"Basics",q:"Filter df_transactions to only AAPL rows.",hint:"\ud83d\udca1 df[df['ticker'] == 'AAPL']",a:"aapl = df_transactions[df_transactions['ticker'] == 'AAPL']"},
-  {cat:"GroupBy",q:"Calculate the mean return_pct for each ticker.",hint:"\ud83d\udca1 groupby('ticker')['return_pct'].mean()",a:"df_transactions.groupby('ticker')['return_pct'].mean()"},
-  {cat:"GroupBy",q:"Find the total volume and average price per ticker in one call.",hint:"\ud83d\udca1 groupby + agg with a dict",a:"df_transactions.groupby('ticker').agg(\n  total_volume=('volume','sum'),\n  avg_price=('price','mean')\n)"},
-  {cat:"Feature Engineering",q:"Create a price_change column: absolute dollar change from previous day per ticker.",hint:"\ud83d\udca1 groupby + diff()",a:"df_transactions['price_change'] = (\n  df_transactions.sort_values(['ticker','date'])\n  .groupby('ticker')['price']\n  .diff()\n)"},
-  {cat:"Feature Engineering",q:"Create a binary big_move column: 1 if abs(return_pct) > 1.0, else 0.",hint:"\ud83d\udca1 (df['return_pct'].abs() > 1).astype(int)",a:"df_transactions['big_move'] = (df_transactions['return_pct'].abs() > 1).astype(int)"},
-  {cat:"EDA & Visualization",q:"Plot the distribution of return_pct as a histogram.",hint:"\ud83d\udca1 df['return_pct'].hist(bins=30) or seaborn histplot",a:"import matplotlib.pyplot as plt\ndf_transactions['return_pct'].hist(bins=30, color='#b39de8')\nplt.title('Return % Distribution')\nplt.show()"},
-  {cat:"Advanced",q:"Compute the Sharpe ratio (mean / std of return_pct) for each ticker.",hint:"\ud83d\udca1 groupby + apply with a lambda or named function",a:"sharpe = df_transactions.groupby('ticker')['return_pct'].apply(\n  lambda x: x.mean() / x.std()\n)\nprint(sharpe)"},
+  {cat:"Basics",q:"Show the first 5 rows and shape of df_transactions.",hint:"💡 df.head() and df.shape",a:"print(df_transactions.head())\nprint('Shape:', df_transactions.shape)"},
+  {cat:"Basics",q:"Get data types and check for missing values.",hint:"💡 .dtypes and .isnull().sum()",a:"print(df_transactions.dtypes)\nprint(df_transactions.isnull().sum())"},
+  {cat:"Basics",q:"Filter df_transactions to only AAPL rows.",hint:"💡 df[df['ticker'] == 'AAPL']",a:"aapl = df_transactions[df_transactions['ticker'] == 'AAPL']"},
+  {cat:"GroupBy",q:"Calculate the mean return_pct for each ticker.",hint:"💡 groupby('ticker')['return_pct'].mean()",a:"df_transactions.groupby('ticker')['return_pct'].mean()"},
+  {cat:"GroupBy",q:"Find the total volume and average price per ticker in one call.",hint:"💡 groupby + agg with a dict",a:"df_transactions.groupby('ticker').agg(\n  total_volume=('volume','sum'),\n  avg_price=('price','mean')\n)"},
+  {cat:"Feature Engineering",q:"Create a price_change column: absolute dollar change from previous day per ticker.",hint:"💡 groupby + diff()",a:"df_transactions['price_change'] = (\n  df_transactions.sort_values(['ticker','date'])\n  .groupby('ticker')['price']\n  .diff()\n)"},
+  {cat:"Feature Engineering",q:"Create a binary big_move column: 1 if abs(return_pct) > 1.0, else 0.",hint:"💡 (df['return_pct'].abs() > 1).astype(int)",a:"df_transactions['big_move'] = (df_transactions['return_pct'].abs() > 1).astype(int)"},
+  {cat:"EDA & Visualization",q:"Plot the distribution of return_pct as a histogram.",hint:"💡 df['return_pct'].hist(bins=30) or seaborn histplot",a:"import matplotlib.pyplot as plt\ndf_transactions['return_pct'].hist(bins=30, color='#b39de8')\nplt.title('Return % Distribution')\nplt.show()"},
+  {cat:"Advanced",q:"Compute the Sharpe ratio (mean / std of return_pct) for each ticker.",hint:"💡 groupby + apply with a lambda or named function",a:"sharpe = df_transactions.groupby('ticker')['return_pct'].apply(\n  lambda x: x.mean() / x.std()\n)\nprint(sharpe)"},
 ];
 
 const fitbQuestions=[
-  {cat:'SQL',title:'Count all rows',template:'SELECT ___(*) FROM employees;',blanks:['COUNT'],hint:'Which function counts all rows?'},
-  {cat:'SQL',title:'Count non-NULL salaries',template:'SELECT ___(salary) FROM employees;',blanks:['COUNT'],hint:'COUNT ignores NULLs when given a column name'},
-  {cat:'SQL',title:'Count unique departments',template:'SELECT COUNT(___ dept) FROM employees;',blanks:['DISTINCT'],hint:'Which keyword removes duplicates?'},
-  {cat:'SQL',title:'Group and count',template:'SELECT dept, COUNT(*) FROM employees ___ BY dept;',blanks:['GROUP'],hint:'Which clause groups rows together?'},
-  {cat:'SQL',title:'Filter groups',template:'SELECT dept, COUNT(*) FROM employees GROUP BY dept ___ COUNT(*) > 1;',blanks:['HAVING'],hint:'HAVING filters after grouping; WHERE filters before'},
-  {cat:'SQL',title:'Total spend per customer',template:'SELECT customer, ___(amount) FROM orders GROUP BY customer;',blanks:['SUM'],hint:'Trigger word: "total amount"'},
-  {cat:'SQL',title:'Average order per customer',template:'SELECT customer, ___(amount) FROM orders GROUP BY customer;',blanks:['AVG'],hint:'Trigger word: "average"'},
-  {cat:'SQL',title:'Running total window',template:'SELECT sale_id, SUM(amount) OVER (PARTITION BY emp_id ___ BY sale_date) FROM sales;',blanks:['ORDER'],hint:'Window functions need ORDER BY for running totals'},
-  {cat:'SQL',title:'Rank within group',template:'SELECT name, dept, ___()\nOVER (PARTITION BY dept ORDER BY salary DESC) FROM employees;',blanks:['RANK'],hint:'Which window function ranks rows?'},
-  {cat:'SQL',title:'Previous row value',template:'SELECT sale_id, ___(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date) FROM sales;',blanks:['LAG'],hint:'Which function looks at the previous row?'},
+  {cat:'SQL',title:'Count all rows',template:'SELECT ___(*) FROM employees;',blanks:['count'],hint:'Which function counts all rows?'},
+  {cat:'SQL',title:'Count non-NULL salaries',template:'SELECT ___(salary) FROM employees;',blanks:['count'],hint:'COUNT ignores NULLs when given a column name'},
+  {cat:'SQL',title:'Count unique departments',template:'SELECT COUNT(___ dept) FROM employees;',blanks:['distinct'],hint:'Which keyword removes duplicates?'},
+  {cat:'SQL',title:'Group and count',template:'SELECT dept, COUNT(*) FROM employees ___ BY dept;',blanks:['group'],hint:'Which clause groups rows together?'},
+  {cat:'SQL',title:'Filter groups',template:'SELECT dept, COUNT(*) FROM employees GROUP BY dept ___ COUNT(*) > 1;',blanks:['having'],hint:'HAVING filters after grouping; WHERE filters before'},
+  {cat:'SQL',title:'Total spend per customer',template:'SELECT customer, ___(amount) FROM orders GROUP BY customer;',blanks:['sum'],hint:'Trigger word: "total amount"'},
+  {cat:'SQL',title:'Average order per customer',template:'SELECT customer, ___(amount) FROM orders GROUP BY customer;',blanks:['avg'],hint:'Trigger word: "average"'},
+  {cat:'SQL',title:'Running total window',template:'SELECT sale_id, SUM(amount) OVER (PARTITION BY emp_id ___ BY sale_date) FROM sales;',blanks:['order'],hint:'Window functions need ORDER BY for running totals'},
+  {cat:'SQL',title:'Rank within group',template:'SELECT name, dept, ___()\nOVER (PARTITION BY dept ORDER BY salary DESC) FROM employees;',blanks:['rank'],hint:'Which window function ranks rows?'},
+  {cat:'SQL',title:'Previous row value',template:'SELECT sale_id, ___(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date) FROM sales;',blanks:['lag'],hint:'Which function looks at the previous row?'},
   {cat:'ML',title:'Random Forest',template:'Random Forest builds many ___ trees and combines their predictions to reduce ___.', blanks:['decision','overfitting'],hint:'Think: ensemble of weak learners'},
   {cat:'ML',title:'K-Means',template:'K-Means assigns data points to the nearest ___, then re-calculates ___ positions until stable.',blanks:['centroid','centroid'],hint:'Think: cluster centers'},
 ];
 
+// ── STATISTICS QUESTIONS ─────────────────────────────────────────────────────
+const statsQuestions=[
+  {cat:"p-value",type:"mc",q:"What does a p-value of 0.03 tell you (using α = 0.05)?",choices:["There is a 3% chance the null hypothesis is true","The effect size is large","There is strong enough evidence to reject the null hypothesis","The alternative hypothesis is definitely true"],answer:2,explain:"A p-value < α (0.05) means the result is statistically significant — we reject H₀. It does NOT mean the null is 3% likely to be true; that's a common misconception."},
+  {cat:"p-value",type:"mc",q:"If p = 0.12 and α = 0.05, what do you conclude?",choices:["Reject the null hypothesis","Fail to reject the null hypothesis","The null hypothesis is proven true","The data has no pattern"],answer:1,explain:"p = 0.12 > α = 0.05, so we fail to reject H₀. We don't 'accept' H₀ — we just lack sufficient evidence to reject it."},
+  {cat:"p-value",type:"mc",q:"What does a very small p-value (e.g. p < 0.001) tell you about effect size?",choices:["The effect is very large","Nothing about effect size — statistical significance ≠ practical significance","The model is 99.9% accurate","Sample size is small"],answer:1,explain:"A tiny p-value only means the result is unlikely under H₀, often driven by large sample sizes. Always check effect size (Cohen's d, R²) separately."},
+  {cat:"Hypothesis Testing",type:"mc",q:"What is the null hypothesis (H₀) in an A/B test comparing two email subject lines?",choices:["Subject line A performs better than B","There is no difference in click-through rate between A and B","Subject line B is the control","The test ran for insufficient time"],answer:1,explain:"H₀ always states 'no effect' or 'no difference.' The alternative (H₁) is that a difference exists."},
+  {cat:"Hypothesis Testing",type:"mc",q:"What is a Type I error?",choices:["Failing to detect a real effect","Rejecting H₀ when it is actually true (false positive)","Accepting a false alternative hypothesis","Using the wrong statistical test"],answer:1,explain:"Type I error = false positive. You conclude there's an effect when there isn't one. Controlled by α (significance level)."},
+  {cat:"Hypothesis Testing",type:"mc",q:"What is a Type II error?",choices:["Rejecting a true null hypothesis","Failing to reject H₀ when it is actually false (false negative)","Running the test for too long","Choosing the wrong model"],answer:1,explain:"Type II error = false negative. You miss a real effect. Controlled by statistical power (1 - β)."},
+  {cat:"Bias-Variance",type:"mc",q:"A model that perfectly fits training data but performs poorly on test data is suffering from:",choices:["High bias / underfitting","High variance / overfitting","Low bias and low variance","A data leakage problem"],answer:1,explain:"High variance means the model memorizes training data (overfitting). It's too sensitive to training noise and fails to generalize."},
+  {cat:"Bias-Variance",type:"mc",q:"A linear regression model applied to clearly non-linear data is likely to have:",choices:["High variance","High bias / underfitting","Low training error","Low test error"],answer:1,explain:"Using a linear model for non-linear data means the model is too simple — it will systematically miss patterns. That's high bias / underfitting."},
+  {cat:"Bias-Variance",type:"mc",q:"What does the bias-variance tradeoff mean in practice?",choices:["You must choose between accuracy and speed","Reducing bias often increases variance, and vice versa","Ensemble methods always solve both","More training data eliminates both problems"],answer:1,explain:"Simpler models have high bias / low variance. Complex models have low bias / high variance. The goal is to find the sweet spot — often through regularization or ensembles."},
+  {cat:"Precision & Recall",type:"mc",q:"In a fraud detection model, you want to minimize false negatives (missed fraud). Which metric should you prioritize?",choices:["Precision","Accuracy","Recall (Sensitivity)","Specificity"],answer:2,explain:"Recall = TP / (TP + FN). Minimizing false negatives means maximizing recall. In fraud detection, missing a fraud case (FN) is more costly than a false alarm (FP)."},
+  {cat:"Precision & Recall",type:"mc",q:"In a spam filter, you'd rather miss some spam than send legitimate email to spam. Which metric matters most?",choices:["Recall","Precision","AUC","F1 Score"],answer:1,explain:"Precision = TP / (TP + FP). You want to minimize false positives (legitimate email flagged as spam). High precision means fewer FP."},
+  {cat:"Precision & Recall",type:"mc",q:"What does the F1 Score measure?",choices:["The accuracy of the model on the test set","The harmonic mean of precision and recall","The area under the ROC curve","The ratio of true positives to true negatives"],answer:1,explain:"F1 = 2×(P×R)/(P+R). It balances precision and recall, especially useful when classes are imbalanced."},
+  {cat:"AUC & ROC",type:"mc",q:"What does an AUC score of 0.5 indicate?",choices:["A perfect classifier","The model performs no better than random guessing","The model has 50% accuracy","The model is highly overfit"],answer:1,explain:"AUC = 0.5 is the diagonal line on the ROC curve — equivalent to flipping a coin. A useful model has AUC > 0.7; AUC ≥ 0.9 is excellent."},
+  {cat:"AUC & ROC",type:"mc",q:"What does the ROC curve plot?",choices:["Precision vs Recall","True Positive Rate (Recall) vs False Positive Rate","Accuracy vs threshold","F1 Score vs number of features"],answer:1,explain:"ROC plots TPR (sensitivity / recall) on the Y-axis vs FPR (1 - specificity) on the X-axis across all classification thresholds."},
+  {cat:"AUC & ROC",type:"mc",q:"When should you use a Precision-Recall curve instead of a ROC curve?",choices:["When classes are balanced","When the dataset is highly imbalanced and the positive class is rare","When you have more than two classes","When using regression, not classification"],answer:1,explain:"ROC can look optimistic with imbalanced data. Precision-Recall curves better reflect model performance when the positive class is rare (e.g. fraud, disease)."},
+  {cat:"Distributions",type:"mc",q:"What does a normal distribution look like, and what does it assume?",choices:["Skewed right with a long tail","Symmetric, bell-shaped; mean = median = mode","Uniform with equal probability for all values","Bimodal with two peaks"],answer:1,explain:"The normal (Gaussian) distribution is symmetric around the mean. Many statistical tests assume normality. Violations may require non-parametric alternatives."},
+  {cat:"Distributions",type:"mc",q:"What is the Central Limit Theorem (CLT)?",choices:["Large samples are always normally distributed","The sampling distribution of the sample mean approaches normal as sample size increases, regardless of population distribution","All models converge with enough data","Variance decreases as sample size increases"],answer:1,explain:"CLT justifies using normal distribution-based tests (t-test, z-test) even when the underlying data isn't normal, as long as the sample is large enough (n ≥ 30 as a rule of thumb)."},
+  {cat:"p-value",type:"mc",q:"What does 'statistical power' mean?",choices:["The ability to run faster computations","The probability of correctly rejecting H₀ when it is false (1 - β)","The sample size needed for significance","The threshold α for rejecting H₀"],answer:1,explain:"Power = 1 - P(Type II error). High power means you're likely to detect a real effect. Power increases with larger sample size, larger effect size, or higher α."},
+  {cat:"Bias-Variance",type:"mc",q:"Cross-validation helps primarily with which problem?",choices:["Speeding up training","Estimating how well a model generalizes to unseen data (catching overfitting)","Reducing the number of features","Imputing missing values"],answer:1,explain:"K-fold cross-validation gives a more reliable estimate of test error than a single train/test split, helping catch overfitting."},
+  {cat:"Hypothesis Testing",type:"mc",q:"You run an A/B test and get p = 0.04. Your boss says 'Great, ship it!' What's missing from this analysis?",choices:["You need to run the test longer","Effect size — is the difference practically meaningful, not just statistically significant?","You need a lower p-value","You should use accuracy instead of p-value"],answer:1,explain:"Statistical significance (p < 0.05) doesn't mean the effect is large or meaningful. Always report effect size (e.g., lift %, Cohen's d) alongside the p-value."},
+  {cat:"Precision & Recall",type:"mc",q:"In a confusion matrix with TP=80, FP=20, FN=10, TN=890 — what is precision?",choices:["80%","88.9%","89.9%","72.7%"],answer:0,explain:"Precision = TP / (TP + FP) = 80 / (80 + 20) = 80/100 = 80%. Of all predicted positives, 80% were actually positive."},
+];
+
+// ── RAG & LLM QUESTIONS ──────────────────────────────────────────────────────
+const ragQuestions=[
+  {cat:"Encoder vs Decoder",type:"mc",q:"BERT is an encoder model. What does 'bidirectional' mean in this context?",choices:["It processes text left-to-right only","It attends to all tokens on both sides when encoding each token","It generates text in both directions","It uses two separate transformers"],answer:1,explain:"BERT uses Masked Language Modeling — each token attends to all surrounding tokens (left AND right). This produces richer contextual embeddings, ideal for classification and retrieval."},
+  {cat:"Encoder vs Decoder",type:"mc",q:"GPT is a decoder model. Why can't it attend to future tokens?",choices:["It lacks an attention mechanism","It uses causal (left-to-right) masking — each token can only see tokens before it","It's too small","It's trained on images, not text"],answer:1,explain:"Decoder models use causal attention masking. This is essential for text generation — the model predicts the NEXT token, so it must not 'cheat' by seeing future tokens."},
+  {cat:"Encoder vs Decoder",type:"mc",q:"Which model type would you use to create document embeddings for a RAG pipeline?",choices:["A decoder model like GPT","An encoder model like BERT or sentence-transformers","A CNN","A decision tree"],answer:1,explain:"Encoder models produce dense, context-aware embeddings of the FULL input. These embeddings are stored in a vector database for semantic similarity search during retrieval."},
+  {cat:"Encoder vs Decoder",type:"mc",q:"Which model type is best for the generation step in RAG (answering the user's question)?",choices:["Encoder model (BERT)","Decoder model (GPT, Claude, Llama, Mistral)","K-Means clustering","Logistic regression"],answer:1,explain:"The generation step needs a model that can produce fluent, context-aware text. That's a decoder (autoregressive) LLM. It takes the retrieved chunks + user question as a prompt and generates the answer."},
+  {cat:"Encoder vs Decoder",type:"mc",q:"What is a T5 or BART model, and when would you use it over a pure encoder or decoder?",choices:["A larger BERT — use for retrieval only","An encoder-decoder (seq2seq) model — best for translation, summarization, and structured Q&A","A type of vector database","A GPT variant for chat"],answer:1,explain:"Encoder-decoder models read the full input (encoder) then generate output token by token (decoder). Great for tasks with a clear input-output transformation like translation or summarization."},
+  {cat:"RAG Pipeline",type:"mc",q:"What is the purpose of chunking documents in a RAG pipeline?",choices:["To reduce the number of documents","To split text into segments small enough to fit in an embedding model's context window","To remove stopwords","To translate documents"],answer:1,explain:"LLMs and embedding models have context window limits. Chunking splits documents into overlapping pieces so each chunk can be embedded and retrieved independently. Chunk size affects retrieval quality."},
+  {cat:"RAG Pipeline",type:"mc",q:"What does a vector database do in a RAG pipeline?",choices:["Stores the LLM weights","Stores embeddings and enables fast similarity search (e.g. cosine similarity) to find relevant chunks","Tokenizes the user query","Generates the final answer"],answer:1,explain:"After embedding document chunks, you store them in a vector DB (FAISS, Chroma, Pinecone). At query time, the user query is embedded and the DB returns the top-k most similar document chunks."},
+  {cat:"RAG Pipeline",type:"mc",q:"What is 'hallucination' in the context of LLMs, and how does RAG help?",choices:["The model is too slow","The model confidently generates false information; RAG grounds the model in retrieved facts","The model refuses to answer","The model generates repeated text"],answer:1,explain:"LLMs can fabricate plausible-sounding but wrong facts. RAG mitigates this by providing real retrieved documents as context — the model's answer is grounded in actual source material."},
+  {cat:"RAG Pipeline",type:"mc",q:"In a RAG pipeline, what is 'retrieval augmented' referring to?",choices:["Fine-tuning the LLM on new data","Augmenting the LLM's prompt with relevant retrieved documents before generation","Adding more parameters to the model","Using multiple LLMs simultaneously"],answer:1,explain:"RAG = Retrieval + Generation. The 'augmented' refers to augmenting the generation prompt with external knowledge retrieved from a document store — no model fine-tuning required."},
+  {cat:"LangChain",type:"mc",q:"What is the role of a TextSplitter in LangChain?",choices:["It tokenizes the user query","It splits documents into chunks before embedding","It splits the LLM output into sentences","It creates vector embeddings"],answer:1,explain:"LangChain's RecursiveCharacterTextSplitter splits documents by character count with optional overlap, ensuring each chunk fits the embedding model's token limit."},
+  {cat:"LangChain",type:"mc",q:"What does vectorstore.as_retriever() do in LangChain?",choices:["Creates a new vector store","Wraps the vector store as a Retriever object that can be plugged into a chain","Trains the embedding model","Generates a summary of all documents"],answer:1,explain:"as_retriever() creates a Retriever interface that accepts a query, embeds it, and returns the top-k matching chunks — ready to plug into a RetrievalQA chain."},
+  {cat:"LangChain",type:"mc",q:"What is FAISS and why is it used in RAG?",choices:["A fine-tuning framework","A fast in-memory vector similarity search library by Meta — used to find nearest embedding neighbors","A chunking strategy","A prompt template"],answer:1,explain:"FAISS (Facebook AI Similarity Search) indexes embeddings and performs extremely fast approximate nearest-neighbor search. Common in local RAG pipelines as an alternative to cloud vector DBs."},
+  {cat:"Embeddings",type:"mc",q:"What is a sentence embedding?",choices:["A dictionary of word frequencies","A dense vector that represents the semantic meaning of a sentence in high-dimensional space","A one-hot encoding of each word","The token IDs used by a tokenizer"],answer:1,explain:"A sentence embedding maps a full sentence to a dense vector (e.g. 768 or 1536 dimensions). Semantically similar sentences have vectors that are close in cosine distance — enabling semantic search."},
+  {cat:"Embeddings",type:"mc",q:"Why use cosine similarity instead of Euclidean distance for comparing embeddings?",choices:["Cosine similarity is faster to compute","Cosine similarity measures the angle between vectors, making it robust to differences in vector magnitude","Euclidean distance doesn't work in high dimensions","Embeddings are always unit vectors"],answer:1,explain:"Cosine similarity = dot product / (product of magnitudes). It measures directional similarity regardless of vector length — meaning two semantically similar sentences will be close even if one is longer."},
+  {cat:"Prompting",type:"mc",q:"What is 'prompt engineering' in the context of RAG?",choices:["Building the embedding model","Designing the input template that injects retrieved context + user question into the LLM effectively","Choosing the vector database","Selecting chunk size"],answer:1,explain:"The RAG prompt typically follows: 'Answer the question based only on the following context: {context}\\n\\nQuestion: {question}'. Good prompt engineering reduces hallucination and keeps answers grounded."},
+  {cat:"Prompting",type:"mc",q:"What is the difference between zero-shot and few-shot prompting?",choices:["Zero-shot uses no model; few-shot uses a pre-trained model","Zero-shot gives no examples; few-shot provides 1-5 labeled examples in the prompt","Zero-shot is faster; few-shot is slower","They are the same thing"],answer:1,explain:"Zero-shot: ask the model to perform a task with no examples. Few-shot: include 1-5 examples of input→output pairs in the prompt to guide the model's behavior. Few-shot often improves performance on structured tasks."},
+  {cat:"Encoder vs Decoder",type:"mc",q:"Why can't you use a decoder model like GPT as an embedding model for retrieval?",choices:["GPT is too large","Decoder models produce a final hidden state per token that represents causal context, not full bidirectional sentence meaning — making embeddings lower quality for retrieval","GPT doesn't support tokenization","Decoder models don't have attention"],answer:1,explain:"GPT's token representations are shaped by causal masking — each token only sees what came before it. This makes the final embedding less semantically rich than a BERT-style encoder that sees all tokens bidirectionally."},
+  {cat:"RAG Pipeline",type:"mc",q:"What is 'chunk overlap' and why does it matter in RAG?",choices:["The similarity score threshold for retrieval","Including the last N tokens of one chunk at the start of the next, to preserve context across boundaries","A deduplication strategy","The number of chunks returned"],answer:1,explain:"If you split text rigidly at fixed sizes, you can cut sentences or ideas in half. Overlap (e.g. 50-200 characters) ensures key context at chunk boundaries isn't lost, improving retrieval quality."},
+  {cat:"LangChain",type:"mc",q:"What is LCEL (LangChain Expression Language)?",choices:["A programming language for LLMs","A declarative syntax for chaining LangChain components together using the | pipe operator","A vector embedding technique","A tokenizer format"],answer:1,explain:"LCEL uses Python pipe syntax (|) to compose retriever, prompt template, LLM, and output parser into a single chain: chain = retriever | prompt | llm | parser. It's the modern LangChain approach over legacy LLMChain."},
+  {cat:"Prompting",type:"mc",q:"What is 'context stuffing' and when is it a problem in RAG?",choices:["Using too many embeddings","Injecting too many retrieved chunks into the LLM prompt, exceeding the context window or diluting the relevant information","Repeating the same chunk twice","Using a decoder model for retrieval"],answer:1,explain:"If you retrieve too many chunks or very large chunks, you may exceed the LLM's context window (e.g. 4k, 8k, 128k tokens) or include so much irrelevant text that the model gets confused. Balance top-k and chunk size."},
+];
+
 const mlAlgorithms=[
   {name:'Neural Networks',type:'classification',emoji:'🧠',tagline:'Inspired by the human brain',explain:'A neural network is a series of layers of nodes. Data flows through an input layer, hidden layers (where patterns are learned via weights and activation functions), and an output layer. Training adjusts weights using backpropagation to minimize error.',when:'<strong>Use when:</strong> large datasets, image recognition, NLP, complex non-linear patterns.',projects:[{industry:'Finance',emoji:'💰',title:'Stock Price Movement Prediction',desc:'Train a neural network on historical OHLCV data, technical indicators, and sentiment scores to predict next-day price direction.'},{industry:'Healthcare',emoji:'🏥',title:'Medical Image Classification',desc:'Use a CNN to classify chest X-rays as normal, pneumonia, or COVID.'},{industry:'Logistics',emoji:'📦',title:'Demand Forecasting',desc:'Train an LSTM on historical shipment volumes to forecast weekly demand per distribution center.'}],fitb:{template:'A neural network learns by adjusting ___ during backpropagation to minimize ___.',blanks:['weights','loss']}},
-  {name:'Decision Trees',type:'classification',emoji:'🌳',tagline:'If/then logic in tree form',explain:'A decision tree splits data into branches based on feature values. At each node, it picks the split that best separates classes using Gini impurity or information gain.',when:'<strong>Use when:</strong> you need interpretable results or your data has clear categorical splits.',projects:[{industry:'Finance',emoji:'💰',title:'Loan Approval Decision Tree',desc:'Build a tree that splits applicants by credit score, debt-to-income ratio, and employment status.'},{industry:'Healthcare',emoji:'🏥',title:'Patient Triage Classification',desc:'Classify incoming ER patients as low/medium/high urgency based on vitals and history.'},{industry:'Logistics',emoji:'📦',title:'Shipment Delay Root Cause',desc:'Build a tree on weather, carrier, route, and time-of-year features to classify delays.'}],fitb:{template:'Decision trees split data at each node to minimize ___, a measure of impurity.',blanks:['Gini impurity']}},
+  {name:'Decision Trees',type:'classification',emoji:'🌳',tagline:'If/then logic in tree form',explain:'A decision tree splits data into branches based on feature values. At each node, it picks the split that best separates classes using Gini impurity or information gain.',when:'<strong>Use when:</strong> you need interpretable results or your data has clear categorical splits.',projects:[{industry:'Finance',emoji:'💰',title:'Loan Approval Decision Tree',desc:'Build a tree that splits applicants by credit score, debt-to-income ratio, and employment status.'},{industry:'Healthcare',emoji:'🏥',title:'Patient Triage Classification',desc:'Classify incoming ER patients as low/medium/high urgency based on vitals and history.'},{industry:'Logistics',emoji:'📦',title:'Shipment Delay Root Cause',desc:'Build a tree on weather, carrier, route, and time-of-year features to classify delays.'}],fitb:{template:'Decision trees split data at each node to minimize ___, a measure of impurity.',blanks:['gini impurity']}},
   {name:'Random Forest',type:'classification',emoji:'🌲',tagline:'Many trees, one smart answer',explain:'Random Forest builds hundreds of decision trees on random subsets of data (bagging) and random subsets of features. Each tree votes and the majority wins.',when:'<strong>Use when:</strong> high accuracy with less overfitting. Great for tabular data and fraud detection.',projects:[{industry:'Finance',emoji:'💰',title:'Credit Default Prediction',desc:'Train on borrower history and payment behavior. Random Forest handles mixed feature types well.'},{industry:'Healthcare',emoji:'🏥',title:'30-Day Readmission Risk',desc:'Predict which patients will be readmitted within 30 days of discharge.'},{industry:'Logistics',emoji:'📦',title:'Carrier Performance Scoring',desc:'Score each carrier on on-time rate, damage claims, and cost efficiency.'}],fitb:{template:'Random Forest reduces ___ by combining many trees trained on random ___ of data.',blanks:['overfitting','subsets']}},
   {name:'Support Vector Machines',type:'classification',emoji:'📐',tagline:'Find the best boundary between classes',explain:'SVM finds the hyperplane that best separates two classes with the maximum margin. The kernel trick (RBF, polynomial) allows SVM to handle non-linear boundaries.',when:'<strong>Use when:</strong> binary classification, small-to-medium datasets, high-dimensional data like text.',projects:[{industry:'Finance',emoji:'💰',title:'Fraudulent Transaction Detection',desc:'Classify transactions as fraud or legitimate using SVM on transaction features.'},{industry:'Healthcare',emoji:'🏥',title:'Cancer Cell Classification',desc:'Classify tumor biopsies as malignant or benign based on cell nucleus measurements.'},{industry:'Logistics',emoji:'📦',title:'Damaged Package Classification',desc:'Classify packages as damaged or intact using SVM on weight and handling features.'}],fitb:{template:'SVM maximizes the ___ between classes, using ___ vectors to define the boundary.',blanks:['margin','support']}},
-  {name:'Ridge Regression',type:'regression',emoji:'📉',tagline:'Linear regression with a penalty',explain:'Ridge regression is linear regression with an L2 regularization term added to the loss. This shrinks coefficients toward zero, preventing any one feature from dominating.',when:'<strong>Use when:</strong> predicting a continuous value with many correlated features (multicollinearity).',projects:[{industry:'Finance',emoji:'💰',title:'Portfolio Return Prediction',desc:'Predict expected monthly portfolio return using correlated market factors.'},{industry:'Healthcare',emoji:'🏥',title:'Hospital Length-of-Stay Prediction',desc:'Predict patient stay length to support bed capacity planning.'},{industry:'Logistics',emoji:'📦',title:'Shipping Cost Estimation',desc:'Predict shipping cost using weight, dimensions, distance, and carrier features.'}],fitb:{template:'Ridge regression adds an ___ penalty to shrink coefficients and reduce ___.',blanks:['L2','overfitting']}},
-  {name:'K-Means Clustering',type:'other',emoji:'🔵',tagline:'Group unlabeled data automatically',explain:'K-Means is unsupervised — no labels needed. You choose K clusters. It randomly places K centroids, assigns each point to the nearest centroid, then moves centroids to the mean of their cluster.',when:'<strong>Use when:</strong> unlabeled data with natural groupings — segmentation, anomaly detection, fraud.',projects:[{industry:'Finance',emoji:'💰',title:'Customer Spend Segmentation',desc:'Cluster credit card customers by transaction frequency, average spend, and tenure.'},{industry:'Healthcare',emoji:'🏥',title:'Patient Risk Cohort Discovery',desc:'Cluster patients by diagnosis history and visit frequency to discover natural risk cohorts.'},{industry:'Logistics',emoji:'📦',title:'Warehouse Zone Optimization',desc:'Cluster SKUs by pick frequency and weight to optimize warehouse placement.'}],fitb:{template:'K-Means is ___ because it uses no labeled data. It groups points around ___ centroids.',blanks:['unsupervised','K']}},
-  {name:'ARIMA',type:'regression',emoji:'📈',tagline:'Forecasting time series data',explain:'ARIMA = AutoRegressive Integrated Moving Average. AR: uses past values. I: differencing to make the series stationary. MA: uses past forecast errors. Best for univariate time series.',when:'<strong>Use when:</strong> forecasting time-ordered data: sales, deliveries, stock prices, patient volumes.',projects:[{industry:'Finance',emoji:'💰',title:'Revenue Forecasting',desc:'Forecast next quarter revenue using historical earnings, accounting for seasonality.'},{industry:'Healthcare',emoji:'🏥',title:'ER Volume Forecasting',desc:'Predict daily ER visit volume to optimize staffing and resources.'},{industry:'Logistics',emoji:'📦',title:'Package Volume Prediction',desc:'Forecast daily inbound package volume per fulfillment center.'}],fitb:{template:'ARIMA stands for AutoRegressive ___ Moving Average. The "I" refers to ___ the series.',blanks:['Integrated','differencing']}},
+  {name:'Ridge Regression',type:'regression',emoji:'📉',tagline:'Linear regression with a penalty',explain:'Ridge regression is linear regression with an L2 regularization term added to the loss. This shrinks coefficients toward zero, preventing any one feature from dominating.',when:'<strong>Use when:</strong> predicting a continuous value with many correlated features (multicollinearity).',projects:[{industry:'Finance',emoji:'💰',title:'Portfolio Return Prediction',desc:'Predict expected monthly portfolio return using correlated market factors.'},{industry:'Healthcare',emoji:'🏥',title:'Hospital Length-of-Stay Prediction',desc:'Predict patient stay length to support bed capacity planning.'},{industry:'Logistics',emoji:'📦',title:'Shipping Cost Estimation',desc:'Predict shipping cost using weight, dimensions, distance, and carrier features.'}],fitb:{template:'Ridge regression adds an ___ penalty to shrink coefficients and reduce ___.',blanks:['l2','overfitting']}},
+  {name:'K-Means Clustering',type:'other',emoji:'🔵',tagline:'Group unlabeled data automatically',explain:'K-Means is unsupervised — no labels needed. You choose K clusters. It randomly places K centroids, assigns each point to the nearest centroid, then moves centroids to the mean of their cluster.',when:'<strong>Use when:</strong> unlabeled data with natural groupings — segmentation, anomaly detection, fraud.',projects:[{industry:'Finance',emoji:'💰',title:'Customer Spend Segmentation',desc:'Cluster credit card customers by transaction frequency, average spend, and tenure.'},{industry:'Healthcare',emoji:'🏥',title:'Patient Risk Cohort Discovery',desc:'Cluster patients by diagnosis history and visit frequency to discover natural risk cohorts.'},{industry:'Logistics',emoji:'📦',title:'Warehouse Zone Optimization',desc:'Cluster SKUs by pick frequency and weight to optimize warehouse placement.'}],fitb:{template:'K-Means is ___ because it uses no labeled data. It groups points around ___ centroids.',blanks:['unsupervised','k']}},
+  {name:'ARIMA',type:'regression',emoji:'📈',tagline:'Forecasting time series data',explain:'ARIMA = AutoRegressive Integrated Moving Average. AR: uses past values. I: differencing to make the series stationary. MA: uses past forecast errors. Best for univariate time series.',when:'<strong>Use when:</strong> forecasting time-ordered data: sales, deliveries, stock prices, patient volumes.',projects:[{industry:'Finance',emoji:'💰',title:'Revenue Forecasting',desc:'Forecast next quarter revenue using historical earnings, accounting for seasonality.'},{industry:'Healthcare',emoji:'🏥',title:'ER Volume Forecasting',desc:'Predict daily ER visit volume to optimize staffing and resources.'},{industry:'Logistics',emoji:'📦',title:'Package Volume Prediction',desc:'Forecast daily inbound package volume per fulfillment center.'}],fitb:{template:'ARIMA stands for AutoRegressive ___ Moving Average. The "I" refers to ___ the series.',blanks:['integrated','differencing']}},
   {name:'Perceptrons',type:'classification',emoji:'⚡',tagline:'The simplest neural unit',explain:'A perceptron takes inputs, multiplies each by a weight, sums them up, applies an activation function, and outputs a binary result. Stack them in layers and you get a multi-layer perceptron (MLP).',when:'<strong>Use when:</strong> learning neural network fundamentals, or simple binary classification.',projects:[{industry:'Finance',emoji:'💰',title:'Binary Credit Risk Classifier',desc:'A single-layer perceptron to classify loan applicants as high-risk or low-risk.'},{industry:'Healthcare',emoji:'🏥',title:'Diabetes Onset Detection',desc:'Train a perceptron on glucose, BMI, age, and insulin to predict diabetes onset.'},{industry:'Logistics',emoji:'📦',title:'On-Time Delivery Binary Classifier',desc:'Predict whether a shipment will arrive on time or late.'}],fitb:{template:'A perceptron multiplies inputs by ___, sums them, and applies an ___ function.',blanks:['weights','activation']}},
   {name:'Feature Engineering',type:'other',emoji:'🔧',tagline:'Making your data smarter',explain:'Feature engineering uses domain knowledge to create, transform, or select input variables that help models learn better. Good features often matter more than algorithm choice.',when:'<strong>Use when:</strong> always — especially critical in finance and healthcare where domain knowledge is rich.',projects:[{industry:'Finance',emoji:'💰',title:'Trading Signal Feature Library',desc:'Engineer features from raw OHLCV data: RSI, MACD, Bollinger Bands, rolling volatility.'},{industry:'Healthcare',emoji:'🏥',title:'Claims Risk Feature Engineering',desc:'Engineer days since last visit, procedure count, specialty mix ratio from raw claims data.'},{industry:'Logistics',emoji:'📦',title:'Delivery ETA Feature Set',desc:'Engineer time-based, route, and carrier history features for an ETA model.'}],fitb:{template:'Feature engineering creates new ___ from raw data to help models ___ better.',blanks:['features','learn']}},
 ];
@@ -695,21 +847,21 @@ const behavioralQuestions=[
 const mcQuestions=[
   {cat:"Neural Networks",q:"What is the main purpose of the activation function in a neural network?",choices:["To normalize the input data","To introduce non-linearity so the network can learn complex patterns","To reduce the number of layers","To calculate the loss"],answer:1,explain:"Without activation functions, a neural network would just be a linear transformation. Activation functions like ReLU allow it to learn non-linear relationships."},
   {cat:"Neural Networks",q:"What does backpropagation do in a neural network?",choices:["It feeds data forward through the layers","It normalizes the weights","It calculates gradients and updates weights to minimize loss","It drops random neurons during training"],answer:2,explain:"Backpropagation computes the gradient of the loss function with respect to each weight, then the optimizer uses those gradients to adjust weights."},
-  {cat:"Neural Networks",q:"What does Dropout do during neural network training?",choices:["It removes features with low importance","It randomly deactivates neurons to prevent overfitting","It reduces the learning rate over time","It clips the gradient to prevent explosion"],answer:1,explain:"Dropout randomly sets a fraction of neurons to zero during each training step, forcing the network to not rely on any single neuron."},
   {cat:"Decision Trees",q:"What metric does a Decision Tree use to decide the best split at each node?",choices:["Mean Squared Error only","Gini Impurity or Information Gain","R-squared","AUC Score"],answer:1,explain:"Decision trees evaluate splits using Gini Impurity (CART) or Information Gain (ID3/C4.5). Both measure how well a split separates the classes."},
-  {cat:"Decision Trees",q:"What is the main risk of letting a Decision Tree grow without any depth limit?",choices:["Underfitting — the model is too simple","Overfitting — the model memorizes training data","The tree becomes a random forest","The model cannot handle numerical features"],answer:1,explain:"An unconstrained tree will keep splitting until every leaf has one sample — perfectly fitting training data but failing on new data."},
   {cat:"Random Forest",q:"What is 'bagging' in the context of Random Forest?",choices:["Removing weak features from the dataset","Training each tree on a random bootstrap sample of the data","Combining outputs by averaging probabilities","Using a bag-of-words encoding for categorical features"],answer:1,explain:"Bagging (Bootstrap Aggregating) means each tree is trained on a different random sample drawn with replacement from the training data."},
-  {cat:"Random Forest",q:"What does feature importance tell you in a Random Forest model?",choices:["Which features were dropped due to multicollinearity","How much each feature contributed to reducing impurity across all trees","Which features have the highest correlation with the target","The order in which features were added to the model"],answer:1,explain:"Feature importance measures the average decrease in Gini impurity attributed to each feature across all trees."},
   {cat:"Support Vector Machines",q:"What is the 'margin' in a Support Vector Machine?",choices:["The number of support vectors used","The distance between the decision boundary and the nearest data points from each class","The regularization penalty applied to weights","The kernel function output"],answer:1,explain:"SVM finds the hyperplane that maximizes the margin — the gap between the boundary and the closest points (support vectors) from each class."},
-  {cat:"Support Vector Machines",q:"What does the RBF kernel allow SVM to do?",choices:["Handle missing values automatically","Find non-linear decision boundaries by mapping data to higher dimensions","Speed up training on large datasets","Reduce the number of support vectors"],answer:1,explain:"The RBF kernel implicitly maps data into higher-dimensional space, allowing SVM to find non-linear boundaries."},
   {cat:"Ridge Regression",q:"What type of regularization does Ridge Regression apply?",choices:["L1 regularization (Lasso)","L2 regularization (sum of squared coefficients)","Elastic Net (L1 + L2)","No regularization"],answer:1,explain:"Ridge adds a penalty equal to the sum of squared coefficients (L2 norm) to the loss function."},
-  {cat:"Ridge Regression",q:"What problem does Ridge Regression solve that ordinary linear regression cannot handle well?",choices:["Non-linear relationships between features and target","Multicollinearity — when features are highly correlated with each other","Too many output classes","Imbalanced datasets"],answer:1,explain:"When features are highly correlated, OLS produces unstable, high-variance coefficients. Ridge shrinks them for a more stable model."},
   {cat:"K-Means Clustering",q:"K-Means is an example of which type of machine learning?",choices:["Supervised learning","Reinforcement learning","Unsupervised learning","Semi-supervised learning"],answer:2,explain:"K-Means is unsupervised — it finds structure in data without using labeled examples."},
   {cat:"K-Means Clustering",q:"What does the Elbow Method help you determine when using K-Means?",choices:["The best distance metric to use","The optimal number of clusters (K)","Whether the data is linearly separable","The maximum number of iterations"],answer:1,explain:"The Elbow Method plots inertia vs K. You look for the 'elbow' where adding more clusters stops significantly reducing inertia."},
   {cat:"ARIMA",q:"What does the 'I' in ARIMA stand for, and what does it do?",choices:["Iteration — the number of training passes","Integrated — differencing the series to make it stationary","Input — the number of lag features used","Intercept — the bias term in the model"],answer:1,explain:"The 'I' stands for Integrated. Differencing removes trend and makes the time series stationary — a requirement for ARIMA."},
   {cat:"Perceptrons",q:"What is the fundamental building block of a neural network?",choices:["A decision tree node","A perceptron (single neuron)","A support vector","A convolutional filter"],answer:1,explain:"A perceptron is the basic unit: it takes weighted inputs, sums them, applies an activation function, and outputs a result."},
   {cat:"Feature Engineering",q:"What is the 'dummy variable trap' and how do you avoid it?",choices:["Using too many features, fixed by PCA","Perfect multicollinearity from one-hot encoding — fixed by dropping one dummy column (drop_first=True)","Label encoding ordinal features incorrectly","Using raw dates instead of extracted features"],answer:1,explain:"If you one-hot encode N categories into N columns, one is perfectly predictable from the others. drop_first=True removes this redundancy."},
   {cat:"Feature Engineering",q:"When should you use Label Encoding vs One-Hot Encoding?",choices:["Label Encoding for all categories; One-Hot is never needed","Label Encoding for ordinal features (Low/Med/High); One-Hot for nominal features (colors, cities)","One-Hot for ordinal; Label Encoding for nominal","Both always produce identical results"],answer:1,explain:"Label Encoding implies an order, appropriate for ordinal features. One-Hot is correct for nominal features with no natural order."},
+  {cat:"Decision Trees",q:"What is the main risk of letting a Decision Tree grow without any depth limit?",choices:["Underfitting — the model is too simple","Overfitting — the model memorizes training data","The tree becomes a random forest","The model cannot handle numerical features"],answer:1,explain:"An unconstrained tree will keep splitting until every leaf has one sample — perfectly fitting training data but failing on new data."},
+  {cat:"Neural Networks",q:"What does Dropout do during neural network training?",choices:["It removes features with low importance","It randomly deactivates neurons to prevent overfitting","It reduces the learning rate over time","It clips the gradient to prevent explosion"],answer:1,explain:"Dropout randomly sets a fraction of neurons to zero during each training step, forcing the network to not rely on any single neuron."},
+  {cat:"Random Forest",q:"What does feature importance tell you in a Random Forest model?",choices:["Which features were dropped due to multicollinearity","How much each feature contributed to reducing impurity across all trees","Which features have the highest correlation with the target","The order in which features were added to the model"],answer:1,explain:"Feature importance measures the average decrease in Gini impurity attributed to each feature across all trees."},
+  {cat:"Support Vector Machines",q:"What does the RBF kernel allow SVM to do?",choices:["Handle missing values automatically","Find non-linear decision boundaries by mapping data to higher dimensions","Speed up training on large datasets","Reduce the number of support vectors"],answer:1,explain:"The RBF kernel implicitly maps data into higher-dimensional space, allowing SVM to find non-linear boundaries."},
+  {cat:"Ridge Regression",q:"What problem does Ridge Regression solve that ordinary linear regression cannot handle well?",choices:["Non-linear relationships between features and target","Multicollinearity — when features are highly correlated with each other","Too many output classes","Imbalanced datasets"],answer:1,explain:"When features are highly correlated, OLS produces unstable, high-variance coefficients. Ridge shrinks them for a more stable model."},
 ];
 
 const flQuestions=[
@@ -729,14 +881,18 @@ const flQuestions=[
   {cat:'Scope & Args',type:'mc',q:'What does **kwargs allow in a function?',choices:['Accept any number of positional arguments','Accept any number of keyword arguments as a dictionary','Multiply two arguments','Require all arguments to be named'],answer:1,explain:'<code>**kwargs</code> collects extra keyword arguments into a dict.'},
 ];
 
+// ── STATE ────────────────────────────────────────────────────────────────────
 let sqlIdx=0,pyIdx=0,fitbIdx=0,bqIdx=0,fcIdx=0;
 let filteredSQL=[...sqlQuestions];
 let filteredPY=[...pyQuestions];
 let filteredFITB=[...fitbQuestions];
+let filteredStats=[...statsQuestions];
+let filteredRAG=[...ragQuestions];
 let bqOrder=[...Array(behavioralQuestions.length).keys()];
 let starAnswers={};
 let fcFlipped=false;
 
+// ── SQL ──────────────────────────────────────────────────────────────────────
 function renderSQL(){
   const q=filteredSQL[sqlIdx];
   document.getElementById('sql-counter').textContent=`Question ${sqlIdx+1} of ${filteredSQL.length}`;
@@ -746,16 +902,28 @@ function renderSQL(){
     <div class="qa-category">${q.cat}</div>
     <div class="qa-question">${q.q}</div>
     <div class="qa-hint">${q.hint}</div>
-    <textarea id="sql-response" style="width:100%;min-height:90px;border:1.5px solid var(--border);border-radius:12px;padding:.7rem;font-family:'Fira Code',monospace;font-size:.8rem;background:var(--bg2);outline:none;resize:vertical;" placeholder="Type your SQL query here..."></textarea>
-    <button class="answer-toggle" onclick="checkSQL()">Check Answer</button>
+    <textarea class="sql-textarea" id="sql-response" placeholder="Type your SQL query here..."></textarea>
+    <div style="display:flex;gap:.5rem;margin-top:.6rem;align-items:center;">
+      <button class="check-btn" onclick="checkSQL()">Check Answer ✦</button>
+      <button class="answer-toggle" onclick="showSQLAnswer()">Show Answer</button>
+    </div>
+    <div class="sql-result-msg" id="sql-result"></div>
     <div class="answer-box" id="sql-ans"></div>`;
 }
 function checkSQL(){
-  const user=document.getElementById('sql-response').value.trim();
-  const correct=filteredSQL[sqlIdx].a.trim();
+  const user=normSQL(document.getElementById('sql-response').value);
+  const correct=normSQL(filteredSQL[sqlIdx].a);
+  const res=document.getElementById('sql-result');
+  if(user===correct){
+    res.className='sql-result-msg correct';res.textContent='🌸 Correct!';
+  } else {
+    res.className='sql-result-msg wrong';res.textContent='✗ Not quite — check your syntax. Click "Show Answer" to see the solution.';
+  }
+}
+function showSQLAnswer(){
   const box=document.getElementById('sql-ans');
-  box.innerHTML=user===correct?"<pre>✅ Correct!</pre>":`<pre>❌ Try again.\n\nCorrect answer:\n${correct}</pre>`;
-  box.classList.add('show');
+  const open=box.classList.toggle('show');
+  box.innerHTML=open?`<pre>${filteredSQL[sqlIdx].a}</pre>`:'';
 }
 function filterSQL(cat){
   filteredSQL=cat==='All'?[...sqlQuestions]:sqlQuestions.filter(q=>q.cat===cat);
@@ -765,6 +933,7 @@ function filterSQL(cat){
 }
 function sqlNav(dir){sqlIdx+=dir;renderSQL();}
 
+// ── PYTHON ───────────────────────────────────────────────────────────────────
 function renderPY(){
   const q=filteredPY[pyIdx];
   document.getElementById('py-counter').textContent=`Question ${pyIdx+1} of ${filteredPY.length}`;
@@ -785,6 +954,7 @@ function filterPY(cat){
 }
 function pyNav(dir){pyIdx+=dir;renderPY();}
 
+// ── FITB ─────────────────────────────────────────────────────────────────────
 function renderFITB(){
   const q=filteredFITB[fitbIdx];
   document.getElementById('fitb-counter').textContent=`Question ${fitbIdx+1} of ${filteredFITB.length}`;
@@ -822,7 +992,61 @@ function filterFITB(cat){
 }
 function fitbNav(dir){fitbIdx+=dir;renderFITB();}
 
-let mlPDFs={};
+// ── STATS MC ─────────────────────────────────────────────────────────────────
+let statsIdx=0,statsAnswered=false;
+function renderStats(){
+  const q=filteredStats[statsIdx];statsAnswered=false;
+  document.getElementById('stats-counter').textContent=`Question ${statsIdx+1} of ${filteredStats.length}`;
+  document.getElementById('stats-prev').disabled=statsIdx===0;
+  document.getElementById('stats-next').disabled=statsIdx===filteredStats.length-1;
+  const letters=['A','B','C','D'];
+  const ch=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerStats(${i})" id="stats-c-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');
+  document.getElementById('stats-qa').innerHTML=`<div class="qa-category">${q.cat}</div><div class="qa-question" style="margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${ch}</div><div class="mc-result" id="stats-result"></div><div class="mc-explain" id="stats-explain">${q.explain}</div>`;
+}
+function answerStats(chosen){
+  if(statsAnswered)return;statsAnswered=true;
+  const q=filteredStats[statsIdx];const correct=q.answer;const letters=['A','B','C','D'];
+  for(let i=0;i<q.choices.length;i++){const b=document.getElementById('stats-c-'+i);b.classList.add('disabled');if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong');}
+  const res=document.getElementById('stats-result');
+  if(chosen===correct){res.className='mc-result correct';res.textContent='🌸 Correct!';}
+  else{res.className='mc-result wrong';res.textContent=`✗ The answer is ${letters[correct]}.`;}
+  document.getElementById('stats-explain').classList.add('show');
+}
+function statsNav(dir){statsIdx+=dir;renderStats();}
+function filterStats(cat){
+  filteredStats=cat==='All'?[...statsQuestions]:statsQuestions.filter(q=>q.cat===cat);statsIdx=0;
+  document.querySelectorAll('#stats-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
+  renderStats();
+}
+
+// ── RAG MC ───────────────────────────────────────────────────────────────────
+let ragIdx=0,ragAnswered=false;
+function renderRAG(){
+  const q=filteredRAG[ragIdx];ragAnswered=false;
+  document.getElementById('rag-counter').textContent=`Question ${ragIdx+1} of ${filteredRAG.length}`;
+  document.getElementById('rag-prev').disabled=ragIdx===0;
+  document.getElementById('rag-next').disabled=ragIdx===filteredRAG.length-1;
+  const letters=['A','B','C','D'];
+  const ch=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerRAG(${i})" id="rag-c-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');
+  document.getElementById('rag-qa').innerHTML=`<div class="qa-category">${q.cat}</div><div class="qa-question" style="margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${ch}</div><div class="mc-result" id="rag-result"></div><div class="mc-explain" id="rag-explain">${q.explain}</div>`;
+}
+function answerRAG(chosen){
+  if(ragAnswered)return;ragAnswered=true;
+  const q=filteredRAG[ragIdx];const correct=q.answer;const letters=['A','B','C','D'];
+  for(let i=0;i<q.choices.length;i++){const b=document.getElementById('rag-c-'+i);b.classList.add('disabled');if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong');}
+  const res=document.getElementById('rag-result');
+  if(chosen===correct){res.className='mc-result correct';res.textContent='🌸 Correct!';}
+  else{res.className='mc-result wrong';res.textContent=`✗ The answer is ${letters[correct]}.`;}
+  document.getElementById('rag-explain').classList.add('show');
+}
+function ragNav(dir){ragIdx+=dir;renderRAG();}
+function filterRAG(cat){
+  filteredRAG=cat==='All'?[...ragQuestions]:ragQuestions.filter(q=>q.cat===cat);ragIdx=0;
+  document.querySelectorAll('#rag-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
+  renderRAG();
+}
+
+// ── ML GUIDE ─────────────────────────────────────────────────────────────────
 function toggleML(i){document.getElementById('ml'+i).classList.toggle('open');}
 function checkMLFITB(idx){
   const a=mlAlgorithms[idx];let correct=0;
@@ -861,9 +1085,9 @@ function buildML(){
   document.getElementById('ml-grid-other').innerHTML=renderGroup(other);
 }
 
+// ── BEHAVIORAL ───────────────────────────────────────────────────────────────
 function renderBQ(){
-  const qi=bqOrder[bqIdx];
-  const q=behavioralQuestions[qi];
+  const qi=bqOrder[bqIdx];const q=behavioralQuestions[qi];
   document.getElementById('bq-text').textContent=q.text;
   document.getElementById('bq-cat').textContent=q.category;
   document.getElementById('bq-counter').textContent=`${bqIdx+1} / ${behavioralQuestions.length}`;
@@ -884,9 +1108,9 @@ function saveSTAR(){
   const el=document.getElementById('star-saved');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000);
 }
 
+// ── FLASHCARD ────────────────────────────────────────────────────────────────
 function renderFlashcard(){
-  const qi=bqOrder[fcIdx];
-  const q=behavioralQuestions[qi];
+  const qi=bqOrder[fcIdx];const q=behavioralQuestions[qi];
   fcFlipped=false;
   const card=document.getElementById('fc-card');card.classList.remove('flipped');
   document.getElementById('fc-counter').textContent=`${fcIdx+1} / ${behavioralQuestions.length}`;
@@ -907,25 +1131,7 @@ function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc-card').clas
 function fcNav(dir){fcIdx+=dir;renderFlashcard();}
 function fcShuffle(){fcIdx=0;bqOrder=bqOrder.sort(()=>Math.random()-.5);renderFlashcard();}
 
-function toggleAnswer(id){
-  const box=document.getElementById(id);
-  const open=box.classList.toggle('show');
-  box.previousElementSibling.textContent=open?'Hide Answer':'Show Answer';
-}
-function switchTab(tab){
-  document.querySelectorAll('.ltab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.ltab-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelector(`.ltab[onclick="switchTab('${tab}')"]`).classList.add('active');
-  document.getElementById(`panel-${tab}`).classList.add('active');
-}
-function switchPrepTab(tab){
-  document.querySelectorAll('.prep-tab').forEach(t=>t.classList.remove('active'));
-  document.querySelectorAll('.prep-panel').forEach(p=>p.classList.remove('active'));
-  document.querySelector(`.prep-tab[onclick="switchPrepTab('${tab}')"]`).classList.add('active');
-  document.getElementById(`prep-panel-${tab}`).classList.add('active');
-  if(tab==='flashcard')renderFlashcard();
-}
-
+// ── ML QUIZ MC ───────────────────────────────────────────────────────────────
 let mcIdx=0,filteredMC=[...mcQuestions],mcAnswered=false;
 function renderMC(){
   const q=filteredMC[mcIdx];mcAnswered=false;
@@ -933,15 +1139,16 @@ function renderMC(){
   document.getElementById('mc-prev').disabled=mcIdx===0;
   document.getElementById('mc-next').disabled=mcIdx===filteredMC.length-1;
   const letters=['A','B','C','D'];
-  const choicesHtml=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerMC(${i})" id="mc-choice-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');
-  document.getElementById('mc-qa').innerHTML=`<div class="qa-category">${q.cat}</div><div class="qa-question" style="margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${choicesHtml}</div><div class="mc-result" id="mc-result"></div><div class="mc-explain" id="mc-explain">${q.explain}</div>`;
+  const ch=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerMC(${i})" id="mc-choice-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');
+  document.getElementById('mc-qa').innerHTML=`<div class="qa-category">${q.cat}</div><div class="qa-question" style="margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${ch}</div><div class="mc-result" id="mc-result"></div><div class="mc-explain" id="mc-explain">${q.explain}</div>`;
 }
 function answerMC(chosen){
   if(mcAnswered)return;mcAnswered=true;
   const q=filteredMC[mcIdx];const correct=q.answer;const letters=['A','B','C','D'];
   for(let i=0;i<q.choices.length;i++){const btn=document.getElementById('mc-choice-'+i);btn.classList.add('disabled');if(i===correct)btn.classList.add('correct');else if(i===chosen&&chosen!==correct)btn.classList.add('wrong');}
   const res=document.getElementById('mc-result');
-  if(chosen===correct){res.className='mc-result correct';res.textContent='🌸 Correct!';}else{res.className='mc-result wrong';res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;}
+  if(chosen===correct){res.className='mc-result correct';res.textContent='🌸 Correct!';}
+  else{res.className='mc-result wrong';res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;}
   document.getElementById('mc-explain').classList.add('show');
 }
 function mcNav(dir){mcIdx+=dir;renderMC();}
@@ -951,6 +1158,7 @@ function filterMC(cat){
   renderMC();
 }
 
+// ── FUNCTIONS & LOOPS ────────────────────────────────────────────────────────
 let flIdx=0,filteredFL=[...flQuestions],flScore=0,flTotal=0,flStreak=0,flAnswered=false;
 function renderFL(){
   const q=filteredFL[flIdx];flAnswered=false;
@@ -961,7 +1169,7 @@ function renderFL(){
     const letters=['A','B','C','D'];
     const ch=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerFL(${i})" id="fl-choice-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');
     document.getElementById('fl-qa').innerHTML=`<div class="qa-category">🔁 ${q.cat}</div><div class="qa-question" style="white-space:pre-line;margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${ch}</div><div class="mc-result" id="fl-result"></div><div class="mc-explain" id="fl-explain">${q.explain}</div>`;
-  }else{
+  } else {
     let t=q.template,bi=0;
     t=t.replace(/___/g,()=>`<input class="fitb-input" id="flb${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10,(q.blanks[bi-1]||'').length+4)}">`);
     document.getElementById('fl-qa').innerHTML=`<div class="qa-category">🔁 ${q.cat}</div><div class="qa-question" style="margin-bottom:.7rem;">${q.q}</div><div class="qa-hint">💡 ${q.hint}</div><div class="fitb-wrap" style="white-space:pre;">${t}</div><button class="check-btn" onclick="checkFLfitb()">Check ✦</button><button class="reset-btn" onclick="renderFL()">Reset</button><div class="fitb-result" id="fl-fitb-result"></div>`;
@@ -972,7 +1180,8 @@ function answerFL(chosen){
   const q=filteredFL[flIdx];const correct=q.answer;const letters=['A','B','C','D'];
   for(let i=0;i<q.choices.length;i++){const b=document.getElementById('fl-choice-'+i);b.classList.add('disabled');if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong');}
   const res=document.getElementById('fl-result');
-  if(chosen===correct){flScore++;flStreak++;res.className='mc-result correct';res.textContent='🌸 Correct!';}else{flStreak=0;res.className='mc-result wrong';res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;}
+  if(chosen===correct){flScore++;flStreak++;res.className='mc-result correct';res.textContent='🌸 Correct!';}
+  else{flStreak=0;res.className='mc-result wrong';res.textContent=`✗ The answer is ${letters[correct]}.`;}
   document.getElementById('fl-explain').classList.add('show');updateFLScore();
 }
 function checkFLfitb(){
@@ -993,5 +1202,28 @@ function filterFL(cat){
   renderFL();
 }
 
-renderSQL();renderPY();renderFITB();buildML();renderBQ();renderMC();renderFL();
-</script></body></html>
+// ── TABS ─────────────────────────────────────────────────────────────────────
+function toggleAnswer(id){
+  const box=document.getElementById(id);
+  const open=box.classList.toggle('show');
+  box.previousElementSibling.textContent=open?'Hide Answer':'Show Answer';
+}
+function switchTab(tab){
+  document.querySelectorAll('.ltab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.ltab-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`.ltab[onclick="switchTab('${tab}')"]`).classList.add('active');
+  document.getElementById(`panel-${tab}`).classList.add('active');
+}
+function switchPrepTab(tab){
+  document.querySelectorAll('.prep-tab').forEach(t=>t.classList.remove('active'));
+  document.querySelectorAll('.prep-panel').forEach(p=>p.classList.remove('active'));
+  document.querySelector(`.prep-tab[onclick="switchPrepTab('${tab}')"]`).classList.add('active');
+  document.getElementById(`prep-panel-${tab}`).classList.add('active');
+  if(tab==='flashcard')renderFlashcard();
+}
+
+// ── INIT ─────────────────────────────────────────────────────────────────────
+renderSQL();renderPY();renderFITB();buildML();renderBQ();renderMC();renderStats();renderRAG();renderFL();
+</script>
+</body>
+</html>
