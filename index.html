@@ -60,11 +60,15 @@
   .hero-sub{font-size:1rem;color:var(--text2);margin-top:1.2rem;max-width:480px;line-height:1.85;}
   .hero-links{display:flex;gap:1rem;margin-top:2rem;flex-wrap:wrap;}
   .photo-circle{width:180px;height:180px;border-radius:50%;object-fit:cover;border:4px solid white;box-shadow:0 8px 32px rgba(180,160,220,.25);display:block;cursor:pointer;}
-  .photo-placeholder{width:180px;height:180px;border-radius:50%;background:var(--lilac-light);border:3px dashed var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:.78rem;color:var(--muted);font-weight:600;gap:.3rem;transition:all .2s;}
-  .photo-placeholder:hover{border-color:var(--lilac-mid);}
-  .photo-sq{width:130px;height:130px;border-radius:18px;object-fit:cover;border:3px solid white;box-shadow:0 6px 24px rgba(180,160,220,.2);display:block;cursor:pointer;flex-shrink:0;}
-  .photo-sq-placeholder{width:130px;height:130px;border-radius:18px;background:var(--lilac-light);border:3px dashed var(--border2);display:flex;flex-direction:column;align-items:center;justify-content:center;cursor:pointer;font-size:.72rem;color:var(--muted);font-weight:600;gap:.25rem;flex-shrink:0;transition:all .2s;}
-  .photo-sq-placeholder:hover{border-color:var(--lilac-mid);}
+
+  /* ABOUT */
+  .skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:1rem;}
+  .skill-card{background:white;border:1.5px solid var(--border);border-radius:16px;padding:1.2rem 1.4rem;}
+  .skill-card h4{font-size:.78rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--rose-gold);margin-bottom:.6rem;}
+  .skill-tags{display:flex;flex-wrap:wrap;gap:.4rem;}
+  .skill-tag{font-size:.73rem;font-weight:600;padding:3px 10px;border-radius:99px;background:var(--lilac-light);color:var(--lilac-mid);}
+  .skill-tag.mint{background:var(--mint-light);color:#5aad8e;}
+  .skill-tag.gold{background:var(--rose-gold-light);color:var(--rose-gold-mid);}
 
   /* PROJECTS */
   .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem;}
@@ -87,9 +91,6 @@
   .pdf-close:hover{background:var(--rose-gold-mid);color:white;}
   .pdf-frame{flex:1;border:none;width:100%;}
   .pdf-modal-footer{padding:.8rem 1.4rem;border-top:1.5px solid var(--border);display:flex;justify-content:flex-end;}
-
-  
-  
 
   /* LEARNING TABS */
   .learning-tabs{display:flex;gap:.5rem;margin-bottom:2rem;flex-wrap:wrap;}
@@ -210,76 +211,33 @@
   footer{text-align:center;padding:2.5rem;color:var(--muted);font-size:.82rem;border-top:1.5px solid var(--border);background:white;}
 
   @media(max-width:700px){
-    .practice-layout,.projects-grid,.skills-grid,.about-layout,.hero-layout,.star-grid{grid-template-columns:1fr;}
+    .projects-grid,.skills-grid,.hero-layout,.star-grid{grid-template-columns:1fr;}
+    .practice-layout{grid-template-columns:1fr;}
     .practice-left{position:static;}
-    .tl-item{grid-template-columns:1fr;gap:.2rem;}
     nav{padding:0 1rem;}
     .nav-links{gap:.7rem;}
     section{padding-left:1.25rem;padding-right:1.25rem;}
   }
-.ml-pdf-section {
-  margin-top: 1.4rem;
-  padding-top: 1.2rem;
-  border-top: 1.5px solid var(--border);
-}
-.ml-pdf-row {
-  display: flex;
-  align-items: center;
-  gap: .8rem;
-  flex-wrap: wrap;
-}
-.ml-pdf-attach-btn {
-  display: inline-block;
-  padding: .38rem .95rem;
-  border-radius: 99px;
-  font-size: .76rem;
-  font-weight: 700;
-  background: white;
-  color: var(--lilac-mid);
-  border: 2px solid var(--lilac-light);
-  cursor: pointer;
-  transition: all .2s;
-}
-.ml-pdf-attach-btn:hover { border-color: var(--lilac-mid); background: var(--lilac-light); }
-.ml-pdf-status { font-size: .78rem; color: var(--muted); }
-.ml-pdf-view-btn {
-  padding: .38rem .95rem; border-radius: 99px; font-size: .76rem; font-weight: 700;
-  background: white; color: var(--rose-gold-mid); border: 2px solid var(--rose-gold-light);
-  cursor: pointer; transition: all .2s; font-family: 'Nunito', sans-serif;
-}
-.ml-pdf-view-btn:hover { background: var(--rose-gold-light); }
-.ml-pdf-remove-btn {
-  padding: .38rem .8rem; border-radius: 99px; font-size: .72rem; font-weight: 700;
-  background: white; color: var(--muted); border: 1.5px solid var(--border);
-  cursor: pointer; font-family: 'Nunito', sans-serif; transition: all .2s;
-}
-.ml-pdf-remove-btn:hover { color: #e08080; border-color: #e08080; }
+  .ml-pdf-section{margin-top:1.4rem;padding-top:1.2rem;border-top:1.5px solid var(--border);}
+  .ml-pdf-row{display:flex;align-items:center;gap:.8rem;flex-wrap:wrap;}
+  .ml-pdf-attach-btn{display:inline-block;padding:.38rem .95rem;border-radius:99px;font-size:.76rem;font-weight:700;background:white;color:var(--lilac-mid);border:2px solid var(--lilac-light);cursor:pointer;transition:all .2s;}
+  .ml-pdf-attach-btn:hover{border-color:var(--lilac-mid);background:var(--lilac-light);}
+  .ml-pdf-status{font-size:.78rem;color:var(--muted);}
+  .ml-pdf-view-btn{padding:.38rem .95rem;border-radius:99px;font-size:.76rem;font-weight:700;background:white;color:var(--rose-gold-mid);border:2px solid var(--rose-gold-light);cursor:pointer;transition:all .2s;font-family:'Nunito',sans-serif;}
+  .ml-pdf-view-btn:hover{background:var(--rose-gold-light);}
+  .ml-pdf-remove-btn{padding:.38rem .8rem;border-radius:99px;font-size:.72rem;font-weight:700;background:white;color:var(--muted);border:1.5px solid var(--border);cursor:pointer;font-family:'Nunito',sans-serif;transition:all .2s;}
+  .ml-pdf-remove-btn:hover{color:#e08080;border-color:#e08080;}
   /* MULTIPLE CHOICE */
   .mc-choices{display:flex;flex-direction:column;gap:.6rem;margin:1rem 0;}
-  .mc-choice{
-    display:flex;align-items:flex-start;gap:.85rem;
-    padding:.75rem 1rem;
-    background:white;border:1.5px solid var(--border);border-radius:12px;
-    cursor:pointer;transition:all .18s;font-size:.88rem;line-height:1.5;color:var(--text);
-    text-align:left;width:100%;font-family:'Nunito',sans-serif;
-  }
+  .mc-choice{display:flex;align-items:flex-start;gap:.85rem;padding:.75rem 1rem;background:white;border:1.5px solid var(--border);border-radius:12px;cursor:pointer;transition:all .18s;font-size:.88rem;line-height:1.5;color:var(--text);text-align:left;width:100%;font-family:'Nunito',sans-serif;}
   .mc-choice:hover{border-color:var(--lilac-mid);background:var(--lilac-light);}
   .mc-choice.correct{border-color:#5aad8e;background:var(--mint-light);color:#2d7a5a;}
   .mc-choice.wrong{border-color:#e08080;background:#fff0f0;color:#c05050;}
   .mc-choice.disabled{cursor:default;pointer-events:none;}
-  .mc-letter{
-    min-width:26px;height:26px;border-radius:50%;
-    background:var(--lilac-light);color:var(--lilac-mid);
-    font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;
-    flex-shrink:0;margin-top:1px;
-  }
+  .mc-letter{min-width:26px;height:26px;border-radius:50%;background:var(--lilac-light);color:var(--lilac-mid);font-size:.72rem;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
   .mc-choice.correct .mc-letter{background:#5aad8e;color:white;}
   .mc-choice.wrong .mc-letter{background:#e08080;color:white;}
-  .mc-explain{
-    margin-top:.8rem;padding:.8rem 1rem;
-    background:var(--bg2);border-radius:10px;border-left:3px solid var(--lilac-mid);
-    font-size:.84rem;color:var(--text2);line-height:1.7;display:none;
-  }
+  .mc-explain{margin-top:.8rem;padding:.8rem 1rem;background:var(--bg2);border-radius:10px;border-left:3px solid var(--lilac-mid);font-size:.84rem;color:var(--text2);line-height:1.7;display:none;}
   .mc-explain.show{display:block;}
   .mc-result{font-size:.85rem;font-weight:700;margin-top:.5rem;}
   .mc-result.correct{color:#5aad8e;}
@@ -301,9 +259,6 @@
 </style>
 </head>
 <body>
-
-
-
 
 <!-- PDF MODAL -->
 <div class="pdf-modal-overlay" id="pdf-overlay" onclick="closePDF(event)">
@@ -350,16 +305,8 @@
 
 <!-- ABOUT -->
 <section id="about">
-  <div class="section-head"><span class="tag">About Me</span><h2>My Story</h2></div>
+  <div class="section-head"><span class="tag">About Me</span><h2>Technical Skills</h2></div>
   <hr class="divider">
-  <div class="about-layout">
-    <div style="width:130px;height:130px;border-radius:18px;background:var(--grad2);display:flex;align-items:center;justify-content:center;font-family:'Playfair Display',serif;font-size:2rem;color:var(--lilac-mid);font-weight:400;box-shadow:0 6px 24px rgba(180,160,220,.2);flex-shrink:0;">AA</div>
-    <p style="color:var(--text2);line-height:1.9;font-size:.96rem;"> 
-
-I studied English because I understood early that communication is a form of precision. That instinct followed me into healthcare consulting, where I helped organizations navigate complex operational challenges. But the longer I worked in that environment, the more I recognized that data was the actual engine behind every consequential decision being made. That recognition sent me back to school. I wanted to build the analysis, not just interpret it.
-I chose a program I could complete while working, so I could apply concepts in real time rather than in theory. Deliberately gaining experience across logistics and finance alongside healthcare sharpened how I think about data work. Different industries ask different questions, operate under different pressures, and define success differently. Learning to move across those contexts made me a more rigorous and adaptable analyst.
-That cross-industry foundation is what distinguishes how I work. The same data science toolkit that uncovers fraud in financial services can optimize supply chain reliability in logistics or improve patient outcomes in healthcare. The methods travel. What changes is understanding the business problem sitting behind the data deeply enough to ask the right questions before building anything.
-Today I bring together a background in communication, consulting, and data science to do work that is both technically rigorous and strategically legible. I don't just model data. I understand the business behind it, and I know how to translate what the numbers are saying into something a leadership team can actually act on.
   <h3>✦ Technical Skills</h3>
   <div class="skills-grid" style="margin-bottom:2.5rem;">
     <div class="skill-card"><h4>Python</h4><div class="skill-tags"><span class="skill-tag">scikit-learn</span><span class="skill-tag">TensorFlow</span><span class="skill-tag">PyTorch</span><span class="skill-tag">pandas</span><span class="skill-tag">numpy</span><span class="skill-tag">seaborn</span><span class="skill-tag">matplotlib</span></div></div>
@@ -367,26 +314,12 @@ Today I bring together a background in communication, consulting, and data scien
     <div class="skill-card"><h4>Cloud & Infrastructure</h4><div class="skill-tags"><span class="skill-tag gold">AWS S3</span><span class="skill-tag gold">AWS Lambda</span><span class="skill-tag gold">CloudWatch</span><span class="skill-tag gold">IAM</span><span class="skill-tag gold">BigQuery</span><span class="skill-tag gold">Vertex AI</span><span class="skill-tag gold">Dataflow</span></div></div>
     <div class="skill-card"><h4>Visualization</h4><div class="skill-tags"><span class="skill-tag">Tableau</span><span class="skill-tag">Power BI</span><span class="skill-tag">R Shiny</span></div></div>
   </div>
-
-  <h3>✦ Experience</h3>
-  <div class="timeline">
-    <div class="tl-item"><div class="tl-date">June 2025 —<br>Current</div><div><div class="tl-title">Financial Data Scientist</div><div class="tl-company">Capital Group</div><ul class="tl-bullets"><li>Migrated 30 DAGs from legacy environment to AWS Managed Apache Airflow, reducing infrastructure overhead by ~40%.</li><li>Maintained 10 mission-critical Airflow pipelines supporting daily trading operations with zero disruption.</li><li>Resolved dozens of Alteryx API failures daily with 30-minute turnaround, protecting trading system integrity.</li><li>Processed millions of rows of trading data in R; delivered executive summary reports for senior leadership.</li><li>Configured IAM roles and security groups post-migration; achieved full CloudWatch compliance.</li></ul></div></div>
-    <div class="tl-item"><div class="tl-date">Oct 2023 —<br>June 2025</div><div><div class="tl-title">Data Scientist</div><div class="tl-company">UPS Capital</div><ul class="tl-bullets"><li>Built unsupervised fraud detection using K-Means clustering, flagging $500K+ in suspicious claims.</li><li>Applied text mining and image deduplication (OpenCV, scikit-learn) reducing duplicate submissions by ~30%.</li><li>Developed ARIMA forecasting in GCP BigQuery ML improving logistics accuracy by 15–20%.</li><li>Automated Power BI dashboards eliminating 10+ hours of weekly manual reporting.</li><li>Designed A/B experiments using statistical significance testing to inform marketing strategy.</li></ul></div></div>
-    <div class="tl-item"><div class="tl-date">Jan 2022 —<br>Oct 2023</div><div><div class="tl-title">Data Analyst</div><div class="tl-company">Kyruus</div><ul class="tl-bullets"><li>Processed 100+ healthcare claims tickets annually from AWS S3 maintaining data quality across clients.</li><li>Managed ETL pipelines via Jenkins CI/CD and CloudWatch, reducing downstream errors by ~25%.</li><li>Built statistical models in R to identify procedure pairings enabling a patient rewards program.</li><li>Built Tableau and R Shiny dashboards reducing ad hoc reporting requests by ~20%.</li></ul></div></div>
-    <div class="tl-item"><div class="tl-date">July 2018 —<br>May 2021</div><div><div class="tl-title">Revenue Cycle Data Analyst</div><div class="tl-company">Triage Consulting Group</div><ul class="tl-bullets"><li>Led medical billing for 80+ provider accounts, recovering $1.2M+ in underpaid claims.</li><li>Directed insurance appeals and negotiated contracts across HMO, PPO, Medicare/Medicaid.</li><li>Coordinated with 3,100+ providers, billing offices, and finance departments.</li><li>Implemented CMS-aligned risk controls improving regulatory readiness and compliance.</li></ul></div></div>
-  </div>
-
-  <h3 style="margin-top:2.5rem;">✦ Education</h3>
-  <div class="timeline">
-    <div class="tl-item"><div class="tl-date">Sept 2022</div><div><div class="tl-title">Master's, Data Science</div><div class="tl-company">University of San Diego</div></div></div>
-    <div class="tl-item"><div class="tl-date">June 2017</div><div><div class="tl-title">B.A., English Literature</div><div class="tl-company">University of Chicago</div></div></div>
-  </div>
 </section>
 
 <!-- PROJECTS -->
 <section id="projects">
   <div class="section-head"><span class="tag">Projects</span><h2>My Work</h2>
-    <p>Click "View PDF" to open any project file in a pop-up viewer. Upload your own PDFs to GitHub and link them below.</p>
+    <p>Click "View PDF" to open any project file in a pop-up viewer.</p>
   </div>
   <hr class="divider">
   <div class="projects-grid" id="projects-grid">
@@ -396,26 +329,17 @@ Today I bring together a background in communication, consulting, and data scien
       <div class="project-tags"><span class="project-tag">Python</span><span class="project-tag mint">K-Means</span><span class="project-tag gold">Fraud</span><span class="project-tag">Banking</span></div>
       <button class="btn btn-ghost btn-sm" style="margin-top:auto;" onclick="openPDF('Bank Project week 5.pdf','Bank Fraud Detection — K-Means')">View PDF 🌸</button>
     </div>
-   <div class="project-card">
-  <h4>✦ Bank Fraud Detection — K-Means Clustering</h4>
-
-  <p>
-    Unsupervised machine learning project using K-Means clustering on bank transaction data to detect potential fraud patterns.
-    Includes exploratory data analysis (EDA), anomaly scoring for new transactions, and a clear, non-technical summary for stakeholders.
-  </p>
-
-  <div class="project-tags">
-    <span class="project-tag">Python</span>
-    <span class="project-tag mint">K-Means</span>
-    <span class="project-tag gold">Fraud Detection</span>
-    <span class="project-tag">Banking</span>
-  </div>
-
-  <button class="btn btn-ghost btn-sm" style="margin-top:auto;"
-    onclick="openPDF('KMeans_Presentation.pdf', '_blank')">
-    View Slides 🌸
-  </button>
-</div>
+    <div class="project-card">
+      <h4>✦ Bank Fraud Detection — K-Means Clustering</h4>
+      <p>Unsupervised machine learning project using K-Means clustering on bank transaction data to detect potential fraud patterns. Includes exploratory data analysis (EDA), anomaly scoring for new transactions, and a clear, non-technical summary for stakeholders.</p>
+      <div class="project-tags">
+        <span class="project-tag">Python</span>
+        <span class="project-tag mint">K-Means</span>
+        <span class="project-tag gold">Fraud Detection</span>
+        <span class="project-tag">Banking</span>
+      </div>
+      <button class="btn btn-ghost btn-sm" style="margin-top:auto;" onclick="openPDF('KMeans_Presentation.pdf','K-Means Presentation')">View Slides 🌸</button>
+    </div>
     <div class="project-card">
       <h4>✦ Washington Final Project</h4>
       <p>Capstone data science project — full written report, analysis, and methodology.</p>
@@ -428,12 +352,7 @@ Today I bring together a background in communication, consulting, and data scien
       <div class="project-tags"><span class="project-tag gold">Finance</span><span class="project-tag">Wells Fargo</span><span class="project-tag mint">EDA</span></div>
       <button class="btn btn-ghost btn-sm" style="margin-top:auto;" onclick="openPDF('Wells Fargo (1).pdf','Wells Fargo Analysis')">View PDF 🌸</button>
     </div>
-    </div>
   </div>
-
-  
-
-  
 </section>
 
 <!-- LEARNING HUB -->
@@ -551,6 +470,7 @@ Today I bring together a background in communication, consulting, and data scien
     <div class="qa-card" id="mc-qa"></div>
   </div>
 </section>
+
 <div class="ltab-panel" id="panel-fl">
     <div class="fl-layout">
       <div class="fl-left-col">
@@ -559,26 +479,11 @@ Today I bring together a background in communication, consulting, and data scien
           <span class="fl-score-val" id="fl-score">0 / 0</span>
           <span class="fl-score-streak" id="fl-streak"></span>
         </div>
-        <div class="fl-ref-box">
-          <div class="fl-ref-header">📖 def &amp; return</div>
-          <div class="fl-ref-body"><span class="kw">def</span> greet(name):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="st">f"Hi, {name}"</span><br><br><span class="cm"># default param</span><br><span class="kw">def</span> add(a, b=<span class="st">0</span>):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> a + b</div>
-        </div>
-        <div class="fl-ref-box">
-          <div class="fl-ref-header">📖 *args / **kwargs</div>
-          <div class="fl-ref-body"><span class="kw">def</span> total(*nums):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> sum(nums)<br><br><span class="kw">def</span> info(**kw):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(kw)</div>
-        </div>
-        <div class="fl-ref-box">
-          <div class="fl-ref-header">📖 for / while</div>
-          <div class="fl-ref-body"><span class="kw">for</span> i <span class="kw">in</span> range(<span class="st">5</span>):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i)<br><br><span class="kw">while</span> x &lt; <span class="st">10</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;x += <span class="st">1</span></div>
-        </div>
-        <div class="fl-ref-box">
-          <div class="fl-ref-header">📖 Comprehensions</div>
-          <div class="fl-ref-body">squares = [x**<span class="st">2</span> <span class="kw">for</span> x <span class="kw">in</span> range(<span class="st">5</span>)]<br><br>evens = [x <span class="kw">for</span> x <span class="kw">in</span> nums<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> x%<span class="st">2</span>==<span class="st">0</span>]</div>
-        </div>
-        <div class="fl-ref-box">
-          <div class="fl-ref-header">📖 Lambda / map / filter</div>
-          <div class="fl-ref-body">double = <span class="kw">lambda</span> x: x*<span class="st">2</span><br><br>list(<span class="kw">map</span>(<span class="kw">lambda</span> x: x**<span class="st">2</span>, nums))<br>list(<span class="kw">filter</span>(<span class="kw">lambda</span> x: x&gt;<span class="st">0</span>, nums))</div>
-        </div>
+        <div class="fl-ref-box"><div class="fl-ref-header">📖 def &amp; return</div><div class="fl-ref-body"><span class="kw">def</span> greet(name):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> <span class="st">f"Hi, {name}"</span><br><br><span class="cm"># default param</span><br><span class="kw">def</span> add(a, b=<span class="st">0</span>):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> a + b</div></div>
+        <div class="fl-ref-box"><div class="fl-ref-header">📖 *args / **kwargs</div><div class="fl-ref-body"><span class="kw">def</span> total(*nums):<br>&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">return</span> sum(nums)<br><br><span class="kw">def</span> info(**kw):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(kw)</div></div>
+        <div class="fl-ref-box"><div class="fl-ref-header">📖 for / while</div><div class="fl-ref-body"><span class="kw">for</span> i <span class="kw">in</span> range(<span class="st">5</span>):<br>&nbsp;&nbsp;&nbsp;&nbsp;print(i)<br><br><span class="kw">while</span> x &lt; <span class="st">10</span>:<br>&nbsp;&nbsp;&nbsp;&nbsp;x += <span class="st">1</span></div></div>
+        <div class="fl-ref-box"><div class="fl-ref-header">📖 Comprehensions</div><div class="fl-ref-body">squares = [x**<span class="st">2</span> <span class="kw">for</span> x <span class="kw">in</span> range(<span class="st">5</span>)]<br><br>evens = [x <span class="kw">for</span> x <span class="kw">in</span> nums<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="kw">if</span> x%<span class="st">2</span>==<span class="st">0</span>]</div></div>
+        <div class="fl-ref-box"><div class="fl-ref-header">📖 Lambda / map / filter</div><div class="fl-ref-body">double = <span class="kw">lambda</span> x: x*<span class="st">2</span><br><br>list(<span class="kw">map</span>(<span class="kw">lambda</span> x: x**<span class="st">2</span>, nums))<br>list(<span class="kw">filter</span>(<span class="kw">lambda</span> x: x&gt;<span class="st">0</span>, nums))</div></div>
       </div>
       <div>
         <div class="mc-filter-bar" id="fl-filter-bar">
@@ -597,18 +502,18 @@ Today I bring together a background in communication, consulting, and data scien
       </div>
     </div>
   </div>
+
 <!-- ML GUIDE -->
 <section id="ml">
   <div class="section-head"><span class="tag">ML Guide</span><h2>Algorithm Explainer</h2><p>Every algorithm from your resume — explained clearly with fill-in-the-blank practice.</p></div>
   <hr class="divider">
-<h3 style="margin-bottom:.8rem;">🎯 Classification</h3>
-<div class="ml-grid" id="ml-grid-classification"></div>
-
-<h3 style="margin-top:2rem;margin-bottom:.8rem;">📉 Regression & Forecasting</h3>
-<div class="ml-grid" id="ml-grid-regression"></div>
-
-<h3 style="margin-top:2rem;margin-bottom:.8rem;">🔵 Unsupervised & Other</h3>
-<div class="ml-grid" id="ml-grid-other"></div></section>
+  <h3 style="margin-bottom:.8rem;">🎯 Classification</h3>
+  <div class="ml-grid" id="ml-grid-classification"></div>
+  <h3 style="margin-top:2rem;margin-bottom:.8rem;">📉 Regression & Forecasting</h3>
+  <div class="ml-grid" id="ml-grid-regression"></div>
+  <h3 style="margin-top:2rem;margin-bottom:.8rem;">🔵 Unsupervised & Other</h3>
+  <div class="ml-grid" id="ml-grid-other"></div>
+</section>
 
 <!-- INTERVIEW PREP -->
 <section id="prep">
@@ -616,14 +521,10 @@ Today I bring together a background in communication, consulting, and data scien
     <p>Practice mode: write your STAR answers and flip the flashcard to check yourself.</p>
   </div>
   <hr class="divider">
-
-  <!-- PREP TABS -->
   <div class="prep-tabs">
     <div class="prep-tab active" onclick="switchPrepTab('practice')">📝 Practice Mode</div>
     <div class="prep-tab" onclick="switchPrepTab('flashcard')">🃏 Flashcards</div>
   </div>
-
-  <!-- PRACTICE PANEL -->
   <div class="prep-panel active" id="prep-panel-practice">
     <div class="bq-card">
       <div class="bq-label">✦ Behavioral Question ✦</div>
@@ -648,22 +549,16 @@ Today I bring together a background in communication, consulting, and data scien
       <span class="star-saved" id="star-saved">Saved! 🌸</span>
     </div>
   </div>
-
-  <!-- FLASHCARD PANEL -->
   <div class="prep-panel" id="prep-panel-flashcard">
-    <p style="color:var(--text2);font-size:.88rem;margin-bottom:1.5rem;">
-      Click the card to flip it. The <strong>front</strong> shows the question — the <strong>back</strong> shows your saved STAR answer. Save answers in Practice Mode first!
-    </p>
+    <p style="color:var(--text2);font-size:.88rem;margin-bottom:1.5rem;">Click the card to flip it. The <strong>front</strong> shows the question — the <strong>back</strong> shows your saved STAR answer.</p>
     <div class="fc-scene" onclick="flipCard()">
       <div class="fc-card" id="fc-card">
-        <!-- FRONT -->
         <div class="fc-face fc-front">
           <div class="fc-label">✦ Behavioral Question ✦</div>
           <div class="fc-question" id="fc-front-q">Loading...</div>
           <div style="margin-top:.8rem;"><span class="tag" id="fc-front-cat"></span></div>
           <div class="fc-flip-hint">👆 Click to reveal your STAR answer</div>
         </div>
-        <!-- BACK -->
         <div class="fc-face fc-back">
           <div class="fc-label" style="margin-bottom:1rem;">✦ Your STAR Answer ✦</div>
           <div id="fc-back-content" style="width:100%;"></div>
@@ -693,7 +588,6 @@ Today I bring together a background in communication, consulting, and data scien
 <footer><span style="color:var(--rose-gold);">✦</span> Made with love · Adila Abdulwahid · 2025 <span style="color:var(--rose-gold);">✦</span></footer>
 
 <script>
-
 // ── PDF MODAL ────────────────────────────────────────────────────────────────
 function openPDF(file,title){
   document.getElementById('pdf-modal-title').textContent=title;
@@ -710,7 +604,6 @@ function closePDFBtn(){
 }
 function closePDF(e){if(e.target===document.getElementById('pdf-overlay'))closePDFBtn();}
 
-// ── DATA ARRAYS ───────────────────────────────────────────────────────────────
 const sqlQuestions=[
   {cat:"SELECT & Filter",q:"Select all employees in the Finance department earning more than $90,000.",hint:"\ud83d\udca1 WHERE dept = 'Finance' AND salary > 90000",a:"SELECT * FROM employees\nWHERE dept = 'Finance' AND salary > 90000;"},
   {cat:"SELECT & Filter",q:"Find all employees hired between 2020 and 2022 (inclusive).",hint:"\ud83d\udca1 BETWEEN works on dates too",a:"SELECT * FROM employees\nWHERE hire_date BETWEEN '2020-01-01' AND '2022-12-31';"},
@@ -732,126 +625,29 @@ const sqlQuestions=[
   {cat:"Aggregations",q:"Find the total payroll cost per department.",hint:"\ud83d\udca1 SUM(salary) GROUP BY dept",a:"SELECT dept, SUM(salary) AS total_payroll FROM employees GROUP BY dept;"},
   {cat:"Aggregations",q:"Find departments where the average salary exceeds $90,000.",hint:"\ud83d\udca1 GROUP BY dept HAVING AVG(salary) > 90000",a:"SELECT dept, AVG(salary) AS avg_sal\nFROM employees\nGROUP BY dept\nHAVING AVG(salary) > 90000;"},
   {cat:"Aggregations",q:"Find employees who made more than 1 sale. Show emp_id and sale count.",hint:"\ud83d\udca1 COUNT(*) GROUP BY emp_id HAVING COUNT(*) > 1",a:"SELECT emp_id, COUNT(*) AS sale_count\nFROM sales\nGROUP BY emp_id\nHAVING COUNT(*) > 1;"},
-  {cat:"Aggregations",q:"Find total, average, min, and max sale amount in a single query.",hint:"\ud83d\udca1 Four aggregate functions in one SELECT, no GROUP BY",a:"SELECT\n  SUM(amount)  AS total,\n  AVG(amount)  AS avg,\n  MIN(amount)  AS min_sale,\n  MAX(amount)  AS max_sale\nFROM sales;"},
-  {cat:"Aggregations",q:"How many sales occurred per month? Use sale_date.",hint:"\ud83d\udca1 DATE_TRUNC('month', sale_date) then GROUP BY and ORDER BY",a:"SELECT\n  DATE_TRUNC('month', sale_date) AS month,\n  COUNT(*) AS sale_count\nFROM sales\nGROUP BY DATE_TRUNC('month', sale_date)\nORDER BY month;"},
-  {cat:"Aggregations",q:"Find the department with the single highest total payroll.",hint:"\ud83d\udca1 SUM GROUP BY dept ORDER BY total DESC LIMIT 1",a:"SELECT dept, SUM(salary) AS total_payroll\nFROM employees\nGROUP BY dept\nORDER BY total_payroll DESC\nLIMIT 1;"},
   {cat:"JOINs",q:"Show each sale with the employee name who made it.",hint:"\ud83d\udca1 JOIN employees ON emp_id",a:"SELECT e.name, s.amount, s.sale_date, s.region\nFROM sales s\nJOIN employees e ON s.emp_id = e.emp_id;"},
   {cat:"JOINs",q:"Show all employees and their sales \u2014 include employees with no sales.",hint:"\ud83d\udca1 LEFT JOIN keeps all employees even if no matching sale",a:"SELECT e.name, s.amount, s.sale_date\nFROM employees e\nLEFT JOIN sales s ON e.emp_id = s.emp_id;"},
   {cat:"JOINs",q:"Find employees who have never made a sale.",hint:"\ud83d\udca1 LEFT JOIN then WHERE s.emp_id IS NULL",a:"SELECT e.name\nFROM employees e\nLEFT JOIN sales s ON e.emp_id = s.emp_id\nWHERE s.emp_id IS NULL;"},
   {cat:"JOINs",q:"Show total sales per employee including employees with $0 in sales.",hint:"\ud83d\udca1 LEFT JOIN + COALESCE(SUM(amount), 0)",a:"SELECT e.name, COALESCE(SUM(s.amount), 0) AS total_sales\nFROM employees e\nLEFT JOIN sales s ON e.emp_id = s.emp_id\nGROUP BY e.name;"},
-  {cat:"JOINs",q:"Find employees who made sales in both the East AND West region.",hint:"\ud83d\udca1 JOIN sales twice \u2014 once filtered to East, once to West",a:"SELECT DISTINCT e.name\nFROM employees e\nJOIN sales s1 ON e.emp_id = s1.emp_id AND s1.region = 'East'\nJOIN sales s2 ON e.emp_id = s2.emp_id AND s2.region = 'West';"},
-  {cat:"JOINs",q:"Show each department and its highest-paid employee.",hint:"\ud83d\udca1 Subquery to get max salary per dept, then JOIN back",a:"SELECT e.dept, e.name, e.salary\nFROM employees e\nJOIN (\n  SELECT dept, MAX(salary) AS max_sal\n  FROM employees\n  GROUP BY dept\n) m ON e.dept = m.dept AND e.salary = m.max_sal;"},
-  {cat:"JOINs",q:"Show employee name, their total sales, and their department total sales side by side.",hint:"\ud83d\udca1 JOIN individual sales to a dept-level aggregation subquery",a:"SELECT e.name, e.dept,\n  SUM(s.amount) AS emp_total,\n  d.dept_total\nFROM employees e\nJOIN sales s ON e.emp_id = s.emp_id\nJOIN (\n  SELECT e2.dept, SUM(s2.amount) AS dept_total\n  FROM employees e2\n  JOIN sales s2 ON e2.emp_id = s2.emp_id\n  GROUP BY e2.dept\n) d ON e.dept = d.dept\nGROUP BY e.name, e.dept, d.dept_total;"},
-  {cat:"JOINs",q:"Find all pairs of employees in the same department. No self-pairs, no duplicates.",hint:"\ud83d\udca1 Self-join WHERE e1.emp_id < e2.emp_id to avoid duplicates",a:"SELECT e1.name AS emp1, e2.name AS emp2, e1.dept\nFROM employees e1\nJOIN employees e2\n  ON e1.dept = e2.dept\n  AND e1.emp_id < e2.emp_id;"},
   {cat:"Subqueries",q:"Find all employees earning above the company average salary.",hint:"\ud83d\udca1 WHERE salary > (SELECT AVG(salary) FROM employees)",a:"SELECT name, salary\nFROM employees\nWHERE salary > (SELECT AVG(salary) FROM employees);"},
-  {cat:"Subqueries",q:"Find the employee with the highest salary in each department using a correlated subquery.",hint:"\ud83d\udca1 WHERE salary = (SELECT MAX(salary) FROM employees WHERE dept = e.dept)",a:"SELECT name, dept, salary\nFROM employees e\nWHERE salary = (\n  SELECT MAX(salary)\n  FROM employees\n  WHERE dept = e.dept\n);"},
-  {cat:"Subqueries",q:"Find employees whose salary is above the average salary of their own department.",hint:"\ud83d\udca1 Correlated subquery with AVG per dept \u2014 references outer query",a:"SELECT name, dept, salary\nFROM employees e\nWHERE salary > (\n  SELECT AVG(salary)\n  FROM employees\n  WHERE dept = e.dept\n);"},
-  {cat:"Subqueries",q:"Find employees who made a sale greater than the average sale amount.",hint:"\ud83d\udca1 WHERE emp_id IN (SELECT emp_id FROM sales WHERE amount > (SELECT AVG...))",a:"SELECT DISTINCT e.name\nFROM employees e\nWHERE e.emp_id IN (\n  SELECT emp_id FROM sales\n  WHERE amount > (SELECT AVG(amount) FROM sales)\n);"},
   {cat:"Subqueries",q:"Find the second-highest salary in the employees table.",hint:"\ud83d\udca1 Exclude the max, then find the new max",a:"SELECT MAX(salary) AS second_highest\nFROM employees\nWHERE salary < (SELECT MAX(salary) FROM employees);"},
-  {cat:"Subqueries",q:"Find departments where every employee earns more than $70,000.",hint:"\ud83d\udca1 Exclude depts that have anyone earning <= 70k",a:"SELECT DISTINCT dept\nFROM employees\nWHERE dept NOT IN (\n  SELECT dept FROM employees WHERE salary <= 70000\n);"},
-  {cat:"Subqueries",q:"Find the top 2 earners in each department using a correlated subquery.",hint:"\ud83d\udca1 Count how many earn more than this employee \u2014 keep where count < 2",a:"SELECT name, dept, salary\nFROM employees e\nWHERE (\n  SELECT COUNT(*)\n  FROM employees\n  WHERE dept = e.dept AND salary > e.salary\n) < 2\nORDER BY dept, salary DESC;"},
   {cat:"CTEs",q:"Using a CTE, find all employees who earn above the company average salary.",hint:"\ud83d\udca1 WITH avg_cte AS (SELECT AVG...) SELECT... WHERE salary > cte value",a:"WITH avg_sal AS (\n  SELECT AVG(salary) AS company_avg FROM employees\n)\nSELECT e.name, e.salary\nFROM employees e, avg_sal\nWHERE e.salary > avg_sal.company_avg;"},
   {cat:"CTEs",q:"Use a CTE to rank employees by salary within each department, then return only rank 1.",hint:"\ud83d\udca1 CTE with RANK() OVER, then WHERE rnk = 1 in outer query",a:"WITH ranked AS (\n  SELECT name, dept, salary,\n    RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk\n  FROM employees\n)\nSELECT name, dept, salary\nFROM ranked\nWHERE rnk = 1;"},
-  {cat:"CTEs",q:"Chain two CTEs: first get total sales per employee, then find those above the average total.",hint:"\ud83d\udca1 WITH cte1 AS (...), cte2 AS (...) SELECT...",a:"WITH emp_totals AS (\n  SELECT emp_id, SUM(amount) AS total_sales\n  FROM sales\n  GROUP BY emp_id\n),\navg_total AS (\n  SELECT AVG(total_sales) AS avg_sales FROM emp_totals\n)\nSELECT e.name, et.total_sales\nFROM employees e\nJOIN emp_totals et ON e.emp_id = et.emp_id\nCROSS JOIN avg_total\nWHERE et.total_sales > avg_total.avg_sales;"},
-  {cat:"CTEs",q:"Use a CTE to label each sale as High (>$5000), Mid ($3000-$5000), or Low (<$3000), then count each label.",hint:"\ud83d\udca1 CTE with CASE WHEN, outer query groups by the label",a:"WITH labeled AS (\n  SELECT *,\n    CASE\n      WHEN amount > 5000 THEN 'High'\n      WHEN amount >= 3000 THEN 'Mid'\n      ELSE 'Low'\n    END AS sale_tier\n  FROM sales\n)\nSELECT sale_tier, COUNT(*) AS cnt, SUM(amount) AS total\nFROM labeled\nGROUP BY sale_tier\nORDER BY total DESC;"},
-  {cat:"CTEs",q:"Use a recursive CTE to generate numbers 1 through 10.",hint:"\ud83d\udca1 WITH RECURSIVE cte AS (SELECT 1 UNION ALL SELECT n+1 WHERE n < 10)",a:"WITH RECURSIVE nums AS (\n  SELECT 1 AS n\n  UNION ALL\n  SELECT n + 1 FROM nums WHERE n < 10\n)\nSELECT n FROM nums;"},
-  {cat:"CTEs",q:"Build a CTE with dept headcount and avg salary, then filter to depts with 2+ employees and avg salary > $85k.",hint:"\ud83d\udca1 CTE aggregates, outer query filters with WHERE (not HAVING)",a:"WITH dept_stats AS (\n  SELECT dept,\n    COUNT(*) AS headcount,\n    AVG(salary) AS avg_salary\n  FROM employees\n  GROUP BY dept\n)\nSELECT dept, headcount, ROUND(avg_salary, 0) AS avg_sal\nFROM dept_stats\nWHERE headcount >= 2 AND avg_salary > 85000;"},
   {cat:"Window Functions",q:"Rank employees within each department by salary, highest first. Use RANK().",hint:"\ud83d\udca1 RANK() OVER (PARTITION BY dept ORDER BY salary DESC)",a:"SELECT name, dept, salary,\n  RANK() OVER (\n    PARTITION BY dept\n    ORDER BY salary DESC\n  ) AS salary_rank\nFROM employees;"},
-  {cat:"Window Functions",q:"Show both RANK() and DENSE_RANK() for employees \u2014 what is the difference?",hint:"\ud83d\udca1 RANK skips numbers after ties; DENSE_RANK does not",a:"SELECT name, dept, salary,\n  RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS rnk,\n  DENSE_RANK() OVER (PARTITION BY dept ORDER BY salary DESC) AS dense_rnk\nFROM employees;"},
-  {cat:"Window Functions",q:"Show each employee salary alongside their department average and median salary.",hint:"\ud83d\udca1 AVG() OVER (PARTITION BY dept) \u2014 PERCENTILE_CONT for median",a:"SELECT name, dept, salary,\n  ROUND(AVG(salary) OVER (PARTITION BY dept), 0) AS dept_avg,\n  PERCENTILE_CONT(0.5) WITHIN GROUP (ORDER BY salary)\n    OVER (PARTITION BY dept) AS dept_median\nFROM employees;"},
-  {cat:"Window Functions",q:"Show each sale with a running total per employee ordered by date. Use ROWS UNBOUNDED PRECEDING.",hint:"\ud83d\udca1 SUM() OVER (PARTITION BY emp_id ORDER BY sale_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)",a:"SELECT sale_id, emp_id, amount, sale_date,\n  SUM(amount) OVER (\n    PARTITION BY emp_id\n    ORDER BY sale_date\n    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n  ) AS running_total\nFROM sales;"},
-  {cat:"Window Functions",q:"Show each sale, the previous sale amount for that employee, and the change from previous using LAG.",hint:"\ud83d\udca1 LAG(amount,1) OVER (PARTITION BY emp_id ORDER BY sale_date)",a:"SELECT sale_id, emp_id, amount, sale_date,\n  LAG(amount, 1) OVER (\n    PARTITION BY emp_id ORDER BY sale_date\n  ) AS prev_sale,\n  amount - LAG(amount, 1) OVER (\n    PARTITION BY emp_id ORDER BY sale_date\n  ) AS change_from_prev\nFROM sales;"},
-  {cat:"Window Functions",q:"Show each sale and the next sale amount for that employee using LEAD.",hint:"\ud83d\udca1 LEAD(amount, 1) OVER (PARTITION BY emp_id ORDER BY sale_date)",a:"SELECT sale_id, emp_id, amount, sale_date,\n  LEAD(amount, 1) OVER (\n    PARTITION BY emp_id ORDER BY sale_date\n  ) AS next_sale\nFROM sales;"},
-  {cat:"Window Functions",q:"Calculate a 3-sale moving average of sale amounts per employee.",hint:"\ud83d\udca1 AVG() OVER with ROWS BETWEEN 2 PRECEDING AND CURRENT ROW",a:"SELECT sale_id, emp_id, amount, sale_date,\n  ROUND(AVG(amount) OVER (\n    PARTITION BY emp_id\n    ORDER BY sale_date\n    ROWS BETWEEN 2 PRECEDING AND CURRENT ROW\n  ), 2) AS moving_avg_3\nFROM sales;"},
-  {cat:"Window Functions",q:"Find the first and last sale date for each employee using FIRST_VALUE and LAST_VALUE.",hint:"\ud83d\udca1 Use ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING for LAST_VALUE",a:"SELECT DISTINCT emp_id,\n  FIRST_VALUE(sale_date) OVER (\n    PARTITION BY emp_id ORDER BY sale_date\n    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING\n  ) AS first_sale,\n  LAST_VALUE(sale_date) OVER (\n    PARTITION BY emp_id ORDER BY sale_date\n    ROWS BETWEEN UNBOUNDED PRECEDING AND UNBOUNDED FOLLOWING\n  ) AS last_sale\nFROM sales;"},
-  {cat:"Window Functions",q:"Assign employees to salary quartiles (1=lowest, 4=highest) using NTILE.",hint:"\ud83d\udca1 NTILE(4) OVER (ORDER BY salary)",a:"SELECT name, salary,\n  NTILE(4) OVER (ORDER BY salary) AS salary_quartile\nFROM employees;"},
-  {cat:"Window Functions",q:"Show each employee salary as a % of company total AND as a % of department total.",hint:"\ud83d\udca1 Two SUM() OVER window specs \u2014 one global (no PARTITION), one by dept",a:"SELECT name, dept, salary,\n  ROUND(salary * 100.0 / SUM(salary) OVER (), 2) AS pct_of_company,\n  ROUND(salary * 100.0 / SUM(salary) OVER (PARTITION BY dept), 2) AS pct_of_dept\nFROM employees;"},
-  {cat:"Window Functions",q:"Find employees whose salary is more than 20% above their department average.",hint:"\ud83d\udca1 Use AVG() OVER in a CTE, then filter where salary > avg * 1.2",a:"WITH dept_avgs AS (\n  SELECT name, dept, salary,\n    AVG(salary) OVER (PARTITION BY dept) AS dept_avg\n  FROM employees\n)\nSELECT name, dept, salary, ROUND(dept_avg,0) AS dept_avg\nFROM dept_avgs\nWHERE salary > dept_avg * 1.2;"},
-  {cat:"Window Functions",q:"Identify sales where the amount dropped more than 20% compared to the employee's previous sale.",hint:"\ud83d\udca1 LAG() to get previous amount, then calculate % change and filter",a:"WITH lag_sales AS (\n  SELECT sale_id, emp_id, amount, sale_date,\n    LAG(amount) OVER (PARTITION BY emp_id ORDER BY sale_date) AS prev_amount\n  FROM sales\n)\nSELECT *,\n  ROUND((amount - prev_amount) * 100.0 / prev_amount, 2) AS pct_change\nFROM lag_sales\nWHERE (amount - prev_amount) * 1.0 / prev_amount < -0.20;"},
+  {cat:"Window Functions",q:"Show each sale with a running total per employee ordered by date.",hint:"\ud83d\udca1 SUM() OVER (PARTITION BY emp_id ORDER BY sale_date ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW)",a:"SELECT sale_id, emp_id, amount, sale_date,\n  SUM(amount) OVER (\n    PARTITION BY emp_id\n    ORDER BY sale_date\n    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n  ) AS running_total\nFROM sales;"},
   {cat:"CASE WHEN",q:"Label each employee as Senior (salary > $95k), Mid ($75k-$95k), or Junior (<$75k).",hint:"\ud83d\udca1 CASE WHEN salary > 95000 THEN ... WHEN salary >= 75000 THEN ... ELSE ...",a:"SELECT name, salary,\n  CASE\n    WHEN salary > 95000 THEN 'Senior'\n    WHEN salary >= 75000 THEN 'Mid'\n    ELSE 'Junior'\n  END AS level\nFROM employees;"},
-  {cat:"CASE WHEN",q:"Count sales in each region (East, West, South) as separate columns in one row.",hint:"\ud83d\udca1 COUNT(CASE WHEN region = 'East' THEN 1 END) for each region",a:"SELECT\n  COUNT(CASE WHEN region = 'East'  THEN 1 END) AS east_sales,\n  COUNT(CASE WHEN region = 'West'  THEN 1 END) AS west_sales,\n  COUNT(CASE WHEN region = 'South' THEN 1 END) AS south_sales\nFROM sales;"},
-  {cat:"CASE WHEN",q:"Show total sales split into Q1 (Jan-Mar) and Q2 (Apr-Jun) in a single row.",hint:"\ud83d\udca1 SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 1 AND 3 THEN amount END)",a:"SELECT\n  SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 1 AND 3\n       THEN amount ELSE 0 END) AS Q1_sales,\n  SUM(CASE WHEN EXTRACT(MONTH FROM sale_date) BETWEEN 4 AND 6\n       THEN amount ELSE 0 END) AS Q2_sales\nFROM sales;"},
-  {cat:"CASE WHEN",q:"Flag each sale as Above Target (amount > $5000) or Below Target, then count each group.",hint:"\ud83d\udca1 GROUP BY a CASE expression",a:"SELECT\n  CASE WHEN amount > 5000 THEN 'Above Target' ELSE 'Below Target' END AS status,\n  COUNT(*) AS cnt,\n  SUM(amount) AS total\nFROM sales\nGROUP BY CASE WHEN amount > 5000 THEN 'Above Target' ELSE 'Below Target' END;"},
-  {cat:"CASE WHEN",q:"Pivot the sales table to show total amount per region as separate columns.",hint:"\ud83d\udca1 SUM(CASE WHEN region='East' THEN amount END) for each region",a:"SELECT\n  SUM(CASE WHEN region='East'  THEN amount ELSE 0 END) AS East,\n  SUM(CASE WHEN region='West'  THEN amount ELSE 0 END) AS West,\n  SUM(CASE WHEN region='South' THEN amount ELSE 0 END) AS South\nFROM sales;"},
-  {cat:"Date & Time",q:"Find all employees hired in the year 2020.",hint:"\ud83d\udca1 EXTRACT(YEAR FROM hire_date) = 2020",a:"SELECT * FROM employees\nWHERE EXTRACT(YEAR FROM hire_date) = 2020;"},
-  {cat:"Date & Time",q:"Calculate how many full years each employee has been with the company.",hint:"\ud83d\udca1 DATE_PART('year', AGE(CURRENT_DATE, hire_date))",a:"SELECT name, hire_date,\n  DATE_PART('year', AGE(CURRENT_DATE, hire_date)) AS years_at_company\nFROM employees;"},
-  {cat:"Date & Time",q:"Find sales that occurred on a weekend (Saturday or Sunday).",hint:"\ud83d\udca1 EXTRACT(DOW FROM sale_date) IN (0, 6) \u2014 0=Sunday, 6=Saturday",a:"SELECT * FROM sales\nWHERE EXTRACT(DOW FROM sale_date) IN (0, 6);"},
-  {cat:"Date & Time",q:"Show total sales by month and year, ordered chronologically.",hint:"\ud83d\udca1 DATE_TRUNC('month', sale_date) then GROUP BY and ORDER BY",a:"SELECT\n  DATE_TRUNC('month', sale_date) AS month,\n  COUNT(*) AS num_sales,\n  SUM(amount) AS total\nFROM sales\nGROUP BY DATE_TRUNC('month', sale_date)\nORDER BY month;"},
-  {cat:"Date & Time",q:"Find employees who have been with the company for more than 4 years.",hint:"\ud83d\udca1 hire_date < CURRENT_DATE - INTERVAL '4 years'",a:"SELECT name, hire_date\nFROM employees\nWHERE hire_date < CURRENT_DATE - INTERVAL '4 years';"},
-  {cat:"Date & Time",q:"Find the number of days between each sale and the employee's previous sale.",hint:"\ud83d\udca1 LAG(sale_date) OVER (PARTITION BY emp_id ORDER BY sale_date), then subtract",a:"SELECT sale_id, emp_id, sale_date,\n  LAG(sale_date) OVER (PARTITION BY emp_id ORDER BY sale_date) AS prev_date,\n  sale_date - LAG(sale_date) OVER (\n    PARTITION BY emp_id ORDER BY sale_date\n  ) AS days_since_prev\nFROM sales;"},
-  {cat:"String Functions",q:"Convert all employee names to uppercase.",hint:"\ud83d\udca1 UPPER(name)",a:"SELECT UPPER(name) AS name_upper FROM employees;"},
-  {cat:"String Functions",q:"Extract the first 3 characters of each employee name.",hint:"\ud83d\udca1 LEFT(name, 3) or SUBSTRING(name, 1, 3)",a:"SELECT name, LEFT(name, 3) AS name_prefix FROM employees;"},
-  {cat:"String Functions",q:"Concatenate employee name and department like: Adila \u2014 Finance.",hint:"\ud83d\udca1 CONCAT(name, ' \u2014 ', dept) or name || ' \u2014 ' || dept",a:"SELECT CONCAT(name, ' \u2014 ', dept) AS name_dept FROM employees;"},
-  {cat:"String Functions",q:"Find the character length of each employee name.",hint:"\ud83d\udca1 LENGTH(name)",a:"SELECT name, LENGTH(name) AS name_length FROM employees;"},
-  {cat:"String Functions",q:"Replace Engineering with Eng in the dept column.",hint:"\ud83d\udca1 REPLACE(dept, 'Engineering', 'Eng')",a:"SELECT name, REPLACE(dept, 'Engineering', 'Eng') AS dept_short FROM employees;"},
-  {cat:"NULL Handling",q:"Replace NULL salaries with 0 using COALESCE.",hint:"\ud83d\udca1 COALESCE(salary, 0) returns first non-NULL value",a:"SELECT name, COALESCE(salary, 0) AS salary FROM employees;"},
-  {cat:"NULL Handling",q:"Show salary, replacing NULLs with the text Not Set.",hint:"\ud83d\udca1 COALESCE(CAST(salary AS VARCHAR), 'Not Set')",a:"SELECT name, COALESCE(CAST(salary AS VARCHAR), 'Not Set') AS salary FROM employees;"},
-  {cat:"NULL Handling",q:"Return NULL if an employee salary equals their department average (use NULLIF).",hint:"\ud83d\udca1 NULLIF(a, b) returns NULL when a = b",a:"SELECT name, salary,\n  NULLIF(salary, AVG(salary) OVER (PARTITION BY dept)) AS diff_flag\nFROM employees;"},
-  {cat:"NULL Handling",q:"Count employees with a recorded salary vs those with NULL salary.",hint:"\ud83d\udca1 COUNT(salary) counts non-NULLs; COUNT(*) - COUNT(salary) gives the NULLs",a:"SELECT\n  COUNT(salary) AS has_salary,\n  COUNT(*) - COUNT(salary) AS missing_salary\nFROM employees;"},
-  {cat:"Advanced",q:"Find employees who have made more sales than the average number of sales per employee.",hint:"\ud83d\udca1 CTE: count sales per emp, compute avg of those counts, filter",a:"WITH sales_per_emp AS (\n  SELECT emp_id, COUNT(*) AS num_sales\n  FROM sales\n  GROUP BY emp_id\n),\navg_sales AS (\n  SELECT AVG(num_sales) AS avg_count FROM sales_per_emp\n)\nSELECT e.name, sp.num_sales\nFROM employees e\nJOIN sales_per_emp sp ON e.emp_id = sp.emp_id\nCROSS JOIN avg_sales\nWHERE sp.num_sales > avg_sales.avg_count;"},
-  {cat:"Advanced",q:"For each month, show the month-over-month percent change in total sales.",hint:"\ud83d\udca1 CTE with monthly totals + LAG, then (current - prev) / prev * 100",a:"WITH monthly AS (\n  SELECT\n    DATE_TRUNC('month', sale_date) AS month,\n    SUM(amount) AS total\n  FROM sales\n  GROUP BY DATE_TRUNC('month', sale_date)\n)\nSELECT month, total,\n  LAG(total) OVER (ORDER BY month) AS prev_month,\n  ROUND((total - LAG(total) OVER (ORDER BY month)) * 100.0\n    / LAG(total) OVER (ORDER BY month), 2) AS pct_change\nFROM monthly\nORDER BY month;"},
-  {cat:"Advanced",q:"Find the employee who made the highest single sale in each region.",hint:"\ud83d\udca1 RANK() OVER (PARTITION BY region ORDER BY amount DESC) in CTE, filter rnk=1",a:"WITH ranked AS (\n  SELECT s.region, e.name, s.amount,\n    RANK() OVER (PARTITION BY s.region ORDER BY s.amount DESC) AS rnk\n  FROM sales s\n  JOIN employees e ON s.emp_id = e.emp_id\n)\nSELECT region, name, amount\nFROM ranked\nWHERE rnk = 1;"},
-  {cat:"Advanced",q:"Detect duplicate sales: find rows with the same emp_id, amount, and sale_date.",hint:"\ud83d\udca1 GROUP BY those columns HAVING COUNT(*) > 1",a:"SELECT emp_id, amount, sale_date, COUNT(*) AS duplicates\nFROM sales\nGROUP BY emp_id, amount, sale_date\nHAVING COUNT(*) > 1;"},
-  {cat:"Advanced",q:"Delete duplicate sales using a CTE and ROW_NUMBER, keeping the lowest sale_id.",hint:"\ud83d\udca1 CTE with ROW_NUMBER() OVER (PARTITION BY... ORDER BY sale_id), DELETE WHERE rn > 1",a:"WITH dupes AS (\n  SELECT sale_id,\n    ROW_NUMBER() OVER (\n      PARTITION BY emp_id, amount, sale_date\n      ORDER BY sale_id\n    ) AS rn\n  FROM sales\n)\nDELETE FROM sales\nWHERE sale_id IN (SELECT sale_id FROM dupes WHERE rn > 1);"},
-  {cat:"Advanced",q:"Show a running count of employees hired up to each hire date (cumulative hires).",hint:"\ud83d\udca1 COUNT(*) OVER (ORDER BY hire_date ROWS UNBOUNDED PRECEDING)",a:"SELECT name, hire_date,\n  COUNT(*) OVER (\n    ORDER BY hire_date\n    ROWS BETWEEN UNBOUNDED PRECEDING AND CURRENT ROW\n  ) AS cumulative_hires\nFROM employees\nORDER BY hire_date;"},
-  {cat:"Advanced",q:"Find the top 3 sales per region with ties included using DENSE_RANK.",hint:"\ud83d\udca1 DENSE_RANK() OVER (PARTITION BY region ORDER BY amount DESC), filter <= 3",a:"WITH ranked AS (\n  SELECT region, emp_id, amount, sale_date,\n    DENSE_RANK() OVER (\n      PARTITION BY region\n      ORDER BY amount DESC\n    ) AS rnk\n  FROM sales\n)\nSELECT region, emp_id, amount, sale_date\nFROM ranked\nWHERE rnk <= 3\nORDER BY region, rnk;"},
-  {cat:"Advanced",q:"Calculate a 30-day rolling sum of sales using RANGE (not ROWS).",hint:"\ud83d\udca1 SUM() OVER (ORDER BY sale_date RANGE BETWEEN INTERVAL '29 days' PRECEDING AND CURRENT ROW)",a:"SELECT sale_date, amount,\n  SUM(amount) OVER (\n    ORDER BY sale_date\n    RANGE BETWEEN INTERVAL '29 days' PRECEDING AND CURRENT ROW\n  ) AS rolling_30d_sum\nFROM sales\nORDER BY sale_date;"},
-  {cat:"Advanced",q:"Find employees in the top 25% salary quartile using NTILE.",hint:"\ud83d\udca1 NTILE(4) OVER (ORDER BY salary) \u2014 filter where quartile = 4",a:"WITH quartiles AS (\n  SELECT name, salary,\n    NTILE(4) OVER (ORDER BY salary) AS quartile\n  FROM employees\n)\nSELECT name, salary\nFROM quartiles\nWHERE quartile = 4\nORDER BY salary DESC;"},
-  {cat:"Advanced",q:"Find employees hired in the same calendar month as any other employee.",hint:"\ud83d\udca1 Self-join matching EXTRACT(MONTH) but different emp_id",a:"SELECT e1.name AS emp1, e2.name AS emp2,\n  EXTRACT(MONTH FROM e1.hire_date) AS shared_month\nFROM employees e1\nJOIN employees e2\n  ON EXTRACT(MONTH FROM e1.hire_date) = EXTRACT(MONTH FROM e2.hire_date)\n  AND e1.emp_id < e2.emp_id;"},
-  {cat:"Advanced",q:"In one SELECT, show each employee salary rank company-wide, rank within dept, dept headcount, and company headcount.",hint:"\ud83d\udca1 Multiple OVER() specs with different PARTITION BY in the same query",a:"SELECT\n  e.name, e.dept, e.salary,\n  RANK() OVER (ORDER BY e.salary DESC) AS company_salary_rank,\n  RANK() OVER (PARTITION BY e.dept ORDER BY e.salary DESC) AS dept_salary_rank,\n  COUNT(*) OVER () AS total_headcount,\n  COUNT(*) OVER (PARTITION BY e.dept) AS dept_headcount\nFROM employees e;"},
-  {cat:"Advanced",q:"Find months where total sales declined compared to the prior month.",hint:"\ud83d\udca1 Monthly CTE + LAG, filter where total < prev_total",a:"WITH monthly AS (\n  SELECT\n    DATE_TRUNC('month', sale_date) AS month,\n    SUM(amount) AS total\n  FROM sales\n  GROUP BY DATE_TRUNC('month', sale_date)\n),\nwith_prev AS (\n  SELECT month, total,\n    LAG(total) OVER (ORDER BY month) AS prev_total\n  FROM monthly\n)\nSELECT month, total, prev_total, total - prev_total AS change\nFROM with_prev\nWHERE total < prev_total;"},
-  {cat:"Advanced",q:"For each employee, calculate the gap in days between their first and last sale.",hint:"\ud83d\udca1 MIN and MAX sale_date per emp via GROUP BY, then subtract",a:"SELECT e.name,\n  MIN(s.sale_date) AS first_sale,\n  MAX(s.sale_date) AS last_sale,\n  MAX(s.sale_date) - MIN(s.sale_date) AS day_span\nFROM employees e\nJOIN sales s ON e.emp_id = s.emp_id\nGROUP BY e.name;"},
 ];
 
 const pyQuestions=[
-  {cat:"Basics",q:"Show the first 5 rows and shape of df_transactions.",hint:"\ud83d\udca1 df.head() and df.shape",a:"print(df_transactions.head())\nprint('Shape:', df_transactions.shape)",fitb:{template:"print(df_transactions.___())\nprint('Shape:', df_transactions.___)",blanks:["head","shape"]}},
+  {cat:"Basics",q:"Show the first 5 rows and shape of df_transactions.",hint:"\ud83d\udca1 df.head() and df.shape",a:"print(df_transactions.head())\nprint('Shape:', df_transactions.shape)"},
   {cat:"Basics",q:"Get data types and check for missing values.",hint:"\ud83d\udca1 .dtypes and .isnull().sum()",a:"print(df_transactions.dtypes)\nprint(df_transactions.isnull().sum())"},
-  {cat:"Basics",q:"Get summary statistics for all numeric columns.",hint:"\ud83d\udca1 .describe()",a:"df_transactions.describe()"},
   {cat:"Basics",q:"Filter df_transactions to only AAPL rows.",hint:"\ud83d\udca1 df[df['ticker'] == 'AAPL']",a:"aapl = df_transactions[df_transactions['ticker'] == 'AAPL']"},
-  {cat:"Basics",q:"Filter to rows where return_pct is positive.",hint:"\ud83d\udca1 df[df['return_pct'] > 0]",a:"positive = df_transactions[df_transactions['return_pct'] > 0]"},
-  {cat:"Basics",q:"Sort by date ascending, then price descending.",hint:"\ud83d\udca1 .sort_values(['date','price'], ascending=[True, False])",a:"df_sorted = df_transactions.sort_values(['date','price'], ascending=[True, False])"},
-  {cat:"Basics",q:"Select only the date and price columns.",hint:"\ud83d\udca1 df[['date','price']]",a:"subset = df_transactions[['date','price']]"},
-  {cat:"Basics",q:"Rename return_pct to daily_return.",hint:"\ud83d\udca1 .rename(columns={'old':'new'})",a:"df_transactions = df_transactions.rename(columns={'return_pct': 'daily_return'})"},
-  {cat:"Basics",q:"Drop rows with any missing values.",hint:"\ud83d\udca1 .dropna()",a:"df_clean = df_transactions.dropna()"},
-  {cat:"Basics",q:"Fill missing price values with the column mean.",hint:"\ud83d\udca1 .fillna(df['price'].mean())",a:"df_transactions['price'] = df_transactions['price'].fillna(df_transactions['price'].mean())"},
   {cat:"GroupBy",q:"Calculate the mean return_pct for each ticker.",hint:"\ud83d\udca1 groupby('ticker')['return_pct'].mean()",a:"df_transactions.groupby('ticker')['return_pct'].mean()"},
   {cat:"GroupBy",q:"Find the total volume and average price per ticker in one call.",hint:"\ud83d\udca1 groupby + agg with a dict",a:"df_transactions.groupby('ticker').agg(\n  total_volume=('volume','sum'),\n  avg_price=('price','mean')\n)"},
-  {cat:"GroupBy",q:"Find the ticker with the maximum average price.",hint:"\ud83d\udca1 groupby + mean + idxmax()",a:"best = df_transactions.groupby('ticker')['price'].mean().idxmax()\nprint(best)"},
-  {cat:"GroupBy",q:"Count how many trading days exist per ticker.",hint:"\ud83d\udca1 groupby('ticker')['date'].count()",a:"df_transactions.groupby('ticker')['date'].count()"},
-  {cat:"GroupBy",q:"Get the min and max price per ticker in one call.",hint:"\ud83d\udca1 .agg(['min','max'])",a:"df_transactions.groupby('ticker')['price'].agg(['min','max'])"},
-  {cat:"GroupBy",q:"Find the row with the highest return_pct for each ticker.",hint:"\ud83d\udca1 groupby + idxmax then .loc",a:"idx = df_transactions.groupby('ticker')['return_pct'].idxmax()\ndf_transactions.loc[idx]"},
-  {cat:"GroupBy",q:"Add a column showing return_pct minus that ticker's mean return.",hint:"\ud83d\udca1 groupby transform to subtract group mean",a:"df_transactions['return_vs_mean'] = (\n  df_transactions['return_pct']\n  - df_transactions.groupby('ticker')['return_pct'].transform('mean')\n)"},
-  {cat:"GroupBy",q:"Calculate cumulative sum of return_pct per ticker ordered by date.",hint:"\ud83d\udca1 sort first, then groupby + cumsum",a:"df_sorted = df_transactions.sort_values(['ticker','date'])\ndf_sorted['cumulative_return'] = df_sorted.groupby('ticker')['return_pct'].cumsum()"},
-  {cat:"GroupBy",q:"Count positive-return days vs negative-return days per ticker.",hint:"\ud83d\udca1 Create a boolean column then groupby both ticker and the boolean",a:"df_transactions['positive'] = df_transactions['return_pct'] > 0\ndf_transactions.groupby(['ticker','positive']).size()"},
-  {cat:"GroupBy",q:"Compute the 3-day rolling average return_pct per ticker.",hint:"\ud83d\udca1 groupby transform with rolling(3).mean()",a:"df_transactions['rolling_ret'] = (\n  df_transactions.sort_values(['ticker','date'])\n  .groupby('ticker')['return_pct']\n  .transform(lambda x: x.rolling(3).mean())\n)"},
-  {cat:"Merge & Reshape",q:"Pivot df_transactions so rows are dates, columns are tickers, values are price.",hint:"\ud83d\udca1 .pivot(index='date', columns='ticker', values='price')",a:"pivot = df_transactions.pivot(index='date', columns='ticker', values='price')\nprint(pivot)"},
-  {cat:"Merge & Reshape",q:"Melt the pivot table back to long format.",hint:"\ud83d\udca1 pivot.reset_index().melt(id_vars='date')",a:"long = pivot.reset_index().melt(id_vars='date', var_name='ticker', value_name='price')"},
-  {cat:"Merge & Reshape",q:"Create a pivot table showing mean return_pct per ticker per month.",hint:"\ud83d\udca1 pd.pivot_table with aggfunc='mean'",a:"df_transactions['month'] = pd.to_datetime(df_transactions['date']).dt.month\npd.pivot_table(df_transactions,\n  values='return_pct',\n  index='month',\n  columns='ticker',\n  aggfunc='mean')"},
-  {cat:"Merge & Reshape",q:"Given df_info with ticker and sector columns, left-merge it onto df_transactions.",hint:"\ud83d\udca1 pd.merge on 'ticker', how='left'",a:"df_merged = pd.merge(df_transactions, df_info, on='ticker', how='left')"},
-  {cat:"Merge & Reshape",q:"Stack a multi-column DataFrame to go from wide to long format, then unstack to reverse.",hint:"\ud83d\udca1 .stack() collapses columns into rows; .unstack() reverses",a:"stacked = df_transactions.set_index(['date','ticker']).stack()\nunstacked = stacked.unstack('ticker')"},
   {cat:"Feature Engineering",q:"Create a price_change column: absolute dollar change from previous day per ticker.",hint:"\ud83d\udca1 groupby + diff()",a:"df_transactions['price_change'] = (\n  df_transactions.sort_values(['ticker','date'])\n  .groupby('ticker')['price']\n  .diff()\n)"},
   {cat:"Feature Engineering",q:"Create a binary big_move column: 1 if abs(return_pct) > 1.0, else 0.",hint:"\ud83d\udca1 (df['return_pct'].abs() > 1).astype(int)",a:"df_transactions['big_move'] = (df_transactions['return_pct'].abs() > 1).astype(int)"},
-  {cat:"Feature Engineering",q:"Bin the price column into 3 equal-width buckets labeled Low, Mid, High.",hint:"\ud83d\udca1 pd.cut with labels=['Low','Mid','High']",a:"df_transactions['price_bucket'] = pd.cut(\n  df_transactions['price'],\n  bins=3,\n  labels=['Low','Mid','High']\n)"},
-  {cat:"Feature Engineering",q:"Label-encode the ticker column as integers using sklearn LabelEncoder.",hint:"\ud83d\udca1 LabelEncoder().fit_transform()",a:"from sklearn.preprocessing import LabelEncoder\nle = LabelEncoder()\ndf_transactions['ticker_encoded'] = le.fit_transform(df_transactions['ticker'])"},
-  {cat:"Feature Engineering",q:"One-hot encode the ticker column and drop the first dummy to avoid multicollinearity.",hint:"\ud83d\udca1 pd.get_dummies(drop_first=True)",a:"dummies = pd.get_dummies(df_transactions['ticker'], drop_first=True)\ndf_encoded = pd.concat([df_transactions, dummies], axis=1)"},
-  {cat:"Feature Engineering",q:"Standardize the price column to mean=0, std=1 using StandardScaler.",hint:"\ud83d\udca1 StandardScaler().fit_transform on the column as a 2D array",a:"from sklearn.preprocessing import StandardScaler\nscaler = StandardScaler()\ndf_transactions['price_scaled'] = scaler.fit_transform(\n  df_transactions[['price']]\n)"},
-  {cat:"Feature Engineering",q:"Create a lag-1 feature for return_pct per ticker (yesterday's return).",hint:"\ud83d\udca1 groupby + shift(1)",a:"df_transactions['return_lag1'] = (\n  df_transactions.sort_values(['ticker','date'])\n  .groupby('ticker')['return_pct']\n  .shift(1)\n)"},
-  {cat:"Feature Engineering",q:"Calculate the 5-day rolling standard deviation (volatility) of return_pct per ticker.",hint:"\ud83d\udca1 groupby transform rolling(5).std()",a:"df_transactions['volatility_5d'] = (\n  df_transactions.sort_values(['ticker','date'])\n  .groupby('ticker')['return_pct']\n  .transform(lambda x: x.rolling(5).std())\n)"},
-  {cat:"Feature Engineering",q:"Create a price_vs_high feature: price divided by 5-day rolling max price per ticker.",hint:"\ud83d\udca1 rolling(5).max() via transform, then divide price by it",a:"df_transactions['price_vs_high'] = (\n  df_transactions['price']\n  / df_transactions.groupby('ticker')['price']\n    .transform(lambda x: x.rolling(5).max())\n)"},
   {cat:"EDA & Visualization",q:"Plot the distribution of return_pct as a histogram.",hint:"\ud83d\udca1 df['return_pct'].hist(bins=30) or seaborn histplot",a:"import matplotlib.pyplot as plt\ndf_transactions['return_pct'].hist(bins=30, color='#b39de8')\nplt.title('Return % Distribution')\nplt.show()"},
-  {cat:"EDA & Visualization",q:"Plot price over time for each ticker on the same chart.",hint:"\ud83d\udca1 groupby and plot each group, or seaborn lineplot with hue='ticker'",a:"import matplotlib.pyplot as plt\nfor ticker, grp in df_transactions.groupby('ticker'):\n  grp.sort_values('date').plot(x='date', y='price', label=ticker, ax=plt.gca())\nplt.title('Price Over Time')\nplt.legend()\nplt.show()"},
-  {cat:"EDA & Visualization",q:"Create a correlation heatmap of all numeric columns.",hint:"\ud83d\udca1 seaborn heatmap on df.select_dtypes('number').corr()",a:"import seaborn as sns\nimport matplotlib.pyplot as plt\nsns.heatmap(df_transactions.select_dtypes(include='number').corr(),\n  annot=True, cmap='PuRd', fmt='.2f')\nplt.title('Correlation Heatmap')\nplt.show()"},
-  {cat:"EDA & Visualization",q:"Create a boxplot of return_pct grouped by ticker.",hint:"\ud83d\udca1 seaborn boxplot with x='ticker', y='return_pct'",a:"import seaborn as sns\nimport matplotlib.pyplot as plt\nsns.boxplot(data=df_transactions, x='ticker', y='return_pct')\nplt.title('Return % by Ticker')\nplt.show()"},
-  {cat:"EDA & Visualization",q:"Plot the 5-day rolling average price for AAPL alongside the raw price.",hint:"\ud83d\udca1 Filter AAPL, sort, compute rolling(5).mean(), then plot both",a:"import matplotlib.pyplot as plt\naapl = df_transactions[df_transactions['ticker']=='AAPL'].sort_values('date').copy()\naapl['rolling_price'] = aapl['price'].rolling(5).mean()\naapl.plot(x='date', y=['price','rolling_price'])\nplt.title('AAPL Price vs 5-Day Rolling Average')\nplt.show()"},
-  {cat:"EDA & Visualization",q:"Find and print outliers in return_pct using a Z-score threshold of 2.",hint:"\ud83d\udca1 z = (x - mean) / std, flag where abs(z) > 2",a:"import numpy as np\ndf_transactions['z_score'] = (\n  (df_transactions['return_pct'] - df_transactions['return_pct'].mean())\n  / df_transactions['return_pct'].std()\n)\noutliers = df_transactions[df_transactions['z_score'].abs() > 2]\nprint(f'Outliers: {len(outliers)}')\nprint(outliers)"},
-  {cat:"Advanced",q:"Compute the Sharpe ratio (mean / std of return_pct) for each ticker.",hint:"\ud83d\udca1 groupby + apply with a lambda or named function",a:"sharpe = df_transactions.groupby('ticker')['return_pct'].apply(\n  lambda x: x.mean() / x.std()\n)\nprint('Sharpe Ratios:')\nprint(sharpe)"},
-  {cat:"Advanced",q:"Find rows where return_pct is more than 2 standard deviations from the ticker mean.",hint:"\ud83d\udca1 groupby transform for mean and std, then filter abs deviation > 2*std",a:"grp = df_transactions.groupby('ticker')['return_pct']\ndf_transactions['mean'] = grp.transform('mean')\ndf_transactions['std']  = grp.transform('std')\noutliers = df_transactions[\n  (df_transactions['return_pct'] - df_transactions['mean']).abs()\n  > 2 * df_transactions['std']\n]"},
-  {cat:"Advanced",q:"Compute the pairwise correlation between AAPL and MSFT daily returns.",hint:"\ud83d\udca1 Pivot to wide format, then .corr() between the two columns",a:"wide = df_transactions.pivot(index='date', columns='ticker', values='return_pct')\ncorr = wide['AAPL'].corr(wide['MSFT'])\nprint(f'AAPL-MSFT return correlation: {corr:.4f}')"},
-  {cat:"Advanced",q:"Use pd.qcut to split return_pct into 4 equal-frequency quantile bins.",hint:"\ud83d\udca1 pd.qcut(df['col'], q=4, labels=['Q1','Q2','Q3','Q4'])",a:"df_transactions['return_quantile'] = pd.qcut(\n  df_transactions['return_pct'],\n  q=4,\n  labels=['Q1','Q2','Q3','Q4']\n)"},
-  {cat:"Advanced",q:"Implement a vectorized 14-day RSI calculation for AAPL without using a loop.",hint:"\ud83d\udca1 diff(), clip(), rolling mean of gains and losses, then RS = gain/loss, RSI = 100 - 100/(1+RS)",a:"aapl = df_transactions[df_transactions['ticker']=='AAPL'].sort_values('date').copy()\ndelta = aapl['price'].diff()\ngain  = delta.clip(lower=0).rolling(14).mean()\nloss  = (-delta.clip(upper=0)).rolling(14).mean()\nrs = gain / loss\naapl['rsi'] = 100 - (100 / (1 + rs))\nprint(aapl[['date','price','rsi']].tail(10))"},
-  {cat:"Advanced",q:"Resample df_transactions to weekly frequency and compute mean price per ticker.",hint:"\ud83d\udca1 set_index('date'), groupby ticker, resample('W').mean()",a:"df_transactions['date'] = pd.to_datetime(df_transactions['date'])\nweekly = (\n  df_transactions.set_index('date')\n  .groupby('ticker')['price']\n  .resample('W')\n  .mean()\n)\nprint(weekly)"},
-  {cat:"Advanced",q:"Build a full sklearn preprocessing pipeline: impute, scale numerics, one-hot encode categoricals.",hint:"\ud83d\udca1 ColumnTransformer + Pipeline with SimpleImputer, StandardScaler, OneHotEncoder(drop='first')",a:"from sklearn.pipeline import Pipeline\nfrom sklearn.compose import ColumnTransformer\nfrom sklearn.preprocessing import StandardScaler, OneHotEncoder\nfrom sklearn.impute import SimpleImputer\n\nnum_cols = ['price','return_pct']\ncat_cols = ['ticker']\n\npreprocessor = ColumnTransformer([\n  ('num', Pipeline([\n    ('impute', SimpleImputer(strategy='mean')),\n    ('scale', StandardScaler())\n  ]), num_cols),\n  ('cat', OneHotEncoder(drop='first', sparse_output=False), cat_cols)\n])\n\nX = df_transactions[num_cols + cat_cols]\nX_transformed = preprocessor.fit_transform(X)\nprint('Transformed shape:', X_transformed.shape)"},
-  {cat:"Advanced",q:"Calculate the beta of AAPL relative to MSFT (how much AAPL moves per 1% MSFT move).",hint:"\ud83d\udca1 Beta = Cov(AAPL returns, MSFT returns) / Var(MSFT returns)",a:"wide = df_transactions.pivot(index='date', columns='ticker', values='return_pct').dropna()\ncov  = wide['AAPL'].cov(wide['MSFT'])\nvar  = wide['MSFT'].var()\nbeta = cov / var\nprint(f'AAPL beta vs MSFT: {beta:.4f}')"},
+  {cat:"Advanced",q:"Compute the Sharpe ratio (mean / std of return_pct) for each ticker.",hint:"\ud83d\udca1 groupby + apply with a lambda or named function",a:"sharpe = df_transactions.groupby('ticker')['return_pct'].apply(\n  lambda x: x.mean() / x.std()\n)\nprint(sharpe)"},
 ];
 
 const fitbQuestions=[
@@ -870,195 +666,70 @@ const fitbQuestions=[
 ];
 
 const mlAlgorithms=[
-  {
-    name:'Neural Networks', type:'classification', emoji:'🧠',tagline:'Inspired by the human brain',
-    explain:'A neural network is a series of layers of nodes. Data flows through an input layer, hidden layers (where patterns are learned via weights and activation functions), and an output layer. Training adjusts weights using backpropagation to minimize error. The more hidden layers, the "deeper" the network — hence deep learning.',
-    when:'<strong>Use when:</strong> large datasets, image recognition, NLP, complex non-linear patterns.',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Stock Price Movement Prediction',desc:'Train a neural network on historical OHLCV data, technical indicators, and sentiment scores to predict next-day price direction. Output: buy/sell/hold signal per ticker.'},
-      {industry:'Healthcare',emoji:'🏥',title:'Medical Image Classification',desc:'Use a convolutional neural network (CNN) to classify chest X-rays as normal, pneumonia, or COVID. Input: image pixels. Output: diagnosis probability.'},
-      {industry:'Logistics',emoji:'📦',title:'Demand Forecasting',desc:'Train an LSTM (recurrent neural network) on historical shipment volumes, seasonality, and external signals to forecast weekly demand per distribution center.'},
-    ],
-    fitb:{template:'A neural network learns by adjusting ___ during backpropagation to minimize ___.',blanks:['weights','loss']}
-  },
-  {
-    name:'Decision Trees', type:'classification', emoji:'🌳',tagline:'If/then logic in tree form',
-    explain:'A decision tree splits data into branches based on feature values. At each node, it picks the split that best separates classes using Gini impurity or information gain. Easy to explain to stakeholders — you can literally print the tree.',
-    when:'<strong>Use when:</strong> you need interpretable results or your data has clear categorical splits.',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Loan Approval Decision Tree',desc:'Build a tree that splits applicants by credit score, debt-to-income ratio, and employment status to approve or deny loans. Fully explainable to regulators.'},
-      {industry:'Healthcare',emoji:'🏥',title:'Patient Triage Classification',desc:'Classify incoming ER patients as low/medium/high urgency based on vitals, age, chief complaint, and medical history. Helps staff prioritize care.'},
-      {industry:'Logistics',emoji:'📦',title:'Shipment Delay Root Cause',desc:'Build a tree on weather, carrier, route, and time-of-year features to classify which shipments are likely to be delayed and why.'},
-    ],
-    fitb:{template:'Decision trees split data at each node to minimize ___, a measure of impurity.',blanks:['Gini impurity']}
-  },
-  {
-    name:'Random Forest', type:'classification', emoji:'🌲',tagline:'Many trees, one smart answer',
-    explain:'Random Forest builds hundreds of decision trees on random subsets of data (bagging) and random subsets of features. Each tree votes and the majority wins. This reduces overfitting that a single tree suffers from. Also gives feature importance scores.',
-    when:'<strong>Use when:</strong> high accuracy with less overfitting. Great for tabular data and fraud detection.',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Credit Default Prediction',desc:'Train on borrower history, payment behavior, and macroeconomic features. Random Forest handles mixed feature types well and outputs a default probability per loan.'},
-      {industry:'Healthcare',emoji:'🏥',title:'30-Day Readmission Risk',desc:'Predict which patients discharged from hospital will be readmitted within 30 days. Features: diagnosis codes, length of stay, medications, demographics.'},
-      {industry:'Logistics',emoji:'📦',title:'Carrier Performance Scoring',desc:'Score each carrier on on-time rate, damage claims, and cost efficiency using Random Forest. Use feature importance to find what drives poor performance.'},
-    ],
-    fitb:{template:'Random Forest reduces ___ by combining many trees trained on random ___ of data.',blanks:['overfitting','subsets']}
-  },
-  {
-    name:'Support Vector Machines', type:'classification', emoji:'📐',tagline:'Find the best boundary between classes',
-    explain:'SVM finds the hyperplane that best separates two classes with the maximum margin. Points closest to the boundary are called support vectors. The kernel trick (RBF, polynomial) allows SVM to handle non-linear boundaries by mapping data to higher dimensions.',
-    when:'<strong>Use when:</strong> binary classification, small-to-medium datasets, high-dimensional data like text.',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Fraudulent Transaction Detection',desc:'Classify individual transactions as fraud or legitimate using SVM on features like transaction amount, location delta, time of day, and merchant category.'},
-      {industry:'Healthcare',emoji:'🏥',title:'Cancer Cell Classification',desc:'Use SVM to classify tumor biopsies as malignant or benign based on cell nucleus measurements (radius, texture, perimeter). Classic use case on Wisconsin dataset.'},
-      {industry:'Logistics',emoji:'📦',title:'Damaged Package Classification',desc:'Classify packages as damaged or intact using SVM on weight discrepancy, handling count, route temperature, and image features from warehouse scans.'},
-    ],
-    fitb:{template:'SVM maximizes the ___ between classes, using ___ vectors to define the boundary.',blanks:['margin','support']}
-  },
-  {
-    name:'Ridge Regression', type:'regression', emoji:'📉',tagline:'Linear regression with a penalty',
-    explain:'Ridge regression is linear regression with an L2 regularization term added to the loss. This shrinks coefficients toward zero, preventing any one feature from dominating. Unlike Lasso, Ridge keeps all features but makes their coefficients smaller. Great when features are correlated.',
-    when:'<strong>Use when:</strong> predicting a continuous value with many correlated features (multicollinearity).',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Portfolio Return Prediction',desc:'Predict expected monthly portfolio return using correlated market factors (beta, momentum, value, size). Ridge handles multicollinearity between factors that OLS cannot.'},
-      {industry:'Healthcare',emoji:'🏥',title:'Hospital Length-of-Stay Prediction',desc:'Predict how many days a patient will stay based on diagnosis, age, comorbidities, and procedure codes. Helps with bed capacity planning.'},
-      {industry:'Logistics',emoji:'📦',title:'Shipping Cost Estimation',desc:'Predict shipping cost using weight, dimensions, distance, carrier, and fuel price features. Ridge prevents overfitting when these features are correlated.'},
-    ],
-    fitb:{template:'Ridge regression adds an ___ penalty to shrink coefficients and reduce ___.',blanks:['L2','overfitting']}
-  },
-  {
-    name:'K-Means Clustering', type:'other',emoji:'🔵',tagline:'Group unlabeled data automatically',pdf:'KMeans_Presentation.pdf',
-    explain:'K-Means is unsupervised — no labels needed. You choose K clusters. It randomly places K centroids, assigns each point to the nearest centroid, then moves centroids to the mean of their cluster. Repeats until stable. Used at UPS Capital to flag $500K+ in suspicious claims.',
-    when:'<strong>Use when:</strong> unlabeled data with natural groupings — segmentation, anomaly detection, fraud.',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Customer Spend Segmentation',desc:'Cluster credit card customers by transaction frequency, average spend, category mix, and tenure. Use segments to target promotions — e.g. "high spend travel customers."'},
-      {industry:'Healthcare',emoji:'🏥',title:'Patient Risk Cohort Discovery',desc:'Cluster patients by diagnosis history, medication usage, and visit frequency to discover natural risk cohorts — without needing predefined labels.'},
-      {industry:'Logistics',emoji:'📦',title:'Warehouse Zone Optimization',desc:'Cluster SKUs by pick frequency, weight, and destination to determine optimal placement zones in the warehouse, reducing picker travel distance.'},
-    ],
-    fitb:{template:'K-Means is ___ because it uses no labeled data. It groups points around ___ centroids.',blanks:['unsupervised','K']}
-  },
-  {
-    name:'ARIMA', type:'regression', emoji:'📈',tagline:'Forecasting time series data', pdf:'ARIMA_Presentation.pdf',
-    explain:'ARIMA = AutoRegressive Integrated Moving Average. AR: uses past values to predict future ones. I: differencing to make the series stationary (remove trend). MA: uses past forecast errors to improve predictions. Best for univariate time series with trend and seasonality.',
-    when:'<strong>Use when:</strong> forecasting time-ordered data: sales, deliveries, stock prices, patient volumes.',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Revenue Forecasting',desc:'Forecast next quarter’s revenue using historical quarterly earnings, accounting for seasonality and trend. Used by FP&A teams to set budgets and targets.'},
-      {industry:'Healthcare',emoji:'🏥',title:'ER Volume Forecasting',desc:'Predict daily emergency room visit volume to optimize nurse and physician staffing. Accounts for day-of-week, seasonality, and flu season spikes.'},
-      {industry:'Logistics',emoji:'📦',title:'Package Volume Prediction',desc:'Forecast daily inbound package volume per fulfillment center to pre-position staff and dock assignments. Used at UPS Capital in BigQuery ML.'},
-    ],
-    fitb:{template:'ARIMA stands for AutoRegressive ___ Moving Average. The "I" refers to ___ the series.',blanks:['Integrated','differencing']}
-  },
-  {
-    name:'Perceptrons', type:'classification', emoji:'⚡',tagline:'The simplest neural unit', pdf:'Perceptrons_Presentation.pdf',
-    explain:'A perceptron takes inputs, multiplies each by a weight, sums them up, applies an activation function, and outputs a binary result. A single perceptron can only solve linearly separable problems. Stack them in layers and you get a multi-layer perceptron (MLP) — the foundation of all neural networks.',
-    when:'<strong>Use when:</strong> learning neural network fundamentals, or simple binary classification.',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Binary Credit Risk Classifier',desc:'A single-layer perceptron to classify loan applicants as high-risk or low-risk based on income, credit score, and debt level. Simple, fast, and interpretable baseline.'},
-      {industry:'Healthcare',emoji:'🏥',title:'Diabetes Onset Detection',desc:'Train a perceptron on glucose level, BMI, age, and insulin to predict diabetes onset (0/1). Classic use case on the Pima Indians dataset.'},
-      {industry:'Logistics',emoji:'📦',title:'On-Time Delivery Binary Classifier',desc:'Predict whether a shipment will arrive on time (1) or late (0) using carrier, distance, weather flag, and day of week as inputs.'},
-    ],
-    fitb:{template:'A perceptron multiplies inputs by ___, sums them, and applies an ___ function.',blanks:['weights','activation']}
-  },
-  {
-    name:'Feature Engineering', type:'other', emoji:'🔧',tagline:'Making your data smarter',
-    explain:'Feature engineering uses domain knowledge to create, transform, or select input variables that help models learn better. Techniques: creating ratio features, binning continuous variables, encoding categoricals, lag features for time series, interaction terms, and normalization. Good features often matter more than algorithm choice.',
-    when:'<strong>Use when:</strong> always — especially critical in finance and healthcare where domain knowledge is rich.',
-    projects:[
-      {industry:'Finance',emoji:'💰',title:'Trading Signal Feature Library',desc:'Engineer features from raw OHLCV data: RSI, MACD, Bollinger Bands, rolling volatility, and price momentum. These engineered features feed ML models far better than raw prices.'},
-      {industry:'Healthcare',emoji:'🏥',title:'Claims Risk Feature Engineering',desc:'From raw claims data, engineer: days since last visit, procedure count per quarter, specialty mix ratio, and payer type dummies. These features improved a readmission model AUC by 12%.'},
-      {industry:'Logistics',emoji:'📦',title:'Delivery ETA Feature Set',desc:'Engineer time-based features (hour of pickup, day of week, holiday flag), route features (distance, zip density), and carrier history features (avg delay last 30 days) for an ETA model.'},
-    ],
-    fitb:{template:'Feature engineering creates new ___ from raw data to help models ___ better.',blanks:['features','learn']}
-  },
+  {name:'Neural Networks',type:'classification',emoji:'🧠',tagline:'Inspired by the human brain',explain:'A neural network is a series of layers of nodes. Data flows through an input layer, hidden layers (where patterns are learned via weights and activation functions), and an output layer. Training adjusts weights using backpropagation to minimize error.',when:'<strong>Use when:</strong> large datasets, image recognition, NLP, complex non-linear patterns.',projects:[{industry:'Finance',emoji:'💰',title:'Stock Price Movement Prediction',desc:'Train a neural network on historical OHLCV data, technical indicators, and sentiment scores to predict next-day price direction.'},{industry:'Healthcare',emoji:'🏥',title:'Medical Image Classification',desc:'Use a CNN to classify chest X-rays as normal, pneumonia, or COVID.'},{industry:'Logistics',emoji:'📦',title:'Demand Forecasting',desc:'Train an LSTM on historical shipment volumes to forecast weekly demand per distribution center.'}],fitb:{template:'A neural network learns by adjusting ___ during backpropagation to minimize ___.',blanks:['weights','loss']}},
+  {name:'Decision Trees',type:'classification',emoji:'🌳',tagline:'If/then logic in tree form',explain:'A decision tree splits data into branches based on feature values. At each node, it picks the split that best separates classes using Gini impurity or information gain.',when:'<strong>Use when:</strong> you need interpretable results or your data has clear categorical splits.',projects:[{industry:'Finance',emoji:'💰',title:'Loan Approval Decision Tree',desc:'Build a tree that splits applicants by credit score, debt-to-income ratio, and employment status.'},{industry:'Healthcare',emoji:'🏥',title:'Patient Triage Classification',desc:'Classify incoming ER patients as low/medium/high urgency based on vitals and history.'},{industry:'Logistics',emoji:'📦',title:'Shipment Delay Root Cause',desc:'Build a tree on weather, carrier, route, and time-of-year features to classify delays.'}],fitb:{template:'Decision trees split data at each node to minimize ___, a measure of impurity.',blanks:['Gini impurity']}},
+  {name:'Random Forest',type:'classification',emoji:'🌲',tagline:'Many trees, one smart answer',explain:'Random Forest builds hundreds of decision trees on random subsets of data (bagging) and random subsets of features. Each tree votes and the majority wins.',when:'<strong>Use when:</strong> high accuracy with less overfitting. Great for tabular data and fraud detection.',projects:[{industry:'Finance',emoji:'💰',title:'Credit Default Prediction',desc:'Train on borrower history and payment behavior. Random Forest handles mixed feature types well.'},{industry:'Healthcare',emoji:'🏥',title:'30-Day Readmission Risk',desc:'Predict which patients will be readmitted within 30 days of discharge.'},{industry:'Logistics',emoji:'📦',title:'Carrier Performance Scoring',desc:'Score each carrier on on-time rate, damage claims, and cost efficiency.'}],fitb:{template:'Random Forest reduces ___ by combining many trees trained on random ___ of data.',blanks:['overfitting','subsets']}},
+  {name:'Support Vector Machines',type:'classification',emoji:'📐',tagline:'Find the best boundary between classes',explain:'SVM finds the hyperplane that best separates two classes with the maximum margin. The kernel trick (RBF, polynomial) allows SVM to handle non-linear boundaries.',when:'<strong>Use when:</strong> binary classification, small-to-medium datasets, high-dimensional data like text.',projects:[{industry:'Finance',emoji:'💰',title:'Fraudulent Transaction Detection',desc:'Classify transactions as fraud or legitimate using SVM on transaction features.'},{industry:'Healthcare',emoji:'🏥',title:'Cancer Cell Classification',desc:'Classify tumor biopsies as malignant or benign based on cell nucleus measurements.'},{industry:'Logistics',emoji:'📦',title:'Damaged Package Classification',desc:'Classify packages as damaged or intact using SVM on weight and handling features.'}],fitb:{template:'SVM maximizes the ___ between classes, using ___ vectors to define the boundary.',blanks:['margin','support']}},
+  {name:'Ridge Regression',type:'regression',emoji:'📉',tagline:'Linear regression with a penalty',explain:'Ridge regression is linear regression with an L2 regularization term added to the loss. This shrinks coefficients toward zero, preventing any one feature from dominating.',when:'<strong>Use when:</strong> predicting a continuous value with many correlated features (multicollinearity).',projects:[{industry:'Finance',emoji:'💰',title:'Portfolio Return Prediction',desc:'Predict expected monthly portfolio return using correlated market factors.'},{industry:'Healthcare',emoji:'🏥',title:'Hospital Length-of-Stay Prediction',desc:'Predict patient stay length to support bed capacity planning.'},{industry:'Logistics',emoji:'📦',title:'Shipping Cost Estimation',desc:'Predict shipping cost using weight, dimensions, distance, and carrier features.'}],fitb:{template:'Ridge regression adds an ___ penalty to shrink coefficients and reduce ___.',blanks:['L2','overfitting']}},
+  {name:'K-Means Clustering',type:'other',emoji:'🔵',tagline:'Group unlabeled data automatically',explain:'K-Means is unsupervised — no labels needed. You choose K clusters. It randomly places K centroids, assigns each point to the nearest centroid, then moves centroids to the mean of their cluster.',when:'<strong>Use when:</strong> unlabeled data with natural groupings — segmentation, anomaly detection, fraud.',projects:[{industry:'Finance',emoji:'💰',title:'Customer Spend Segmentation',desc:'Cluster credit card customers by transaction frequency, average spend, and tenure.'},{industry:'Healthcare',emoji:'🏥',title:'Patient Risk Cohort Discovery',desc:'Cluster patients by diagnosis history and visit frequency to discover natural risk cohorts.'},{industry:'Logistics',emoji:'📦',title:'Warehouse Zone Optimization',desc:'Cluster SKUs by pick frequency and weight to optimize warehouse placement.'}],fitb:{template:'K-Means is ___ because it uses no labeled data. It groups points around ___ centroids.',blanks:['unsupervised','K']}},
+  {name:'ARIMA',type:'regression',emoji:'📈',tagline:'Forecasting time series data',explain:'ARIMA = AutoRegressive Integrated Moving Average. AR: uses past values. I: differencing to make the series stationary. MA: uses past forecast errors. Best for univariate time series.',when:'<strong>Use when:</strong> forecasting time-ordered data: sales, deliveries, stock prices, patient volumes.',projects:[{industry:'Finance',emoji:'💰',title:'Revenue Forecasting',desc:'Forecast next quarter revenue using historical earnings, accounting for seasonality.'},{industry:'Healthcare',emoji:'🏥',title:'ER Volume Forecasting',desc:'Predict daily ER visit volume to optimize staffing and resources.'},{industry:'Logistics',emoji:'📦',title:'Package Volume Prediction',desc:'Forecast daily inbound package volume per fulfillment center.'}],fitb:{template:'ARIMA stands for AutoRegressive ___ Moving Average. The "I" refers to ___ the series.',blanks:['Integrated','differencing']}},
+  {name:'Perceptrons',type:'classification',emoji:'⚡',tagline:'The simplest neural unit',explain:'A perceptron takes inputs, multiplies each by a weight, sums them up, applies an activation function, and outputs a binary result. Stack them in layers and you get a multi-layer perceptron (MLP).',when:'<strong>Use when:</strong> learning neural network fundamentals, or simple binary classification.',projects:[{industry:'Finance',emoji:'💰',title:'Binary Credit Risk Classifier',desc:'A single-layer perceptron to classify loan applicants as high-risk or low-risk.'},{industry:'Healthcare',emoji:'🏥',title:'Diabetes Onset Detection',desc:'Train a perceptron on glucose, BMI, age, and insulin to predict diabetes onset.'},{industry:'Logistics',emoji:'📦',title:'On-Time Delivery Binary Classifier',desc:'Predict whether a shipment will arrive on time or late.'}],fitb:{template:'A perceptron multiplies inputs by ___, sums them, and applies an ___ function.',blanks:['weights','activation']}},
+  {name:'Feature Engineering',type:'other',emoji:'🔧',tagline:'Making your data smarter',explain:'Feature engineering uses domain knowledge to create, transform, or select input variables that help models learn better. Good features often matter more than algorithm choice.',when:'<strong>Use when:</strong> always — especially critical in finance and healthcare where domain knowledge is rich.',projects:[{industry:'Finance',emoji:'💰',title:'Trading Signal Feature Library',desc:'Engineer features from raw OHLCV data: RSI, MACD, Bollinger Bands, rolling volatility.'},{industry:'Healthcare',emoji:'🏥',title:'Claims Risk Feature Engineering',desc:'Engineer days since last visit, procedure count, specialty mix ratio from raw claims data.'},{industry:'Logistics',emoji:'📦',title:'Delivery ETA Feature Set',desc:'Engineer time-based, route, and carrier history features for an ETA model.'}],fitb:{template:'Feature engineering creates new ___ from raw data to help models ___ better.',blanks:['features','learn']}},
 ];
 
 const behavioralQuestions=[
-  {text:"Tell me about a time you had to explain a complex data model to a non-technical stakeholder.",category:"Communication",
-   star:{
-    s:"At UPS Capital, I built an unsupervised K-Means fraud detection model on historical returns data. The results needed to be presented to the VP of Claims Operations, who had no data science background.",
-    t:"I needed to communicate why certain transactions were flagged as fraudulent and get buy-in to act on the model's output — without losing the audience in technical jargon.",
-    a:"I used a simple analogy: 'Imagine sorting laundry by color — K-Means finds the natural piles in your data.' I created a one-page visual showing three clusters, labeled them Normal, Suspicious, and High-Risk, and focused the conversation entirely on dollar impact and what action to take.",
-    r:"The VP approved the model rollout the same day. Within the first quarter, the team flagged an estimated $500K+ in potentially fraudulent claims for review."}},
+  {text:"Tell me about a time you had to explain a complex data model to a non-technical stakeholder.",category:"Communication",star:{s:"",t:"",a:"",r:""}},
+  {text:"Describe a situation where your analysis led to a significant business decision.",category:"Impact",star:{s:"",t:"",a:"",r:""}},
+  {text:"Tell me about a time you disagreed with your manager. How did you handle it?",category:"Conflict",star:{s:"",t:"",a:"",r:""}},
+  {text:"Give an example of a project where you worked with messy or incomplete data.",category:"Problem Solving",star:{s:"",t:"",a:"",r:""}},
+  {text:"Describe a time you had to meet a very tight deadline. What did you prioritize?",category:"Time Management",star:{s:"",t:"",a:"",r:""}},
+  {text:"Tell me about a time you made an error in your analysis. How did you catch it?",category:"Accountability",star:{s:"",t:"",a:"",r:""}},
+  {text:"Give an example of when you had to learn a new tool or technology quickly.",category:"Learning",star:{s:"",t:"",a:"",r:""}},
+  {text:"Describe a time you collaborated across teams to complete a project.",category:"Collaboration",star:{s:"",t:"",a:"",r:""}},
+  {text:"Tell me about a project you're most proud of. What was your specific contribution?",category:"Achievement",star:{s:"",t:"",a:"",r:""}},
+  {text:"Have you ever identified a problem outside your job scope and took initiative to fix it?",category:"Initiative",star:{s:"",t:"",a:"",r:""}},
+  {text:"Tell me about a time you received critical feedback. How did you respond?",category:"Feedback",star:{s:"",t:"",a:"",r:""}},
+  {text:"Describe a situation where you had to balance multiple competing priorities.",category:"Prioritization",star:{s:"",t:"",a:"",r:""}},
+];
 
-  {text:"Describe a situation where your analysis led to a significant business decision.",category:"Impact",
-   star:{
-    s:"At UPS Capital, leadership was considering expanding a refund reimbursement program. Before committing budget, they needed data to understand whether the current program had fraud exposure.",
-    t:"I was asked to analyze historical returns data and provide a recommendation on whether to expand or restructure the program.",
-    a:"I built a K-Means clustering model to identify patterns in refund behavior, engineered features like transaction velocity and location delta, and identified a cluster of accounts with highly suspicious refund patterns. I quantified the estimated financial exposure and presented findings with a clear recommendation to add a manual review step before approvals.",
-    r:"Leadership paused the expansion and implemented a review queue based on my flagged cluster. The duplicate claim deduplication work I did separately reduced reimbursement submissions by an estimated 30%."}},
+const mcQuestions=[
+  {cat:"Neural Networks",q:"What is the main purpose of the activation function in a neural network?",choices:["To normalize the input data","To introduce non-linearity so the network can learn complex patterns","To reduce the number of layers","To calculate the loss"],answer:1,explain:"Without activation functions, a neural network would just be a linear transformation. Activation functions like ReLU allow it to learn non-linear relationships."},
+  {cat:"Neural Networks",q:"What does backpropagation do in a neural network?",choices:["It feeds data forward through the layers","It normalizes the weights","It calculates gradients and updates weights to minimize loss","It drops random neurons during training"],answer:2,explain:"Backpropagation computes the gradient of the loss function with respect to each weight, then the optimizer uses those gradients to adjust weights."},
+  {cat:"Neural Networks",q:"What does Dropout do during neural network training?",choices:["It removes features with low importance","It randomly deactivates neurons to prevent overfitting","It reduces the learning rate over time","It clips the gradient to prevent explosion"],answer:1,explain:"Dropout randomly sets a fraction of neurons to zero during each training step, forcing the network to not rely on any single neuron."},
+  {cat:"Decision Trees",q:"What metric does a Decision Tree use to decide the best split at each node?",choices:["Mean Squared Error only","Gini Impurity or Information Gain","R-squared","AUC Score"],answer:1,explain:"Decision trees evaluate splits using Gini Impurity (CART) or Information Gain (ID3/C4.5). Both measure how well a split separates the classes."},
+  {cat:"Decision Trees",q:"What is the main risk of letting a Decision Tree grow without any depth limit?",choices:["Underfitting — the model is too simple","Overfitting — the model memorizes training data","The tree becomes a random forest","The model cannot handle numerical features"],answer:1,explain:"An unconstrained tree will keep splitting until every leaf has one sample — perfectly fitting training data but failing on new data."},
+  {cat:"Random Forest",q:"What is 'bagging' in the context of Random Forest?",choices:["Removing weak features from the dataset","Training each tree on a random bootstrap sample of the data","Combining outputs by averaging probabilities","Using a bag-of-words encoding for categorical features"],answer:1,explain:"Bagging (Bootstrap Aggregating) means each tree is trained on a different random sample drawn with replacement from the training data."},
+  {cat:"Random Forest",q:"What does feature importance tell you in a Random Forest model?",choices:["Which features were dropped due to multicollinearity","How much each feature contributed to reducing impurity across all trees","Which features have the highest correlation with the target","The order in which features were added to the model"],answer:1,explain:"Feature importance measures the average decrease in Gini impurity attributed to each feature across all trees."},
+  {cat:"Support Vector Machines",q:"What is the 'margin' in a Support Vector Machine?",choices:["The number of support vectors used","The distance between the decision boundary and the nearest data points from each class","The regularization penalty applied to weights","The kernel function output"],answer:1,explain:"SVM finds the hyperplane that maximizes the margin — the gap between the boundary and the closest points (support vectors) from each class."},
+  {cat:"Support Vector Machines",q:"What does the RBF kernel allow SVM to do?",choices:["Handle missing values automatically","Find non-linear decision boundaries by mapping data to higher dimensions","Speed up training on large datasets","Reduce the number of support vectors"],answer:1,explain:"The RBF kernel implicitly maps data into higher-dimensional space, allowing SVM to find non-linear boundaries."},
+  {cat:"Ridge Regression",q:"What type of regularization does Ridge Regression apply?",choices:["L1 regularization (Lasso)","L2 regularization (sum of squared coefficients)","Elastic Net (L1 + L2)","No regularization"],answer:1,explain:"Ridge adds a penalty equal to the sum of squared coefficients (L2 norm) to the loss function."},
+  {cat:"Ridge Regression",q:"What problem does Ridge Regression solve that ordinary linear regression cannot handle well?",choices:["Non-linear relationships between features and target","Multicollinearity — when features are highly correlated with each other","Too many output classes","Imbalanced datasets"],answer:1,explain:"When features are highly correlated, OLS produces unstable, high-variance coefficients. Ridge shrinks them for a more stable model."},
+  {cat:"K-Means Clustering",q:"K-Means is an example of which type of machine learning?",choices:["Supervised learning","Reinforcement learning","Unsupervised learning","Semi-supervised learning"],answer:2,explain:"K-Means is unsupervised — it finds structure in data without using labeled examples."},
+  {cat:"K-Means Clustering",q:"What does the Elbow Method help you determine when using K-Means?",choices:["The best distance metric to use","The optimal number of clusters (K)","Whether the data is linearly separable","The maximum number of iterations"],answer:1,explain:"The Elbow Method plots inertia vs K. You look for the 'elbow' where adding more clusters stops significantly reducing inertia."},
+  {cat:"ARIMA",q:"What does the 'I' in ARIMA stand for, and what does it do?",choices:["Iteration — the number of training passes","Integrated — differencing the series to make it stationary","Input — the number of lag features used","Intercept — the bias term in the model"],answer:1,explain:"The 'I' stands for Integrated. Differencing removes trend and makes the time series stationary — a requirement for ARIMA."},
+  {cat:"Perceptrons",q:"What is the fundamental building block of a neural network?",choices:["A decision tree node","A perceptron (single neuron)","A support vector","A convolutional filter"],answer:1,explain:"A perceptron is the basic unit: it takes weighted inputs, sums them, applies an activation function, and outputs a result."},
+  {cat:"Feature Engineering",q:"What is the 'dummy variable trap' and how do you avoid it?",choices:["Using too many features, fixed by PCA","Perfect multicollinearity from one-hot encoding — fixed by dropping one dummy column (drop_first=True)","Label encoding ordinal features incorrectly","Using raw dates instead of extracted features"],answer:1,explain:"If you one-hot encode N categories into N columns, one is perfectly predictable from the others. drop_first=True removes this redundancy."},
+  {cat:"Feature Engineering",q:"When should you use Label Encoding vs One-Hot Encoding?",choices:["Label Encoding for all categories; One-Hot is never needed","Label Encoding for ordinal features (Low/Med/High); One-Hot for nominal features (colors, cities)","One-Hot for ordinal; Label Encoding for nominal","Both always produce identical results"],answer:1,explain:"Label Encoding implies an order, appropriate for ordinal features. One-Hot is correct for nominal features with no natural order."},
+];
 
-  {text:"Tell me about a time you disagreed with your manager. How did you handle it?",category:"Conflict",
-   star:{
-    s:"At Kyruus, my manager wanted to automate a healthcare claims pipeline without adding any validation checks, citing time pressure from a client deadline.",
-    t:"I believed skipping validation would cause data quality issues downstream — which had happened before and taken weeks to untangle. I needed to push back without damaging the relationship or missing the deadline.",
-    a:"I prepared a short one-page document showing two examples of past pipeline failures and their downstream cost in hours of remediation. I proposed a middle-ground: add lightweight CloudWatch alerts that would catch 80% of errors with minimal additional build time. I brought this to my manager in a 1:1 rather than in front of the team.",
-    r:"My manager agreed to the compromise. The alerts caught three data issues before they reached the client in the first month, and the pipeline ran cleanly. The client never experienced a disruption."}},
+const flQuestions=[
+  {cat:'Functions',type:'mc',q:'What keyword is used to define a function in Python?',choices:['func','define','def','fun'],answer:2,explain:'In Python, <code>def</code> introduces every function definition.'},
+  {cat:'Functions',type:'mc',q:'What does the <code>return</code> statement do?',choices:['Prints a value to the console','Exits the function and sends a value back to the caller','Starts a loop','Declares a variable'],answer:1,explain:'<code>return</code> ends the function and passes the result back. Without it, the function returns <code>None</code>.'},
+  {cat:'Functions',type:'mc',q:'What is the output?\n\ndef double(n):\n    return n * 2\n\nprint(double(5))',choices:['5','25','10','None'],answer:2,explain:'<code>double(5)</code> returns 5 × 2 = 10.'},
+  {cat:'Functions',type:'fitb',q:'Complete the function that returns the square of a number.',template:'def square(n):\n    ___ n ** ___',blanks:['return','2'],hint:'Use return and the ** exponent operator'},
+  {cat:'Functions',type:'mc',q:'What does *args allow a function to do?',choices:['Accept keyword arguments only','Accept any number of positional arguments','Multiply arguments together','Require all arguments to be integers'],answer:1,explain:'<code>*args</code> collects extra positional arguments into a tuple.'},
+  {cat:'Loops',type:'mc',q:'What does <code>range(3)</code> produce?',choices:['[1, 2, 3]','[0, 1, 2]','[0, 1, 2, 3]','(0, 3)'],answer:1,explain:'<code>range(3)</code> generates 0, 1, 2 — starts at 0 and stops before 3.'},
+  {cat:'Loops',type:'mc',q:'What does <code>break</code> do inside a loop?',choices:['Skips the current iteration','Exits the loop immediately','Restarts the loop','Raises an error'],answer:1,explain:'<code>break</code> terminates the loop entirely.'},
+  {cat:'Loops',type:'fitb',q:'Write a for loop that prints numbers 0 through 4.',template:'___ i in ___(___):\n    print(i)',blanks:['for','range','5'],hint:'for, range, and the stop value'},
+  {cat:'Comprehensions',type:'mc',q:'What does this produce?\n\n[x * 2 for x in range(4)]',choices:['[1, 2, 3, 4]','[0, 2, 4, 6]','[2, 4, 6, 8]','[0, 1, 2, 3]'],answer:1,explain:'range(4) gives 0,1,2,3. Multiplying each by 2 gives [0, 2, 4, 6].'},
+  {cat:'Comprehensions',type:'fitb',q:'Write a list comprehension that squares numbers 1 to 5.',template:'squares = [___ ** 2 ___ x in range(1, ___)]',blanks:['x','for','6'],hint:'range(1,6) gives 1 through 5'},
+  {cat:'Lambda',type:'mc',q:'What is a lambda function?',choices:['A function that always returns None','A named function stored in a variable','A small anonymous function defined in a single expression','A built-in Python function'],answer:2,explain:'Lambda creates a small anonymous function inline. Syntax: <code>lambda args: expression</code>.'},
+  {cat:'Lambda',type:'mc',q:'What does map(lambda x: x+1, [1,2,3]) return?',choices:['[1,2,3]','[2,3,4]','A map object — wrap with list()','Error'],answer:2,explain:'<code>map()</code> applies the function to each element. Wrap with <code>list()</code> to get [2, 3, 4].'},
+  {cat:'Scope & Args',type:'mc',q:'What is a local variable?',choices:['A variable defined at the top of the file','A variable defined inside a function, accessible only within it','A variable shared across all functions','A constant that never changes'],answer:1,explain:'Local variables only exist during the function call and are destroyed when it returns.'},
+  {cat:'Scope & Args',type:'mc',q:'What does **kwargs allow in a function?',choices:['Accept any number of positional arguments','Accept any number of keyword arguments as a dictionary','Multiply two arguments','Require all arguments to be named'],answer:1,explain:'<code>**kwargs</code> collects extra keyword arguments into a dict.'},
+];
 
-  {text:"Give an example of a project where you worked with messy or incomplete data.",category:"Problem Solving",
-   star:{
-    s:"At Kyruus, healthcare claims data arriving from AWS S3 frequently had missing procedure codes, mismatched patient IDs, and inconsistent date formats — across multiple client accounts simultaneously.",
-    t:"I was responsible for maintaining data quality across these pipelines with zero tolerance for errors reaching downstream reporting systems that clients used for billing and compliance.",
-    a:"I wrote R scripts to flag anomalies before ingestion — checking for nulls, format mismatches, and out-of-range values. I set up AWS CloudWatch alerts to notify me immediately when a pipeline produced unexpected output. I also built a reusable validation function that became standard across the team.",
-    r:"Downstream data errors dropped by approximately 25%. I maintained on-time delivery across all client accounts for the duration of the engagement, and the validation framework was adopted by two other analysts on the team."}},
-
-  {text:"Describe a time you had to meet a very tight deadline. What did you prioritize?",category:"Time Management",
-   star:{
-    s:"At Capital Group, three Airflow DAGs critical to daily trading operations began failing simultaneously during my first week on the migration project. Leadership needed them restored before market open the next morning.",
-    t:"I had approximately 12 hours to diagnose and fix failures across three complex pipelines I had just inherited, with no documentation and no colleagues available to assist.",
-    a:"I triaged by business impact first — identified which DAG fed the most critical downstream trading systems and started there. I used CloudWatch logs to trace each failure to its root cause, worked through them sequentially, and tested each fix in a staging environment before deploying. I sent hourly status updates to my manager so leadership was never left wondering.",
-    r:"All three DAGs were restored before market open. I documented every fix and root cause, which became the foundation for a runbook the team used for the rest of the engagement. Zero trading disruptions occurred."}},
-
-  {text:"Tell me about a time you made an error in your analysis. How did you catch it?",category:"Accountability",
-   star:{
-    s:"At UPS Capital, I delivered a report to the analytics team showing a 15% improvement in delivery forecast accuracy from my ARIMA model. Two days later, I realized I had accidentally used test data in the training set — a data leakage error that inflated the results.",
-    t:"The report had already been circulated to two senior stakeholders. I needed to correct the record quickly and transparently without undermining confidence in the rest of the work.",
-    a:"I immediately flagged the error to my manager before the next stakeholder meeting, reran the model correctly, and prepared a corrected report with a clear explanation of what changed and why. I also documented a checklist for train/test split validation that I used on all future models.",
-    r:"The corrected model showed an 8% improvement — still meaningful and statistically significant. My manager appreciated that I caught and disclosed the error proactively. The checklist I created was shared with the broader analytics team."}},
-
-  {text:"Give an example of when you had to learn a new tool or technology quickly.",category:"Learning",
-   star:{
-    s:"When I joined Capital Group, the project required migrating 30 DAGs from a legacy environment to AWS Managed Apache Airflow — a tool I had read about but never deployed in production.",
-    t:"The migration had a fixed timeline tied to the client engagement, and any disruption to the pipelines would affect daily trading operations. There was no room for a learning curve to show up in production.",
-    a:"I spent the first three days reading AWS Managed Airflow documentation end-to-end, completed two hands-on tutorials, and built a staging environment to test each DAG before touching production. I mapped out dependencies between DAGs before migrating anything, and set up CloudWatch monitoring so I could detect issues immediately.",
-    r:"All 30 DAGs were migrated successfully with zero disruption to trading operations. Infrastructure maintenance overhead was reduced by an estimated 40%, and I configured IAM roles and security groups that passed full compliance verification via CloudWatch."}},
-
-  {text:"Describe a time you collaborated across teams to complete a project.",category:"Collaboration",
-   star:{
-    s:"At Kyruus, a patient rewards program I was building required data from three separate systems — the claims pipeline, the provider directory, and the billing system — each owned by different teams.",
-    t:"I needed to join data across all three sources to identify common procedure pairings that would qualify patients for rewards, without direct access to two of the systems.",
-    a:"I set up weekly syncs with the owners of each system, clearly defined the data I needed and in what format, and built a shared data dictionary so everyone was working from the same definitions. When schemas didn't match, I wrote transformation logic on my end rather than asking the other teams to change their outputs.",
-    r:"The model successfully identified high-frequency procedure pairings that formed the basis of the rewards program. The program contributed to improved in-network care retention, and my cross-team process became a template for future data integration projects at the company."}},
-
-  {text:"Tell me about a project you're most proud of. What was your specific contribution?",category:"Achievement",
-   star:{
-    s:"At UPS Capital, the company had no systematic way to detect fraudulent insurance claims — analysts were doing manual spot-checks on a small fraction of submissions.",
-    t:"I was tasked with building a scalable fraud detection system from scratch using historical returns data, with the goal of flagging high-risk claims before they were paid out.",
-    a:"I designed and built the full pipeline: ingested data from our warehouse, engineered features capturing transaction velocity, location anomalies, and receipt patterns, applied K-Means clustering to identify behavioral segments, and used image deduplication with OpenCV and scikit-learn to catch duplicate receipt fraud. I delivered a flagging dashboard and a runbook for the claims team.",
-    r:"The system flagged an estimated $500K+ in potentially fraudulent claims in the first quarter. Duplicate reimbursement submissions dropped by approximately 30%. This was the first automated fraud detection tool the company had ever deployed."}},
-
-  {text:"Have you ever identified a problem outside your job scope and took initiative to fix it?",category:"Initiative",
-   star:{
-    s:"At Kyruus, I noticed that the claims team was spending 10+ hours per week manually compiling the same report from three different data sources — a process that had nothing to do with my assigned pipeline work.",
-    t:"The manual process wasn't my responsibility, but I could see it was slowing down the team and creating inconsistencies when team members compiled the report differently.",
-    a:"I approached the team lead, asked if I could spend a few hours automating it, and built a Python script that pulled from all three sources, applied the same transformations each person was doing manually, and output a formatted report. I tested it against three previous manual reports to verify accuracy before handing it over.",
-    r:"The automation saved the team an estimated 10+ hours per week and eliminated the inconsistencies. The team lead mentioned it in my performance review. I later adapted the same script structure for two other recurring reports on the team."}},
-
-  {text:"Tell me about a time you received critical feedback. How did you respond?",category:"Feedback",
-   star:{
-    s:"Early in my time at UPS Capital, my manager told me that my analysis presentations were too technical — I was showing model diagnostics and statistical outputs that the business stakeholders couldn't act on.",
-    t:"I needed to adjust how I communicated findings without losing the analytical rigor that made the work credible.",
-    a:"I asked my manager to show me an example of a presentation that hit the right balance. I started every subsequent presentation by leading with the business question and the bottom-line answer, then moving to supporting evidence. I created a 'so what' slide that translated every finding into a specific recommended action. I also asked a non-technical colleague to review my next two decks before I presented them.",
-    r:"My manager noted the improvement explicitly in my next check-in. Stakeholder engagement in my presentations increased noticeably — people started asking more questions and following up after sessions, which hadn't happened before."}},
-
-  {text:"Describe a situation where you had to balance multiple competing priorities.",category:"Prioritization",
-   star:{
-    s:"At UPS Capital, I was simultaneously running the fraud detection clustering project, building automated Power BI dashboards to replace manual reporting, and supporting the A/B testing analysis for a marketing campaign — all with overlapping deadlines.",
-    t:"Each workstream had a different stakeholder with a different sense of urgency, and I was the only analyst assigned to all three.",
-    a:"I built a simple priority matrix ranking each task by business impact and deadline proximity, then shared it with all three stakeholders to align expectations. I time-blocked my week — deep analytical work in the mornings, meetings and dashboard updates in the afternoons. When a new request came in mid-sprint, I routed it through the matrix rather than absorbing it immediately.",
-    r:"All three projects delivered on time. The fraud detection system flagged $500K+ in suspicious claims, the dashboard automation eliminated 10+ hours of weekly manual work, and the A/B test results informed a marketing strategy adjustment that rolled out the following quarter."}}
-];;
-
-// ── STATE ─────────────────────────────────────────────────────────────────────
-let sqlIdx=0, pyIdx=0, fitbIdx=0, bqIdx=0, fcIdx=0;
+let sqlIdx=0,pyIdx=0,fitbIdx=0,bqIdx=0,fcIdx=0;
 let filteredSQL=[...sqlQuestions];
 let filteredPY=[...pyQuestions];
 let filteredFITB=[...fitbQuestions];
@@ -1066,7 +737,6 @@ let bqOrder=[...Array(behavioralQuestions.length).keys()];
 let starAnswers={};
 let fcFlipped=false;
 
-// ── SQL ───────────────────────────────────────────────────────────────────────
 function renderSQL(){
   const q=filteredSQL[sqlIdx];
   document.getElementById('sql-counter').textContent=`Question ${sqlIdx+1} of ${filteredSQL.length}`;
@@ -1076,89 +746,45 @@ function renderSQL(){
     <div class="qa-category">${q.cat}</div>
     <div class="qa-question">${q.q}</div>
     <div class="qa-hint">${q.hint}</div>
-    <textarea id="sql-response" class="sql-input" placeholder="Type your SQL query here..."></textarea>
+    <textarea id="sql-response" style="width:100%;min-height:90px;border:1.5px solid var(--border);border-radius:12px;padding:.7rem;font-family:'Fira Code',monospace;font-size:.8rem;background:var(--bg2);outline:none;resize:vertical;" placeholder="Type your SQL query here..."></textarea>
     <button class="answer-toggle" onclick="checkSQL()">Check Answer</button>
     <div class="answer-box" id="sql-ans"></div>`;
+}
+function checkSQL(){
+  const user=document.getElementById('sql-response').value.trim();
+  const correct=filteredSQL[sqlIdx].a.trim();
+  const box=document.getElementById('sql-ans');
+  box.innerHTML=user===correct?"<pre>✅ Correct!</pre>":`<pre>❌ Try again.\n\nCorrect answer:\n${correct}</pre>`;
+  box.classList.add('show');
 }
 function filterSQL(cat){
   filteredSQL=cat==='All'?[...sqlQuestions]:sqlQuestions.filter(q=>q.cat===cat);
   sqlIdx=0;
-  document.querySelectorAll('#sql-filter-bar .filter-btn').forEach(b=>{
-    b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
-  });
+  document.querySelectorAll('#sql-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
   renderSQL();
-}
-  function checkSQL(){
-  const user = document.getElementById('sql-response').value.trim();
-  const correct = filteredSQL[sqlIdx].a.trim();
-  const box = document.getElementById('sql-ans');
-
-  if(user === correct){
-    box.innerHTML = "<pre>✅ Correct!</pre>";
-  } else {
-    box.innerHTML = `<pre>❌ Try again.\n\nCorrect answer:\n${correct}</pre>`;
-  }
-
-  box.classList.add('show');
 }
 function sqlNav(dir){sqlIdx+=dir;renderSQL();}
 
-// ── PYTHON ────────────────────────────────────────────────────────────────────
 function renderPY(){
   const q=filteredPY[pyIdx];
   document.getElementById('py-counter').textContent=`Question ${pyIdx+1} of ${filteredPY.length}`;
   document.getElementById('py-prev').disabled=pyIdx===0;
   document.getElementById('py-next').disabled=pyIdx===filteredPY.length-1;
-  if(q.fitb){
-    let t=q.fitb.template, bi=0;
-    t=t.replace(/___/g,()=>`<input class="fitb-input" id="pyb${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(8,q.fitb.blanks[bi-1]?.length||8)}">`);
-    document.getElementById('py-qa').innerHTML=`
-      <div class="qa-category">${q.cat}</div>
-      <div class="qa-question">${q.q}</div>
-      <div class="qa-hint">${q.hint}</div>
-      <div class="fitb-wrap">${t}</div>
-      <button class="check-btn" onclick="checkPYFITB()">Check ✦</button>
-      <button class="reset-btn" onclick="renderPY()">Reset</button>
-      <div class="fitb-result" id="py-fitb-result"></div>
-      <button class="answer-toggle" style="margin-top:.8rem;" onclick="toggleAnswer('py-ans')">Show Full Answer</button>
-      <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
-  } else {
-    document.getElementById('py-qa').innerHTML=`
-      <div class="qa-category">${q.cat}</div>
-      <div class="qa-question">${q.q}</div>
-      <div class="qa-hint">${q.hint}</div>
-      <button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button>
-      <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
-  }
-}
-function checkPYFITB(){
-  const q=filteredPY[pyIdx];
-  if(!q.fitb) return;
-  let correct=0;
-  q.fitb.blanks.forEach((ans,i)=>{
-    const inp=document.getElementById('pyb'+i);
-    if(!inp) return;
-    const val=inp.value.trim().toLowerCase();
-    const ok=ans.toLowerCase().split('/').some(a=>val===a.trim());
-    inp.classList.toggle('correct',ok);
-    inp.classList.toggle('wrong',!ok);
-    if(ok) correct++;
-  });
-  const res=document.getElementById('py-fitb-result');
-  res.className='fitb-result '+(correct===q.fitb.blanks.length?'correct':'wrong');
-  res.textContent=correct===q.fitb.blanks.length?'🌸 Perfect!':correct+'/'+q.fitb.blanks.length+' correct — try again!';
+  document.getElementById('py-qa').innerHTML=`
+    <div class="qa-category">${q.cat}</div>
+    <div class="qa-question">${q.q}</div>
+    <div class="qa-hint">${q.hint}</div>
+    <button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button>
+    <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
 }
 function filterPY(cat){
   filteredPY=cat==='All'?[...pyQuestions]:pyQuestions.filter(q=>q.cat===cat);
   pyIdx=0;
-  document.querySelectorAll('#py-filter-bar .filter-btn').forEach(b=>{
-    b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
-  });
+  document.querySelectorAll('#py-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
   renderPY();
 }
 function pyNav(dir){pyIdx+=dir;renderPY();}
 
-// ── FILL IN THE BLANK ─────────────────────────────────────────────────────────
 function renderFITB(){
   const q=filteredFITB[fitbIdx];
   document.getElementById('fitb-counter').textContent=`Question ${fitbIdx+1} of ${filteredFITB.length}`;
@@ -1191,62 +817,12 @@ function checkFITB(){
 function filterFITB(cat){
   filteredFITB=cat==='All'?[...fitbQuestions]:fitbQuestions.filter(q=>q.cat===cat);
   fitbIdx=0;
-  document.querySelectorAll('#panel-fitb .filter-btn').forEach(b=>{
-    b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
-  });
+  document.querySelectorAll('#panel-fitb .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
   renderFITB();
 }
 function fitbNav(dir){fitbIdx+=dir;renderFITB();}
 
-// ── ML GUIDE ──────────────────────────────────────────────────────────────────
-let mlPDFs = {};
-
-function handleMLPdfUpload(idx, input) {
-  const file = input.files[0];
-  if (!file) return;
-  const reader = new FileReader();
-  reader.onload = () => {
-    mlPDFs[idx] = { name: file.name, data: reader.result };
-    updateMLPdfUI(idx);
-  };
-  reader.readAsDataURL(file);
-}
-
-function updateMLPdfUI(idx) {
-  const pdf = mlPDFs[idx];
-  const statusEl  = document.getElementById(`ml-pdf-status-${idx}`);
-  const viewBtn   = document.getElementById(`ml-pdf-view-${idx}`);
-  const removeBtn = document.getElementById(`ml-pdf-remove-${idx}`);
-  if (!statusEl) return;
-  if (pdf) {
-    statusEl.textContent    = `📎 ${pdf.name}`;
-    statusEl.style.color    = 'var(--rose-gold)';
-    viewBtn.style.display   = 'inline-block';
-    removeBtn.style.display = 'inline-block';
-  } else {
-    statusEl.textContent    = 'No PDF attached';
-    statusEl.style.color    = 'var(--muted)';
-    viewBtn.style.display   = 'none';
-    removeBtn.style.display = 'none';
-  }
-}
-
-function viewMLPdf(idx) {
-  const pdf = mlPDFs[idx];
-  if (!pdf) return;
-  document.getElementById('pdf-modal-title').textContent = `${mlAlgorithms[idx].name} — ${pdf.name}`;
-  document.getElementById('pdf-frame').src = pdf.data;
-  document.getElementById('pdf-download-link').href = pdf.data;
-  document.getElementById('pdf-download-link').download = pdf.name;
-  document.getElementById('pdf-overlay').classList.add('open');
-  document.body.style.overflow = 'hidden';
-}
-
-function removeMLPdf(idx) {
-  delete mlPDFs[idx];
-  document.getElementById(`ml-pdf-input-${idx}`).value = '';
-  updateMLPdfUI(idx);
-}
+let mlPDFs={};
 function toggleML(i){document.getElementById('ml'+i).classList.toggle('open');}
 function checkMLFITB(idx){
   const a=mlAlgorithms[idx];let correct=0;
@@ -1268,58 +844,23 @@ function resetMLFITB(idx){
   });
   document.getElementById(`ml-result-${idx}`).textContent='';
 }
-function buildML() {
-  const industryColors = {
-    'Finance':   { bg: 'var(--rose-gold-light)', color: 'var(--rose-gold-mid)' },
-    'Healthcare':{ bg: 'var(--mint-light)',      color: '#5aad8e' },
-    'Logistics': { bg: 'var(--lilac-light)',     color: 'var(--lilac-mid)' },
-  };
-const classification = mlAlgorithms.filter(a => a.type === 'classification');
-const regression     = mlAlgorithms.filter(a => a.type === 'regression');
-const other          = mlAlgorithms.filter(a => a.type === 'other');
-
-const renderGroup = (group) => group.map((a) => {
-  const i = mlAlgorithms.indexOf(a);
-  let t = a.fitb.template, bi = 0;
-  t = t.replace(/___/g, () => `<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10, a.fitb.blanks[bi-1]?.length || 10)}">`);
-
-  const projectCards = a.projects.map(p => {
-    const c = industryColors[p.industry] || industryColors['Finance'];
-    return `<div style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;">
-      <div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;">
-        <span>${p.emoji}</span>
-        <span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 10px;border-radius:99px;background:${c.bg};color:${c.color};">${p.industry}</span>
-      </div>
-      <div style="font-weight:700;font-size:.88rem;margin-bottom:.3rem;">${p.title}</div>
-      <div style="font-size:.82rem;color:var(--text2);line-height:1.65;">${p.desc}</div>
-    </div>`;
+function buildML(){
+  const industryColors={'Finance':{bg:'var(--rose-gold-light)',color:'var(--rose-gold-mid)'},'Healthcare':{bg:'var(--mint-light)',color:'#5aad8e'},'Logistics':{bg:'var(--lilac-light)',color:'var(--lilac-mid)'}};
+  const classification=mlAlgorithms.filter(a=>a.type==='classification');
+  const regression=mlAlgorithms.filter(a=>a.type==='regression');
+  const other=mlAlgorithms.filter(a=>a.type==='other');
+  const renderGroup=group=>group.map(a=>{
+    const i=mlAlgorithms.indexOf(a);
+    let t=a.fitb.template,bi=0;
+    t=t.replace(/___/g,()=>`<input class="fitb-input" id="ml${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10,(a.fitb.blanks[bi-1]||'').length+4)}">`);
+    const projectCards=a.projects.map(p=>{const c=industryColors[p.industry]||industryColors['Finance'];return`<div style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;"><span>${p.emoji}</span><span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 10px;border-radius:99px;background:${c.bg};color:${c.color};">${p.industry}</span></div><div style="font-weight:700;font-size:.88rem;margin-bottom:.3rem;">${p.title}</div><div style="font-size:.82rem;color:var(--text2);line-height:1.65;">${p.desc}</div></div>`;}).join('');
+    return`<div class="ml-card" id="ml${i}"><div class="ml-card-header" onclick="toggleML(${i})"><div><div class="ml-card-title">${a.emoji} ${a.name}</div><div class="ml-card-sub">${a.tagline}</div></div><span class="ml-chevron">▼</span></div><div class="ml-card-body"><p class="ml-explain">${a.explain}</p><div class="ml-when">${a.when}</div><h3 style="margin-bottom:.9rem;">🌸 Example Projects</h3><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-bottom:1.4rem;">${projectCards}</div><h3 style="margin-bottom:.8rem;">✏️ Fill in the Blank</h3><div class="fitb-wrap">${t}</div><button class="check-btn" onclick="checkMLFITB(${i})">Check ✦</button><button class="reset-btn" onclick="resetMLFITB(${i})">Reset</button><div class="fitb-result" id="ml-result-${i}"></div></div></div>`;
   }).join('');
-
-  return `<div class="ml-card" id="ml${i}">
-    <div class="ml-card-header" onclick="toggleML(${i})">
-      <div><div class="ml-card-title">${a.emoji} ${a.name}</div><div class="ml-card-sub">${a.tagline}</div></div>
-      <span class="ml-chevron">▼</span>
-    </div>
-    <div class="ml-card-body">
-      <p class="ml-explain">${a.explain}</p>
-      <div class="ml-when">${a.when}</div>
-      <h3 style="margin-bottom:.9rem;">🌸 Example Projects</h3>
-      <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-bottom:1.4rem;">${projectCards}</div>
-      <h3 style="margin-bottom:.8rem;">✏️ Fill in the Blank</h3>
-      <div class="fitb-wrap">${t}</div>
-      <button class="check-btn" onclick="checkMLFITB(${i})">Check ✦</button>
-      <button class="reset-btn" onclick="resetMLFITB(${i})">Reset</button>
-      <div class="fitb-result" id="ml-result-${i}"></div>
-      ${a.pdf ? `<button class="btn btn-ghost btn-sm" style="margin-top:1rem;" onclick="openPDF('${a.pdf}','${a.name}')">View PDF 🌸</button>` : ''}
-    </div>
-  </div>`;
-}).join('');
-
-document.getElementById('ml-grid-classification').innerHTML = renderGroup(classification);
-document.getElementById('ml-grid-regression').innerHTML     = renderGroup(regression);
-document.getElementById('ml-grid-other').innerHTML          = renderGroup(other);
+  document.getElementById('ml-grid-classification').innerHTML=renderGroup(classification);
+  document.getElementById('ml-grid-regression').innerHTML=renderGroup(regression);
+  document.getElementById('ml-grid-other').innerHTML=renderGroup(other);
 }
-// ── BEHAVIORAL + FLASHCARDS ────────────────────────────────────────────────────
+
 function renderBQ(){
   const qi=bqOrder[bqIdx];
   const q=behavioralQuestions[qi];
@@ -1339,50 +880,33 @@ function bqNav(dir){bqIdx+=dir;renderBQ();}
 function bqShuffle(){bqIdx=0;bqOrder=bqOrder.sort(()=>Math.random()-.5);renderBQ();}
 function saveSTAR(){
   const qi=bqOrder[bqIdx];
-  starAnswers[qi]={
-    s:document.getElementById('star-s').value,
-    t:document.getElementById('star-t').value,
-    a:document.getElementById('star-a').value,
-    r:document.getElementById('star-r').value
-  };
-  const el=document.getElementById('star-saved');
-  el.classList.add('show');
-  setTimeout(()=>el.classList.remove('show'),2000);
+  starAnswers[qi]={s:document.getElementById('star-s').value,t:document.getElementById('star-t').value,a:document.getElementById('star-a').value,r:document.getElementById('star-r').value};
+  const el=document.getElementById('star-saved');el.classList.add('show');setTimeout(()=>el.classList.remove('show'),2000);
 }
 
-// ── FLASHCARDS ─────────────────────────────────────────────────────────────────
 function renderFlashcard(){
   const qi=bqOrder[fcIdx];
   const q=behavioralQuestions[qi];
   fcFlipped=false;
-  const card=document.getElementById('fc-card');
-  card.classList.remove('flipped');
+  const card=document.getElementById('fc-card');card.classList.remove('flipped');
   document.getElementById('fc-counter').textContent=`${fcIdx+1} / ${behavioralQuestions.length}`;
   document.getElementById('fc-prev').disabled=fcIdx===0;
   document.getElementById('fc-next').disabled=fcIdx===behavioralQuestions.length-1;
   document.getElementById('fc-front-cat').textContent=q.category;
   document.getElementById('fc-front-q').textContent=q.text;
-  // Build back from saved or pre-filled STAR answer
   const saved=starAnswers[qi]||q.star;
-  const s=saved&&saved.s||'';
-  const t=saved&&saved.t||'';
-  const a=saved&&saved.a||'';
-  const r=saved&&saved.r||'';
+  const s=saved&&saved.s||'',t=saved&&saved.t||'',a=saved&&saved.a||'',r=saved&&saved.r||'';
   document.getElementById('fc-back-content').innerHTML=`
     ${s?`<div class="fc-star-row"><span class="fc-star-label">S</span><span>${s}</span></div>`:''}
     ${t?`<div class="fc-star-row"><span class="fc-star-label">T</span><span>${t}</span></div>`:''}
     ${a?`<div class="fc-star-row"><span class="fc-star-label">A</span><span>${a}</span></div>`:''}
     ${r?`<div class="fc-star-row"><span class="fc-star-label">R</span><span>${r}</span></div>`:''}
-    ${!s&&!t&&!a&&!r?'<div style="color:var(--muted);font-size:.9rem;">No answer saved yet — fill in your STAR answer above and save it!</div>':''}`;
+    ${!s&&!t&&!a&&!r?'<div style="color:var(--muted);font-size:.9rem;">No answer saved yet — fill in your STAR answer and save it!</div>':''}`;
 }
-function flipCard(){
-  fcFlipped=!fcFlipped;
-  document.getElementById('fc-card').classList.toggle('flipped',fcFlipped);
-}
+function flipCard(){fcFlipped=!fcFlipped;document.getElementById('fc-card').classList.toggle('flipped',fcFlipped);}
 function fcNav(dir){fcIdx+=dir;renderFlashcard();}
 function fcShuffle(){fcIdx=0;bqOrder=bqOrder.sort(()=>Math.random()-.5);renderFlashcard();}
 
-// ── SHARED HELPERS ────────────────────────────────────────────────────────────
 function toggleAnswer(id){
   const box=document.getElementById(id);
   const open=box.classList.toggle('show');
@@ -1399,164 +923,75 @@ function switchPrepTab(tab){
   document.querySelectorAll('.prep-panel').forEach(p=>p.classList.remove('active'));
   document.querySelector(`.prep-tab[onclick="switchPrepTab('${tab}')"]`).classList.add('active');
   document.getElementById(`prep-panel-${tab}`).classList.add('active');
-  if(tab==='flashcard') renderFlashcard();
+  if(tab==='flashcard')renderFlashcard();
 }
 
-
-// ── MULTIPLE CHOICE ───────────────────────────────────────────────────────────
-const mcQuestions=[
-  {cat:"Neural Networks",q:"What is the main purpose of the activation function in a neural network?",choices:["To normalize the input data", "To introduce non-linearity so the network can learn complex patterns", "To reduce the number of layers", "To calculate the loss"],answer:1,explain:"Without activation functions, a neural network would just be a linear transformation no matter how many layers it has. Activation functions like ReLU and sigmoid allow it to learn non-linear relationships."},
-  {cat:"Neural Networks",q:"What does backpropagation do in a neural network?",choices:["It feeds data forward through the layers", "It normalizes the weights", "It calculates gradients and updates weights to minimize loss", "It drops random neurons during training"],answer:2,explain:"Backpropagation computes the gradient of the loss function with respect to each weight, then the optimizer (e.g. Adam) uses those gradients to adjust weights in the right direction."},
-  {cat:"Neural Networks",q:"What does Dropout do during neural network training?",choices:["It removes features with low importance", "It randomly deactivates neurons to prevent overfitting", "It reduces the learning rate over time", "It clips the gradient to prevent explosion"],answer:1,explain:"Dropout randomly sets a fraction of neurons to zero during each training step. This forces the network to not rely on any single neuron, improving generalization."},
-  {cat:"Neural Networks",q:"Which activation function is most commonly used in hidden layers of modern deep networks?",choices:["Sigmoid", "Tanh", "ReLU", "Softmax"],answer:2,explain:"ReLU (Rectified Linear Unit) is preferred because it doesn't suffer from the vanishing gradient problem like sigmoid and tanh, and it's computationally cheap."},
-  {cat:"Neural Networks",q:"What type of neural network is best suited for image classification tasks?",choices:["Recurrent Neural Network (RNN)", "Convolutional Neural Network (CNN)", "Multi-Layer Perceptron (MLP)", "Autoencoder"],answer:1,explain:"CNNs use convolutional layers to detect spatial patterns like edges, shapes, and textures \u2014 making them ideal for image data."},
-  {cat:"Decision Trees",q:"What metric does a Decision Tree use to decide the best split at each node?",choices:["Mean Squared Error only", "Gini Impurity or Information Gain", "R-squared", "AUC Score"],answer:1,explain:"Decision trees evaluate splits using Gini Impurity (CART) or Information Gain (ID3/C4.5). Both measure how well a split separates the classes."},
-  {cat:"Decision Trees",q:"What is the main risk of letting a Decision Tree grow without any depth limit?",choices:["Underfitting \u2014 the model is too simple", "Overfitting \u2014 the model memorizes training data", "The tree becomes a random forest", "The model cannot handle numerical features"],answer:1,explain:"An unconstrained tree will keep splitting until every leaf has one sample \u2014 perfectly fitting training data but failing on new data. max_depth, min_samples_leaf, and pruning control this."},
-  {cat:"Decision Trees",q:"Why are Decision Trees considered interpretable?",choices:["They use fewer parameters than linear models", "You can trace any prediction as a series of if/then rules", "They always produce the same result", "They only work with two classes"],answer:1,explain:"Every prediction in a decision tree follows a clear path from root to leaf \u2014 making it easy to explain to non-technical stakeholders and regulators."},
-  {cat:"Decision Trees",q:"What does min_samples_leaf=10 mean in sklearn's DecisionTreeClassifier?",choices:["The tree can have at most 10 leaves", "Each leaf node must have at least 10 training samples", "The tree splits at most 10 times", "Features must appear at least 10 times"],answer:1,explain:"min_samples_leaf prevents the tree from creating tiny leaf nodes with very few samples \u2014 a common regularization technique to reduce overfitting."},
-  {cat:"Random Forest",q:"What is 'bagging' in the context of Random Forest?",choices:["Removing weak features from the dataset", "Training each tree on a random bootstrap sample of the data", "Combining outputs by averaging probabilities", "Using a bag-of-words encoding for categorical features"],answer:1,explain:"Bagging (Bootstrap Aggregating) means each tree is trained on a different random sample drawn with replacement from the training data \u2014 introducing diversity among trees."},
-  {cat:"Random Forest",q:"How does Random Forest reduce overfitting compared to a single Decision Tree?",choices:["It uses shallower trees only", "It averages predictions across many trees trained on random data subsets", "It applies L2 regularization to each tree", "It removes all outliers before training"],answer:1,explain:"By averaging many trees (each trained on different data and features), Random Forest reduces the variance that causes overfitting in a single tree. The majority vote smooths out individual errors."},
-  {cat:"Random Forest",q:"What does feature importance tell you in a Random Forest model?",choices:["Which features were dropped due to multicollinearity", "How much each feature contributed to reducing impurity across all trees", "Which features have the highest correlation with the target", "The order in which features were added to the model"],answer:1,explain:"Feature importance in Random Forest measures the average decrease in Gini impurity (or MSE) attributed to each feature across all trees \u2014 helping identify which variables drive predictions."},
-  {cat:"Random Forest",q:"When should you use class_weight='balanced' in a Random Forest?",choices:["When all classes have equal representation", "When the dataset has imbalanced classes (e.g. 95% non-fraud, 5% fraud)", "When features are on different scales", "When you have more than 100 trees"],answer:1,explain:"class_weight='balanced' automatically adjusts weights inversely proportional to class frequency \u2014 preventing the model from ignoring the minority class (like fraud or rare diseases)."},
-  {cat:"Support Vector Machines",q:"What is the 'margin' in a Support Vector Machine?",choices:["The number of support vectors used", "The distance between the decision boundary and the nearest data points from each class", "The regularization penalty applied to weights", "The kernel function output"],answer:1,explain:"SVM finds the hyperplane that maximizes the margin \u2014 the gap between the boundary and the closest points (support vectors) from each class. A wider margin means better generalization."},
-  {cat:"Support Vector Machines",q:"What does the RBF kernel allow SVM to do?",choices:["Handle missing values automatically", "Find non-linear decision boundaries by mapping data to higher dimensions", "Speed up training on large datasets", "Reduce the number of support vectors"],answer:1,explain:"The Radial Basis Function (RBF) kernel implicitly maps data into infinite-dimensional space, allowing SVM to find non-linear boundaries without explicitly computing the transformation."},
-  {cat:"Support Vector Machines",q:"What does the parameter C control in an SVM?",choices:["The number of classes", "The kernel type", "The trade-off between maximizing margin and minimizing classification error", "The learning rate"],answer:2,explain:"A high C value = smaller margin but fewer misclassifications (may overfit). A low C value = wider margin but allows more errors (may underfit). It's the regularization parameter."},
-  {cat:"Support Vector Machines",q:"Why must you scale features before training an SVM?",choices:["SVM cannot handle categorical features without scaling", "SVM uses distance-based calculations, so features on larger scales would dominate", "Scaling converts features to probabilities", "SVM requires all features to be binary"],answer:1,explain:"SVM computes distances between data points. If one feature ranges 0-10,000 and another 0-1, the large-scale feature dominates. StandardScaler ensures all features contribute equally."},
-  {cat:"Ridge Regression",q:"What type of regularization does Ridge Regression apply?",choices:["L1 regularization (Lasso)", "L2 regularization (sum of squared coefficients)", "Elastic Net (L1 + L2)", "No regularization"],answer:1,explain:"Ridge adds a penalty equal to the sum of squared coefficients (L2 norm) to the loss function. This shrinks all coefficients toward zero but keeps all features in the model."},
-  {cat:"Ridge Regression",q:"What problem does Ridge Regression solve that ordinary linear regression cannot handle well?",choices:["Non-linear relationships between features and target", "Multicollinearity \u2014 when features are highly correlated with each other", "Too many output classes", "Imbalanced datasets"],answer:1,explain:"When features are highly correlated, OLS (ordinary least squares) produces unstable, high-variance coefficients. Ridge shrinks them, producing a more stable and generalizable model."},
-  {cat:"Ridge Regression",q:"What does the alpha parameter control in Ridge Regression?",choices:["The learning rate of gradient descent", "The strength of the regularization penalty", "The number of features to keep", "The train/test split ratio"],answer:1,explain:"Alpha (also called lambda) controls how much to penalize large coefficients. alpha=0 is ordinary linear regression; higher alpha = stronger shrinkage = simpler model."},
-  {cat:"Ridge Regression",q:"Unlike Lasso regression, what does Ridge regression do to feature coefficients?",choices:["Sets some coefficients exactly to zero (feature selection)", "Shrinks all coefficients toward zero but never sets them to exactly zero", "Doubles the coefficients of important features", "Removes correlated features automatically"],answer:1,explain:"Ridge shrinks all coefficients but keeps them all. Lasso can zero out coefficients entirely (performing feature selection). Ridge is preferred when you want all features to contribute."},
-  {cat:"K-Means Clustering",q:"K-Means is an example of which type of machine learning?",choices:["Supervised learning", "Reinforcement learning", "Unsupervised learning", "Semi-supervised learning"],answer:2,explain:"K-Means is unsupervised \u2014 it finds structure in data without using labeled examples. It discovers natural groupings by minimizing the distance between points and their assigned centroid."},
-  {cat:"K-Means Clustering",q:"What does the Elbow Method help you determine when using K-Means?",choices:["The best distance metric to use", "The optimal number of clusters (K)", "Whether the data is linearly separable", "The maximum number of iterations"],answer:1,explain:"The Elbow Method plots inertia (sum of squared distances to centroids) vs K. You look for the 'elbow' where adding more clusters stops significantly reducing inertia."},
-  {cat:"K-Means Clustering",q:"Why is feature scaling important before running K-Means?",choices:["K-Means requires all features to be categorical", "K-Means uses Euclidean distance \u2014 features on larger scales dominate cluster assignments", "K-Means cannot handle more than 10 features without scaling", "Scaling converts the data to probabilities"],answer:1,explain:"If one feature has a much larger range than others (e.g. income in dollars vs age in years), it will dominate the distance calculation. StandardScaler puts all features on equal footing."},
-  {cat:"K-Means Clustering",q:"What is inertia in the context of K-Means clustering?",choices:["The number of iterations until convergence", "The sum of squared distances from each point to its assigned centroid", "The Silhouette score of the clustering", "The total number of support vectors"],answer:1,explain:"Inertia measures how tight the clusters are \u2014 lower inertia means points are closer to their centroids. It's the objective K-Means minimizes, and it's used in the Elbow Method."},
-  {cat:"ARIMA",q:"What does the 'I' in ARIMA stand for, and what does it do?",choices:["Iteration \u2014 the number of training passes", "Integrated \u2014 differencing the series to make it stationary", "Input \u2014 the number of lag features used", "Intercept \u2014 the bias term in the model"],answer:1,explain:"The 'I' stands for Integrated. Differencing (subtracting each value from the previous one) removes trend and makes the time series stationary \u2014 a requirement for ARIMA."},
-  {cat:"ARIMA",q:"What does the Augmented Dickey-Fuller (ADF) test check for in time series analysis?",choices:["Whether the model is overfitting", "Whether the time series is stationary", "The optimal number of lag terms", "The correlation between two time series"],answer:1,explain:"The ADF test checks for a unit root. If p-value < 0.05, the series is stationary (no unit root). ARIMA requires stationarity, so you difference the series until it passes this test."},
-  {cat:"ARIMA",q:"What do the ACF and PACF plots help you determine?",choices:["Whether to use supervised or unsupervised learning", "The p (AR order) and q (MA order) parameters for ARIMA", "How many trees to use in a forest", "The train/test split boundary"],answer:1,explain:"PACF helps identify p (the AR lag order \u2014 where PACF cuts off). ACF helps identify q (the MA order \u2014 where ACF cuts off). Together they guide ARIMA(p,d,q) parameter selection."},
-  {cat:"ARIMA",q:"When would you choose ARIMA over a neural network for forecasting?",choices:["When you have millions of data points and complex patterns", "When you have a univariate time series with clear trend/seasonality and limited data", "When your data has images or text", "When you need to forecast multiple outputs simultaneously"],answer:1,explain:"ARIMA is interpretable, fast to train, and works well on smaller univariate time series with trend and seasonality. Neural networks (LSTM) shine on large, complex, or multivariate series."},
-  {cat:"Perceptrons",q:"What is the fundamental building block of a neural network?",choices:["A decision tree node", "A perceptron (single neuron)", "A support vector", "A convolutional filter"],answer:1,explain:"A perceptron is the basic unit: it takes weighted inputs, sums them, adds a bias, applies an activation function, and outputs a result. Stack many of them in layers and you get a deep neural network."},
-  {cat:"Perceptrons",q:"What is the key limitation of a single-layer perceptron?",choices:["It cannot handle more than two features", "It can only solve linearly separable problems", "It requires data to be normalized", "It cannot be trained with gradient descent"],answer:1,explain:"A single perceptron draws a straight line (hyperplane) between classes. The classic example is XOR \u2014 which is not linearly separable. Multi-layer perceptrons overcome this."},
-  {cat:"Perceptrons",q:"What does hidden_layer_sizes=(128, 64) mean in sklearn's MLPClassifier?",choices:["The model has 128 input features and 64 output classes", "There are 2 hidden layers with 128 and 64 neurons respectively", "The model runs for 128 epochs with batch size 64", "128 trees each with 64 leaves"],answer:1,explain:"Each value in the tuple defines one hidden layer and its neuron count. (128, 64) means: first hidden layer has 128 neurons, second hidden layer has 64 neurons."},
-  {cat:"Feature Engineering",q:"What is the 'dummy variable trap' and how do you avoid it?",choices:["Using too many features, fixed by PCA", "Perfect multicollinearity from one-hot encoding \u2014 fixed by dropping one dummy column (drop_first=True)", "Label encoding ordinal features incorrectly", "Using raw dates instead of extracted features"],answer:1,explain:"If you one-hot encode a feature with N categories into N columns, one column is perfectly predictable from the others. drop_first=True removes one column, eliminating this redundancy."},
-  {cat:"Feature Engineering",q:"When should you use Label Encoding vs One-Hot Encoding?",choices:["Label Encoding for all categories; One-Hot is never needed", "Label Encoding for ordinal features (Low/Med/High); One-Hot for nominal features (colors, cities)", "One-Hot for ordinal; Label Encoding for nominal", "Both always produce identical results"],answer:1,explain:"Label Encoding (0, 1, 2...) implies an order, which is appropriate for ordinal features. One-Hot creates binary columns for each category and is correct for nominal features with no natural order."},
-  {cat:"Feature Engineering",q:"What is a lag feature in time series feature engineering?",choices:["A feature that measures how slow the model trains", "A copy of a column shifted back by N time steps to use past values as predictors", "A feature with high missing value rate", "A feature created by clustering"],answer:1,explain:"Lag features capture historical values as inputs. For example, lag_1 of daily sales gives yesterday's sales as a feature for predicting today \u2014 letting the model learn temporal patterns."},
-  {cat:"Feature Engineering",q:"What does StandardScaler do to a feature, and when is it required?",choices:["It converts features to binary 0/1 values", "It transforms features to have mean=0 and std=1 \u2014 required for distance-based and gradient-based models", "It removes outliers beyond 3 standard deviations", "It converts continuous features to categorical bins"],answer:1,explain:"StandardScaler standardizes features. Models like SVM, KNN, and neural networks are sensitive to feature scale. Tree-based models (Random Forest, Decision Tree) do not require scaling."},
-];
-
-let mcIdx=0;
-let filteredMC=[...mcQuestions];
-let mcAnswered=false;
-
+let mcIdx=0,filteredMC=[...mcQuestions],mcAnswered=false;
 function renderMC(){
-  const q=filteredMC[mcIdx];
-  mcAnswered=false;
+  const q=filteredMC[mcIdx];mcAnswered=false;
   document.getElementById('mc-counter').textContent=`Question ${mcIdx+1} of ${filteredMC.length}`;
   document.getElementById('mc-prev').disabled=mcIdx===0;
   document.getElementById('mc-next').disabled=mcIdx===filteredMC.length-1;
   const letters=['A','B','C','D'];
-  const choicesHtml=q.choices.map((c,i)=>
-    `<button class="mc-choice" onclick="answerMC(${i})" id="mc-choice-${i}">
-       <span class="mc-letter">${letters[i]}</span>
-       <span>${c}</span>
-     </button>`
-  ).join('');
-  document.getElementById('mc-qa').innerHTML=`
-    <div class="qa-category">${q.cat}</div>
-    <div class="qa-question" style="margin-bottom:1rem;">${q.q}</div>
-    <div class="mc-choices">${choicesHtml}</div>
-    <div class="mc-result" id="mc-result"></div>
-    <div class="mc-explain" id="mc-explain">${q.explain}</div>`;
+  const choicesHtml=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerMC(${i})" id="mc-choice-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');
+  document.getElementById('mc-qa').innerHTML=`<div class="qa-category">${q.cat}</div><div class="qa-question" style="margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${choicesHtml}</div><div class="mc-result" id="mc-result"></div><div class="mc-explain" id="mc-explain">${q.explain}</div>`;
 }
 function answerMC(chosen){
-  if(mcAnswered) return;
-  mcAnswered=true;
-  const q=filteredMC[mcIdx];
-  const correct=q.answer;
-  const letters=['A','B','C','D'];
-  for(let i=0;i<q.choices.length;i++){
-    const btn=document.getElementById('mc-choice-'+i);
-    btn.classList.add('disabled');
-    if(i===correct){
-      btn.classList.add('correct');
-    } else if(i===chosen && chosen!==correct){
-      btn.classList.add('wrong');
-    }
-  }
+  if(mcAnswered)return;mcAnswered=true;
+  const q=filteredMC[mcIdx];const correct=q.answer;const letters=['A','B','C','D'];
+  for(let i=0;i<q.choices.length;i++){const btn=document.getElementById('mc-choice-'+i);btn.classList.add('disabled');if(i===correct)btn.classList.add('correct');else if(i===chosen&&chosen!==correct)btn.classList.add('wrong');}
   const res=document.getElementById('mc-result');
-  if(chosen===correct){
-    res.className='mc-result correct';
-    res.textContent='🌸 Correct!';
-  } else {
-    res.className='mc-result wrong';
-    res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;
-  }
+  if(chosen===correct){res.className='mc-result correct';res.textContent='🌸 Correct!';}else{res.className='mc-result wrong';res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;}
   document.getElementById('mc-explain').classList.add('show');
 }
 function mcNav(dir){mcIdx+=dir;renderMC();}
 function filterMC(cat){
-  filteredMC=cat==='All'?[...mcQuestions]:mcQuestions.filter(q=>q.cat===cat);
-  mcIdx=0;
-  document.querySelectorAll('#mc-filter-bar .filter-btn').forEach(b=>{
-    b.classList.toggle('active', b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All'));
-  });
+  filteredMC=cat==='All'?[...mcQuestions]:mcQuestions.filter(q=>q.cat===cat);mcIdx=0;
+  document.querySelectorAll('#mc-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
   renderMC();
 }
-const flQuestions=[
-  {cat:'Functions',type:'mc',q:'What keyword is used to define a function in Python?',choices:['func','define','def','fun'],answer:2,explain:'In Python, <code>def</code> introduces every function definition. Example: <code>def greet(): ...</code>'},
-  {cat:'Functions',type:'mc',q:'What does the <code>return</code> statement do?',choices:['Prints a value to the console','Exits the function and sends a value back to the caller','Starts a loop','Declares a variable'],answer:1,explain:'<code>return</code> ends the function and passes the result back. Without it, the function returns <code>None</code>.'},
-  {cat:'Functions',type:'mc',q:'What is the output?\n\ndef double(n):\n    return n * 2\n\nprint(double(5))',choices:['5','25','10','None'],answer:2,explain:'<code>double(5)</code> returns 5 × 2 = 10, which is then printed.'},
-  {cat:'Functions',type:'fitb',q:'Complete the function that returns the square of a number.',template:'def square(n):\n    ___ n ** ___',blanks:['return','2'],hint:'Use return and the ** exponent operator'},
-  {cat:'Functions',type:'mc',q:'What is a default parameter?',choices:['A parameter with no name','A parameter that is always required','A parameter with a preset value used when none is provided','A parameter that only accepts strings'],answer:2,explain:'Default parameters let callers skip an argument. Example: <code>def greet(name="World")</code>.'},
-  {cat:'Functions',type:'mc',q:'What will this return?\n\ndef add(a, b=10):\n    return a + b\n\nadd(5)',choices:['5','10','15','Error'],answer:2,explain:'<code>b</code> defaults to 10, so <code>add(5)</code> computes 5 + 10 = 15.'},
-  {cat:'Functions',type:'fitb',q:'Define a function called multiply with default y=2 that returns x * y.',template:'___ multiply(x, y=___):\n    return x * y',blanks:['def','2'],hint:'def keyword then set a default for y'},
-  {cat:'Functions',type:'mc',q:'What does *args allow a function to do?',choices:['Accept keyword arguments only','Accept any number of positional arguments','Multiply arguments together','Require all arguments to be integers'],answer:1,explain:'<code>*args</code> collects extra positional arguments into a tuple. Example: <code>def total(*nums): return sum(nums)</code>'},
-  {cat:'Functions',type:'mc',q:'What is the output?\n\ndef show(*items):\n    for i in items:\n        print(i)\n\nshow("a","b","c")',choices:['a b c on one line','a, b, c each on a new line','Error','None'],answer:1,explain:'<code>*items</code> captures all arguments. The loop prints each on its own line.'},
-  {cat:'Functions',type:'fitb',q:'Complete this function that returns "even" or "odd".',template:'def check_parity(n):\n    if n % ___ == 0:\n        return "even"\n    ___ "odd"',blanks:['2','return'],hint:'Modulo 2 for even check, then return the other string'},
-  {cat:'Functions',type:'mc',q:'What is a recursive function?',choices:['A function that runs in parallel','A function that calls itself','A function with no return value','A function that only takes one argument'],answer:1,explain:'Recursion is when a function calls itself with a smaller problem. It must have a base case to stop.'},
-  {cat:'Functions',type:'mc',q:'What does a docstring do?',choices:['A comment that runs as code','A string literal placed after def that documents what the function does','A required parameter name','The return type declaration'],answer:1,explain:'Docstrings use triple quotes right after <code>def</code>. Accessible via <code>help()</code>.'},
-  {cat:'Loops',type:'mc',q:'What does <code>range(3)</code> produce?',choices:['[1, 2, 3]','[0, 1, 2]','[0, 1, 2, 3]','(0, 3)'],answer:1,explain:'<code>range(3)</code> generates 0, 1, 2 — starts at 0 and stops before 3.'},
-  {cat:'Loops',type:'mc',q:'What is the output of:\n\nfor i in range(1, 5, 2):\n    print(i)',choices:['1 2 3 4','1 then 3','2 then 4','1 2'],answer:1,explain:'<code>range(1, 5, 2)</code> → start=1, stop=5, step=2 → gives 1, 3.'},
-  {cat:'Loops',type:'fitb',q:'Write a for loop that prints numbers 0 through 4.',template:'___ i in ___(___):\n    print(i)',blanks:['for','range','5'],hint:'for, range, and the stop value'},
-  {cat:'Loops',type:'mc',q:'What does <code>break</code> do inside a loop?',choices:['Skips the current iteration','Exits the loop immediately','Restarts the loop','Raises an error'],answer:1,explain:'<code>break</code> terminates the loop entirely. <code>continue</code> skips just the current iteration.'},
-  {cat:'Loops',type:'mc',q:'What does <code>continue</code> do inside a loop?',choices:['Stops the loop','Skips the rest of the current iteration and moves to the next one','Starts a nested loop','Returns a value'],answer:1,explain:'<code>continue</code> jumps back to the top of the loop for the next iteration.'},
-  {cat:'Loops',type:'mc',q:'What is the output?\n\ncount = 0\nwhile count < 3:\n    print(count)\n    count += 1',choices:['0 1 2 3','0 1 2','1 2 3','Infinite loop'],answer:1,explain:'Prints 0, 1, 2 then count becomes 3, which fails the condition and stops.'},
-  {cat:'Loops',type:'fitb',q:'Complete this while loop that sums numbers 1 to 5.',template:'total = 0\ni = ___\nwhile i <= 5:\n    total += i\n    i += ___',blanks:['1','1'],hint:'Start i at 1 and increment by 1 each time'},
-  {cat:'Loops',type:'mc',q:'What does <code>enumerate()</code> do in a for loop?',choices:['Creates a range automatically','Gives both the index and value of each item','Sorts the list before looping','Filters out None values'],answer:1,explain:'<code>enumerate(items)</code> yields (index, value) pairs. Example: <code>for i, v in enumerate(["a","b"])</code>.'},
-  {cat:'Loops',type:'mc',q:'What is the output?\n\nfor i in range(5):\n    if i == 3:\n        break\n    print(i)',choices:['0 1 2 3 4','0 1 2','0 1 2 3','3 4'],answer:1,explain:'Prints 0, 1, 2. When i == 3, break exits before printing 3.'},
-  {cat:'Loops',type:'mc',q:'How do you loop over both keys and values in a dictionary?',choices:['for k in dict:','for k, v in dict.keys():','for k, v in dict.items():','for k, v in dict.values():'],answer:2,explain:'<code>dict.items()</code> returns key-value pairs. <code>keys()</code> gives only keys, <code>values()</code> only values.'},
-  {cat:'Loops',type:'fitb',q:'Complete the loop that prints each list value doubled.',template:'nums = [1, 2, 3, 4]\nfor n ___ nums:\n    print(n ___ 2)',blanks:['in','*'],hint:'Use in to iterate and * to multiply'},
-  {cat:'Comprehensions',type:'mc',q:'What does this produce?\n\n[x * 2 for x in range(4)]',choices:['[1, 2, 3, 4]','[0, 2, 4, 6]','[2, 4, 6, 8]','[0, 1, 2, 3]'],answer:1,explain:'range(4) gives 0,1,2,3. Multiplying each by 2 gives [0, 2, 4, 6].'},
-  {cat:'Comprehensions',type:'fitb',q:'Write a list comprehension that squares numbers 1 to 5.',template:'squares = [___ ** 2 ___ x in range(1, ___)]',blanks:['x','for','6'],hint:'range(1,6) gives 1 through 5'},
-  {cat:'Comprehensions',type:'mc',q:'What does the if clause do in a list comprehension?',choices:['Raises an error if True','Filters — only keeps items where the condition is True','Replaces failures with None','Creates two lists'],answer:1,explain:'The optional <code>if condition</code> acts as a filter. Example: <code>[x for x in nums if x > 0]</code>.'},
-  {cat:'Comprehensions',type:'mc',q:'What is the result?\n\nwords = ["hi","hello","hey"]\n[w for w in words if len(w) > 2]',choices:["[\'hi\']","[\'hello\', \'hey\']","[\'hi\', \'hello\', \'hey\']","[\'hello\']"],answer:1,explain:'"hi" has length 2, filtered out. "hello" (5) and "hey" (3) both pass.'},
-  {cat:'Comprehensions',type:'fitb',q:'Complete the comprehension that keeps only even numbers.',template:'evens = [x ___ nums if x % ___ == 0]',blanks:['for x in','2'],hint:'for x in before the iterable, modulo 2 for even check'},
-  {cat:'Comprehensions',type:'mc',q:'What is a dictionary comprehension?',choices:['A loop that builds a list','A one-line expression that builds a dict from an iterable','A function that returns a dict','A way to merge two dicts'],answer:1,explain:'Example: <code>{x: x**2 for x in range(5)}</code>. Same concept as list comprehensions but produces a dict.'},
-  {cat:'Lambda',type:'mc',q:'What is a lambda function?',choices:['A function that always returns None','A named function stored in a variable','A small anonymous function defined in a single expression','A built-in Python function'],answer:2,explain:'Lambda creates a small anonymous function inline. Syntax: <code>lambda args: expression</code>.'},
-  {cat:'Lambda',type:'mc',q:'What does this output?\n\nsquare = lambda x: x ** 2\nprint(square(4))',choices:['2','8','16','Error'],answer:2,explain:'<code>lambda x: x ** 2</code> squares x. Calling it with 4 gives 4² = 16.'},
-  {cat:'Lambda',type:'fitb',q:'Write a lambda that returns the cube (x³) of a number.',template:'cube = ___ x: x ___ 3',blanks:['lambda','**'],hint:'lambda keyword then x ** 3'},
-  {cat:'Lambda',type:'mc',q:'What does map(lambda x: x+1, [1,2,3]) return?',choices:['[1,2,3]','[2,3,4]','A map object — wrap with list()','Error'],answer:2,explain:'<code>map()</code> applies the function to each element. Wrap with <code>list()</code> to get [2, 3, 4].'},
-  {cat:'Lambda',type:'mc',q:'What does filter(lambda x: x > 0, [-1, 2, -3, 4]) produce?',choices:['[-1, -3]','[2, 4]','[True, False, True, False]','[-1, 2, -3, 4]'],answer:1,explain:'<code>filter()</code> keeps items where the lambda is True. 2 and 4 are > 0.'},
-  {cat:'Lambda',type:'mc',q:'What is the most common use of lambda in data science?',choices:['Replacing all functions','Inline use with map, filter, sorted, or df.apply()','Defining class methods','Importing libraries'],answer:1,explain:'Lambda shines in one-liners like <code>df["col"].apply(lambda x: x*2)</code>.'},
-  {cat:'Scope & Args',type:'mc',q:'What is a local variable?',choices:['A variable defined at the top of the file','A variable defined inside a function, accessible only within it','A variable shared across all functions','A constant that never changes'],answer:1,explain:'Local variables only exist during the function call and are destroyed when it returns.'},
-  {cat:'Scope & Args',type:'mc',q:'What is the output?\n\nx = 10\ndef change():\n    x = 99\nchange()\nprint(x)',choices:['99','10','Error','None'],answer:1,explain:'<code>x = 99</code> creates a new local variable. The global x = 10 is unchanged. Use <code>global x</code> to modify it.'},
-  {cat:'Scope & Args',type:'mc',q:'What does **kwargs allow in a function?',choices:['Accept any number of positional arguments','Accept any number of keyword arguments as a dictionary','Multiply two arguments','Require all arguments to be named'],answer:1,explain:'<code>**kwargs</code> collects extra keyword arguments into a dict. Example: <code>show(name="Adila")</code>.'},
-  {cat:'Scope & Args',type:'fitb',q:'Complete this function that accepts any keyword arguments and prints them.',template:'def show_info(**___):\n    for key, val in ___.items():\n        print(f"{key}: {val}")',blanks:['kwargs','kwargs'],hint:'kwargs is the conventional name for keyword argument dictionaries'},
-  {cat:'Scope & Args',type:'mc',q:'What is the correct order of parameters in a function signature?',choices:['*args, regular, **kwargs','regular, **kwargs, *args','regular, *args, **kwargs','**kwargs, *args, regular'],answer:2,explain:'Python requires: regular params first, then *args, then **kwargs. Example: <code>def f(a, b, *args, **kwargs)</code>.'},
-  {cat:'Scope & Args',type:'mc',q:'What is the output?\n\ndef outer():\n    msg = "hello"\n    def inner():\n        print(msg)\n    inner()\n\nouter()',choices:['Error — msg not in scope','hello','None','hello hello'],answer:1,explain:'Inner functions can read variables from their enclosing scope (closure).'},
-];
+
 let flIdx=0,filteredFL=[...flQuestions],flScore=0,flTotal=0,flStreak=0,flAnswered=false;
-function renderFL(){const q=filteredFL[flIdx];flAnswered=false;document.getElementById('fl-counter').textContent=`Question ${flIdx+1} of ${filteredFL.length}`;document.getElementById('fl-prev').disabled=flIdx===0;document.getElementById('fl-next').disabled=flIdx===filteredFL.length-1;if(q.type==='mc'){const letters=['A','B','C','D'];const ch=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerFL(${i})" id="fl-choice-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');document.getElementById('fl-qa').innerHTML=`<div class="qa-category">🔁 ${q.cat}</div><div class="qa-question" style="white-space:pre-line;margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${ch}</div><div class="mc-result" id="fl-result"></div><div class="mc-explain" id="fl-explain">${q.explain}</div>`;}else{let t=q.template,bi=0;t=t.replace(/___/g,()=>`<input class="fitb-input" id="flb${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10,(q.blanks[bi-1]||'').length+4)}">`);document.getElementById('fl-qa').innerHTML=`<div class="qa-category">🔁 ${q.cat}</div><div class="qa-question" style="margin-bottom:.7rem;">${q.q}</div><div class="qa-hint">💡 ${q.hint}</div><div class="fitb-wrap" style="white-space:pre;">${t}</div><button class="check-btn" onclick="checkFLfitb()">Check ✦</button><button class="reset-btn" onclick="renderFL()">Reset</button><div class="fitb-result" id="fl-fitb-result"></div>`;}}
-function answerFL(chosen){if(flAnswered)return;flAnswered=true;flTotal++;const q=filteredFL[flIdx];const correct=q.answer;const letters=['A','B','C','D'];for(let i=0;i<q.choices.length;i++){const b=document.getElementById('fl-choice-'+i);b.classList.add('disabled');if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong');}const res=document.getElementById('fl-result');if(chosen===correct){flScore++;flStreak++;res.className='mc-result correct';res.textContent='🌸 Correct!';}else{flStreak=0;res.className='mc-result wrong';res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;}document.getElementById('fl-explain').classList.add('show');updateFLScore();}
-function checkFLfitb(){const q=filteredFL[flIdx];let correct=0;q.blanks.forEach((ans,i)=>{const inp=document.getElementById('flb'+i);if(!inp)return;const val=inp.value.trim().toLowerCase();const ok=ans.toLowerCase().split('/').some(a=>val===a.trim());inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);if(ok)correct++;});if(!flAnswered){flAnswered=true;flTotal++;if(correct===q.blanks.length){flScore++;flStreak++;}else flStreak=0;updateFLScore();}const res=document.getElementById('fl-fitb-result');res.className='fitb-result '+(correct===q.blanks.length?'correct':'wrong');res.textContent=correct===q.blanks.length?'🌸 Perfect!':`${correct}/${q.blanks.length} correct — try again!`;}
-function updateFLScore(){document.getElementById('fl-score').textContent=`${flScore} / ${flTotal}`;const s=document.getElementById('fl-streak');if(flStreak>=3)s.textContent=`🔥 ${flStreak} in a row!`;else if(flStreak>0)s.textContent=`✦ Streak: ${flStreak}`;else s.textContent='';}
+function renderFL(){
+  const q=filteredFL[flIdx];flAnswered=false;
+  document.getElementById('fl-counter').textContent=`Question ${flIdx+1} of ${filteredFL.length}`;
+  document.getElementById('fl-prev').disabled=flIdx===0;
+  document.getElementById('fl-next').disabled=flIdx===filteredFL.length-1;
+  if(q.type==='mc'){
+    const letters=['A','B','C','D'];
+    const ch=q.choices.map((c,i)=>`<button class="mc-choice" onclick="answerFL(${i})" id="fl-choice-${i}"><span class="mc-letter">${letters[i]}</span><span>${c}</span></button>`).join('');
+    document.getElementById('fl-qa').innerHTML=`<div class="qa-category">🔁 ${q.cat}</div><div class="qa-question" style="white-space:pre-line;margin-bottom:1rem;">${q.q}</div><div class="mc-choices">${ch}</div><div class="mc-result" id="fl-result"></div><div class="mc-explain" id="fl-explain">${q.explain}</div>`;
+  }else{
+    let t=q.template,bi=0;
+    t=t.replace(/___/g,()=>`<input class="fitb-input" id="flb${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10,(q.blanks[bi-1]||'').length+4)}">`);
+    document.getElementById('fl-qa').innerHTML=`<div class="qa-category">🔁 ${q.cat}</div><div class="qa-question" style="margin-bottom:.7rem;">${q.q}</div><div class="qa-hint">💡 ${q.hint}</div><div class="fitb-wrap" style="white-space:pre;">${t}</div><button class="check-btn" onclick="checkFLfitb()">Check ✦</button><button class="reset-btn" onclick="renderFL()">Reset</button><div class="fitb-result" id="fl-fitb-result"></div>`;
+  }
+}
+function answerFL(chosen){
+  if(flAnswered)return;flAnswered=true;flTotal++;
+  const q=filteredFL[flIdx];const correct=q.answer;const letters=['A','B','C','D'];
+  for(let i=0;i<q.choices.length;i++){const b=document.getElementById('fl-choice-'+i);b.classList.add('disabled');if(i===correct)b.classList.add('correct');else if(i===chosen&&chosen!==correct)b.classList.add('wrong');}
+  const res=document.getElementById('fl-result');
+  if(chosen===correct){flScore++;flStreak++;res.className='mc-result correct';res.textContent='🌸 Correct!';}else{flStreak=0;res.className='mc-result wrong';res.textContent=`✗ Not quite — the answer is ${letters[correct]}.`;}
+  document.getElementById('fl-explain').classList.add('show');updateFLScore();
+}
+function checkFLfitb(){
+  const q=filteredFL[flIdx];let correct=0;
+  q.blanks.forEach((ans,i)=>{const inp=document.getElementById('flb'+i);if(!inp)return;const val=inp.value.trim().toLowerCase();const ok=ans.toLowerCase().split('/').some(a=>val===a.trim());inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);if(ok)correct++;});
+  if(!flAnswered){flAnswered=true;flTotal++;if(correct===q.blanks.length){flScore++;flStreak++;}else flStreak=0;updateFLScore();}
+  const res=document.getElementById('fl-fitb-result');res.className='fitb-result '+(correct===q.blanks.length?'correct':'wrong');res.textContent=correct===q.blanks.length?'🌸 Perfect!':`${correct}/${q.blanks.length} correct — try again!`;
+}
+function updateFLScore(){
+  document.getElementById('fl-score').textContent=`${flScore} / ${flTotal}`;
+  const s=document.getElementById('fl-streak');
+  if(flStreak>=3)s.textContent=`🔥 ${flStreak} in a row!`;else if(flStreak>0)s.textContent=`✦ Streak: ${flStreak}`;else s.textContent='';
+}
 function flNav(dir){flIdx+=dir;renderFL();}
-function filterFL(cat){filteredFL=cat==='All'?[...flQuestions]:flQuestions.filter(q=>q.cat===cat);flIdx=0;document.querySelectorAll('#fl-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));renderFL();}
-// ── INIT ─────────────────────────────────────────────────────────────────────
-renderSQL();
-renderPY();
-renderFITB();
-buildML();
-renderBQ();
-renderMC();
-renderFL();
+function filterFL(cat){
+  filteredFL=cat==='All'?[...flQuestions]:flQuestions.filter(q=>q.cat===cat);flIdx=0;
+  document.querySelectorAll('#fl-filter-bar .filter-btn').forEach(b=>b.classList.toggle('active',b.textContent.trim()===cat||(cat==='All'&&b.textContent.trim()==='All')));
+  renderFL();
+}
+
+renderSQL();renderPY();renderFITB();buildML();renderBQ();renderMC();renderFL();
 </script></body></html>
