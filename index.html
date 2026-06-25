@@ -234,6 +234,10 @@
   .sql-textarea{width:100%;min-height:90px;border:1.5px solid var(--border);border-radius:12px;padding:.7rem;font-family:'Fira Code',monospace;font-size:.8rem;background:var(--bg2);outline:none;resize:vertical;color:var(--text);transition:border-color .2s;}
   .sql-textarea:focus{border-color:var(--lilac-mid);}
 
+  /* Python answer textarea (reuses sql-textarea look) */
+  .py-textarea{width:100%;min-height:90px;border:1.5px solid var(--border);border-radius:12px;padding:.7rem;font-family:'Fira Code',monospace;font-size:.8rem;background:var(--bg2);outline:none;resize:vertical;color:var(--text);transition:border-color .2s;}
+  .py-textarea:focus{border-color:var(--lilac-mid);}
+
   @media(max-width:700px){
     .projects-grid,.skills-grid,.hero-layout,.star-grid{grid-template-columns:1fr;}
     .practice-layout{grid-template-columns:1fr;}
@@ -1121,7 +1125,10 @@ function renderPY(){
     <div class="qa-category">${q.cat}</div>
     <div class="qa-question">${q.q}</div>
     <div class="qa-hint">${q.hint}</div>
-    <button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button>
+    <textarea class="py-textarea" id="py-response" placeholder="Type your Python code here..."></textarea>
+    <div style="display:flex;gap:.5rem;margin-top:.6rem;align-items:center;">
+      <button class="answer-toggle" onclick="toggleAnswer('py-ans')">Show Answer</button>
+    </div>
     <div class="answer-box" id="py-ans"><pre>${q.a}</pre></div>`;
 }
 function filterPY(cat){
