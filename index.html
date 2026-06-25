@@ -885,7 +885,7 @@ const pyQuestions=[
   {cat:"Basics",q:"Check if a number is a prime number.",hint:"💡 Check divisibility from 2 up to the square root of the number",a:"num = int(input('Enter a number: '))\nis_prime = True\n\nif num < 2:\n    is_prime = False\nelse:\n    for i in range(2, int(num**0.5) + 1):\n        if num % i == 0:\n            is_prime = False\n            break\n\nif is_prime:\n    print(f'{num} is prime')\nelse:\n    print(f'{num} is not prime')"},
   {cat:"Basics",q:"Determine the season based on the month.",hint:"💡 Map months 12,1,2 to Winter; 3,4,5 to Spring; 6,7,8 to Summer; 9,10,11 to Fall",a:"month = int(input('Enter month number (1-12): '))\n\nif month in [12, 1, 2]:\n    print('Winter')\nelif month in [3, 4, 5]:\n    print('Spring')\nelif month in [6, 7, 8]:\n    print('Summer')\nelif month in [9, 10, 11]:\n    print('Fall')\nelse:\n    print('Invalid month')"},
   {cat:"Basics",q:"Check if a number is a multiple of 5 or 7.",hint:"💡 Use the modulo operator with 5 and 7, combined with 'or'",a:"num = int(input('Enter a number: '))\nif num % 5 == 0 or num % 7 == 0:\n    print(f'{num} is a multiple of 5 or 7')\nelse:\n    print(f'{num} is not a multiple of 5 or 7')"},
-  {cat:"Basics",q:"Check whether the given string is a palindrome or not.",hint:"💡 Compare the string with its reverse using slicing [::-1]",a:"s = input('Enter a string: ')\nif s == s[::-1]:\n    print(f'{s} is a palindrome')\nelse:\n    print(f'{s} is not a palindrome')"}
+  {cat:"Basics",q:"Check whether the given string is a palindrome or not.",hint:"💡 Compare the string with its reverse using slicing [::-1]",a:"s = input('Enter a string: ')\nif s == s[::-1]:\n    print(f'{s} is a palindrome')\nelse:\n    print(f'{s} is not a palindrome')"},
   {cat:"Basics",q:"Check whether the given number is a palindrome or not.",hint:"💡 Convert the number to a string, then compare with its reverse",a:"num = input('Enter a number: ')\nif num == num[::-1]:\n    print(f'{num} is a palindrome')\nelse:\n    print(f'{num} is not a palindrome')"},
   {cat:"Basics",q:"Get data types and check for missing values.",hint:"💡 .dtypes and .isnull().sum()",a:"print(df_transactions.dtypes)\nprint(df_transactions.isnull().sum())"},
   {cat:"Basics",q:"Filter df_transactions to only AAPL rows.",hint:"💡 df[df['ticker'] == 'AAPL']",a:"aapl = df_transactions[df_transactions['ticker'] == 'AAPL']"},
@@ -906,7 +906,6 @@ const pyQuestions=[
   {cat:"Python Preprocessing",q:"Find and report the percentage of missing values in each column of the DataFrame.",hint:"💡 df.isnull().mean() * 100",a:"missing_pct = df.isnull().mean() * 100\nprint(missing_pct.sort_values(ascending=False))"},
   {cat:"Advanced",q:"Compute the Sharpe ratio (mean / std of return_pct) for each ticker.",hint:"💡 groupby + apply with a lambda or named function",a:"sharpe = df_transactions.groupby('ticker')['return_pct'].apply(\n  lambda x: x.mean() / x.std()\n)\nprint(sharpe)"},
 ];
-
 const fitbQuestions=[
   {cat:'SQL',title:'Count all rows',template:'SELECT ___(*) FROM employees;',blanks:['count'],hint:'Which function counts all rows?'},
   {cat:'SQL',title:'Count non-NULL salaries',template:'SELECT ___(salary) FROM employees;',blanks:['count'],hint:'COUNT ignores NULLs when given a column name'},
