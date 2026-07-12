@@ -273,6 +273,7 @@
     <li><a href="#projects">Projects</a></li>
     <li><a href="#learn">Learn</a></li>
     <li><a href="#ml">ML Guide</a></li>
+    <li><a href="#wmterms">WM Terms</a></li>
     <li><a href="#prep">Prep</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -601,7 +602,21 @@
   <h3 style="margin-top:2rem;margin-bottom:.8rem;">🔵 Unsupervised & Other</h3>
   <div class="ml-grid" id="ml-grid-other"></div>
 </section>
-
+<!-- WEALTH MANAGEMENT TERMS -->
+<section id="wmterms">
+  <div class="section-head"><span class="tag">Wealth Management</span><h2>Terminology Explainer</h2><p>The vocabulary behind custodian feeds, holdings, performance data, platforms, and certifications — explained in plain English, with fill-in-the-blank practice.</p></div>
+  <hr class="divider">
+  <h3 style="margin-bottom:.8rem;">📁 Core Portfolio Data</h3>
+  <div class="ml-grid" id="wm-grid-core"></div>
+  <h3 style="margin-top:2rem;margin-bottom:.8rem;">📈 Performance & Returns</h3>
+  <div class="ml-grid" id="wm-grid-performance"></div>
+  <h3 style="margin-top:2rem;margin-bottom:.8rem;">🛡️ Fees, Compliance & Operations</h3>
+  <div class="ml-grid" id="wm-grid-fees"></div>
+  <h3 style="margin-top:2rem;margin-bottom:.8rem;">🖥️ Platforms & Cloud</h3>
+  <div class="ml-grid" id="wm-grid-platforms"></div>
+  <h3 style="margin-top:2rem;margin-bottom:.8rem;">🎓 Analytics & Certifications</h3>
+  <div class="ml-grid" id="wm-grid-career"></div>
+</section>
 <!-- INTERVIEW PREP -->
 <section id="prep">
   <div class="section-head"><span class="tag">Interview Prep</span><h2>Behavioral Questions</h2>
@@ -1143,7 +1158,150 @@ const mlAlgorithms=[
   {name:'Perceptrons',type:'classification',emoji:'⚡',tagline:'The simplest neural unit',explain:'A perceptron takes inputs, multiplies each by a weight, sums them up, applies an activation function, and outputs a binary result. Stack them in layers and you get a multi-layer perceptron (MLP).',when:'<strong>Use when:</strong> learning neural network fundamentals, or simple binary classification.',projects:[{industry:'Finance',emoji:'💰',title:'Binary Credit Risk Classifier',desc:'A single-layer perceptron to classify loan applicants as high-risk or low-risk.'},{industry:'Healthcare',emoji:'🏥',title:'Diabetes Onset Detection',desc:'Train a perceptron on glucose, BMI, age, and insulin to predict diabetes onset.'},{industry:'Logistics',emoji:'📦',title:'On-Time Delivery Binary Classifier',desc:'Predict whether a shipment will arrive on time or late.'}],fitb:{template:'A perceptron multiplies inputs by ___, sums them, and applies an ___ function.',blanks:['weights','activation']}},
   {name:'Feature Engineering',type:'other',emoji:'🔧',tagline:'Making your data smarter',explain:'Feature engineering uses domain knowledge to create, transform, or select input variables that help models learn better. Good features often matter more than algorithm choice.',when:'<strong>Use when:</strong> always — especially critical in finance and healthcare where domain knowledge is rich.',projects:[{industry:'Finance',emoji:'💰',title:'Trading Signal Feature Library',desc:'Engineer features from raw OHLCV data: RSI, MACD, Bollinger Bands, rolling volatility.'},{industry:'Healthcare',emoji:'🏥',title:'Claims Risk Feature Engineering',desc:'Engineer days since last visit, procedure count, specialty mix ratio from raw claims data.'},{industry:'Logistics',emoji:'📦',title:'Delivery ETA Feature Set',desc:'Engineer time-based, route, and carrier history features for an ETA model.'}],fitb:{template:'Feature engineering creates new ___ from raw data to help models ___ better.',blanks:['features','learn']}},
 ];
+const wmTerms=[
+  // ===== Core Portfolio Data =====
+  {name:'AUM (Assets Under Management)',type:'core',emoji:'💰',tagline:'The total dollar value a firm manages',
+   explain:'AUM is the total market value of all client assets a firm manages, added up across every account. It moves for two reasons: market performance (prices going up or down) and net flows (money coming in or being withdrawn). Firms often report AUM by household, by advisor, or company-wide, and it directly drives fee revenue since most wealth management fees are a percentage of AUM.',
+   when:'<strong>You\'ll see it:</strong> in fee calculations, advisor performance dashboards, and any "how big is this business" conversation.',
+   projects:[{industry:'Client Statement',emoji:'📄',title:'Household AUM Summary',desc:'A client\'s quarterly statement shows total AUM of $2.4M across three accounts, up from $2.1M last quarter.'},{industry:'Fee Billing',emoji:'🧾',title:'AUM-Based Fee Calculation',desc:'A firm charges 1% of AUM annually, billed quarterly — so a $1M account pays $2,500 per quarter.'},{industry:'Data Analysis',emoji:'📊',title:'AUM Reconciliation Check',desc:'An analyst compares AUM reported by the custodian feed to AUM calculated by summing internal holdings records.'}],
+   fitb:{template:'AUM changes for two reasons: ___ performance and net ___ (money moving in or out of accounts).',blanks:['market','flows']}},
 
+  {name:'Custodian Feed',type:'core',emoji:'🏦',tagline:'The data pipeline from where assets are actually held',
+   explain:'A custodian (like Schwab, Pershing, or Fidelity) is the regulated institution that actually holds a client\'s securities and cash — the wealth management firm manages the money, but the custodian keeps it safe. A "custodian feed" is the daily file or data stream the custodian sends containing positions, transactions, and balances. Almost every downstream report depends on this feed being complete and accurate.',
+   when:'<strong>You\'ll see it:</strong> in any data pipeline that ingests holdings or transactions — this is usually the very first step, before any calculations happen.',
+   projects:[{industry:'Data Pipeline',emoji:'🔄',title:'Daily Feed Ingestion',desc:'Every night, a Schwab file lands in the data warehouse containing that day\'s positions and trades.'},{industry:'Reconciliation',emoji:'✅',title:'Feed Completeness Check',desc:'An analyst checks that all expected accounts appear in the day\'s feed before downstream reports run.'},{industry:'Troubleshooting',emoji:'🔍',title:'Missing Data Investigation',desc:'A report shows stale AUM — turns out yesterday\'s custodian feed never arrived due to a file transfer error.'}],
+   fitb:{template:'A custodian is the regulated institution that ___ a client\'s assets, while the wealth management firm ___ the money.',blanks:['holds','manages']}},
+
+  {name:'Portfolio Holdings',type:'core',emoji:'📋',tagline:'What\'s actually inside an account, right now',
+   explain:'Holdings are the specific list of securities (stocks, bonds, funds) an account currently owns, along with quantity, market value, and cost basis for each. Holdings are a snapshot at a point in time — unlike transactions, which show activity over a period. Holdings data is what you\'d see if you asked "what does this account own today?"',
+   when:'<strong>You\'ll see it:</strong> in client statements, allocation reports, and any analysis of what a portfolio is actually invested in.',
+   projects:[{industry:'Client Statement',emoji:'📄',title:'Position-Level Detail',desc:'A statement lists 15 individual stock and ETF positions, each with quantity, price, and current market value.'},{industry:'Risk Analysis',emoji:'⚖️',title:'Concentration Check',desc:'An analyst flags an account where one stock makes up 40% of total holdings — a concentration risk.'},{industry:'Data Quality',emoji:'🔎',title:'Duplicate Holdings Detection',desc:'A data profiling check finds the same position appearing twice for one account due to a late-arriving price update.'}],
+   fitb:{template:'Holdings are a ___ of what an account owns at a single point in time, while ___ show activity over a period.',blanks:['snapshot','transactions']}},
+
+  {name:'Transactions',type:'core',emoji:'🔁',tagline:'The activity that changes a portfolio over time',
+   explain:'A transaction is any event that changes an account\'s holdings or cash — a buy, a sell, a dividend payment, a deposit, or a withdrawal. Every transaction has a trade date (when the order happened) and a settle date (when it officially completes, typically 1-2 business days later for stocks). This gap matters a lot for reconciliation, since a transaction might show up in one system before the other.',
+   when:'<strong>You\'ll see it:</strong> in reconciliation between source and target systems, and in any calculation involving cash flows (like performance returns).',
+   projects:[{industry:'Reconciliation',emoji:'✅',title:'Trade vs. Settle Date Mismatch',desc:'A transaction count check finds a discrepancy because one system counted by trade date and the other by settle date.'},{industry:'Performance Calc',emoji:'📈',title:'Cash Flow Exclusion',desc:'A large deposit transaction must be excluded correctly so it doesn\'t distort the account\'s calculated return.'},{industry:'Client Statement',emoji:'📄',title:'Activity Summary',desc:'A monthly statement lists every buy, sell, and dividend transaction that occurred in the account that month.'}],
+   fitb:{template:'The ___ date is when a trade order happens, and the ___ date is when it officially completes.',blanks:['trade','settle']}},
+
+  {name:'NAV (Net Asset Value)',type:'core',emoji:'🧮',tagline:'The per-share price of a fund',
+   explain:'NAV is the price per share of a mutual fund or similar pooled investment, calculated as (total fund assets − liabilities) ÷ number of shares outstanding. Unlike stock prices that change continuously during the day, NAV is typically calculated once per day after markets close. It\'s how you value fund positions inside a portfolio.',
+   when:'<strong>You\'ll see it:</strong> in any account holding mutual funds, and in daily pricing feeds that update fund positions.',
+   projects:[{industry:'Pricing Feed',emoji:'💲',title:'Daily NAV Update',desc:'A fund pricing feed delivers each mutual fund\'s new NAV after market close, updating the value of every position that holds it.'},{industry:'Data Pipeline',emoji:'🔄',title:'NAV Merge/Upsert',desc:'A daily job updates existing fund positions with the latest NAV and inserts any new fund positions.'},{industry:'Client Statement',emoji:'📄',title:'Fund Position Valuation',desc:'A statement shows 500 shares of a mutual fund valued at that day\'s NAV of $42.18 per share = $21,090.'}],
+   fitb:{template:'NAV = (total fund assets minus ___) divided by the number of shares ___.',blanks:['liabilities','outstanding']}},
+
+  // ===== Performance & Returns =====
+  {name:'Time-Weighted Return (TWR)',type:'performance',emoji:'📐',tagline:'Performance that ignores the timing of deposits/withdrawals',
+   explain:'TWR measures the pure investment performance of a portfolio, removing the distorting effect of client deposits and withdrawals. It works by breaking the period into sub-periods around each cash flow, calculating the return for each sub-period, then linking (multiplying) them together. This is the industry-standard way to measure a manager\'s skill, since it isn\'t affected by when a client happened to add or remove money.',
+   when:'<strong>You\'ll see it:</strong> in any client-facing performance report, and it\'s the metric GIPS compliance standards require.',
+   projects:[{industry:'Client Statement',emoji:'📄',title:'Quarterly TWR',desc:'A statement shows the account returned 4.2% (TWR) for the quarter, matched against the benchmark\'s 3.8%.'},{industry:'Data Validation',emoji:'✅',title:'Cash Flow Exclusion Test',desc:'A test case confirms that a large mid-quarter withdrawal didn\'t distort the calculated TWR.'},{industry:'Compliance',emoji:'🛡️',title:'GIPS-Compliant Calculation',desc:'An auditor recreates a sample of TWR calculations to confirm they follow the required methodology.'}],
+   fitb:{template:'TWR breaks a period into ___-periods around each cash flow, then ___ (multiplies) the returns together.',blanks:['sub','links']}},
+
+  {name:'IRR / Money-Weighted Return',type:'performance',emoji:'💵',tagline:'Performance that DOES account for deposit timing',
+   explain:'IRR (Internal Rate of Return), also called money-weighted return, measures the return actually experienced by the client — including the impact of when they added or withdrew money. If a client deposits a large sum right before a market rally, their IRR will look better than TWR would suggest, because more of their money was invested during the good period. This is useful for showing a client "here\'s what you personally earned," as opposed to TWR\'s "here\'s how the manager performed."',
+   when:'<strong>You\'ll see it:</strong> in personal wealth reporting, and when comparing an individual client\'s actual experience against the fund\'s official TWR.',
+   projects:[{industry:'Client Reporting',emoji:'📄',title:'Personal Rate of Return',desc:'A client who deposited money right before a rally sees an IRR higher than the fund\'s published TWR for the same period.'},{industry:'Financial Planning',emoji:'📊',title:'Goal Tracking',desc:'A planner uses IRR to show a client their actual annualized return since their first deposit five years ago.'},{industry:'Analysis',emoji:'🔍',title:'TWR vs IRR Comparison',desc:'An analyst explains to a confused client why their IRR and the fund\'s TWR don\'t match — the deposit timing differs.'}],
+   fitb:{template:'IRR reflects the ___ timing of deposits and withdrawals, while TWR removes that effect to isolate ___ performance.',blanks:['actual','manager']}},
+
+  {name:'Benchmark',type:'performance',emoji:'🎯',tagline:'The yardstick performance gets measured against',
+   explain:'A benchmark is a reference index (like the S&P 500) used to judge whether a portfolio\'s performance is good or bad in context. A portfolio returning 8% sounds great — until you learn its benchmark returned 12%. Benchmarks are chosen to match a portfolio\'s strategy (e.g., a bond-heavy portfolio wouldn\'t be measured against a stock index), and "underperformance" or "outperformance" only makes sense relative to the right benchmark.',
+   when:'<strong>You\'ll see it:</strong> alongside every performance number in a client report, and in any "which accounts are underperforming" analysis.',
+   projects:[{industry:'Performance Report',emoji:'📈',title:'Relative Performance',desc:'An account returned 6.5% for the year against a benchmark return of 7.1% — a slight underperformance of 60 bps.'},{industry:'Requirements',emoji:'📝',title:'Defining "Underperforming"',desc:'A stakeholder asks for a report on underperforming accounts, prompting the question: underperforming relative to which benchmark?'},{industry:'Data Quality',emoji:'🔎',title:'Benchmark Data Validation',desc:'An analyst confirms the benchmark return series has no gaps before using it in a performance comparison.'}],
+   fitb:{template:'A benchmark is a reference ___ used to judge whether performance is good relative to a fair ___.',blanks:['index','comparison']}},
+
+  {name:'Cost Basis & Tax Lots',type:'performance',emoji:'🧾',tagline:'What you paid, and why it matters for taxes',
+   explain:'Cost basis is the original price paid for a security, used to calculate gain or loss when it\'s sold. A "tax lot" is a specific purchase of a security on a specific date — if you bought Apple stock three separate times, you have three tax lots, each with its own cost basis and holding period. This matters because gains held under a year are taxed as short-term (higher rate) and over a year as long-term (lower rate), so tracking each lot separately affects tax strategy.',
+   when:'<strong>You\'ll see it:</strong> in tax-loss harvesting, gain/loss reporting, and any "which shares are we selling" decision.',
+   projects:[{industry:'Tax Reporting',emoji:'📄',title:'Realized Gain Calculation',desc:'A client sells shares from a specific tax lot purchased 18 months ago, triggering a long-term capital gain.'},{industry:'Data Quality',emoji:'🔎',title:'Negative Cost Basis Investigation',desc:'An analyst finds a cost basis field showing negative values after an ETL run and traces it to a sign-flip bug.'},{industry:'Tax Strategy',emoji:'💡',title:'Tax-Loss Harvesting',desc:'An advisor sells a losing tax lot to offset gains elsewhere in the portfolio, reducing the client\'s tax bill.'}],
+   fitb:{template:'A tax lot is a specific ___ of a security on a specific date, each with its own cost basis and ___ period.',blanks:['purchase','holding']}},
+
+  // ===== Fees, Compliance & Operations =====
+  {name:'Fee Schedule & Basis Points',type:'fees',emoji:'📊',tagline:'How advisors get paid, in hundredths of a percent',
+   explain:'A basis point (bp) is 1/100th of a percent — so 100 bps = 1%. Fee schedules are usually tiered: a firm might charge 1.00% on the first $1M of AUM, 0.75% on the next $4M, and 0.50% above that. This means the effective fee rate (the blended average) is usually lower than the "headline" top-tier rate, especially for larger accounts.',
+   when:'<strong>You\'ll see it:</strong> in billing calculations, and in any QA check comparing actual fees charged against what the fee schedule says they should be.',
+   projects:[{industry:'Billing',emoji:'🧾',title:'Tiered Fee Calculation',desc:'A $5M account is billed at 1.00% on the first $1M, 0.75% on the next $4M — a blended rate below 0.80%.'},{industry:'Data Validation',emoji:'✅',title:'Fee Billing QA Check',desc:'An analyst finds an account where the actual fee charged doesn\'t match what the tiered schedule says it should be.'},{industry:'Client Reporting',emoji:'📄',title:'Fee Tier Proximity Report',desc:'A report flags clients within 5% of AUM of crossing into a lower fee tier.'}],
+   fitb:{template:'A basis point is 1/___ of a percent, so 100 basis points equals ___%.',blanks:['100','1']}},
+
+  {name:'Corporate Actions',type:'fees',emoji:'🏢',tagline:'Company events that change what you hold',
+   explain:'A corporate action is an event initiated by a company that affects its shareholders\' holdings — like a stock split (1 share becomes 2), a merger (Company A stock becomes Company B stock), or a special dividend. These events must be applied to every affected position, and if the data pipeline misses one, position quantities and market values become wrong until it\'s caught.',
+   when:'<strong>You\'ll see it:</strong> in data quality checks looking for stale or unapplied events, and in any reconciliation between expected and actual share counts.',
+   projects:[{industry:'Data Quality',emoji:'🔎',title:'Unapplied Split Detection',desc:'An analyst finds a 2-for-1 stock split that wasn\'t reflected in position quantities, understating share counts.'},{industry:'Reconciliation',emoji:'✅',title:'Merger Event Validation',desc:'After a merger, an analyst confirms all affected accounts show the new company\'s shares at the correct exchange ratio.'},{industry:'Client Impact',emoji:'📄',title:'Special Dividend Processing',desc:'A special dividend is applied to all holders of record, adding cash to each affected account.'}],
+   fitb:{template:'A corporate action is an event ___ by a company that changes what shareholders ___.',blanks:['initiated','hold']}},
+
+  {name:'GIPS Compliance',type:'fees',emoji:'📜',tagline:'The industry standard for reporting performance honestly',
+   explain:'GIPS (Global Investment Performance Standards) is a set of ethical rules for how investment firms calculate and present performance, so that numbers are comparable across firms and can\'t be cherry-picked to look better than reality. Firms that claim GIPS compliance must be able to prove — through auditable records — that their returns were calculated using an approved methodology (like proper TWR calculation with correct cash flow treatment).',
+   when:'<strong>You\'ll see it:</strong> in any performance calculation pipeline at a firm that markets itself as GIPS-compliant, and in compliance audits.',
+   projects:[{industry:'Compliance Audit',emoji:'🛡️',title:'Methodology Verification',desc:'An auditor recreates a sample of TWR calculations from raw data to confirm they follow GIPS-approved methodology.'},{industry:'Pipeline Validation',emoji:'✅',title:'Pre-Launch Sign-Off',desc:'Before a new performance pipeline goes live, compliance signs off that its methodology aligns with GIPS standards.'},{industry:'Data Retention',emoji:'🗄️',title:'Auditable Record-Keeping',desc:'A firm retains granular transaction and valuation data so historical GIPS calculations can be recreated years later if audited.'}],
+   fitb:{template:'GIPS compliance requires firms to prove their performance was calculated using an ___ methodology, backed by ___ records.',blanks:['approved','auditable']}},
+
+  {name:'KYC / AML',type:'fees',emoji:'🔒',tagline:'Knowing your client, and watching for money laundering',
+   explain:'KYC (Know Your Customer) is the process of verifying a client\'s identity and understanding the source of their wealth before opening an account. AML (Anti-Money Laundering) refers to the ongoing monitoring required to detect and report suspicious activity, like unusually large or oddly-timed transactions. This data is treated as extremely sensitive — often walled off from general analytics access — because it\'s tied to legal and regulatory obligations.',
+   when:'<strong>You\'ll see it:</strong> in account opening workflows, and in any discussion of who is allowed to access client identity data.',
+   projects:[{industry:'Account Opening',emoji:'📝',title:'Identity Verification',desc:'A new client provides documentation to verify their identity and source of wealth before an account can be opened.'},{industry:'Data Governance',emoji:'🔒',title:'Restricted Access Policy',desc:'A data analyst is denied direct query access to KYC fields and must route the request through a formal approval process.'},{industry:'Monitoring',emoji:'🚨',title:'Suspicious Activity Flag',desc:'An unusually large, oddly-timed international transfer triggers an AML review before it\'s allowed to process.'}],
+   fitb:{template:'KYC verifies a client\'s ___ before account opening, while AML involves ongoing ___ for suspicious activity.',blanks:['identity','monitoring']}},
+
+  {name:'Reconciliation',type:'fees',emoji:'⚖️',tagline:'Making sure two systems agree',
+   explain:'Reconciliation is the process of comparing data between two systems (like a custodian\'s source file and your internal warehouse) to confirm they match, and investigating any differences. This might mean comparing transaction counts, AUM totals, or individual position values. Small discrepancies are often explainable (like pricing timing differences), but reconciliation is how real data errors get caught before they reach a client report.',
+   when:'<strong>You\'ll see it:</strong> in daily/monthly data quality checks, and it\'s often the very first thing built when a new data feed is onboarded.',
+   projects:[{industry:'Daily QA',emoji:'✅',title:'Transaction Count Check',desc:'An automated job compares daily transaction counts between the custodian feed and the warehouse, flagging any mismatch.'},{industry:'AUM Validation',emoji:'📊',title:'Source vs. Internal AUM',desc:'An analyst compares custodian-reported AUM against AUM calculated by summing internal holdings records.'},{industry:'Root Cause Analysis',emoji:'🔍',title:'Investigating a Discrepancy',desc:'A small AUM gap between two systems is traced to a timing difference in when each system marks prices at market close.'}],
+   fitb:{template:'Reconciliation compares data between two systems to confirm they ___, and investigates any ___.',blanks:['match','differences']}},
+
+  // ===== Platforms & Cloud =====
+  {name:'Addepar',type:'platforms',emoji:'🧩',tagline:'Aggregates data across every custodian into one view',
+   explain:'Addepar is a portfolio reporting and data aggregation platform built for wealth managers and family offices. Its core job is pulling in feeds from multiple custodians (Schwab, Pershing, Fidelity, and others) plus alternative assets like private equity or real estate, and normalizing them into one consistent data model. This matters because a single wealthy client often has accounts spread across several custodians — Addepar is what stitches that into one household view.',
+   when:'<strong>You\'ll see it:</strong> at RIAs and family offices with complex, multi-custodian client relationships, especially those holding illiquid alternative assets.',
+   projects:[{industry:'Data Aggregation',emoji:'🧩',title:'Multi-Custodian Household View',desc:'A family office uses Addepar to combine accounts held at Schwab, Pershing, and a private equity fund into one household report.'},{industry:'Data Modeling',emoji:'🗂️',title:'Normalizing Feed Formats',desc:'An analyst maps three different custodians\' field names (e.g. "mkt_val" vs "market_value") into Addepar\'s standard schema.'},{industry:'Client Reporting',emoji:'📄',title:'Alternative Asset Reporting',desc:'A private equity position, updated quarterly rather than daily, is integrated alongside daily-priced public securities.'}],
+   fitb:{template:'Addepar\'s core job is ___ data from multiple custodians and ___ it into one consistent model.',blanks:['aggregating','normalizing']}},
+
+  {name:'Orion',type:'platforms',emoji:'⚙️',tagline:'Portfolio management, rebalancing, and billing in one platform',
+   explain:'Orion is a portfolio management platform used heavily by RIAs for day-to-day operations: rebalancing portfolios to target allocations, calculating and billing AUM-based fees, and generating performance reports. Compared to Addepar (which leans toward reporting and aggregation for complex/high-net-worth relationships), Orion is more of an operational workhorse for advisors managing a larger book of more standardized accounts.',
+   when:'<strong>You\'ll see it:</strong> in RIA back-office operations — anywhere rebalancing, billing, and compliance reporting happen daily.',
+   projects:[{industry:'Rebalancing',emoji:'⚖️',title:'Model Portfolio Drift Check',desc:'Orion flags an account that has drifted 6% from its target allocation and generates trades to rebalance it back.'},{industry:'Billing',emoji:'🧾',title:'Automated Fee Calculation',desc:'Orion calculates and generates quarterly AUM-based fee invoices across an advisor\'s entire book of accounts.'},{industry:'Compliance',emoji:'🛡️',title:'Model Adherence Reporting',desc:'A compliance report checks that every account is following its assigned model portfolio within allowed tolerance bands.'}],
+   fitb:{template:'Orion is used for day-to-day operations like ___ portfolios to target allocations and ___ AUM-based fees.',blanks:['rebalancing','billing']}},
+
+  {name:'Black Diamond',type:'platforms',emoji:'💎',tagline:'A reporting and client-portal platform for advisors',
+   explain:'Black Diamond (by SS&C) is another portfolio management and reporting platform, competing directly with Orion and Addepar. It\'s known particularly for its client-facing portal and performance reporting tools, letting advisors give clients a polished, branded view of their portfolio performance, holdings, and fees. Like the others, it ingests custodian feeds and turns raw position/transaction data into client-ready reports.',
+   when:'<strong>You\'ll see it:</strong> anywhere advisors need a branded client portal alongside standard performance and holdings reporting.',
+   projects:[{industry:'Client Portal',emoji:'📱',title:'Branded Performance Dashboard',desc:'A client logs into a firm-branded portal powered by Black Diamond to see their real-time holdings and TWR performance.'},{industry:'Reporting',emoji:'📊',title:'Custom Report Templates',desc:'An advisor builds a custom quarterly report template combining performance, fees, and asset allocation charts.'},{industry:'Data Ingestion',emoji:'🔄',title:'Feed Integration',desc:'Black Diamond ingests a daily custodian feed and reconciles it against the prior day\'s holdings before publishing updated reports.'}],
+   fitb:{template:'Black Diamond is particularly known for its ___-facing portal, alongside standard performance ___.',blanks:['client','reporting']}},
+
+  {name:'Custodian Feed Differences',type:'platforms',emoji:'🔀',tagline:'Why Schwab, Pershing, and Fidelity data don\'t look alike',
+   explain:'Even though Schwab, Pershing, and Fidelity all send position and transaction data, their file formats, field names, and status codes differ — one custodian might label a field "mkt_val" while another calls it "market_value," or use different codes to represent a pending trade. Part of onboarding any new custodian feed is profiling its structure and mapping it to your firm\'s internal standard schema, so downstream reports treat all custodians consistently.',
+   when:'<strong>You\'ll see it:</strong> anytime a firm onboards a new custodian, or troubleshoots why one custodian\'s data looks different from another\'s in a combined report.',
+   projects:[{industry:'Data Profiling',emoji:'🔎',title:'New Feed Onboarding',desc:'An analyst profiles a new Fidelity feed with no documentation, mapping its fields against the existing Schwab and Pershing schemas.'},{industry:'Data Modeling',emoji:'🗂️',title:'Status Code Mapping',desc:'A "pending" trade is coded differently across three custodians; a mapping table translates all three into one standard status.'},{industry:'Troubleshooting',emoji:'🔍',title:'Cross-Custodian Discrepancy',desc:'A report shows odd values for Pershing accounts only, traced back to a field being interpreted with the wrong data type.'}],
+   fitb:{template:'Different custodians use different field ___ and status ___, so feeds must be mapped to one standard schema.',blanks:['names','codes']}},
+
+  {name:'Cloud Data Platforms (AWS, Azure, Snowflake)',type:'platforms',emoji:'☁️',tagline:'Where financial data actually lives and gets processed',
+   explain:'Wealth management firms increasingly store and process data in the cloud rather than on-premise servers. AWS and Azure are cloud infrastructure providers (offering storage like S3/Blob, compute, and managed services), while Snowflake is a cloud-native data warehouse purpose-built for large-scale analytics — separating storage and compute so you can query huge datasets without managing physical servers. Databricks (which you may see alongside these) adds a layer for big-data processing and machine learning on top of cloud storage.',
+   when:'<strong>You\'ll see it:</strong> as the underlying infrastructure for almost any modern data pipeline — ingesting custodian feeds, storing historical holdings, and running analytics at scale.',
+   projects:[{industry:'Data Warehousing',emoji:'🗄️',title:'Snowflake for Historical Holdings',desc:'Ten years of daily holdings snapshots are stored in Snowflake, letting analysts query any historical date without slow file lookups.'},{industry:'Cloud Storage',emoji:'☁️',title:'S3 as a Feed Landing Zone',desc:'Daily custodian files land in an AWS S3 bucket before being loaded into the warehouse.'},{industry:'Scalable Compute',emoji:'⚡',title:'Elastic Query Scaling',desc:'A firm scales up Snowflake compute temporarily to run a large end-of-quarter performance calculation across all accounts.'}],
+   fitb:{template:'Snowflake separates ___ and ___, so you can scale each independently without managing physical servers.',blanks:['storage','compute']}},
+
+  // ===== Analytics & Certifications =====
+  {name:'Client Segmentation',type:'career',emoji:'🧑‍🤝‍🧑',tagline:'Grouping clients to serve them better',
+   explain:'Client segmentation uses data — AUM, age, risk tolerance, product usage, life stage — to group clients into meaningful categories, often with clustering techniques like K-Means. A firm might discover a segment of high-AUM, low-engagement clients who are flight risks, or a segment of younger clients who\'d benefit from different products. This turns "we have 10,000 clients" into "we have 5 distinct types of clients, each needing a different approach."',
+   when:'<strong>You\'ll see it:</strong> in marketing and advisory strategy, and it\'s a common first real-world application of unsupervised ML in financial services.',
+   projects:[{industry:'Marketing Strategy',emoji:'🎯',title:'High-Value, Low-Engagement Segment',desc:'Clustering reveals a segment of high-AUM clients with minimal advisor contact — a flight-risk group worth proactive outreach.'},{industry:'Product Strategy',emoji:'💡',title:'Life-Stage Segmentation',desc:'Clients are grouped by age and account activity to identify who might need retirement income planning vs. wealth accumulation products.'},{industry:'Data Science',emoji:'🧠',title:'K-Means Segmentation Model',desc:'An analyst runs K-Means on AUM, transaction frequency, and product mix to discover 5 natural client segments.'}],
+   fitb:{template:'Client segmentation often uses ___ techniques like K-Means to group clients based on ___ like AUM and behavior.',blanks:['clustering','data']}},
+
+  {name:'Risk Modeling',type:'career',emoji:'🎲',tagline:'Quantifying how much a portfolio could lose',
+   explain:'Risk modeling estimates how much a portfolio\'s value could fluctuate or lose under different conditions. A common metric is Value at Risk (VaR) — for example, "there\'s a 5% chance this portfolio loses more than $50,000 in a month." Risk models also assess whether a client\'s actual portfolio matches their stated risk tolerance (a self-described "conservative" client shouldn\'t hold a portfolio that\'s 90% volatile stocks).',
+   when:'<strong>You\'ll see it:</strong> in portfolio construction, compliance checks on suitability, and stress-testing during market downturns.',
+   projects:[{industry:'Portfolio Construction',emoji:'⚖️',title:'Value at Risk (VaR) Calculation',desc:'A model estimates a 5% chance the portfolio loses more than $50,000 over the next month, based on historical volatility.'},{industry:'Compliance',emoji:'🛡️',title:'Suitability Check',desc:'A risk model flags a mismatch: a client marked "conservative" is holding a portfolio that\'s 85% equities.'},{industry:'Stress Testing',emoji:'📉',title:'Downturn Scenario Analysis',desc:'An analyst models how a portfolio would have performed during the 2008 financial crisis to gauge downside risk.'}],
+   fitb:{template:'Value at Risk (VaR) estimates the chance a portfolio loses more than a certain amount within a given ___ ___.',blanks:['time','period']}},
+
+  {name:'CFA (Chartered Financial Analyst)',type:'career',emoji:'🎓',tagline:'The gold-standard investment analysis credential',
+   explain:'The CFA is a rigorous, globally recognized certification covering investment analysis, portfolio management, ethics, and financial reporting. It requires passing three exam levels, each requiring hundreds of hours of study, plus relevant work experience. In wealth management data roles, a CFA signals deep understanding of investment concepts (like the performance and risk metrics you\'d be building pipelines for) even if the role itself is more technical than advisory.',
+   when:'<strong>You\'ll see it:</strong> listed as a "plus" on job postings for roles that blend data work with investment concepts — it\'s a credibility signal, not usually a strict requirement.',
+   projects:[{industry:'Career Development',emoji:'📚',title:'Three-Level Exam Path',desc:'A data analyst pursuing a CFA studies investment valuation and portfolio management concepts alongside their day job.'},{industry:'Cross-Functional Credibility',emoji:'🤝',title:'Speaking the PM\'s Language',desc:'A CFA charterholder analyst can more easily translate a portfolio manager\'s request into precise data logic.'},{industry:'Job Postings',emoji:'📝',title:'"Plus" Qualification',desc:'A wealth management data analyst posting lists CFA as a preferred, not required, qualification.'}],
+   fitb:{template:'The CFA requires passing ___ exam levels and covers investment analysis, portfolio management, and ___.',blanks:['three','ethics']}},
+
+  {name:'CIPM (Certificate in Investment Performance Measurement)',type:'career',emoji:'📏',tagline:'The credential specifically for performance and GIPS data',
+   explain:'CIPM is a more specialized certification (also from the CFA Institute) focused specifically on investment performance measurement, attribution, and GIPS compliance — the exact skills behind calculating and validating TWR, benchmarks, and composite returns. It\'s narrower than the CFA but directly relevant to anyone building or validating performance calculation pipelines in wealth management.',
+   when:'<strong>You\'ll see it:</strong> as a highly relevant "plus" specifically for data roles touching performance returns and GIPS compliance work.',
+   projects:[{industry:'Performance Team',emoji:'📈',title:'GIPS Composite Construction',desc:'A CIPM holder helps design how accounts are grouped into GIPS-compliant composites for firm-wide reporting.'},{industry:'Validation Work',emoji:'✅',title:'TWR Methodology Review',desc:'A CIPM-certified analyst reviews a new performance pipeline\'s TWR calculation for GIPS methodology compliance.'},{industry:'Career Specialization',emoji:'🎯',title:'Performance Analyst Track',desc:'An analyst pursues CIPM specifically because their role centers on performance returns rather than broader portfolio management.'}],
+   fitb:{template:'CIPM focuses specifically on investment performance measurement, attribution, and ___ compliance.',blanks:['gips']}},
+];
 const behavioralQuestions=[
   {text:"Tell me about a time you had to explain a complex data model to a non-technical stakeholder.",category:"Communication",star:{s:"",t:"",a:"",r:""}},
   {text:"Describe a situation where your analysis led to a significant business decision.",category:"Impact",star:{s:"",t:"",a:"",r:""}},
@@ -1415,7 +1573,48 @@ function buildML(){
   document.getElementById('ml-grid-regression').innerHTML=renderGroup(regression);
   document.getElementById('ml-grid-other').innerHTML=renderGroup(other);
 }
-
+function toggleWM(i){document.getElementById('wm'+i).classList.toggle('open');}
+function checkWMFITB(idx){
+  const a=wmTerms[idx];let correct=0;
+  a.fitb.blanks.forEach((ans,i)=>{
+    const inp=document.getElementById(`wm${idx}b${i}`);if(!inp)return;
+    const val=inp.value.trim().toLowerCase();
+    const ok=ans.toLowerCase().split('/').some(e=>val===e.trim());
+    inp.classList.toggle('correct',ok);inp.classList.toggle('wrong',!ok);
+    if(ok)correct++;
+  });
+  const res=document.getElementById(`wm-result-${idx}`);
+  res.className='fitb-result '+(correct===a.fitb.blanks.length?'correct':'wrong');
+  res.textContent=correct===a.fitb.blanks.length?'🌸 Perfect!':`${correct}/${a.fitb.blanks.length} correct — try again!`;
+}
+function resetWMFITB(idx){
+  wmTerms[idx].fitb.blanks.forEach((_,i)=>{
+    const inp=document.getElementById(`wm${idx}b${i}`);
+    if(inp){inp.value='';inp.className='fitb-input';}
+  });
+  document.getElementById(`wm-result-${idx}`).textContent='';
+}
+function buildWM(){
+  const contextColors={'Client Statement':{bg:'var(--rose-gold-light)',color:'var(--rose-gold-mid)'},'Data Quality':{bg:'var(--mint-light)',color:'#5aad8e'},'Reconciliation':{bg:'var(--mint-light)',color:'#5aad8e'},'Compliance':{bg:'var(--lilac-light)',color:'var(--lilac-mid)'},'Compliance Audit':{bg:'var(--lilac-light)',color:'var(--lilac-mid)'},'Data Governance':{bg:'var(--lilac-light)',color:'var(--lilac-mid)'}};
+  const defaultColor={bg:'var(--rose-gold-light)',color:'var(--rose-gold-mid)'};
+  const core=wmTerms.filter(t=>t.type==='core');
+  const performance=wmTerms.filter(t=>t.type==='performance');
+  const fees=wmTerms.filter(t=>t.type==='fees');
+  const platforms=wmTerms.filter(t=>t.type==='platforms');
+  const career=wmTerms.filter(t=>t.type==='career');
+  const renderGroup=group=>group.map(t=>{
+    const i=wmTerms.indexOf(t);
+    let tpl=t.fitb.template,bi=0;
+    tpl=tpl.replace(/___/g,()=>`<input class="fitb-input" id="wm${i}b${bi++}" autocomplete="off" spellcheck="false" size="${Math.max(10,(t.fitb.blanks[bi-1]||'').length+4)}">`);
+    const cards=t.projects.map(p=>{const c=contextColors[p.industry]||defaultColor;return`<div style="background:white;border:1.5px solid var(--border);border-radius:14px;padding:1rem 1.1rem;"><div style="display:flex;align-items:center;gap:.5rem;margin-bottom:.5rem;"><span>${p.emoji}</span><span style="font-size:.68rem;font-weight:700;text-transform:uppercase;letter-spacing:.06em;padding:2px 10px;border-radius:99px;background:${c.bg};color:${c.color};">${p.industry}</span></div><div style="font-weight:700;font-size:.88rem;margin-bottom:.3rem;">${p.title}</div><div style="font-size:.82rem;color:var(--text2);line-height:1.65;">${p.desc}</div></div>`;}).join('');
+    return`<div class="ml-card" id="wm${i}"><div class="ml-card-header" onclick="toggleWM(${i})"><div><div class="ml-card-title">${t.emoji} ${t.name}</div><div class="ml-card-sub">${t.tagline}</div></div><span class="ml-chevron">▼</span></div><div class="ml-card-body"><p class="ml-explain">${t.explain}</p><div class="ml-when">${t.when}</div><h3 style="margin-bottom:.9rem;">🌸 Where You'll See This</h3><div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:.8rem;margin-bottom:1.4rem;">${cards}</div><h3 style="margin-bottom:.8rem;">✏️ Fill in the Blank</h3><div class="fitb-wrap">${tpl}</div><button class="check-btn" onclick="checkWMFITB(${i})">Check ✦</button><button class="reset-btn" onclick="resetWMFITB(${i})">Reset</button><div class="fitb-result" id="wm-result-${i}"></div></div></div>`;
+  }).join('');
+  document.getElementById('wm-grid-core').innerHTML=renderGroup(core);
+  document.getElementById('wm-grid-performance').innerHTML=renderGroup(performance);
+  document.getElementById('wm-grid-fees').innerHTML=renderGroup(fees);
+  document.getElementById('wm-grid-platforms').innerHTML=renderGroup(platforms);
+  document.getElementById('wm-grid-career').innerHTML=renderGroup(career);
+}
 // ── BEHAVIORAL ───────────────────────────────────────────────────────────────
 function renderBQ(){
   const qi=bqOrder[bqIdx];const q=behavioralQuestions[qi];
@@ -1554,7 +1753,6 @@ function switchPrepTab(tab){
 }
 
 // ── INIT ─────────────────────────────────────────────────────────────────────
-renderSQL();renderPY();renderFITB();buildML();renderBQ();renderMC();renderStats();renderRAG();renderFL();
-</script>
+renderSQL();renderPY();renderFITB();buildML();buildWM();renderBQ();renderMC();renderStats();renderRAG();renderFL();</script>
 </body>
 </html>
